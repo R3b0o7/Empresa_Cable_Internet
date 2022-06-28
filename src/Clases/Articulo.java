@@ -1,10 +1,11 @@
-
 /**
- * 
- */
+
+ Enumeración de articulos disponibles
+
+ **/
 public enum Articulo {
     Cable,
-    Conector coaxial RG6,
+    Conector_coaxial_RG6,
     Divisor,
     Modem,
     Decodificador

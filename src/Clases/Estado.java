@@ -1,10 +1,8 @@
 
-/**
- * 
- */
+/** Enumeración de estado de servicio **/
 public enum Estado {
     Programado,
-    En curso,
+    En_curso,
     Cancelada,
     Finalizada
 }
