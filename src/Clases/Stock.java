@@ -1,5 +1,6 @@
 package Clases;
 import java.util.*;
+import Enumeraciones.Articulos;
 
 public class Stock {
 
@@ -16,7 +17,10 @@ public class Stock {
     /** Metodos de la clase **/
 
     public Void agregarArticulo() {
-        // TODO implementar
+        Scanner articulo = new Scanner(System.in);
+        System.out.println("Nombre del Art{iculo nuevo:");
+        String articuloNuevo = articulo.nextLine();
+        Enumeraciones.Articulos articuloNuevo = Articulos.
         return null;
     }
 
