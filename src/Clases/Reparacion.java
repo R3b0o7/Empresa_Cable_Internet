@@ -1,26 +1,31 @@
-/** Clase heredada de Servicio **/
+package Clases;
+
 import Clases.Sevicio;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+/** Clase heredada de Servicio **/
+
 public class Reparacion extends Sevicio {
 
-    /**
-     * Constructor
-     *
-     * @param tiempoTrabajado
-     * @param materiales
-     * @param materialesAdicionales
-     * @param costoDeViaje
-     * @param almuerzo
-     * @param combustible
-     * @param idVisita
-     * @param estado
-     * @param fechaDia
-     * @param tecnicos
-     * @param margen
-     * @param factura
+    /** Constructor
+
+     Parametros heredados:
+
+     @param tiempoTrabajado
+     @param materiales
+     @param materialesAdicionales
+     @param costoDeViaje
+     @param almuerzo
+     @param combustible
+     @param idVisita
+     @param estado
+     @param fechaDia
+     @param tecnicos
+     @param margen
+     @param factura
+
      **/
 
     public Reparacion(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,

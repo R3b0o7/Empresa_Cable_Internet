@@ -1,74 +1,64 @@
-/**
- * 
- */
+package Clases;
+import Clases.Persona;
+import java.util.*;
+import java.util.Date;
+
+/** Clase heredada de Persona **/
+
 public class Tecnico extends Persona {
 
-    /**
-     * Default constructor
-     */
-    public Tecnico() {
-    }
+    /** Parametros **/
 
-    /**
-     * 
-     */
     private int nroTécnico;
-
-    /**
-     * 
-     */
-    private Enumeración TipoTécnico tipoTecnico;
-
-    /**
-     * 
-     */
+    private Enum TipoTecnico;
     private Agenda agenda;
 
-    /**
-     * @param int 
-     * @param String 
-     * @param String 
-     * @return
-     */
+    /** Constructor
+
+     Parametros heredados:
+
+     @param dni
+     @param nombreApellido
+     @param dirección
+
+     **/
+
+    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, Enum TipoTecnico, Agenda agenda) {
+        super(dni, nombreApellido, dirección);
+        this.agenda = agenda;
+        this.nroTécnico = nroTécnico;
+        this.TipoTecnico = TipoTecnico;
+    }
+
+
+    /** Metodos **/
+
     public Tecnico Técnico(void int, void String, void String) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param Date 
-     * @param int 
-     * @return
-     */
     public boolean poseeDisponibilidad(void Date, void int) {
-        // TODO implement here
+        // TODO implementar
         return false;
     }
 
-    /**
-     * @param Date 
-     * @param int 
-     * @param int 
-     * @return
-     */
     public void agendarServicio(void Date, void int, void int) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @return
-     */
-    public void setTipoTécnico() {
-        // TODO implement here
-        return null;
+    /** Metodos heredados **/
+
+    @Override
+    public void login() {
+        super.login();
     }
 
-    /**
-     * @param value
-     */
-    public void setTipoTecnico(Enumeración TipoTécnico value) {
-        // TODO implement here
+    /** Setters **/
+
+    public void setTipoTecnico(Enum tipoTecnico) {
+        TipoTecnico = tipoTecnico;
     }
 
 }

@@ -1,5 +1,5 @@
 /** Enumeración de articulos disponibles **/
-public enum Articulo {
+public enum Articulos {
     Cable,
     Conector_coaxial_RG6,
     Divisor,

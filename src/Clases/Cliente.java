@@ -1,24 +1,55 @@
+package Clases;
+import Clases.Persona;
 import java.util.*;
+import java.util.Date;
+
 public class Cliente extends Persona {
 
-    public Cliente() {
-    }
-
+    /** Parametros **/
     private Agenda agenda;
 
-    public Cliente cliente(void int, void String, void String) {
-        // TODO implement here
-        return null;
+    /** Constructor
+
+     Parametros heredados:
+
+     @param dni
+     @param nombreApellido
+     @param dirección
+
+     **/
+
+    public Cliente(int dni, String nombreApellido, String dirección, Agenda agenda) {
+        super(dni, nombreApellido, dirección);
+        this.agenda = agenda;
     }
 
-    public int getDni() {
-        // TODO implement here
-        return 0;
-    }
+
+    /** Metodos **/
 
     public void agendarServicio(void Date, void int, void int) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
+    /** Metodos heredados **/
+
+    @Override
+    public void login() {
+        super.login();
+    }
+
+    @Override
+    public int getDni() {
+        return super.getDni();
+    }
+
+    @Override
+    public String getNombreApellido() {
+        return super.getNombreApellido();
+    }
+
+    @Override
+    public String getDirección() {
+        return super.getDirección();
+    }
 }

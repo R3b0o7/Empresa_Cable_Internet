@@ -1,115 +1,74 @@
-/**
- * 
- */
+package Clases;
+
+import java.util.*;
+
+/** Clase heredada de Usuario **/
+
 public class PerfilAdminSistema extends Usuario {
 
-    /**
-     * Default constructor
-     */
-    public PerfilAdminSistema() {
+    /** Constructor
+
+     Parametros heredados:
+
+     @param nombre
+     @param nombreUsuario
+     @param password
+
+     **/
+
+    public PerfilAdminSistema(String nombre, String nombreUsuario, String password) {
+        super(nombre, nombreUsuario, password);
     }
 
-    /**
-     * @param String 
-     * @param String 
-     * @param String 
-     * @return
-     */
-    public PerfilAdminSistema PerfilAdminSistema(void String, void String, void String) {
-        // TODO implement here
+    /** Metodos de la clase **/
+
+    public Tecnico crearTecnico(void int, void EnumeraciónTipoTecnico) {
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param int 
-     * @param EnumeraciónTipoTecnico 
-     * @return
-     */
-    public Tecnico crearTécnico(void int, void EnumeraciónTipoTecnico) {
-        // TODO implement here
+    public Void modificarTecnico(void Técnico) {
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param Técnico 
-     * @return
-     */
-    public Void modificarTécnico(void Técnico) {
-        // TODO implement here
-        return null;
+    public Void bajaTecnico(Tecnico) {
+        // TODO implementar
     }
 
-    /**
-     * @param Técnico 
-     * @return
-     */
-    public Void bajaTécnico(void Técnico) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param EneumeraciónArticulos 
-     * @param int 
-     * @param double 
-     * @return
-     */
     public Articulo crearArticulo(void EneumeraciónArticulos, void int, void double) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param Articulo 
-     * @return
-     */
     public Void modificarArticulo(void Articulo) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param Articulo 
-     * @return
-     */
     public Void bajaArticulo(void Articulo) {
-        // TODO implement here
+        // TODO implementar
         return null;
     }
 
-    /**
-     * @param Técnico 
-     * @return
-     */
     public int configurarCostosSeniority(void Técnico) {
-        // TODO implement here
+        // TODO implementar
         return 0;
     }
 
-    /**
-     * @param double 
-     * @return
-     */
     public void confiurarCostoCombustible(void double) {
-        // TODO implement here
-        return null;
+        // TODO implementar
     }
 
-    /**
-     * @param double 
-     * @return
-     */
     public void configurarCostoViaje(void double) {
-        // TODO implement here
-        return null;
+        // TODO implementar
     }
 
-    /**
-     * @return
-     */
-    public void setTipoTécnico() {
-        // TODO implement here
-        return null;
+    /** Metodos heredados **/
+
+    @Override
+    public Void login() {
+        return super.login();
     }
 
 }

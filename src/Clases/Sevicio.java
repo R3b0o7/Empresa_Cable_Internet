@@ -1,21 +1,21 @@
 package Clases;
-import java.util.*; // Este importa todo ya...
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
 
 /** Clase abstracta - superclase **/
 
 public class Sevicio {
+
     /** Parámetros **/
 
     private int tiempoTrabajado;
-    private ArrayList <Material> materiales;
-    private String materialesAdicionales; // tiene que estar en la lista de articulos?
+    private ArrayList <Articulo> materiales;
+    private String materialesAdicionales; // no tendría que estar en la lista de articulos?
     private boolean costoDeViaje;
     private boolean almuerzo;
     private double combustible;
     private int idVisita;
-    private Enum Estado;
+    private Enum Estado; //No estoy seguro que este sacando el listado de la enumeración de estados
     private Date fechaDia;
     private ArrayList <Tecnico> tecnicos;
     private double margen;
@@ -23,7 +23,7 @@ public class Sevicio {
 
     /** Constructor **/
 
-    public Sevicio(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,
+    public Sevicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
                    boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
                    Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
@@ -45,7 +45,7 @@ public class Sevicio {
 
     public void asignarTecnico(Tecnico) {
         // TODO implementar
-        return null;
+
     }
 
     public int calcularTiempoTrabajado(void int, void int) {

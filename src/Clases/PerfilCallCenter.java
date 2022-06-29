@@ -1,66 +1,52 @@
+package Clases;
 
+import Clases.Tecnico;
 import java.util.*;
 
-/**
- * 
- */
 public class PerfilCallCenter extends Usuario {
 
-    /**
-     * Default constructor
-     */
-    public PerfilCallCenter() {
+
+    /** Constructor
+
+     Parametros heredados:
+
+     @param nombre
+     @param nombreUsuario
+     @param password
+
+     **/
+
+    public PerfilCallCenter(String nombre, String nombreUsuario, String password) {
+        super(nombre, nombreUsuario, password);
     }
 
-    /**
-     * @param String 
-     * @param String 
-     * @param String 
-     * @return
-     */
-    public PerfilCallCenter PerfilCallCenter(void String, void String, void String) {
+    /** Metodos de la clase **/
+
+    public Cliente seleccionarCliente(int) {
         // TODO implement here
         return null;
     }
 
-    /**
-     * @param int 
-     * @return
-     */
-    public Cliente seleccionarCliente(void int) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
     public Cliente crearCliente() {
         // TODO implement here
         return null;
     }
 
-    /**
-     * @param Date 
-     * @param horario 
-     * @param tipoServicio 
-     * @return
-     */
-    public ArrayList<Tecnico> revisarDisponibilidad(void Date, void horario, void tipoServicio) {
+    public ArrayList<Tecnico> revisarDisponibilidad(Date, int horario,Enum tipoServicio) {
         // TODO implement here
         return null;
     }
 
-    /**
-     * @param Date 
-     * @param horario 
-     * @param tipoServicio 
-     * @param cliente 
-     * @return
-     */
-    public EnumeraciónTipoServicio crerVisita(void Date, void horario, void tipoServicio, void cliente) {
+    public EnumeraciónTipoServicio crerVisita(Date, int horario, Enum tipoServicio,Cliente cliente) {
         // TODO implement here
         return null;
+    }
+
+    /** Metodos heredados **/
+
+    @Override
+    public Void login() {
+        return super.login();
     }
 
 }

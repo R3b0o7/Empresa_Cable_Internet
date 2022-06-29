@@ -1,10 +1,9 @@
 package Clases;
-
 import java.util.*;
 
-/** Clase heredada de Usuario **/
+public class PerfilTecnico extends Usuario {
 
-public class PerfilAdministrativo extends Usuario {
+    private Tecnico tecnico;
 
     /** Constructor
 
@@ -16,32 +15,26 @@ public class PerfilAdministrativo extends Usuario {
 
      **/
 
-    public PerfilAdministrativo(String nombre, String nombreUsuario, String password) {
+    public PerfilTecnico(String nombre, String nombreUsuario, String password, Tecnico tecnico) {
         super(nombre, nombreUsuario, password);
+        this.tecnico = tecnico;
     }
 
     /** Metodos de la clase **/
 
-    public Factura emitirFactura() {
+    public PerfilTecnico PerfilTécnico(String, String, String) {
         // TODO implementar
         return null;
     }
 
-    public void imprimirFactura(void Factura) {
-        // TODO implementar
-    }
-
-    public void modificarFactura() {
-        // TODO implementar
-    }
-
-    public ArrayList<Factura> listarFacturas() {
+    public ArrayList<Servicio> serviciosAsignados() {
         // TODO implementar
         return null;
     }
 
-    public void actualizarServicio() {
+    public Void cargarDatoServicio() {
         // TODO implementar
+        return null;
     }
 
     /** Metodos heredados **/
