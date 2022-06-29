@@ -11,7 +11,7 @@ public class Tecnico extends Persona {
     /** Parametros **/
 
     private int nroTecnico;
-    private Enum tipoTecnico;
+    private Enumeraciones.TipoTecnico tipoTecnico;
     private Agenda agenda;
 
     /** Constructor
@@ -32,8 +32,8 @@ public class Tecnico extends Persona {
             case Junior:
                 this.tipoTecnico = TipoTecnico.Junior;
                 break;
-            case Semisenior:
-                this.tipoTecnico = TipoTecnico.Semisenior;
+            case Semi_senior:
+                this.tipoTecnico = TipoTecnico.Semi_senior;
                 break;
             case Senior:
                 this.tipoTecnico = TipoTecnico.Senior;
@@ -59,8 +59,8 @@ public class Tecnico extends Persona {
             case Junior:
                 this.tipoTecnico = TipoTecnico.Junior;
                 break;
-            case Semisenior:
-                this.tipoTecnico = TipoTecnico.Semisenior;
+            case Semi_senior:
+                this.tipoTecnico = TipoTecnico.Semi_senior;
                 break;
             case Senior:
                 this.tipoTecnico = TipoTecnico.Senior;

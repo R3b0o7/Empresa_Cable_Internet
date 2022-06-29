@@ -4,6 +4,6 @@ package Enumeraciones;
 
 public enum TipoTecnico {
     Junior,
-    Semisenior,
+    Semi_senior,
     Senior
 }
