@@ -1,4 +1,6 @@
 package Clases;
+import Enumeraciones.TipoTecnico;
+
 import java.util.*;
 import java.util.Date;
 
@@ -8,8 +10,8 @@ public class Tecnico extends Persona {
 
     /** Parametros **/
 
-    private int nroTécnico;
-    private Enum TipoTecnico;
+    private int nroTecnico;
+    private Enum tipoTecnico;
     private Agenda agenda;
 
     /** Constructor
@@ -18,23 +20,67 @@ public class Tecnico extends Persona {
 
      @param dni
      @param nombreApellido
-     @param dirección
+     @param direccion
 
      **/
 
-    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, Enum TipoTecnico, Agenda agenda) {
-        super(dni, nombreApellido, dirección);
+    public Tecnico(int dni, String nombreApellido, String direccion,int nroTecnico, int tipoTecnico, Agenda agenda) {
+        super(dni, nombreApellido, direccion);
         this.agenda = agenda;
-        this.nroTécnico = nroTécnico;
-        this.TipoTecnico = TipoTecnico;
+        this.nroTecnico = nroTecnico;
+        switch (tipoTecnico) {
+            case 1:
+                this.tipoTecnico = TipoTecnico.Junior;
+                break;
+            case 2:
+                this.tipoTecnico = TipoTecnico.Semisenior;
+                break;
+            case 3:
+                this.tipoTecnico = TipoTecnico.Senior;
+                break;
+        }
     }
 
 
+    public int getNroTecnico() {
+        return nroTecnico;
+    }
+
+    public void setNroTecnico(int nroTecnico) {
+        this.nroTecnico = nroTecnico;
+    }
+
+    public String getTipoTecnico() {
+        return tipoTecnico.toString();
+    }
+
+    public void setTipoTecnico(int tipoTecnico) {
+        switch (tipoTecnico) {
+            case 1:
+                this.tipoTecnico = TipoTecnico.Junior;
+                break;
+            case 2:
+                this.tipoTecnico = TipoTecnico.Semisenior;
+                break;
+            case 3:
+                this.tipoTecnico = TipoTecnico.Senior;
+                break;
+        }
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
     /** Metodos **/
 
-    public Tecnico Técnico() {
-        // TODO implementar
-        return null;
+
+    public void agendarServicio(Date fecha, int value1, int value2) {
+        // TODO implement here
     }
 
     public boolean poseeDisponibilidad() {
@@ -53,10 +99,5 @@ public class Tecnico extends Persona {
         super.login();
     }
 
-    /** Setters **/
-
-    public void setTipoTecnico(Enum tipoTecnico) {
-        TipoTecnico = tipoTecnico;
-    }
 
 }
