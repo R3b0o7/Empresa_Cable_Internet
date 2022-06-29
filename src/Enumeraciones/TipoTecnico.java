@@ -1,4 +1,4 @@
-package Clases;
+package Enumeraciones;
 
 /** Enumeración Tipo de Técnico **/
 

@@ -1,6 +1,7 @@
 package Clases;
 import java.util.*;
 import java.util.Date;
+import Enumeraciones.Estado;
 
 /** Clase abstracta - superclase **/
 
@@ -15,7 +16,7 @@ public class Sevicio {
     private boolean almuerzo;
     private double combustible;
     private int idVisita;
-    private Enum Estado; //No estoy seguro que este sacando el listado de la enumeración de estados
+    private Enumeraciones.Estado estado; //No estoy seguro que este sacando el listado de la enumeración de estados
     private Date fechaDia;
     private ArrayList <Tecnico> tecnicos;
     private double margen;
@@ -24,7 +25,7 @@ public class Sevicio {
     /** Constructor **/
 
     public Sevicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                   boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
+                   boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
                    Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         this.tiempoTrabajado = tiempoTrabajado;
@@ -34,7 +35,7 @@ public class Sevicio {
         this.almuerzo = almuerzo;
         this.combustible = combustible;
         this.idVisita = idVisita;
-        Estado = estado;
+        this.estado = estado;
         this.fechaDia = fechaDia;
         this.tecnicos = tecnicos;
         this.margen = margen;
@@ -43,12 +44,12 @@ public class Sevicio {
 
     /** Metodos de la clase **/
 
-    public void asignarTecnico(Tecnico) {
+    public void asignarTecnico() {
         // TODO implementar
 
     }
 
-    public int calcularTiempoTrabajado(void int, void int) {
+    public int calcularTiempoTrabajado() {
         // TODO implementar
         return 0;
     }
@@ -79,7 +80,7 @@ public class Sevicio {
     }
 
     public Enum getEstado() {
-        return Estado;
+        return estado;
     }
 
     /** Setters **/
@@ -98,8 +99,17 @@ public class Sevicio {
         // TODO implementar
     }
 
-    public void setEstado(Enum estado) {
-        Estado = estado;
+    public void setEstado(Enumeraciones.Estado estado) {
+        switch (estado){
+            case En_curso:
+                estado = Estado.En_curso;
+            case Cancelada:
+                estado = Estado.Cancelada;
+            case Finalizada:
+                estado = Estado.Finalizada;
+            case Programado:
+                estado = Estado.Programado;
+        }
     }
 
 }

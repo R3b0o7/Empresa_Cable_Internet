@@ -1,3 +1,5 @@
+package Enumeraciones;
+
 /** Enumeración de articulos disponibles **/
 public enum Articulos {
     Cable,

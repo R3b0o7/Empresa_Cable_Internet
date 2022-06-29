@@ -1,6 +1,8 @@
 package Clases;
 
 import Clases.Sevicio;
+import Enumeraciones.Estado;
+
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +30,8 @@ public class Instalación extends Sevicio {
 
      **/
 
-    public Instalación(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,
-                       boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
+    public Instalación(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
+                       boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
                        Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
@@ -103,7 +105,7 @@ public class Instalación extends Sevicio {
     }
 
     @Override
-    public void setEstado(Enum estado) {
+    public void setEstado(Enumeraciones.Estado estado) {
         super.setEstado(estado);
     }
 }
