@@ -10,11 +10,11 @@ public class Agenda {
     private matriz calendario;
 
 
-    private Map<int;Date> equivalenciaHorario;
+    private Map <int Date> equivalenciaHorario;
 
 
     public void setHorario() {
-        // TODO implement here
+        // TODO implementar
     }
 
 }

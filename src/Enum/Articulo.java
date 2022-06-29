@@ -1,8 +1,4 @@
-/**
-
- Enumeración de articulos disponibles
-
- **/
+/** Enumeración de articulos disponibles **/
 public enum Articulo {
     Cable,
     Conector_coaxial_RG6,
