@@ -13,7 +13,7 @@ public class Agenda {
     private matriz calendario;
 
 
-    private Map <int Date> equivalenciaHorario;
+    private Map <Integer, Date> equivalenciaHorario;
 
 
     public void setHorario() {

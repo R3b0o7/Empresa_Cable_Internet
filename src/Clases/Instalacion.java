@@ -6,7 +6,7 @@ import java.util.Date;
 /** Clase heredada de Servicio **/
 
 public class Instalacion extends Servicio {
-    
+
     public Instalacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
                        boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
                        Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
