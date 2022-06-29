@@ -16,7 +16,7 @@ public class Sevicio {
     private boolean almuerzo;
     private double combustible;
     private int idVisita;
-    private Enumeraciones.Estado estado; //No estoy seguro que este sacando el listado de la enumeración de estados
+    private Enumeraciones.Estado estado;
     private Date fechaDia;
     private ArrayList <Tecnico> tecnicos;
     private double margen;

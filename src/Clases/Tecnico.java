@@ -1,5 +1,4 @@
 package Clases;
-import Clases.Persona;
 import java.util.*;
 import java.util.Date;
 
@@ -33,19 +32,18 @@ public class Tecnico extends Persona {
 
     /** Metodos **/
 
-    public Tecnico Técnico(void int, void String, void String) {
+    public Tecnico Técnico() {
         // TODO implementar
         return null;
     }
 
-    public boolean poseeDisponibilidad(void Date, void int) {
+    public boolean poseeDisponibilidad() {
         // TODO implementar
         return false;
     }
 
-    public void agendarServicio(void Date, void int, void int) {
+    public void agendarServicio() {
         // TODO implementar
-        return null;
     }
 
     /** Metodos heredados **/

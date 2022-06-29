@@ -27,7 +27,7 @@ public class PerfilAdministrativo extends Usuario {
         return null;
     }
 
-    public void imprimirFactura(void Factura) {
+    public void imprimirFactura() {
         // TODO implementar
     }
 

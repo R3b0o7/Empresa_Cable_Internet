@@ -23,7 +23,6 @@ public class Persona {
 
     public void login() { //Usuario tiene el mismo metodo
         // TODO implementar
-        return null;
     }
 
     /** Getters **/

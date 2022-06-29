@@ -23,7 +23,7 @@ public class PerfilCallCenter extends Usuario {
 
     /** Metodos de la clase **/
 
-    public Cliente seleccionarCliente(int) {
+    public Cliente seleccionarCliente() {
         // TODO implement here
         return null;
     }
@@ -33,12 +33,12 @@ public class PerfilCallCenter extends Usuario {
         return null;
     }
 
-    public ArrayList<Tecnico> revisarDisponibilidad(Date, int horario,Enum tipoServicio) {
+    public ArrayList<Tecnico> revisarDisponibilidad() {
         // TODO implement here
         return null;
     }
 
-    public EnumeraciónTipoServicio crerVisita(Date, int horario, Enum tipoServicio,Cliente cliente) {
+    public Enumeraciones.TipoServicio crerVisita() {
         // TODO implement here
         return null;
     }

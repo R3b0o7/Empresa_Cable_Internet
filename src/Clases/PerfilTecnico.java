@@ -23,12 +23,12 @@ public class PerfilTecnico extends Usuario {
 
     /** Metodos de la clase **/
 
-    public PerfilTecnico PerfilTécnico(String, String, String) {
+    public PerfilTecnico PerfilTécnico() {
         // TODO implementar
         return null;
     }
 
-    public ArrayList<Servicio> serviciosAsignados() {
+    public ArrayList<?> serviciosAsignados() { //Tengo que sacar el array list de servicios de la compañia
         // TODO implementar
         return null;
     }

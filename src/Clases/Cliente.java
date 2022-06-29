@@ -26,9 +26,8 @@ public class Cliente extends Persona {
 
     /** Metodos **/
 
-    public void agendarServicio(void Date, void int, void int) {
+    public void agendarServicio() {
         // TODO implementar
-        return null;
     }
 
     /** Metodos heredados **/

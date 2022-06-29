@@ -22,45 +22,46 @@ public class PerfilAdminSistema extends Usuario {
 
     /** Metodos de la clase **/
 
-    public Tecnico crearTecnico(void int, void EnumeraciónTipoTecnico) {
+    public Tecnico crearTecnico() {
         // TODO implementar
         return null;
     }
 
-    public Void modificarTecnico(void Técnico) {
+    public Void modificarTecnico() {
         // TODO implementar
         return null;
     }
 
-    public Void bajaTecnico(Tecnico) {
-        // TODO implementar
-    }
-
-    public Articulo crearArticulo(void EneumeraciónArticulos, void int, void double) {
+    public Void bajaTecnico() {
         // TODO implementar
         return null;
     }
 
-    public Void modificarArticulo(void Articulo) {
+    public Articulo crearArticulo() {
         // TODO implementar
         return null;
     }
 
-    public Void bajaArticulo(void Articulo) {
+    public Void modificarArticulo() {
         // TODO implementar
         return null;
     }
 
-    public int configurarCostosSeniority(void Técnico) {
+    public Void bajaArticulo() {
+        // TODO implementar
+        return null;
+    }
+
+    public int configurarCostosSeniority() {
         // TODO implementar
         return 0;
     }
 
-    public void confiurarCostoCombustible(void double) {
+    public void confiurarCostoCombustible() {
         // TODO implementar
     }
 
-    public void configurarCostoViaje(void double) {
+    public void configurarCostoViaje() {
         // TODO implementar
     }
 
