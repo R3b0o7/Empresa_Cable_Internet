@@ -1,6 +1,7 @@
 package Clases;
 import java.util.*;
 
+/** Clase heredada de Usuario **/
 public class PerfilTecnico extends Usuario {
 
     private Tecnico tecnico;

@@ -3,6 +3,7 @@ package Clases;
 import Clases.Tecnico;
 import java.util.*;
 
+/** Clase heredada de Usuario **/
 public class PerfilCallCenter extends Usuario {
 
 
