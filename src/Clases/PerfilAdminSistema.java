@@ -1,6 +1,3 @@
-
-import java.util.*;
-
 /**
  * 
  */
@@ -28,7 +25,7 @@ public class PerfilAdminSistema extends Usuario {
      * @param EnumeraciónTipoTecnico 
      * @return
      */
-    public Técnico crearTécnico(void int, void EnumeraciónTipoTecnico) {
+    public Tecnico crearTécnico(void int, void EnumeraciónTipoTecnico) {
         // TODO implement here
         return null;
     }

@@ -46,7 +46,7 @@ public class PerfilCallCenter extends Usuario {
      * @param tipoServicio 
      * @return
      */
-    public ArrayList<Técnico> revisarDisponibilidad(void Date, void horario, void tipoServicio) {
+    public ArrayList<Tecnico> revisarDisponibilidad(void Date, void horario, void tipoServicio) {
         // TODO implement here
         return null;
     }

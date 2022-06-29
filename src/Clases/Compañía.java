@@ -15,7 +15,7 @@ public class Compañía {
     /**
      * 
      */
-    private ArrayList<Reparación> reparaciones;
+    private ArrayList<Reparacion> reparaciones;
 
     /**
      * 
@@ -65,7 +65,7 @@ public class Compañía {
     /**
      * @return
      */
-    public ArrayList<Reparación> getReparaciones() {
+    public ArrayList<Reparacion> getReparaciones() {
         // TODO implement here
         return null;
     }

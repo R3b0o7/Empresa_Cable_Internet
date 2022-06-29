@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Instalación extends Sevicio {
+public class Reparacion extends Sevicio {
 
     /**
      * Constructor
@@ -23,9 +23,9 @@ public class Instalación extends Sevicio {
      * @param factura
      **/
 
-    public Instalación(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,
-                       boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
-                       Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
+    public Reparacion(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,
+                      boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
+                      Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
                 idVisita, estado, fechaDia, tecnicos, margen, factura);

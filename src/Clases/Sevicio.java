@@ -1,25 +1,30 @@
-import java.util.*;
-import Clases.Estado;
+package Clases;
+import java.util.*; // Este importa todo ya...
+import java.util.ArrayList;
+import java.util.Date;
 
-/** Clase abstracta **/
+/** Clase abstracta - superclase **/
 
 public class Sevicio {
+    /** Parámetros **/
 
     private int tiempoTrabajado;
     private ArrayList <Material> materiales;
-    private String materialesAdicionales;
+    private String materialesAdicionales; // tiene que estar en la lista de articulos?
     private boolean costoDeViaje;
     private boolean almuerzo;
     private double combustible;
     private int idVisita;
-    private Enumeración Estado;
+    private Enum Estado;
     private Date fechaDia;
     private ArrayList <Tecnico> tecnicos;
     private double margen;
     private Factura factura;
 
+    /** Constructor **/
+
     public Sevicio(int tiempoTrabajado, ArrayList<Material> materiales, String materialesAdicionales,
-                   boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeración estado,
+                   boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enum estado,
                    Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         this.tiempoTrabajado = tiempoTrabajado;
@@ -36,94 +41,65 @@ public class Sevicio {
         this.factura = factura;
     }
 
+    /** Metodos de la clase **/
+
+    public void asignarTecnico(Tecnico) {
+        // TODO implementar
+        return null;
+    }
+
     public int calcularTiempoTrabajado(void int, void int) {
-        // TODO implement here
+        // TODO implementar
         return 0;
     }
 
-    /**
-     * @param Tecnico 
-     * @return
-     */
-    public void asignarTecnico(void Tecnico) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public String getMaterialesAdicionales() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @return
-     */
-    public String getEstado() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param value
-     */
-    public void setMaterialesAdicionales(String value) {
-        // TODO implement here
-    }
-
-    /**
-     * @param value
-     */
-    public void setCostoDeViaje(boolean value) {
-        // TODO implement here
-    }
-
-    /**
-     * @param value
-     */
-    public void setAlmuerzo(boolean value) {
-        // TODO implement here
-    }
-
-    /**
-     * @param value
-     */
-    public void setCombustible(double value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
     public double calcularCosto() {
-        // TODO implement here
+        // TODO implementar
         return 0.0d;
     }
 
-    /**
-     * @return
-     */
     public double calcularGastos() {
-        // TODO implement here
+        // TODO implementar
         return 0.0d;
     }
 
-    /**
-     * @return
-     */
     public double calcularMargenReal() {
-        // TODO implement here
+        // TODO implementar
         return 0.0d;
     }
 
-    /**
-     * @return
-     */
     public Factura generarFactura() {
-        // TODO implement here
+        // TODO implementar
         return null;
+    }
+
+    /** Getters **/
+    public String getMaterialesAdicionales() {
+        return materialesAdicionales;
+    }
+
+    public Enum getEstado() {
+        return Estado;
+    }
+
+    /** Setters **/
+    public void setAlmuerzo(boolean value) {
+        // TODO implementar
+    }
+    public void setCombustible(double value) {
+        // TODO implementar
+    }
+
+    public void setMaterialesAdicionales(String value) {
+        // TODO implementar
+    }
+
+    public void setCostoDeViaje(boolean value) {
+        // TODO implementar
+    }
+
+    public void setEstado(Enum estado) {
+        Estado = estado;
     }
 
 }

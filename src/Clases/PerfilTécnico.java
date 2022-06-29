@@ -15,7 +15,7 @@ public class PerfilTécnico extends Usuario {
     /**
      * 
      */
-    private Técnico tecnico;
+    private Tecnico tecnico;
 
     /**
      * @param String 

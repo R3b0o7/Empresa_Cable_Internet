@@ -1,15 +1,12 @@
-
-import java.util.*;
-
 /**
  * 
  */
-public class Técnico extends Persona {
+public class Tecnico extends Persona {
 
     /**
      * Default constructor
      */
-    public Técnico() {
+    public Tecnico() {
     }
 
     /**
@@ -33,7 +30,7 @@ public class Técnico extends Persona {
      * @param String 
      * @return
      */
-    public Técnico Técnico(void int, void String, void String) {
+    public Tecnico Técnico(void int, void String, void String) {
         // TODO implement here
         return null;
     }
