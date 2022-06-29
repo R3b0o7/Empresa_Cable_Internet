@@ -6,7 +6,7 @@ public class Stock {
 
     /** Parámetros **/
 
-    private ArrayList<Articulo> stockArticulos;
+    private List<Articulo> articulos;
 
     /** Constructor **/ // Es necesario?
 
@@ -16,11 +16,11 @@ public class Stock {
 
     /** Metodos de la clase **/
 
-    public Void agregarArticulo() {
-        Scanner articulo = new Scanner(System.in);
-        System.out.println("Nombre del Art{iculo nuevo:");
-        String articuloNuevo = articulo.nextLine();
-        Enumeraciones.Articulos articuloNuevo = Articulos.
+    public Void agregarArticulo(int catidad, double precio) {
+        Scanner cantidad = new Scanner(System.in);
+        System.out.println("Cantidad de articulos a agregar:");
+        String nuevaCantidad = cantidad.nextLine();
+
         return null;
     }
 
