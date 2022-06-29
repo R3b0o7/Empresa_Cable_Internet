@@ -6,18 +6,16 @@ import java.util.*;
 
 public class Agenda {
 
-    public Agenda() {
-    }
-
-
-    private matriz calendario;
-
-
+    private int[365][25] calendario;
     private Map <int Date> equivalenciaHorario;
 
+    public Agenda() {
+
+    }
 
     public void setHorario() {
         // TODO implementar
+        this.
     }
 
 }
