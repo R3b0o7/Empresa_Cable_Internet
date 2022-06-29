@@ -4,14 +4,14 @@ public class Articulo {
 
     /** Parametros **/
 
-    private Enum Articulos;
+    private Enumeraciones.Articulos articulo;
     private int cantidad;
     private double precio;
 
     /** Constructor **/
 
-    public Articulo(Enum articulos, int cantidad, double precio) {
-        Articulos = articulos;
+    public Articulo(Enumeraciones.Articulos articulo, int cantidad, double precio) {
+        this.articulo = articulo;
         this.cantidad = cantidad;
         this.precio = precio;
     }
