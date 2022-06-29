@@ -6,26 +6,7 @@ import java.util.Date;
 /** Clase heredada de Servicio **/
 
 public class Instalacion extends Servicio {
-
-    /** Constructor
-
-     Parametros heredados:
-
-     @param tiempoTrabajado
-     @param materialesgit
-     @param materialesAdicionales
-     @param costoDeViaje
-     @param almuerzo
-     @param combustible
-     @param idVisita
-     @param estado
-     @param fechaDia
-     @param tecnicos
-     @param margen
-     @param factura
-
-     **/
-
+    
     public Instalacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
                        boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
                        Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {

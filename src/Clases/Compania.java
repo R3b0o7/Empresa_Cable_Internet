@@ -2,7 +2,7 @@ package Clases;
 
 import java.util.*;
 
-public class Compañia {
+public class Compania {
 
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
