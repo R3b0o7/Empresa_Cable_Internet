@@ -1,22 +1,18 @@
 package Clases;
 
-import Clases.Sevicio;
-import Enumeraciones.Estado;
-
-import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
 
 /** Clase heredada de Servicio **/
 
-public class Instalación extends Sevicio {
+public class Instalacion extends Servicio {
 
     /** Constructor
 
      Parametros heredados:
 
      @param tiempoTrabajado
-     @param materiales
+     @param materialesgit
      @param materialesAdicionales
      @param costoDeViaje
      @param almuerzo
@@ -30,7 +26,7 @@ public class Instalación extends Sevicio {
 
      **/
 
-    public Instalación(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
+    public Instalacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
                        boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
                        Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 

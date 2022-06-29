@@ -5,7 +5,7 @@ import java.util.*;
 public class Compañia {
 
     private ArrayList<Reparacion> reparaciones;
-    private ArrayList<Instalación> instalaciones;
+    private ArrayList<Instalacion> instalaciones;
     private ArrayList<Cliente> clientes;
     private ArrayList<PerfilAdminSistema> usuariosAdmiSistema;
     private ArrayList<PerfilCallCenter> usuariosCallCenter;
@@ -21,7 +21,7 @@ public class Compañia {
         return reparaciones;
     }
 
-    public ArrayList<Instalación> getInstalaciones() {
+    public ArrayList<Instalacion> getInstalaciones() {
         return instalaciones;
     }
 

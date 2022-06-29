@@ -5,7 +5,7 @@ import Enumeraciones.Estado;
 
 /** Clase abstracta - superclase **/
 
-public class Sevicio {
+public class Servicio {
 
     /** Parámetros **/
 
@@ -24,9 +24,9 @@ public class Sevicio {
 
     /** Constructor **/
 
-    public Sevicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                   boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
-                   Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
+    public Servicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
+                    boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
+                    Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         this.tiempoTrabajado = tiempoTrabajado;
         this.materiales = materiales;

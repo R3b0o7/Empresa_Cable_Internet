@@ -1,15 +1,11 @@
 package Clases;
 
-import Clases.Sevicio;
-import Enumeraciones.Estado;
-
-import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
 
 /** Clase heredada de Servicio **/
 
-public class Reparacion extends Sevicio {
+public class Reparacion extends Servicio {
 
     /** Constructor
 
