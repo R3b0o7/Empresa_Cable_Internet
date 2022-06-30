@@ -16,6 +16,13 @@ public class Articulo {
         this.precio = precio;
     }
 
+    /** Metodos de la clase **/
+
+    public int agregarCantidadArticulos(int cantidad){
+        cantidad += cantidad;
+        return cantidad;
+    }
+
     /** Getters**/
 
     public int getCantidad() {
@@ -27,10 +34,6 @@ public class Articulo {
     }
 
     /** Setters **/
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 
     public void setPrecio(double precio) {
         this.precio = precio;

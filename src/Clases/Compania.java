@@ -1,8 +1,12 @@
 package Clases;
 
+import Enumeraciones.Articulos;
+
 import java.util.*;
 
 public class Compania {
+
+    //Debe terer un inicializar sistea
 
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
@@ -55,5 +59,11 @@ public class Compania {
 
     public Stock getStock() {
         return stock;
+    }
+
+    public static void inicializarBDD(){
+        Clases.Articulo artCable = new Articulo(Articulos.Cable,0,250.90);
+        Clases.Stock stock = new Stock();
+        stock.agregarArticulo(artCable);
     }
 }

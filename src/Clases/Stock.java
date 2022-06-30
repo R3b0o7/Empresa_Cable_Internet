@@ -6,21 +6,18 @@ public class Stock {
 
     /** Parámetros **/
 
-    private List<Articulo> articulos;
+    private ArrayList<Articulo> articulos;
 
     /** Constructor **/ // Es necesario?
 
-    public Stock(ArrayList<Articulo> stockArticulos) {
-        this.stockArticulos = stockArticulos;
+    public Stock() {
+        this.articulos = new ArrayList<Articulo>();
     }
 
     /** Metodos de la clase **/
 
-    public Void agregarArticulo(int catidad, double precio) {
-        Scanner cantidad = new Scanner(System.in);
-        System.out.println("Cantidad de articulos a agregar:");
-        String nuevaCantidad = cantidad.nextLine();
-
+    public Void agregarArticulo(Articulo articulo) {
+        articulos.add(articulo);
         return null;
     }
 
