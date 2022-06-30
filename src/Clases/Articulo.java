@@ -19,6 +19,7 @@ public class Articulo {
     /** Metodos de la clase **/
 
     public int agregarCantidadArticulos(int cantidad){
+        // Suma la cantidad ingresada a la cantidad de articulos existentes
         cantidad += cantidad;
         return cantidad;
     }

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Compania {
 
-    //Debe terer un inicializar sistema - por ahora es el inicializarBDD
+    /** La Compania es instanciada en el controlador, ya que esta contiene la BDD del sistema **/
 
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
@@ -63,9 +63,10 @@ public class Compania {
 
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
-    public static void inicializarBDD(){
+    public void inicializarBDD(){
 
         /** Creación de Articulos **/
+        // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0
 
         Clases.Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
         Clases.Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
