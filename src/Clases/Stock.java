@@ -32,4 +32,9 @@ public class Stock {
         return false;
     }
 
+    /** Gettes **/
+
+    public ArrayList<Articulo> getArticulos() {
+        return articulos;
+    }
 }

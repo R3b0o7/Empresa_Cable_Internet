@@ -21,13 +21,18 @@ public class Controlador {
         return instancia;
     }
 
-    public void actualizarArticulos(){
+    public void actualizarArticulos(Articulo artActualizar){
 
         /* Ingresa por pantalla cantidad de articulos que quiero agregar al stock */
 
         Scanner cantidad = new Scanner(System.in);
         System.out.println("Cantidad de articulos a agregar:");
-        int nuevaCantidad = cantidad.nextInt();
+        int agregarCantidad = cantidad.nextInt();
+
+        //Como selecciono un articulo de la lista de stock para usar el metodo "agregarCantidadArticulos" de la clase Articulo???
+
+        ArrayList listaArticulos = compania.getStock().getArticulos();
+
         //TODO -> TBD
 
     }
