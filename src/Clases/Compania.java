@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Compania {
 
-    //Debe terer un inicializar sistea
+    //Debe terer un inicializar sistema - por ahora es el inicializarBDD
 
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
@@ -61,9 +61,26 @@ public class Compania {
         return stock;
     }
 
+    /** Inicialización de la Base de Datos - Programa Inicial **/
+
     public static void inicializarBDD(){
-        Clases.Articulo artCable = new Articulo(Articulos.Cable,0,250.90);
+
+        /** Creación de Articulos **/
+
+        Clases.Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
+        Clases.Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
+        Clases.Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,850);
+        Clases.Articulo artDivisor = new Articulo(Articulos.Divisor,800,120.30);
+        Clases.Articulo artModem = new Articulo(Articulos.Modem,50,1135.50);
+
+        /** Creación de Stock y la lista de articulos en el stock **/
+
         Clases.Stock stock = new Stock();
+
         stock.agregarArticulo(artCable);
+        stock.agregarArticulo(artConector_coaxial_RG6);
+        stock.agregarArticulo(artDecodificador);
+        stock.agregarArticulo(artDivisor);
+        stock.agregarArticulo(artModem);
     }
 }

@@ -8,7 +8,7 @@ public class Stock {
 
     private ArrayList<Articulo> articulos;
 
-    /** Constructor **/ // Es necesario?
+    /** Constructor **/
 
     public Stock() {
         this.articulos = new ArrayList<Articulo>();
