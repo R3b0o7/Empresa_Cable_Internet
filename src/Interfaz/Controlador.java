@@ -23,18 +23,19 @@ public class Controlador {
 
     public void actualizarArticulos(Articulo artActualizar){
 
-        /* Ingresa por pantalla cantidad de articulos que quiero agregar al stock */
+        // Ingresa por pantalla cantidad de articulos que quiero agregar al stock
 
         Scanner cantidad = new Scanner(System.in);
         System.out.println("Cantidad de articulos a agregar:");
         int agregarCantidad = cantidad.nextInt();
 
-        //Como selecciono un articulo de la lista de stock para usar el metodo "agregarCantidadArticulos" de la clase Articulo???
-
-        ArrayList listaArticulos = compania.getStock().getArticulos();
-
-        //TODO -> TBD
-
+        // Selecciono un articulo de la lista de stock para usar el metodo "agregarCantidadArticulos" de la clase Articulo
+        // Creería que no es necesario el for
+        /** for (Articulo articulo : compania.getStock().getArticulos()){
+            if (compania.getStock().getArticulos().equals(artActualizar)){ */
+                artActualizar.agregarCantidadArticulos(agregarCantidad);
+           /** }
+        }*/
     }
 
 }

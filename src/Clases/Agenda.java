@@ -6,7 +6,9 @@ import java.util.*;
 
 public class Agenda {
 
+    // Esta como comentario por que no podía probar el main sino :(
 
+    /**
     public Agenda() {
     }
 
@@ -18,7 +20,7 @@ public class Agenda {
     private int[365][25] calendario;
     private Map <Integer, Date> equivalenciaHorario;
 
-    public Agenda() {
+    //public Agenda() {
 
     }
 
@@ -26,5 +28,5 @@ public class Agenda {
         // TODO implementar
         this.
     }
-
+     */
 }

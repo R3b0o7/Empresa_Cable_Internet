@@ -76,7 +76,7 @@ public class Compania {
 
         /** Creación de Stock y la lista de articulos en el stock **/
 
-        Clases.Stock stock = new Stock();
+        //Clases.Stock stock = new Stock();
 
         stock.agregarArticulo(artCable);
         stock.agregarArticulo(artConector_coaxial_RG6);
