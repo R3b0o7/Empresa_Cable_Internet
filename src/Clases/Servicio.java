@@ -21,7 +21,7 @@ public class Servicio {
     private ArrayList <Tecnico> tecnicos;
     private double margen;
     private Factura factura;
-
+    private double gastos;
     /** Constructor **/
 
     public Servicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
@@ -102,13 +102,17 @@ public class Servicio {
     public void setEstado(Enumeraciones.Estado estado) {
         switch (estado){
             case En_curso:
-                estado = Estado.En_curso;
+                this.estado = Estado.En_curso;
+                break;
             case Cancelada:
-                estado = Estado.Cancelada;
+                this.estado = Estado.Cancelada;
+                break;
             case Finalizada:
-                estado = Estado.Finalizada;
+                this.estado = Estado.Finalizada;
+                break;
             case Programado:
-                estado = Estado.Programado;
+                this.estado = Estado.Programado;
+                break;
         }
     }
 

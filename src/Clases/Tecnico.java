@@ -11,7 +11,7 @@ public class Tecnico extends Persona {
     /** Parametros **/
 
     private int nroTecnico;
-    private Enum tipoTecnico;
+    private Enumeraciones.TipoTecnico tipoTecnico;
     private Agenda agenda;
 
     /** Constructor
@@ -24,18 +24,18 @@ public class Tecnico extends Persona {
 
      **/
 
-    public Tecnico(int dni, String nombreApellido, String direccion,int nroTecnico, int tipoTecnico, Agenda agenda) {
+    public Tecnico(int dni, String nombreApellido, String direccion,int nroTecnico, Enumeraciones.TipoTecnico tipoTecnico, Agenda agenda) {
         super(dni, nombreApellido, direccion);
         this.agenda = agenda;
         this.nroTecnico = nroTecnico;
         switch (tipoTecnico) {
-            case 1:
+            case Junior:
                 this.tipoTecnico = TipoTecnico.Junior;
                 break;
-            case 2:
-                this.tipoTecnico = TipoTecnico.Semisenior;
+            case Semi_senior:
+                this.tipoTecnico = TipoTecnico.Semi_senior;
                 break;
-            case 3:
+            case Senior:
                 this.tipoTecnico = TipoTecnico.Senior;
                 break;
         }
@@ -54,15 +54,15 @@ public class Tecnico extends Persona {
         return tipoTecnico.toString();
     }
 
-    public void setTipoTecnico(int tipoTecnico) {
+    public void setTipoTecnico(Enumeraciones.TipoTecnico tipoTecnico) {
         switch (tipoTecnico) {
-            case 1:
+            case Junior:
                 this.tipoTecnico = TipoTecnico.Junior;
                 break;
-            case 2:
-                this.tipoTecnico = TipoTecnico.Semisenior;
+            case Semi_senior:
+                this.tipoTecnico = TipoTecnico.Semi_senior;
                 break;
-            case 3:
+            case Senior:
                 this.tipoTecnico = TipoTecnico.Senior;
                 break;
         }
