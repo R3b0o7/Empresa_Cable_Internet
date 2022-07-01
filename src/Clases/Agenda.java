@@ -80,4 +80,5 @@ public class Agenda {
     public Map<Integer, String> getEquivalenciaFilaHora() {
         return equivalenciaFilaHora;
     }
+
 }
