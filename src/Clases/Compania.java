@@ -65,18 +65,18 @@ public class Compania {
 
     public void inicializarBDD(){
 
-        /** Creación de Articulos **/
+        /** Creación de Articulos  **/
         // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0
 
-        Clases.Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
-        Clases.Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
-        Clases.Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,850);
-        Clases.Articulo artDivisor = new Articulo(Articulos.Divisor,800,120.30);
-        Clases.Articulo artModem = new Articulo(Articulos.Modem,50,1135.50);
+        Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
+        Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
+        Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,850);
+        Articulo artDivisor = new Articulo(Articulos.Divisor,800,120.30);
+        Articulo artModem = new Articulo(Articulos.Modem,50,1135.50);
 
-        /** Creación de Stock y la lista de articulos en el stock **/
+        /** Creación de Stock y la lista de articulos en el stock  **/
 
-        //Clases.Stock stock = new Stock();
+        //Stock stock = new Stock();
 
         stock.agregarArticulo(artCable);
         stock.agregarArticulo(artConector_coaxial_RG6);
@@ -84,4 +84,5 @@ public class Compania {
         stock.agregarArticulo(artDivisor);
         stock.agregarArticulo(artModem);
     }
+
 }

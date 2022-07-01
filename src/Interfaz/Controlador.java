@@ -11,14 +11,18 @@ public class Controlador {
     private static Controlador instancia;           // Singleton
     private Compania compania;
 
-    private Controlador(){                          // Cuando creo el controlador instancio la compania (contenedor de la BDD)
+    public Controlador(){                          // Cuando creo el controlador instancio la compania (contenedor de la BDD)
         compania = new Compania();
-        compania.inicializarBDD();                  // Inicializo la base de datos
+        //compania.inicializarBDD();                  // Inicializo la base de datos
     }
     public static Controlador getinstancia(){       // si no esta instanciado se instancia
         if(instancia == null)
             instancia = new Controlador();
         return instancia;
+    }
+
+    public Compania getCompania() {
+        return compania;
     }
 
     public void actualizarArticulos(Articulo artActualizar){

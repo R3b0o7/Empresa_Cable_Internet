@@ -1,24 +1,22 @@
 package Clases;
 import java.util.*;
-import Enumeraciones.Articulos;
 
 public class Stock {
 
     /** Parámetros **/
 
-    private ArrayList<Articulo> articulos;
+    private Collection<Articulo> articulos;
 
     /** Constructor **/
 
     public Stock() {
-        this.articulos = new ArrayList<Articulo>();
+        articulos = new ArrayList<Articulo>();
     }
 
     /** Metodos de la clase **/
 
-    public Void agregarArticulo(Articulo articulo) {          // Agrega un articulo a la lista de articulos
+    public void agregarArticulo(Articulo articulo) {          // Agrega un articulo a la lista de articulos
         articulos.add(articulo);
-        return null;
     }
 
     public boolean verificarStock(Articulo artVerificar) {
@@ -35,6 +33,7 @@ public class Stock {
     /** Gettes **/
 
     public ArrayList<Articulo> getArticulos() {
-        return articulos;
+        return (ArrayList<Articulo>) articulos;
     }
+
 }
