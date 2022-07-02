@@ -15,7 +15,7 @@ public class Servicio {
     private boolean costoDeViaje;
     private boolean almuerzo;
     private double combustible;
-    private int idVisita;
+    private int idServicio;
     private Enumeraciones.Estado estado;
     private Date fechaDia;
     private ArrayList <Tecnico> tecnicos;
@@ -25,7 +25,7 @@ public class Servicio {
     /** Constructor **/
 
     public Servicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                    boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
+                    boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
                     Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         this.tiempoTrabajado = tiempoTrabajado;
@@ -34,7 +34,7 @@ public class Servicio {
         this.costoDeViaje = costoDeViaje;
         this.almuerzo = almuerzo;
         this.combustible = combustible;
-        this.idVisita = idVisita;
+        this.idServicio = idServicio;
         this.estado = estado;
         this.fechaDia = fechaDia;
         this.tecnicos = tecnicos;
@@ -81,6 +81,10 @@ public class Servicio {
 
     public Enum getEstado() {
         return estado;
+    }
+
+    public int getIdServicio() {
+        return idServicio;
     }
 
     /** Setters **/

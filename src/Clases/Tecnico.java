@@ -1,5 +1,5 @@
 package Clases;
-import Enumeraciones.TipoTecnico;
+import Excepciones.GenericException;
 
 import java.util.*;
 import java.util.Date;
@@ -10,9 +10,10 @@ public class Tecnico extends Persona {
 
     /** Parametros **/
 
-    private int nroTecnico;
-    private Enumeraciones.TipoTecnico tipoTecnico;
+    private int nroTécnico;
+    private Enum TipoTecnico;
     private Agenda agenda;
+    private String turno;
 
     /** Constructor
 
@@ -20,84 +21,62 @@ public class Tecnico extends Persona {
 
      @param dni
      @param nombreApellido
-     @param direccion
+     @param dirección
 
      **/
 
-    public Tecnico(int dni, String nombreApellido, String direccion,int nroTecnico, Enumeraciones.TipoTecnico tipoTecnico, Agenda agenda) {
-        super(dni, nombreApellido, direccion);
-        this.agenda = agenda;
-        this.nroTecnico = nroTecnico;
-        switch (tipoTecnico) {
-            case Junior:
-                this.tipoTecnico = TipoTecnico.Junior;
-                break;
-            case Semi_senior:
-                this.tipoTecnico = TipoTecnico.Semi_senior;
-                break;
-            case Senior:
-                this.tipoTecnico = TipoTecnico.Senior;
-                break;
-        }
+    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, Enum TipoTecnico, String turno) {
+        super(dni, nombreApellido, dirección);
+        this.agenda = new Agenda();
+        this.nroTécnico = nroTécnico;
+        this.TipoTecnico = TipoTecnico;
+        this.turno = turno;
     }
 
-
-    public int getNroTecnico() {
-        return nroTecnico;
-    }
-
-    public void setNroTecnico(int nroTecnico) {
-        this.nroTecnico = nroTecnico;
-    }
-
-    public String getTipoTecnico() {
-        return tipoTecnico.toString();
-    }
-
-    public void setTipoTecnico(Enumeraciones.TipoTecnico tipoTecnico) {
-        switch (tipoTecnico) {
-            case Junior:
-                this.tipoTecnico = TipoTecnico.Junior;
-                break;
-            case Semi_senior:
-                this.tipoTecnico = TipoTecnico.Semi_senior;
-                break;
-            case Senior:
-                this.tipoTecnico = TipoTecnico.Senior;
-                break;
-        }
-    }
-
-    public Agenda getAgenda() {
-        return agenda;
-    }
-
-    public void setAgenda(Agenda agenda) {
-        this.agenda = agenda;
-    }
 
     /** Metodos **/
 
-
-    public void agendarServicio(Date fecha, int value1, int value2) {
-        // TODO implement here
+    public boolean poseeDisponibilidad(Date fecha, String horario, String tipoServicio) throws GenericException {
+        // TODO implementa
+        boolean res;
+        if(tipoServicio == "REPARACION"){
+            res = this.agenda.esDisponible(fecha, horario, 2);
+        } else {
+            res = this.agenda.esDisponible(fecha, horario, 3);
+        }
+        return res;
     }
 
-    public boolean poseeDisponibilidad() {
+    public void agendarServicio(Date fecha, String horario, int idServicio, String tipoServicio) throws GenericException {
         // TODO implementar
-        return false;
+
+
+        //Valido si el turno está disponible
+        if(tipoServicio == "REPARACION") {
+            if (!this.agenda.esDisponible(fecha, horario, 2))
+                throw new GenericException("El Tecnico no posee el turno disponible");
+        } else {
+            if (!this.agenda.esDisponible(fecha, horario, 3))
+                throw new GenericException("El Tecnico no posee el turno disponible");
+        }
+
+        //agenda cierta cantidad de unidades de media hora de acuerdo al tipo de servicio
+        if(tipoServicio == "REPARACION"){
+            this.agenda.agendarServicio(idServicio, fecha, horario, 2);
+        } else {
+            this.agenda.agendarServicio(idServicio, fecha, horario, 3);
+        }
     }
 
-    public void agendarServicio() {
-        // TODO implementar
+    /** Setters **/
+
+    public void setTipoTecnico(Enum tipoTecnico) {
+        TipoTecnico = tipoTecnico;
     }
 
-    /** Metodos heredados **/
+    /** Getters **/
 
-    @Override
-    public void login() {
-        super.login();
+    public String getTurno() {
+        return turno;
     }
-
-
 }

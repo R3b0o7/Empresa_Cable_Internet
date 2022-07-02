@@ -2,6 +2,7 @@ package Interfaz;
 
 import Clases.*;
 import Enumeraciones.*;
+import Excepciones.GenericException;
 
 import java.util.*;
 import java.util.function.ToDoubleBiFunction;
@@ -12,8 +13,8 @@ public class Controlador {
     private Compania compania;
 
     public Controlador(){                          // Cuando creo el controlador instancio la compania (contenedor de la BDD)
-        compania = new Compania();
-        //compania.inicializarBDD();                  // Inicializo la base de datos
+        compania = Clases.Compania.getInstance();
+        //compania.inicializarBDD();                  // Inicializo la base de datos. LA INICIALIZA EL CONSTRUCTOR DE COMPANIA
     }
     public static Controlador getinstancia(){       // si no esta instanciado se instancia
         if(instancia == null)
@@ -40,6 +41,20 @@ public class Controlador {
                 artActualizar.agregarCantidadArticulos(agregarCantidad);
            /** }
         }*/
+    }
+
+    public void agendarServicio() throws GenericException{
+        int idServicio = 1;
+
+        //determino el tipo de servicio parsarlo al metodo del Tecnico
+        String tipoServicio;
+        if(compania.getReparacion(idServicio) != null){
+            tipoServicio = "REPARACION";
+        } else if(compania.getInstalacion(idServicio) != null) {
+            tipoServicio = "INSTALACION";
+        } else {
+            throw new GenericException("El servicio no existe.");
+        }
     }
 
 }

@@ -10,8 +10,8 @@ public class Main {
 
     //instancia controlador, el controlador ya instancia la compania
     public static void main(String[] args) {
-        Compania companiaCableInternet = new Compania();
-        companiaCableInternet.inicializarBDD();
+        Compania companiaCableInternet = Clases.Compania.getInstance();
+//        companiaCableInternet.inicializarBDD();`NO ES NECESARIO, la iniciliza el constructor de Compania
 
         //Controlador controlador = new Controlador();
 

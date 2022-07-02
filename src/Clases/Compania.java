@@ -8,6 +8,7 @@ public class Compania {
 
     /** La Compania es instanciada en el controlador, ya que esta contiene la BDD del sistema **/
 
+    private static Compania compania;
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
     private ArrayList<Cliente> clientes;
@@ -16,8 +17,34 @@ public class Compania {
     private ArrayList<PerfilTecnico> usuariosTecnicos;
     private ArrayList<PerfilAdministrativo> usuariosAdministrativo;
     private ArrayList<Factura> facturas;
-    private ArrayList<Tecnico> tecnico;
+    private ArrayList<Tecnico> tecnicos;
     private Stock stock;
+
+    /** Constructor privado por ser Singleton  **/
+    private Compania(){
+        this.reparaciones = new ArrayList<Reparacion>();
+        this.instalaciones = new ArrayList<Instalacion>();
+        this.clientes = new ArrayList<Cliente>();
+        this.usuariosAdmiSistema = new ArrayList<PerfilAdminSistema>();
+        this.usuariosAdministrativo = new ArrayList<PerfilAdministrativo>();
+        this.usuariosTecnicos = new ArrayList<PerfilTecnico>();
+        this.usuariosCallCenter = new ArrayList<PerfilCallCenter>();
+        this.facturas = new ArrayList<Factura>();
+        this.tecnicos = new ArrayList<Tecnico>();
+        this.stock = new Stock();
+
+        //inicializo la BDD
+        this.inicializarBDD();
+
+    }
+
+    //Metodo para el Singleton. Reemplaza al constructor
+    public static Compania getInstance() {
+        if(compania == null) {
+            compania = new Compania();
+        }
+        return compania;
+    }
 
     /** Getters **/
 
@@ -53,17 +80,35 @@ public class Compania {
         return facturas;
     }
 
-    public ArrayList<Tecnico> getTecnico() {
-        return tecnico;
+    public ArrayList<Tecnico> getTecnicos() {
+        return tecnicos;
     }
 
     public Stock getStock() {
         return stock;
     }
 
+    public Reparacion getReparacion(int idServicio){
+        for(Reparacion reparacion: this.getReparaciones()){
+            if(reparacion.getIdServicio() == idServicio){
+                return reparacion;
+            }
+        }
+        return null;
+    }
+
+    public Instalacion getInstalacion(int idServicio){
+        for(Instalacion instalacion: this.instalaciones){
+            if(instalacion.getIdServicio() == idServicio){
+                return instalacion;
+            }
+        }
+        return null;
+    }
+
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
-    public void inicializarBDD(){
+    private void inicializarBDD(){
 
         /** Creación de Articulos  **/
         // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0

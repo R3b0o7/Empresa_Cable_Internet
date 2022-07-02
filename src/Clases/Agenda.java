@@ -1,5 +1,7 @@
 package Clases;
 
+import Excepciones.GenericException;
+
 import java.util.*;
 
 public class Agenda {
@@ -40,17 +42,33 @@ public class Agenda {
         }
     }
 
-    public void agendarServicio(int idServicio, Date fecha, String horario ) {
+    public void agendarServicio(int idServicio, Date fecha, String horario, int unidadesTiempo ) throws GenericException {
         // TODO implementar
         int i = this.dateToColumn(fecha);
         int j = this.equivalenciaHoraFila.get(horario);
-        calendario[i][j] = idServicio;
+
+        if(j+unidadesTiempo > 24)
+            throw new GenericException("Excede el horario de trabajo.");
+
+        for(int k = 0; k < unidadesTiempo; k++){
+            calendario[i][j] = idServicio;
+            j++;
+        }
     }
 
-    public boolean esDisponible(Date fecha, String horario){
+    public boolean esDisponible(Date fecha, String horario, int unidadesTiempo) throws GenericException{
         int i = this.dateToColumn(fecha);
         int j = this.equivalenciaHoraFila.get(horario);
-        return calendario[i][j] == 0;
+
+        if(j+unidadesTiempo > 24)
+            throw new GenericException("Excede el horario de trabajo.");
+
+        for(int k = 0; k < unidadesTiempo; k++){
+            if(calendario[i][j] != 0) {return false;};
+            j++;
+        }
+
+        return true;
     }
 
     private int dateToColumn(Date fecha){

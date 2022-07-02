@@ -17,7 +17,7 @@ public class Reparacion extends Servicio {
      @param costoDeViaje
      @param almuerzo
      @param combustible
-     @param idVisita
+     @param idServicio
      @param estado
      @param fechaDia
      @param tecnicos
@@ -27,11 +27,11 @@ public class Reparacion extends Servicio {
      **/
 
     public Reparacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                      boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
+                      boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
                       Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
-                idVisita, estado, fechaDia, tecnicos, margen, factura);
+                idServicio, estado, fechaDia, tecnicos, margen, factura);
     }
 
     /** Metodos **/

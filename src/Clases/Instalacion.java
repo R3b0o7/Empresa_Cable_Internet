@@ -8,11 +8,11 @@ import java.util.Date;
 public class Instalacion extends Servicio {
 
     public Instalacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                       boolean costoDeViaje, boolean almuerzo, double combustible, int idVisita, Enumeraciones.Estado estado,
+                       boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
                        Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
 
         super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
-                idVisita, estado, fechaDia, tecnicos, margen, factura);
+                idServicio, estado, fechaDia, tecnicos, margen, factura);
     }
 
     /** Metodos **/
