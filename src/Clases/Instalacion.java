@@ -1,5 +1,7 @@
 package Clases;
 
+import Enumeraciones.Articulos;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,82 +9,33 @@ import java.util.Date;
 
 public class Instalacion extends Servicio {
 
-    public Instalacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                       boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
-                       Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
+    /**
+     * Constructor
+     * Parametros heredados:
+     *
+     * @param idServicio
+     * @param fecha
+     * @param horario
+     * @param tecnicos
+     * @param cliente
+     **/
+    public Instalacion(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
 
-        super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
-                idServicio, estado, fechaDia, tecnicos, margen, factura);
+        super(idServicio, fecha, horario, tecnicos, cliente);
+
+        //establezco los materiales básicos
+        Articulo cable = new Articulo(Articulos.Cable, 5, 0.0d);
+        Articulo conector = new Articulo(Articulos.Conector_coaxial_RG6, 6, 0.0d);
+        Articulo decodificador = new Articulo(Articulos.Decodificador , 1, 0.0d);
+        Articulo modem = new Articulo(Articulos.Modem , 1, 0.0d);
+        Articulo divisor = new Articulo(Articulos.Divisor , 1, 0.0d);
+        this.materiales.add(cable);
+        this.materiales.add(conector);
+        this.materiales.add(decodificador);
+        this.materiales.add(modem);
+        this.materiales.add(divisor);
+
+        this.tiempoTrabajado = 1.0d;
     }
 
-    /** Metodos **/
-
-    @Override
-    public void asignarTecnico() {
-        super.asignarTecnico();
-    }
-
-    @Override
-    public int calcularTiempoTrabajado() {
-        return super.calcularTiempoTrabajado();
-    }
-
-    @Override
-    public double calcularCosto() {
-        return super.calcularCosto();
-    }
-
-    @Override
-    public double calcularGastos() {
-        return super.calcularGastos();
-    }
-
-    @Override
-    public double calcularMargenReal() {
-        return super.calcularMargenReal();
-    }
-
-    @Override
-    public Factura generarFactura() {
-        return super.generarFactura();
-    }
-
-    /** Getters **/
-
-    @Override
-    public String getMaterialesAdicionales() {
-        return super.getMaterialesAdicionales();
-    }
-
-    @Override
-    public Enum getEstado() {
-        return super.getEstado();
-    }
-
-    /** Setters **/
-
-    @Override
-    public void setAlmuerzo(boolean value) {
-        super.setAlmuerzo(value);
-    }
-
-    @Override
-    public void setCombustible(double value) {
-        super.setCombustible(value);
-    }
-
-    @Override
-    public void setMaterialesAdicionales(String value) {
-        super.setMaterialesAdicionales(value);
-    }
-
-    @Override
-    public void setCostoDeViaje(boolean value) {
-        super.setCostoDeViaje(value);
-    }
-
-    @Override
-    public void setEstado(Enumeraciones.Estado estado) {
-        super.setEstado(estado);
-    }
 }

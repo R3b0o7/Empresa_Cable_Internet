@@ -7,101 +7,20 @@ import java.util.Date;
 
 public class Reparacion extends Servicio {
 
-    /** Constructor
-
-     Parametros heredados:
-
-     @param tiempoTrabajado
-     @param materiales
-     @param materialesAdicionales
-     @param costoDeViaje
-     @param almuerzo
-     @param combustible
-     @param idServicio
-     @param estado
-     @param fechaDia
-     @param tecnicos
-     @param margen
-     @param factura
-
+    /**
+     * Constructor
+     * Parametros heredados:
+     *
+     * @param idServicio
+     * @param fecha
+     * @param horario
+     * @param tecnicos
+     * @param cliente
      **/
 
-    public Reparacion(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                      boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
-                      Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
-
-        super(tiempoTrabajado, materiales, materialesAdicionales, costoDeViaje, almuerzo, combustible,
-                idServicio, estado, fechaDia, tecnicos, margen, factura);
+    public Reparacion(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
+        super(idServicio, fecha, horario, tecnicos, cliente);
+        this.tiempoTrabajado = 0.5d;
     }
 
-    /** Metodos **/
-
-    @Override
-    public void asignarTecnico() {
-        super.asignarTecnico();
-    }
-
-    @Override
-    public int calcularTiempoTrabajado() {
-        return super.calcularTiempoTrabajado();
-    }
-
-    @Override
-    public double calcularCosto() {
-        return super.calcularCosto();
-    }
-
-    @Override
-    public double calcularGastos() {
-        return super.calcularGastos();
-    }
-
-    @Override
-    public double calcularMargenReal() {
-        return super.calcularMargenReal();
-    }
-
-    @Override
-    public Factura generarFactura() {
-        return super.generarFactura();
-    }
-
-    /** Getters **/
-
-    @Override
-    public String getMaterialesAdicionales() {
-        return super.getMaterialesAdicionales();
-    }
-
-    @Override
-    public Enum getEstado() {
-        return super.getEstado();
-    }
-
-    /** Setters **/
-
-    @Override
-    public void setAlmuerzo(boolean value) {
-        super.setAlmuerzo(value);
-    }
-
-    @Override
-    public void setCombustible(double value) {
-        super.setCombustible(value);
-    }
-
-    @Override
-    public void setMaterialesAdicionales(String value) {
-        super.setMaterialesAdicionales(value);
-    }
-
-    @Override
-    public void setCostoDeViaje(boolean value) {
-        super.setCostoDeViaje(value);
-    }
-
-    @Override
-    public void setEstado(Enumeraciones.Estado estado) {
-        super.setEstado(estado);
-    }
 }

@@ -1,6 +1,7 @@
 package Clases;
 
 import Enumeraciones.Articulos;
+import Enumeraciones.Estado;
 import Enumeraciones.TipoTecnico;
 
 import java.util.*;
@@ -102,6 +103,33 @@ public class Compania {
         for(Instalacion instalacion: this.instalaciones){
             if(instalacion.getIdServicio() == idServicio){
                 return instalacion;
+            }
+        }
+        return null;
+    }
+
+    public Reparacion getReparacionPorCliente(int dni){
+        for(Reparacion reparacion: this.getReparaciones()){
+            if(reparacion.getCliente().getDni() == dni && (reparacion.getEstado() == Estado.En_curso || reparacion.getEstado() == Estado.Programado)){
+                return reparacion;
+            }
+        }
+        return null;
+    }
+
+    public Instalacion getInstalacionPorCliente(int dni){
+        for(Instalacion instalacion: this.instalaciones){
+            if(instalacion.getCliente().getDni() == dni && (instalacion.getEstado() == Estado.En_curso || instalacion.getEstado() == Estado.Programado)){
+                return instalacion;
+            }
+        }
+        return null;
+    }
+
+    public Cliente getCliente(int dni){
+        for(Cliente cliente: this.clientes){
+            if(cliente.getDni() == dni){
+                return cliente;
             }
         }
         return null;

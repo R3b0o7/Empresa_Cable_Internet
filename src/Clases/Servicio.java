@@ -9,44 +9,44 @@ public class Servicio {
 
     /** Parámetros **/
 
-    private int tiempoTrabajado;
-    private ArrayList <Articulo> materiales;
-    private String materialesAdicionales; // no tendría que estar en la lista de articulos?
-    private boolean costoDeViaje;
-    private boolean almuerzo;
-    private double combustible;
-    private int idServicio;
-    private Enumeraciones.Estado estado;
-    private Date fechaDia;
-    private ArrayList <Tecnico> tecnicos;
-    private double margen;
-    private Factura factura;
-    private double gastos;
+    protected double tiempoTrabajado;
+    protected ArrayList <Articulo> materiales;
+    protected String materialesAdicionalesDescripcion; // no tendría que estar en la lista de articulos?
+    protected boolean costoDeViaje;
+    protected boolean almuerzo;
+    protected double combustible;
+    protected int idServicio;
+    protected Enumeraciones.Estado estado;
+    protected Date fecha;
+    protected String horario;
+    protected ArrayList <Tecnico> tecnicos;
+    protected double MARGEN;
+    protected Factura factura;
+    protected double gastos;
+    protected Cliente cliente;
+
     /** Constructor **/
 
-    public Servicio(int tiempoTrabajado, ArrayList<Articulo> materiales, String materialesAdicionales,
-                    boolean costoDeViaje, boolean almuerzo, double combustible, int idServicio, Enumeraciones.Estado estado,
-                    Date fechaDia, ArrayList<Tecnico> tecnicos, double margen, Factura factura) {
+    public Servicio(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
 
-        this.tiempoTrabajado = tiempoTrabajado;
-        this.materiales = materiales;
-        this.materialesAdicionales = materialesAdicionales;
-        this.costoDeViaje = costoDeViaje;
-        this.almuerzo = almuerzo;
-        this.combustible = combustible;
+        this.materiales = new ArrayList<Articulo>();
+        this.costoDeViaje = false;
+        this.almuerzo = false;
+        this.combustible = 0.0d;
         this.idServicio = idServicio;
-        this.estado = estado;
-        this.fechaDia = fechaDia;
+        this.estado = Estado.Programado;
+        this.fecha = fecha;
+        this.horario = horario;
         this.tecnicos = tecnicos;
-        this.margen = margen;
-        this.factura = factura;
+        this.MARGEN = 0.30d;
+        this.cliente = cliente;
     }
 
     /** Metodos de la clase **/
 
-    public void asignarTecnico() {
+    public void asignarTecnicos(ArrayList<Tecnico> tecnicos) {
         // TODO implementar
-
+        this.tecnicos = tecnicos;
     }
 
     public int calcularTiempoTrabajado() {
@@ -54,7 +54,7 @@ public class Servicio {
         return 0;
     }
 
-    public double calcularCosto() {
+    public double calcularCostoBase() {
         // TODO implementar
         return 0.0d;
     }
@@ -76,7 +76,7 @@ public class Servicio {
 
     /** Getters **/
     public String getMaterialesAdicionales() {
-        return materialesAdicionales;
+        return materialesAdicionalesDescripcion;
     }
 
     public Enum getEstado() {
@@ -86,6 +86,8 @@ public class Servicio {
     public int getIdServicio() {
         return idServicio;
     }
+
+    public Cliente getCliente(){ return this.cliente;};
 
     /** Setters **/
     public void setAlmuerzo(boolean value) {

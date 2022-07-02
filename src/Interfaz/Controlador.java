@@ -22,10 +22,6 @@ public class Controlador {
         return instancia;
     }
 
-    public Compania getCompania() {
-        return compania;
-    }
-
     public void actualizarArticulos(Articulo artActualizar){
 
         // Ingresa por pantalla cantidad de articulos que quiero agregar al stock
