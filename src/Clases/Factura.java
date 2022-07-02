@@ -7,15 +7,15 @@ public class Factura {
     private int nroFactura;
     private Servicio servicio;
     private Cliente cliente;
-    private double iva;
+    private double IVA;
 
     /** Constructor **/
 
-    public Factura(int nroFactura, Servicio servicio, Cliente cliente, double iva) {
+    public Factura(int nroFactura, Servicio servicio, Cliente cliente) {
         this.nroFactura = nroFactura;
         this.servicio = servicio;
         this.cliente = cliente;
-        this.iva = iva;
+        this.IVA = 0.21;
     }
 
     /** Metodos de la clase **/
