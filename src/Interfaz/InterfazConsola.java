@@ -1,13 +1,20 @@
 package Interfaz;
 
 import Clases.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
+
+import static java.util.Calendar.DAY_OF_WEEK;
 
 public class InterfazConsola {
 
     private Compania compania;
 
-    public void main(String[] args) {
+    public void main() {
         // TODO Auto-generated method stub
 
         //Genero los objetos base
@@ -61,7 +68,7 @@ public class InterfazConsola {
         //obtengo cliente
         System.out.println("Ingrese DNI del cliente: ");
         int dni = sc.nextInt();
-        if(this.compania.getCliente(dni) == null){
+        if (this.compania.getCliente(dni) == null) {
             System.out.println("El cliente no existe.");
             return;
         } else {
@@ -69,19 +76,59 @@ public class InterfazConsola {
         }
 
         //verifico si el cliente tiene otros servicios reservados
-        if(compania.getReparacionPorCliente(dni) != null){
+        if (compania.getReparacionPorCliente(dni) != null) {
             Reparacion reparacion = compania.getReparacionPorCliente(dni);
-            System.out.println("El cliente posee vigente el servicio"+reparacion.getIdServicio());
+            System.out.println("El cliente posee vigente el servicio" + reparacion.getIdServicio());
             return;
-        } else if(compania.getInstalacionPorCliente(dni) != null){
+        } else if (compania.getInstalacionPorCliente(dni) != null) {
             Instalacion instalacion = compania.getInstalacionPorCliente(dni);
-            System.out.println("El cliente posee vigente el servicio"+ instalacion.getIdServicio());
+            System.out.println("El cliente posee vigente el servicio" + instalacion.getIdServicio());
             return;
+        }
+
+        //obtengo datos fecha
+        System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
+        int turno = sc.nextInt();
+        if(turno != 1 && turno != 2) {
+            System.out.println("Valor indicado incorrecto.");
+        }
+        Date fecha;
+        try {
+            fecha = this.obtenerFecha();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        //valido que no sea domingo o sabado por la tarde
+        Calendar c = Calendar.getInstance();
+        c.setTime(fecha);
+        int day = c.DAY_OF_WEEK;
+        if(day == 7 || (day  == 6 && turno == 2)){
+            System.out.println("El turno y fecha indicado no se presta servicio.");
+        }
+
+        //obtengo horario
+        System.out.println("Indique el horario (1-Mañana/2-Tarde): ");
+        if(turno == 1) {
+            System.out.println("0 - 8:00");
+            System.out.println("1 - 8:30");
+            System.out.println("2 - 9:00");
+            System.out.println("3 - 9:30");
+            System.out.println("4 - 10:00");
+            System.out.println("5 - 10:30");
+            System.out.println("6 - 11:00");
+            System.out.println("7 - 11:30");
+            System.out.println("8 - 12:00");
+            System.out.println("9 - 12:30");
+            System.out.println("10 - 13:00");
+            System.out.println("11 - 13:30");
+            int horario = sc.nextInt();
         }
 
 
 
-//
+        //
+        //
 //        //verifico disponibilidad
 //        ArrayList<Vehiculo> vehiculosDisponibles = adminReservas.verificarDisponibilidad(fechas[0], fechas[1], tipoAuto);
 //
@@ -128,6 +175,16 @@ public class InterfazConsola {
 //            }
 //            adminReservas.abonaReserva(reserva);
 //        }
+    }
+
+    private Date obtenerFecha() throws ParseException {
+        Scanner sc = new Scanner(System.in);
+        Date fechaDate = new Date();
+        System.out.print("Ingrese fecha requerida (dd/mm/aaaa):");
+        String fechaTexto = sc.nextLine();
+        SimpleDateFormat sdfInicio = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = sdfInicio.parse(fechaTexto);
+        return fecha;
     }
 
 }

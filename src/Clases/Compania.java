@@ -161,6 +161,10 @@ public class Compania {
         //Tecnicos
         Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Semi_senior, "Tarde");
         this.tecnicos.add(tecnico1);
+
+        Clases.Cliente cliente1 = new Cliente(123, "gonzalo", "salta");
+        this.clientes.add(cliente1);
+
     }
 
 }
