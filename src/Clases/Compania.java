@@ -1,6 +1,7 @@
 package Clases;
 
 import Enumeraciones.Articulos;
+import Enumeraciones.TipoTecnico;
 
 import java.util.*;
 
@@ -123,11 +124,15 @@ public class Compania {
 
         //Stock stock = new Stock();
 
-        stock.agregarArticulo(artCable);
-        stock.agregarArticulo(artConector_coaxial_RG6);
-        stock.agregarArticulo(artDecodificador);
-        stock.agregarArticulo(artDivisor);
-        stock.agregarArticulo(artModem);
+        this.stock.agregarArticulo(artCable);
+        this.stock.agregarArticulo(artConector_coaxial_RG6);
+        this.stock.agregarArticulo(artDecodificador);
+        this.stock.agregarArticulo(artDivisor);
+        this.stock.agregarArticulo(artModem);
+
+        //Tecnicos
+        Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Semi_senior, "Tarde");
+        this.tecnicos.add(tecnico1);
     }
 
 }
