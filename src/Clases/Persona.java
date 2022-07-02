@@ -19,12 +19,6 @@ public class Persona {
         this.dirección = dirección;
     }
 
-    /** Metodos **/
-
-    public void login() { //Usuario tiene el mismo metodo
-        // TODO implementar
-    }
-
     /** Getters **/
 
     public int getDni() {

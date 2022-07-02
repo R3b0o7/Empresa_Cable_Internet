@@ -1,5 +1,7 @@
 package Clases;
 import Clases.Persona;
+import Excepciones.GenericException;
+
 import java.util.*;
 import java.util.Date;
 
@@ -18,37 +20,27 @@ public class Cliente extends Persona {
 
      **/
 
-    public Cliente(int dni, String nombreApellido, String dirección, Agenda agenda) {
+    public Cliente(int dni, String nombreApellido, String dirección) {
         super(dni, nombreApellido, dirección);
-        this.agenda = agenda;
+        this.agenda = new Agenda();
     }
-
 
     /** Metodos **/
 
-    public void agendarServicio() {
+    public void agendarServicio(Date fecha, String horario, int idServicio, String tipoServicio) throws GenericException {
         // TODO implementar
-    }
+        if (tipoServicio == "REPARACION") {
+            if (!this.agenda.esDisponible(fecha, horario, 2))
+                throw new GenericException("El Cliente posee otro turno agendado en ese horario");
+        } else {
+            if (!this.agenda.esDisponible(fecha, horario, 3))
+                throw new GenericException("El Cliente posee otro turno agendado en ese horario");
+        }
 
-    /** Metodos heredados **/
-
-    @Override
-    public void login() {
-        super.login();
-    }
-
-    @Override
-    public int getDni() {
-        return super.getDni();
-    }
-
-    @Override
-    public String getNombreApellido() {
-        return super.getNombreApellido();
-    }
-
-    @Override
-    public String getDirección() {
-        return super.getDirección();
+        if (tipoServicio == "REPARACION") {
+            this.agenda.agendarServicio(idServicio, fecha, horario, 2);
+        } else {
+            this.agenda.agendarServicio(idServicio, fecha, horario, 3);
+        }
     }
 }

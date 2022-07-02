@@ -50,7 +50,6 @@ public class Tecnico extends Persona {
     public void agendarServicio(Date fecha, String horario, int idServicio, String tipoServicio) throws GenericException {
         // TODO implementar
 
-
         //Valido si el turno está disponible
         if(tipoServicio == "REPARACION") {
             if (!this.agenda.esDisponible(fecha, horario, 2))
