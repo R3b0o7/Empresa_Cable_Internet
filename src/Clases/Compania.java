@@ -196,7 +196,9 @@ public class Compania {
         this.tecnicos.add(tecnico3);
 
         Clases.Cliente cliente1 = new Cliente(123, "gonzalo", "salta");
+        Clases.Cliente cliente2 = new Cliente(12345, "Juan", "salta");
         this.clientes.add(cliente1);
+        this.clientes.add(cliente2);
 
     }
 

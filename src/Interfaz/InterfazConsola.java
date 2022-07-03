@@ -222,10 +222,34 @@ public class InterfazConsola {
         //si confirma despliego los cambios asociados a la generacion del servicio
         // agrego el servicio a la base de datos
         if(confirmacion.equals("Y") && tiposervicioStr.equals("REPARACION")){
+            //almaceno el servicio
             compania.guardarReparacion(servicioR);
+
+            //incremento el id servicio
+            compania.incrementarUltimoServicio();
+
+            //Agendo en el tecnico el servicio
+            try {
+                for (Tecnico tecnico : tecnicosSeleccionados) {
+                    tecnico.agendarServicio(fecha, horarioStr, servicioR.getIdServicio(), tiposervicioStr);
+                }
+            } catch(GenericException exc){
+                System.out.println("Error al agendar el servicio en el Tecnico");
+            }
+
+            //Agendo en el cliente el servicio
+            try{
+                cliente.agendarServicio(fecha, horarioStr, servicioR.getIdServicio(), tiposervicioStr);
+            } catch (GenericException exc) {
+                System.out.println("Error al agendar el servicio en el Cliente");
+            }
+
+
+
         } else if(confirmacion.equals("Y")) {
             compania.guardarInstalacion(servicioI);
         }
+
 
 
 

@@ -12,6 +12,7 @@ public class Servicio {
     protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion; // no tendría que estar en la lista de articulos?
+    protected double costoMaterialesAdicionales;
     protected boolean costoDeViaje;
     protected boolean almuerzo;
     protected double combustible;
