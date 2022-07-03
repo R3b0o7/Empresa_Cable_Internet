@@ -9,7 +9,7 @@ public class Servicio {
 
     /** Parámetros **/
 
-    protected double tiempoTrabajado;
+    protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion; // no tendría que estar en la lista de articulos?
     protected boolean costoDeViaje;
@@ -40,6 +40,7 @@ public class Servicio {
         this.tecnicos = tecnicos;
         this.MARGEN = 0.30d;
         this.cliente = cliente;
+
     }
 
     /** Metodos de la clase **/
@@ -54,9 +55,20 @@ public class Servicio {
         return 0;
     }
 
-    public double calcularCostoBase() {
+    public double calcularCostoBase(Compania compania) {
         // TODO implementar
-        return 0.0d;
+        //calculo costo del tiempo base del servicio
+        double costoTiempo = 0.0d;
+        for(Tecnico tecnico: this.tecnicos){
+            costoTiempo += this.tiempoTrabajado.get(tecnico.getNroTécnico())*compania.getCostoTecnico(tecnico.getTipoTecnico());
+        }
+        //calculo costo de los materiales base
+        double costoMateriales = 0.0d;
+        for(Articulo articulo: this.materiales){
+            costoMateriales += articulo.getCantidad()*articulo.getPrecio();
+        }
+        double costoBase = (costoTiempo+costoMateriales)+((costoTiempo+costoMateriales)*this.MARGEN);
+        return costoBase;
     }
 
     public double calcularGastos() {

@@ -1,4 +1,5 @@
 package Clases;
+import Enumeraciones.TipoTecnico;
 import Excepciones.GenericException;
 
 import java.util.*;
@@ -11,7 +12,7 @@ public class Tecnico extends Persona {
     /** Parametros **/
 
     private int nroTécnico;
-    private Enum TipoTecnico;
+    private TipoTecnico tipoTecnico;
     private Agenda agenda;
     private String turno;
 
@@ -25,11 +26,11 @@ public class Tecnico extends Persona {
 
      **/
 
-    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, Enum TipoTecnico, String turno) {
+    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, TipoTecnico tipoTecnico, String turno) {
         super(dni, nombreApellido, dirección);
         this.agenda = new Agenda();
         this.nroTécnico = nroTécnico;
-        this.TipoTecnico = TipoTecnico;
+        this.tipoTecnico = tipoTecnico;
         this.turno = turno;
     }
 
@@ -69,8 +70,8 @@ public class Tecnico extends Persona {
 
     /** Setters **/
 
-    public void setTipoTecnico(Enum tipoTecnico) {
-        TipoTecnico = tipoTecnico;
+    public void setTipoTecnico(TipoTecnico tipoTecnico) {
+        this.tipoTecnico = tipoTecnico;
     }
 
     /** Getters **/
@@ -83,11 +84,15 @@ public class Tecnico extends Persona {
         return nroTécnico;
     }
 
+    public Enumeraciones.TipoTecnico getTipoTecnico() {
+        return this.tipoTecnico;
+    }
+
     @Override
     public String toString() {
         return "Tecnico{" +
                 "nroTécnico=" + nroTécnico +
-                ", TipoTecnico=" + TipoTecnico +
+                ", TipoTecnico=" + this.tipoTecnico +
                 ", agenda=" + agenda +
                 ", turno='" + turno + '\'' +
                 "} " + super.toString();

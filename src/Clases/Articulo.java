@@ -1,5 +1,7 @@
 package Clases;
 
+import Enumeraciones.Articulos;
+
 public class Articulo {
 
     /** Parametros **/
@@ -32,6 +34,10 @@ public class Articulo {
 
     public double getPrecio() {
         return precio;
+    }
+
+    public Articulos getArticulo() {
+        return articulo;
     }
 
     /** Setters **/

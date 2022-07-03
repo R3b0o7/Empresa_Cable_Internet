@@ -68,13 +68,14 @@ public class InterfazConsola {
         this.imprimirEncabezado(menu);
 
         //obtengo cliente
+        Cliente cliente;
         System.out.println("Ingrese DNI del cliente: ");
         int dni = sc.nextInt();
         if (this.compania.getCliente(dni) == null) {
             System.out.println("El cliente no existe.");
             return;
         } else {
-            Cliente cliente = this.compania.getCliente(dni);
+            cliente = this.compania.getCliente(dni);
         }
 
         //verifico si el cliente tiene otros servicios reservados
@@ -88,10 +89,16 @@ public class InterfazConsola {
             return;
         }
         //obtengo tipo de servicio
-        System.out.println("Seleccione el tipo de servicio (1-REPARACION/2-INSTALACION");
+        System.out.println("Seleccione el tipo de servicio (1-REPARACION/2-INSTALACION)");
         int tipoServicio = sc.nextInt();
         String tiposervicioStr = (tipoServicio==1) ? "REPARACION":"INSTALACION";
 
+        //Verifico si hay stock para los materiales base
+        if(!compania.getStock().hayStockInstalacion()){
+            System.out.println("ATENCION!!");
+            System.out.println("Se debe solicitar la compra de materiales para la Instalación");
+            System.out.println();
+        }
 
         //obtengo datos fecha
         System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
@@ -110,7 +117,7 @@ public class InterfazConsola {
         //valido que no sea domingo o sabado por la tarde
         Calendar c = Calendar.getInstance();
         c.setTime(fecha);
-        int day = c.DAY_OF_WEEK;
+        int day = c.get(DAY_OF_WEEK);
         if (day == 1 || (day == 7 && turno == 2)) {
             System.out.println("En el turno y fecha indicado no se presta servicio.");
             return;
@@ -143,6 +150,7 @@ public class InterfazConsola {
             }
         } catch (GenericException exc) {
             System.out.println(exc);
+            return;
         }
 //
 //        //Los muestro por pantalla y solicito la seleccion
@@ -151,9 +159,10 @@ public class InterfazConsola {
         int escape = 1;
         while (escape != 0) {
             if (tecnicosDisponibles.isEmpty()) {
-                System.out.println("No existen técnicos disponibles.");
+                System.out.println("No existen más técnicos disponibles.");
                 break;
             }
+            System.out.println("Tecnicos disponibles:");
             for (Tecnico tecnico : tecnicosDisponibles) {
                 System.out.println(tecnico.toString());
             }
@@ -177,8 +186,51 @@ public class InterfazConsola {
             }
         }
 
-        //Instancio el servicio
-//        if(tipoServicio)
+        //Instancio el servicio, calculo el costo base e imprimo por pantalla
+        Reparacion servicioR = null;
+        Instalacion servicioI = null;
+        Double costoBase;
+
+        System.out.println();
+        System.out.println("Se está generando el siguiente servicio:");
+        System.out.println("________________________________________");
+
+        if(tiposervicioStr.equals("REPARACION")){
+            servicioR = new Reparacion(compania.getUltimoServicio()+1, fecha, horarioStr, tecnicosSeleccionados, cliente);
+            costoBase = servicioR.calcularCostoBase(compania);
+            System.out.println(servicioR.toString());
+        } else {
+            servicioI = new Instalacion(compania.getUltimoServicio()+1, fecha, horarioStr, tecnicosSeleccionados, cliente, compania.getStock());
+            costoBase = servicioI.calcularCostoBase(compania);
+            System.out.println(servicioI.toString());
+        }
+
+        System.out.println("El costo base del servicio es:   "+costoBase);
+        //solicito confirmacion
+        System.out.println();
+        sc.nextLine(); //para capturar el enter
+        System.out.println("¿Confirma el servicio? Y/n");
+        String confirmacion = sc.nextLine();
+
+        //si no confirma destruyo la instancia
+        if(confirmacion.equals("n") && tiposervicioStr.equals("REPARACION")){
+            servicioR = null;
+        } else if(confirmacion.equals("n")){
+            servicioI = null;
+        }
+
+        //si confirma despliego los cambios asociados a la generacion del servicio
+        // agrego el servicio a la base de datos
+        if(confirmacion.equals("Y") && tiposervicioStr.equals("REPARACION")){
+            compania.guardarReparacion(servicioR);
+        } else if(confirmacion.equals("Y")) {
+            compania.guardarInstalacion(servicioI);
+        }
+
+
+
+
+
 
 
 

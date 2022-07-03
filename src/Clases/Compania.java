@@ -22,6 +22,7 @@ public class Compania {
     private ArrayList<Tecnico> tecnicos;
     private Stock stock;
     private int ultimoServicio;
+    private Map<TipoTecnico, Double> maestroCostoTecnicos;
 
     /** Constructor privado por ser Singleton  **/
     private Compania(){
@@ -36,6 +37,10 @@ public class Compania {
         this.tecnicos = new ArrayList<Tecnico>();
         this.stock = new Stock();
         this.ultimoServicio = 0;
+        this.maestroCostoTecnicos = new HashMap<TipoTecnico, Double>();
+        this.maestroCostoTecnicos.put(TipoTecnico.Junior, 100.0);
+        this.maestroCostoTecnicos.put(TipoTecnico.Semi_senior, 200.0);
+        this.maestroCostoTecnicos.put(TipoTecnico.Senior, 300.0);
 
         //inicializo la BDD
         this.inicializarBDD();
@@ -92,6 +97,14 @@ public class Compania {
         return stock;
     }
 
+    public int getUltimoServicio() {
+        return ultimoServicio;
+    }
+
+    public void incrementarUltimoServicio(){
+        this.ultimoServicio++;
+    }
+
     public Reparacion getReparacion(int idServicio){
         for(Reparacion reparacion: this.getReparaciones()){
             if(reparacion.getIdServicio() == idServicio){
@@ -137,6 +150,20 @@ public class Compania {
         return null;
     }
 
+    public double getCostoTecnico(TipoTecnico tipo){
+        return this.maestroCostoTecnicos.get(tipo);
+    }
+
+    /** Metodos **/
+
+    public void guardarReparacion(Reparacion reparacion){
+        this.reparaciones.add(reparacion);
+    }
+
+    public void guardarInstalacion(Instalacion instalacion){
+        this.instalaciones.add(instalacion);
+    }
+
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
     private void inicializarBDD(){
@@ -161,9 +188,9 @@ public class Compania {
         this.stock.agregarArticulo(artModem);
 
         //Tecnicos
-        Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Semi_senior, "Tarde");
-        Clases.Tecnico tecnico2 = new Tecnico(1234, "Juan", "salta", 2, TipoTecnico.Senior , "Mañana");
-        Clases.Tecnico tecnico3 = new Tecnico(12345, "Pedro", "salta", 3, TipoTecnico.Semi_senior, "Mañana");
+        Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Junior, "Tarde");
+        Clases.Tecnico tecnico2 = new Tecnico(1234, "Juan", "salta", 2, TipoTecnico.Semi_senior , "Mañana");
+        Clases.Tecnico tecnico3 = new Tecnico(12345, "Pedro", "salta", 3, TipoTecnico.Senior, "Mañana");
         this.tecnicos.add(tecnico1);
         this.tecnicos.add(tecnico2);
         this.tecnicos.add(tecnico3);
