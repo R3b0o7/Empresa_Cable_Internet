@@ -244,71 +244,30 @@ public class InterfazConsola {
                 System.out.println("Error al agendar el servicio en el Cliente");
             }
 
-
-
         } else if(confirmacion.equals("Y")) {
+            //almaceno el servicio
             compania.guardarInstalacion(servicioI);
+
+            //incremento el id servicio
+            compania.incrementarUltimoServicio();
+
+            //Agendo en el tecnico el servicio
+            try {
+                for (Tecnico tecnico : tecnicosSeleccionados) {
+                    tecnico.agendarServicio(fecha, horarioStr, servicioI.getIdServicio(), tiposervicioStr);
+                }
+            } catch(GenericException exc){
+                System.out.println("Error al agendar el servicio en el Tecnico");
+            }
+
+            //Agendo en el cliente el servicio
+            try{
+                cliente.agendarServicio(fecha, horarioStr, servicioI.getIdServicio(), tiposervicioStr);
+            } catch (GenericException exc) {
+                System.out.println("Error al agendar el servicio en el Cliente");
+            }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        //
-        //
-//        //verifico disponibilidad
-//        ArrayList<Vehiculo> vehiculosDisponibles = adminReservas.verificarDisponibilidad(fechas[0], fechas[1], tipoAuto);
-//
-//        //imprimo resultado
-//        interfaz.imprimirVehiculosDisponibles(vehiculosDisponibles);
-//
-//        //confirmo si crea reserva
-//        Boolean continuaReserva = interfaz.continuaCreandoReserva();
-//        if(!continuaReserva){
-//            return;
-//        }
-//
-//        //solicito y valido existencia del cliente
-//        int nroDocumentoCliente = 0;
-//        Boolean a = true;
-//        while(a) {
-//            int nroDocumentoClienteAux = interfaz.obtenerNroDocumento();
-//            if(adminClientes.getCliente(nroDocumentoClienteAux) == null) {
-//                a = interfaz.continuaIngresandoCliente();
-//                if(!a) return;
-//            } else {
-//                a = false;
-//                nroDocumentoCliente = nroDocumentoClienteAux;
-//            }
-//        }
-//
-//        //solicito los vehiculos a reservar y la confirmacion de la reserva
-//        ArrayList<String> vehiculosReserva = interfaz.obtenerVehiculosReserva();
-//        ArrayList<Vehiculo> vehiculosReservaObj = adminReservas.obtenerVehiculosReservaObj(vehiculosReserva, vehiculosDisponibles);
-//        Boolean creaReserva = interfaz.creaReserva();
-//        if(!creaReserva){
-//            return;
-//        }
-//
-//        //creo reserva
-//        Cliente cliente = adminClientes.getCliente(nroDocumentoCliente);
-//        Reserva reserva = adminReservas.altaReserva(cliente, fechas[0], fechas[1], vehiculosReservaObj, nroAgenciaOperadora);
-//
-//        //valido si abona por anticipado
-//        if(creaReserva) {
-//            Boolean abonaAnticipado = interfaz.abonaAnticipado(reserva);
-//            if(!abonaAnticipado){
-//                return;
-//            }
-//            adminReservas.abonaReserva(reserva);
-//        }
     }
 
     private Date obtenerFecha() throws ParseException {
