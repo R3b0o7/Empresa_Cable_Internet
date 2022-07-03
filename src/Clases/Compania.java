@@ -21,6 +21,7 @@ public class Compania {
     private ArrayList<Factura> facturas;
     private ArrayList<Tecnico> tecnicos;
     private Stock stock;
+    private int ultimoServicio;
 
     /** Constructor privado por ser Singleton  **/
     private Compania(){
@@ -34,6 +35,7 @@ public class Compania {
         this.facturas = new ArrayList<Factura>();
         this.tecnicos = new ArrayList<Tecnico>();
         this.stock = new Stock();
+        this.ultimoServicio = 0;
 
         //inicializo la BDD
         this.inicializarBDD();
@@ -160,7 +162,11 @@ public class Compania {
 
         //Tecnicos
         Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Semi_senior, "Tarde");
+        Clases.Tecnico tecnico2 = new Tecnico(1234, "Juan", "salta", 2, TipoTecnico.Senior , "Mañana");
+        Clases.Tecnico tecnico3 = new Tecnico(12345, "Pedro", "salta", 3, TipoTecnico.Semi_senior, "Mañana");
         this.tecnicos.add(tecnico1);
+        this.tecnicos.add(tecnico2);
+        this.tecnicos.add(tecnico3);
 
         Clases.Cliente cliente1 = new Cliente(123, "gonzalo", "salta");
         this.clientes.add(cliente1);

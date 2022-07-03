@@ -78,4 +78,18 @@ public class Tecnico extends Persona {
     public String getTurno() {
         return turno;
     }
+
+    public int getNroTécnico() {
+        return nroTécnico;
+    }
+
+    @Override
+    public String toString() {
+        return "Tecnico{" +
+                "nroTécnico=" + nroTécnico +
+                ", TipoTecnico=" + TipoTecnico +
+                ", agenda=" + agenda +
+                ", turno='" + turno + '\'' +
+                "} " + super.toString();
+    }
 }

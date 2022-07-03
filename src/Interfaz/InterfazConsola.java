@@ -1,9 +1,11 @@
 package Interfaz;
 
 import Clases.*;
+import Excepciones.GenericException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -85,12 +87,18 @@ public class InterfazConsola {
             System.out.println("El cliente posee vigente el servicio" + instalacion.getIdServicio());
             return;
         }
+        //obtengo tipo de servicio
+        System.out.println("Seleccione el tipo de servicio (1-REPARACION/2-INSTALACION");
+        int tipoServicio = sc.nextInt();
+        String tiposervicioStr = (tipoServicio==1) ? "REPARACION":"INSTALACION";
+
 
         //obtengo datos fecha
         System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
         int turno = sc.nextInt();
-        if(turno != 1 && turno != 2) {
+        if (turno != 1 && turno != 2) {
             System.out.println("Valor indicado incorrecto.");
+            return;
         }
         Date fecha;
         try {
@@ -103,27 +111,77 @@ public class InterfazConsola {
         Calendar c = Calendar.getInstance();
         c.setTime(fecha);
         int day = c.DAY_OF_WEEK;
-        if(day == 7 || (day  == 6 && turno == 2)){
-            System.out.println("El turno y fecha indicado no se presta servicio.");
+        if (day == 1 || (day == 7 && turno == 2)) {
+            System.out.println("En el turno y fecha indicado no se presta servicio.");
+            return;
         }
 
         //obtengo horario
-        System.out.println("Indique el horario (1-Mañana/2-Tarde): ");
-        if(turno == 1) {
-            System.out.println("0 - 8:00");
-            System.out.println("1 - 8:30");
-            System.out.println("2 - 9:00");
-            System.out.println("3 - 9:30");
-            System.out.println("4 - 10:00");
-            System.out.println("5 - 10:30");
-            System.out.println("6 - 11:00");
-            System.out.println("7 - 11:30");
-            System.out.println("8 - 12:00");
-            System.out.println("9 - 12:30");
-            System.out.println("10 - 13:00");
-            System.out.println("11 - 13:30");
-            int horario = sc.nextInt();
+        Agenda agendaModelo = new Agenda();
+        System.out.println(agendaModelo.getEquivalenciaFilaHora().toString());
+        System.out.println("Seleccione el horario: ");
+        if (turno == 1) {
+            for (int k = 0; k < 12; k++) {
+                System.out.println(k + "-" + agendaModelo.getEquivalenciaFilaHora().get(k));
+            }
+        } else {
+            for (int k = 12; k < 24; k++) {
+                System.out.println(k + "-" + agendaModelo.getEquivalenciaFilaHora().get(k));
+            }
         }
+        int horario = sc.nextInt();
+        String horarioStr = agendaModelo.getEquivalenciaFilaHora().get(horario);
+
+        //obtengo los tecnicos disponibles
+        String turnoStr = (turno == 1) ? "Mañana" : "Tarde";
+        ArrayList<Tecnico> tecnicosDisponibles = new ArrayList<Tecnico>();
+        try {
+            for (Tecnico tecnico : compania.getTecnicos()) {
+                if (tecnico.getTurno().equals(turnoStr) && tecnico.poseeDisponibilidad(fecha, horarioStr, tiposervicioStr)) {
+                    tecnicosDisponibles.add(tecnico);
+                }
+            }
+        } catch (GenericException exc) {
+            System.out.println(exc);
+        }
+//
+//        //Los muestro por pantalla y solicito la seleccion
+        ArrayList<Tecnico> tecnicosSeleccionados = new ArrayList<Tecnico>();
+        System.out.println("Seleccione  los técnicos para brindar el servicio (0-Continuar):");
+        int escape = 1;
+        while (escape != 0) {
+            if (tecnicosDisponibles.isEmpty()) {
+                System.out.println("No existen técnicos disponibles.");
+                break;
+            }
+            for (Tecnico tecnico : tecnicosDisponibles) {
+                System.out.println(tecnico.toString());
+            }
+            int nroTecnico = sc.nextInt();
+            if (nroTecnico == 0) {
+                escape = 0;
+            } else {
+                for (Tecnico tecnico : tecnicosDisponibles) {
+                    if (tecnico.getNroTécnico() == nroTecnico) {
+                        tecnicosSeleccionados.add(tecnico);
+                        System.out.println("Se seleccionó correctamente el siguiente Tecnico:");
+                        System.out.println(tecnico.toString());
+                        System.out.println();
+                    }
+                }
+                for(Tecnico tecnico: tecnicosSeleccionados){
+                    if (tecnico.getNroTécnico() == nroTecnico) {
+                        tecnicosDisponibles.remove(tecnico);
+                    }
+                }
+            }
+        }
+
+        //Instancio el servicio
+//        if(tipoServicio)
+
+
+
 
 
 

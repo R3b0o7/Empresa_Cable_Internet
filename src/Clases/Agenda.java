@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Agenda {
 
-    //El calendario es una matriz de enteros de 365X25 (8:30 hs a 20:30 hs son 25 horarios)
+    //El calendario es una matriz de enteros de 365X25 (8:00 hs a 20:00 hs son 25 horarios)
     private int[][] calendario;
     private Map<String, Integer> equivalenciaHoraFila;
     private Map<Integer, String> equivalenciaFilaHora;
@@ -17,7 +17,7 @@ public class Agenda {
         this.equivalenciaFilaHora = new HashMap<Integer, String>();
         //construyo claves y valores de las equivalencias fila-hora
         int hora = 8;
-        String minuto = "30";
+        String minuto = "00";
         for(int i = 0; i < 25; i++){
             String horaStr = hora + ":" + minuto;
             equivalenciaHoraFila.put(horaStr, i);
@@ -29,7 +29,7 @@ public class Agenda {
             }
         }
         hora = 8;
-        minuto = "30";
+        minuto = "00";
         for(int i = 0; i < 25; i++){
             String horaStr = hora + ":" + minuto;
             equivalenciaFilaHora.put(i, horaStr);
@@ -77,4 +77,7 @@ public class Agenda {
         return calendar.get(Calendar.DAY_OF_YEAR);
     }
 
+    public Map<Integer, String> getEquivalenciaFilaHora() {
+        return equivalenciaFilaHora;
+    }
 }
