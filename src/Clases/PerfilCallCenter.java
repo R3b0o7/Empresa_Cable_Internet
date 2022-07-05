@@ -43,11 +43,4 @@ public class PerfilCallCenter extends Usuario {
         return null;
     }
 
-    /** Metodos heredados **/
-
-    @Override
-    public Void login() {
-        return super.login();
-    }
-
 }

@@ -14,6 +14,8 @@ public class Compania {
     private ArrayList<Reparacion> reparaciones;
     private ArrayList<Instalacion> instalaciones;
     private ArrayList<Cliente> clientes;
+    private Map<String, String> usuarios;
+    private Map<String, String> password;
     private ArrayList<PerfilAdminSistema> usuariosAdmiSistema;
     private ArrayList<PerfilCallCenter> usuariosCallCenter;
     private ArrayList<PerfilTecnico> usuariosTecnicos;
@@ -29,6 +31,8 @@ public class Compania {
         this.reparaciones = new ArrayList<Reparacion>();
         this.instalaciones = new ArrayList<Instalacion>();
         this.clientes = new ArrayList<Cliente>();
+        this.usuarios = new HashMap<String, String>();
+        this.password = new HashMap<String, String>();
         this.usuariosAdmiSistema = new ArrayList<PerfilAdminSistema>();
         this.usuariosAdministrativo = new ArrayList<PerfilAdministrativo>();
         this.usuariosTecnicos = new ArrayList<PerfilTecnico>();
@@ -154,6 +158,10 @@ public class Compania {
         return this.maestroCostoTecnicos.get(tipo);
     }
 
+    public String getContraseña(String usuario) {return this.password.get(usuario);};
+
+    public String getPerfil(String usuario) {return this.usuarios.get(usuario);};
+
     /** Metodos **/
 
     public void guardarReparacion(Reparacion reparacion){
@@ -164,9 +172,22 @@ public class Compania {
         this.instalaciones.add(instalacion);
     }
 
+    public void guardarCliente(Cliente cliente) { this.clientes.add(cliente);};
+
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
     private void inicializarBDD(){
+
+        /** Listado de Usuarios  **/
+        this.usuarios.put("usrCallCenter", "callCenter");
+        this.usuarios.put("usrAdministrador", "administrador");
+        this.usuarios.put("usrAdministrativo", "administrativo");
+        this.usuarios.put("usrTecnico", "tecnico");
+
+        this.password.put("usrCallCenter", "admin");
+        this.password.put("usrAdministrador", "admin");
+        this.password.put("usrAdministrativo", "admin");
+        this.password.put("usrTecnico", "admin");
 
         /** Creación de Articulos  **/
         // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0

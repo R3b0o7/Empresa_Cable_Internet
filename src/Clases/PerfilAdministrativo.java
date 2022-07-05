@@ -16,9 +16,9 @@ public class PerfilAdministrativo extends Usuario {
 
      **/
 
-    public PerfilAdministrativo(String nombre, String nombreUsuario, String password) {
-        super(nombre, nombreUsuario, password);
-    }
+//    public PerfilAdministrativo(String nombre, String nombreUsuario, String password) {
+//        super(nombre, nombreUsuario, password);
+//    }
 
     /** Metodos de la clase **/
 

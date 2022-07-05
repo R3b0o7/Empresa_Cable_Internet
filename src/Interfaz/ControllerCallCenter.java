@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 import static java.util.Calendar.DAY_OF_WEEK;
 
-public class InterfazConsola {
+public class ControllerCallCenter extends Usuario {
 
     private Compania compania;
 
-    public void main() {
+    public void menuInicial() {
         // TODO Auto-generated method stub
 
         //Genero los objetos base
@@ -32,33 +32,16 @@ public class InterfazConsola {
                 case 1:
                     this.reservarServicio();
                     break;
+                case 2:
+                    this.altaCliente();
+                    break;
                 case 0:
                     run = false;
+                    break;
             }
         }
     }
 
-    public void imprimirMenuInicial() {
-        String[] menu = {"EMPRESA DE CABLE"};
-        imprimirEncabezado(menu);
-        System.out.println("1. Reservar Servicio");
-        System.out.println("0. Salir");
-        System.out.print("Elija una opción: ");
-    }
-
-    public void imprimirEncabezado(String[] menu) {
-        System.out.println("");
-        System.out.println("");
-        for(int i = 0; i < menu.length; i++ ) {
-            System.out.print(menu[i]);
-            if(i == menu.length-1) {
-                break;
-            }
-            System.out.print(" > ");
-        }
-        System.out.print("\n");
-        System.out.println("##################################");
-    }
 
     public void reservarServicio() {
 
@@ -268,6 +251,68 @@ public class InterfazConsola {
             }
         }
 
+    }
+
+    private void altaCliente(){
+
+        Scanner sc = new Scanner(System.in);
+
+        String[] menu = {"EMPRESA DE CABLE", "ALTA DE CLIENTE"};
+        this.imprimirEncabezado(menu);
+
+        //obtengo cliente
+        Cliente cliente;
+        System.out.println("Ingrese DNI del cliente: ");
+        int dni = sc.nextInt();
+        if (this.compania.getCliente(dni) != null) {
+            System.out.println("El cliente ya existe.");
+            return;
+        }
+        sc.nextLine(); //leer salto de linea
+        System.out.println("Ingrese nombre del cliente: ");
+        String nombre = sc.nextLine();
+        System.out.println("Ingrese direccion del cliente: ");
+        String direccion = sc.nextLine();
+
+        System.out.println("Se creará el siguiente cliente:");
+        System.out.println("DNI: "+dni);
+        System.out.println("Nombre: "+nombre);
+        System.out.println("Direccion: "+direccion);
+        System.out.println("¿Confirma el alta? Y/n :");
+        String confirma = sc.nextLine();
+        if(confirma.equals("Y")){
+            cliente = new Cliente(dni, nombre, direccion);
+            compania.guardarCliente(cliente);
+            System.out.println("El cliente se guardó correctamente.");
+            System.out.println();
+        } else {
+            System.out.println("Se canceló la operación");
+            System.out.println();
+        }
+
+    }
+
+    public void imprimirMenuInicial() {
+        String[] menu = {"EMPRESA DE CABLE"};
+        imprimirEncabezado(menu);
+        System.out.println("1. Reservar Servicio");
+        System.out.println("2. Alta de cliente");
+        System.out.println("0. Salir");
+        System.out.print("Elija una opción: ");
+    }
+
+    public void imprimirEncabezado(String[] menu) {
+        System.out.println("");
+        System.out.println("");
+        for(int i = 0; i < menu.length; i++ ) {
+            System.out.print(menu[i]);
+            if(i == menu.length-1) {
+                break;
+            }
+            System.out.print(" > ");
+        }
+        System.out.print("\n");
+        System.out.println("##################################");
     }
 
     private Date obtenerFecha() throws ParseException {
