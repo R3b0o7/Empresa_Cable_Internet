@@ -17,9 +17,9 @@ public class PerfilCallCenter extends Usuario {
 
      **/
 
-    public PerfilCallCenter(String nombre, String nombreUsuario, String password) {
-        super(nombre, nombreUsuario, password);
-    }
+//    public PerfilCallCenter(String nombre, String nombreUsuario, String password) {
+//        super(nombre, nombreUsuario, password);
+//    }
 
     /** Metodos de la clase **/
 

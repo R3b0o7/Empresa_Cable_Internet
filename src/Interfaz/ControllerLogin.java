@@ -8,9 +8,9 @@ public class ControllerLogin {
 
     private Compania compania;
     private ControllerCallCenter controladorCallCenter;
-    private ControllerCallCenter controladorAdministrativo;
-    private ControllerCallCenter controladorAdministrador;
-    private ControllerCallCenter controladorTecnico;
+    private ControllerAdministrativo controladorAdministrativo;
+    private ControllerAdministrador controladorAdministrador;
+    private ControllerTecnico controladorTecnico;
     private String perfil;
 
     public void main(){
@@ -46,12 +46,18 @@ public class ControllerLogin {
                     run = false;
                     break;
                 case "tecnico":
+                    this.controladorTecnico = new ControllerTecnico();
+                    controladorTecnico.menuInicial();
                     run = false;
                     break;
                 case "administrador":
+                    this.controladorAdministrador = new ControllerAdministrador();
+                    controladorAdministrador.menuInicial();
                     run = false;
                     break;
                 case "administrativo":
+                    this.controladorAdministrativo = new ControllerAdministrativo();
+                    controladorAdministrativo.menuInicial();
                     run = false;
                     break;
             }
