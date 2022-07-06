@@ -16,9 +16,9 @@ public class PerfilAdminSistema extends Usuario {
 
      **/
 
-    public PerfilAdminSistema(String nombre, String nombreUsuario, String password) {
-        super(nombre, nombreUsuario, password);
-    }
+    //public PerfilAdminSistema(String nombre, String nombreUsuario, String password) {
+    //    Super(nombre, nombreUsuario, password);
+    //}
 
     /** Metodos de la clase **/
 
@@ -58,7 +58,7 @@ public class PerfilAdminSistema extends Usuario {
     }
 
     public void confiurarCostoCombustible() {
-        // TODO implementar
+
     }
 
     public void configurarCostoViaje() {

@@ -13,7 +13,7 @@ public class Servicio {
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion; // no tendría que estar en la lista de articulos?
     protected double costoMaterialesAdicionales;
-    protected boolean costoDeViaje;
+    protected boolean costoDeViaje; //?????
     protected boolean almuerzo;
     protected double combustible; //litros
     private double precioCombustible = 120.3;
@@ -24,7 +24,7 @@ public class Servicio {
     protected ArrayList <Tecnico> tecnicos;
     protected double MARGEN;
     protected Factura factura;
-    protected double gastos;
+    protected double gastos;  //Por que tenemos un gastos?
     protected Cliente cliente;
 
     /** Constructor **/
@@ -77,12 +77,12 @@ public class Servicio {
     }
 
     public double calcularGastos(double combustible) {
-        double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio
+        double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
         int gastoAlmuerzo = 0;
         if (almuerzo) {
             gastoAlmuerzo = 500;
         }
-        return gastoCombustible + gastoAlmuerzo;
+        return gastos = gastoCombustible + gastoAlmuerzo;
     }
 
     public double calcularMargenReal() {
@@ -127,8 +127,13 @@ public class Servicio {
         // TODO implementar
     }
 
-    public void setCostoDeViaje(boolean value) {
+    public void setCostoDeViaje(boolean value) {  //Asumo que lo que era setCostoDeViaje es el SetPrecioCombustible
         // TODO implementar
+    }
+
+    public double setPrecioCombustible(double nuevoPrecio){
+        precioCombustible = nuevoPrecio;
+        return precioCombustible;
     }
 
     public void setEstado(Enumeraciones.Estado estado) {
