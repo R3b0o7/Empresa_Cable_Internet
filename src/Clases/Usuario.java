@@ -20,7 +20,6 @@ public class Usuario {
 //    }
 
 
-
     /** Metodos de la clase **/
     public Void login() { //Persona tiene el mismo metodo
         // TODO implementar

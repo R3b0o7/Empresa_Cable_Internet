@@ -15,7 +15,8 @@ public class Servicio {
     protected double costoMaterialesAdicionales;
     protected boolean costoDeViaje;
     protected boolean almuerzo;
-    protected double combustible;
+    protected double combustible; //litros
+    private double precioCombustible = 120.3;
     protected int idServicio;
     protected Enumeraciones.Estado estado;
     protected Date fecha;
@@ -51,13 +52,16 @@ public class Servicio {
         this.tecnicos = tecnicos;
     }
 
-    public int calcularTiempoTrabajado() {
-        // TODO implementar
-        return 0;
+    public int calcularTiempoTrabajado() {  //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos?
+        int tiempo = 30;
+        int cantTecnicos = 0;
+        for(Tecnico tecnico: this.tecnicos){
+            cantTecnicos += 1;
+        }
+        return tiempo*cantTecnicos;
     }
 
     public double calcularCostoBase(Compania compania) {
-        // TODO implementar
         //calculo costo del tiempo base del servicio
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
@@ -72,9 +76,13 @@ public class Servicio {
         return costoBase;
     }
 
-    public double calcularGastos() {
-        // TODO implementar
-        return 0.0d;
+    public double calcularGastos(double combustible) {
+        double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio
+        int gastoAlmuerzo = 0;
+        if (almuerzo) {
+            gastoAlmuerzo = 500;
+        }
+        return gastoCombustible + gastoAlmuerzo;
     }
 
     public double calcularMargenReal() {
@@ -83,6 +91,11 @@ public class Servicio {
     }
 
     public Factura generarFactura() {
+        //Ver como generar un ID de factura automatico, y ver como hacer auto refencia a la instancia de este objeto
+
+        //Factura factura = new Factura(1,Servicio,cliente);
+        //Compania.getInstance().getFacturas().add(factura);
+
         // TODO implementar
         return null;
     }
@@ -102,7 +115,7 @@ public class Servicio {
 
     public Cliente getCliente(){ return this.cliente;};
 
-    /** Setters **/
+    /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {
         // TODO implementar
     }

@@ -194,9 +194,9 @@ public class Compania {
 
         Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
         Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
-        Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,850);
+        Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,1850);
         Articulo artDivisor = new Articulo(Articulos.Divisor,800,120.30);
-        Articulo artModem = new Articulo(Articulos.Modem,50,1135.50);
+        Articulo artModem = new Articulo(Articulos.Modem,50,2135.50);
 
         /** Creación de Stock y la lista de articulos en el stock  **/
 

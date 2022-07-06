@@ -16,10 +16,10 @@ public class PerfilTecnico extends Usuario {
 
      **/
 
-    public PerfilTecnico(String nombre, String nombreUsuario, String password, Tecnico tecnico) {
-        super(nombre, nombreUsuario, password);
-        this.tecnico = tecnico;
-    }
+    //public PerfilTecnico(String nombre, String nombreUsuario, String password, Tecnico tecnico) {
+    //    super(nombre, nombreUsuario, password);
+    //    this.tecnico = tecnico;
+    //}
 
     /** Metodos de la clase **/
 
