@@ -38,6 +38,7 @@ public class PerfilAdministrativo extends Usuario {
     }
 
     public ArrayList<Factura> listarFacturas() {
+        // ciclo for que imprima todos los nros de factura guardados en la compania
         // TODO implementar
         return null;
     }

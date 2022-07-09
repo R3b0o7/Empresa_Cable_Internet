@@ -8,7 +8,7 @@ public class Factura {
     private Servicio servicio;
     private Cliente cliente;
     private double IVA;
-    private double monto; //NUEVO
+    private double monto; //NUEVO  -> Agregar al diagrama
 
     /** Constructor **/
 
@@ -27,7 +27,7 @@ public class Factura {
     }
 
     @Override
-    public String toString() {
+    public String toString() {  //NUEVO -> Agregar al diagrama
         return "Factura{" +
                 "nroFactura=" + nroFactura +
                 ", servicio=" + servicio +
