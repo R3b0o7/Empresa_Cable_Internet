@@ -23,31 +23,37 @@ public class PerfilAdminSistema extends Usuario {
     /** Metodos de la clase **/
 
     public Tecnico crearTecnico() {
+        // Constructor tecnico y guardarlo en ArrayList<Tecnico> tecnicos de la compania
         // TODO implementar
         return null;
     }
 
     public Void modificarTecnico() {
+        // Setters del tecnico
         // TODO implementar
         return null;
     }
 
     public Void bajaTecnico() {
+        // borrarlo del ArrayList<Tecnico> tecnicos de la compania
         // TODO implementar
         return null;
     }
 
     public Articulo crearArticulo() {
+        // agregarArticulo del Stock de la comania
         // TODO implementar
         return null;
     }
 
     public Void modificarArticulo() {
+        // SetPrecio de Articulo
         // TODO implementar
         return null;
     }
 
     public Void bajaArticulo() {
+
         // TODO implementar
         return null;
     }
