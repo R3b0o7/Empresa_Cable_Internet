@@ -23,15 +23,17 @@ public class PerfilAdministrativo extends Usuario {
     /** Metodos de la clase **/
 
     public Factura emitirFactura() {
+        // elegir un servicio y usar la función generarFactura
         // TODO implementar
         return null;
     }
 
-    public void imprimirFactura() {
-        // TODO implementar
+    public void imprimirFactura(Factura factura) {
+        factura.toString();
     }
 
     public void modificarFactura() {
+        // ?? Factura no tiene Setters, y debería poder ser modificada?
         // TODO implementar
     }
 
@@ -41,6 +43,7 @@ public class PerfilAdministrativo extends Usuario {
     }
 
     public void actualizarServicio() {
+        // Usar los setters del Servicio (Faltan)
         // TODO implementar
     }
 

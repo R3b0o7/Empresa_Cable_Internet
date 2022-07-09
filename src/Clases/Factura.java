@@ -8,6 +8,7 @@ public class Factura {
     private Servicio servicio;
     private Cliente cliente;
     private double IVA;
+    private double monto; //NUEVO
 
     /** Constructor **/
 
@@ -25,4 +26,14 @@ public class Factura {
         return 0.0d;
     }
 
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "nroFactura=" + nroFactura +
+                ", servicio=" + servicio +
+                ", cliente=" + cliente +
+                ", IVA=" + IVA +
+                ", monto=" + monto +
+                '}';
+    }
 }
