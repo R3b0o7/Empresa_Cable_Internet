@@ -85,9 +85,9 @@ public class Servicio {
         return gastos = gastoCombustible + gastoAlmuerzo;
     }
 
-    public double calcularMargenReal() {
-        // TODO implementar
-        return 0.0d;
+    public double calcularMargenReal(double combustible, Compania compania) {
+        double margenReal = calcularCostoBase(compania) - calcularGastos(combustible);
+        return margenReal;
     }
 
     public Factura generarFactura() {
