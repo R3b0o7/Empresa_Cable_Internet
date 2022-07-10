@@ -167,6 +167,15 @@ public class Compania {
         return null;
     }
 
+    public Tecnico getTecnico(int dni){
+        for(Tecnico tecnico: this.tecnicos){
+            if(tecnico.getDni() == dni){
+                return tecnico;
+            }
+        }
+        return null;
+    }
+
     public double getPrecioCombustible(){
         return this.precioCombustible;
     }
@@ -200,6 +209,10 @@ public class Compania {
     }
 
     public void guardarCliente(Cliente cliente) { this.clientes.add(cliente);};
+
+    public void guardarTecnico(Tecnico tecnico){
+        this.tecnicos.add(tecnico);
+    }
 
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
@@ -236,9 +249,9 @@ public class Compania {
         this.stock.agregarArticulo(artModem);
 
         //Tecnicos
-        Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", 1, TipoTecnico.Junior, "Tarde");
-        Clases.Tecnico tecnico2 = new Tecnico(1234, "Juan", "salta", 2, TipoTecnico.Semi_senior , "Mañana");
-        Clases.Tecnico tecnico3 = new Tecnico(12345, "Pedro", "salta", 3, TipoTecnico.Senior, "Mañana");
+        Clases.Tecnico tecnico1 = new Tecnico(123, "Gonzalo", "salta", TipoTecnico.Junior, "Tarde");
+        Clases.Tecnico tecnico2 = new Tecnico(1234, "Juan", "salta", TipoTecnico.Semi_senior , "Mañana");
+        Clases.Tecnico tecnico3 = new Tecnico(12345, "Pedro", "salta", TipoTecnico.Senior, "Mañana");
         this.tecnicos.add(tecnico1);
         this.tecnicos.add(tecnico2);
         this.tecnicos.add(tecnico3);

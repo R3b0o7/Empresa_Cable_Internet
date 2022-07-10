@@ -11,6 +11,7 @@ public class Tecnico extends Persona {
 
     /** Parametros **/
 
+    private static int generador = 0; //Generador de numero de tecnico
     private int nroTécnico;
     private TipoTecnico tipoTecnico;
     private Agenda agenda;
@@ -27,10 +28,11 @@ public class Tecnico extends Persona {
 
      **/
 
-    public Tecnico(int dni, String nombreApellido, String dirección,int nroTécnico, TipoTecnico tipoTecnico, String turno) {
+    public Tecnico(int dni, String nombreApellido, String dirección, TipoTecnico tipoTecnico, String turno) {
         super(dni, nombreApellido, dirección);
+        Tecnico.generador++;
         this.agenda = new Agenda();
-        this.nroTécnico = nroTécnico;
+        this.nroTécnico = generador;
         this.tipoTecnico = tipoTecnico;
         this.turno = turno;
     }
@@ -93,7 +95,7 @@ public class Tecnico extends Persona {
         return this.tipoTecnico;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
