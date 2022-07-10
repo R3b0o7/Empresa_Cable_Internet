@@ -83,7 +83,7 @@ public class ControllerAdministrador extends Usuario{
                         System.out.println("Técnico Nro " + tecnico.getNroTécnico() + " ; DNI: " + tecnico.getDni());
                     }
                     break;
-                case 2:
+                case 2: //Dar de baja servicios asosciados
                     //Baja de técnico
                     break;
                 case 3:

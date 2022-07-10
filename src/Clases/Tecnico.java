@@ -15,6 +15,7 @@ public class Tecnico extends Persona {
     private TipoTecnico tipoTecnico;
     private Agenda agenda;
     private String turno;
+    private boolean estado = true;
 
     /** Constructor
 
@@ -74,6 +75,10 @@ public class Tecnico extends Persona {
         this.tipoTecnico = tipoTecnico;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     /** Getters **/
 
     public String getTurno() {
@@ -86,6 +91,10 @@ public class Tecnico extends Persona {
 
     public Enumeraciones.TipoTecnico getTipoTecnico() {
         return this.tipoTecnico;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
     @Override
