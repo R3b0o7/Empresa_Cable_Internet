@@ -17,8 +17,8 @@ public class Main {
 
         //ArrayList stock = companiaCableInternet.getStock().getArticulos(); // Devuelve un ArrayList VACIO!!
 
-        for (Object articulo: companiaCableInternet.getStock().getArticulos()){
-            articulo.toString();
+        for (Articulo articulo: companiaCableInternet.getStock().getArticulos()){
+            System.out.println(articulo.toString());
         }
     }
 }

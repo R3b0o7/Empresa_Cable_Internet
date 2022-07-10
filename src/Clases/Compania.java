@@ -25,6 +25,9 @@ public class Compania {
     private Stock stock;
     private int ultimoServicio;
     private Map<TipoTecnico, Double> maestroCostoTecnicos;
+    private double precioCombustible = 120.3; //nuevo
+    private double costoDeViaje = 500.0; //lo sacamos de servicio para que quede como un parametro de BD
+
 
     /** Constructor privado por ser Singleton  **/
     private Compania(){
@@ -154,6 +157,10 @@ public class Compania {
         return null;
     }
 
+    public double getPrecioCombustible(){
+        return this.precioCombustible;
+    }
+
     public double getCostoTecnico(TipoTecnico tipo){
         return this.maestroCostoTecnicos.get(tipo);
     }
@@ -161,6 +168,12 @@ public class Compania {
     public String getContraseña(String usuario) {return this.password.get(usuario);};
 
     public String getPerfil(String usuario) {return this.usuarios.get(usuario);};
+
+    /** Setters **/
+
+    public void setPrecioCombustible(Double precio){
+        this.precioCombustible = precio;
+    }
 
     /** Metodos **/
 
@@ -192,11 +205,11 @@ public class Compania {
         /** Creación de Articulos  **/
         // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0
 
-        Articulo artCable = new Articulo(Articulos.Cable,1000,250.90);
-        Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,2500,62.25);
-        Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,1850);
-        Articulo artDivisor = new Articulo(Articulos.Divisor,800,120.30);
-        Articulo artModem = new Articulo(Articulos.Modem,50,2135.50);
+        Articulo artCable = new Articulo(Articulos.Cable,0,250.90);
+        Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,0,62.25);
+        Articulo artDecodificador = new Articulo(Articulos.Decodificador,0,1850);
+        Articulo artDivisor = new Articulo(Articulos.Divisor,0,120.30);
+        Articulo artModem = new Articulo(Articulos.Modem,0,2135.50);
 
         /** Creación de Stock y la lista de articulos en el stock  **/
 
