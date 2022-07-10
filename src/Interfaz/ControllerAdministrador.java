@@ -21,12 +21,16 @@ public class ControllerAdministrador extends Usuario{
             int opcion = sc.nextInt();
             switch(opcion) {
                 case 1:
+                    this.abmTecnico();
                     break;
                 case 2:
+                    this.ambArticulo();
                     break;
                 case 3:
+                    this.configurarParametros();
                     break;
                 case 0:
+                    run = false;
                     break;
             }
         }
@@ -54,6 +58,51 @@ public class ControllerAdministrador extends Usuario{
         }
         System.out.print("\n");
         System.out.println("##################################");
+    }
+
+    public void abmTecnico(){
+        //ejecución menu del ABM
+        Scanner sc = new Scanner(System.in);
+        boolean run = true;
+        while (run) {
+            System.out.println();
+            System.out.println("Opciones ABM de técnicos");
+            System.out.println("---------------------------------");
+            System.out.println("1. Alta de técnico");
+            System.out.println("2. Baja de técnico");
+            System.out.println("3. Modificación de técnico");
+            System.out.println("0. Salir");
+            System.out.print("Elija una opción: ");
+            System.out.println();
+            int opcion = sc.nextInt();
+            switch(opcion) {
+                case 1:
+                    //Alta de técnico
+                    System.out.println("Técnicos en la compania: ");
+                    for (Tecnico tecnico : compania.getTecnicos()) {
+                        System.out.println("Técnico Nro " + tecnico.getNroTécnico() + " ; DNI: " + tecnico.getDni());
+                    }
+                    break;
+                case 2:
+                    //Baja de técnico
+                    break;
+                case 3:
+                    //Modificación de técnico
+                    break;
+                case 0:
+                    run = false;
+                    break;
+            }
+        }
+
+    }
+
+    public void ambArticulo(){
+
+    }
+
+    public void configurarParametros(){
+
     }
 
 }
