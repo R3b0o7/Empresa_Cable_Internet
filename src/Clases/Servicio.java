@@ -22,7 +22,9 @@ public class Servicio {
     protected ArrayList <Tecnico> tecnicos;
     protected double MARGEN;
     protected Factura factura;
+    protected double costoReal; //es el costo calculado cuando se finaliza el servicio
     protected double gastos;  //Por que tenemos un gastos?
+    protected double precioFinal;
     protected Cliente cliente;
 
     /** Constructor **/
@@ -37,7 +39,7 @@ public class Servicio {
         this.fecha = fecha;
         this.horario = horario;
         this.tecnicos = tecnicos;
-        this.MARGEN = 0.30d;
+        this.MARGEN = 1.30d;
         this.cliente = cliente;
 
     }
@@ -49,21 +51,18 @@ public class Servicio {
         this.tecnicos = tecnicos;
     }
 
-    public int calcularTiempoTrabajado() {  //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos?
-        int tiempo = 30;
-        int cantTecnicos = 0;
-        for(Tecnico tecnico: this.tecnicos){
-            cantTecnicos += 1;
-        }
-        return tiempo*cantTecnicos;
-    }
-
-    public double calcularPrecioBase(Compania compania) {
-        //calculo costo del tiempo base del servicio
+    public double calcularCostoTiempoTrabajado(Compania compania) {  //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos? LO UNIFICO
+        //calculo costo del tiempo trabajado
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
             costoTiempo += this.tiempoTrabajado.get(tecnico.getNroTécnico())*compania.getCostoTecnico(tecnico.getTipoTecnico());
         }
+        return costoTiempo;
+    }
+
+    public double calcularPrecioBase(Compania compania) {
+        //calculo costo del tiempo base del servicio
+        double costoTiempo = this.calcularCostoTiempoTrabajado(compania);
         //calculo costo de los materiales base
         double costoMateriales = 0.0d;
         for(Articulo articulo: this.materiales){
@@ -73,19 +72,41 @@ public class Servicio {
         return precioBase;
     }
 
-    public double calcularGastos(double combustible, double precioCombustible) {
-        double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
+    public double calcularGastos(double precioCombustible) {
+        double gastoCombustible = this.combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
         int gastoAlmuerzo = 0;
         if (almuerzo) {
             gastoAlmuerzo = 500;
         }
-        //FALTA AGREGAR GASTO DE ARTICULOS ADICIONALES
-        this.gastos = gastoCombustible + gastoAlmuerzo;
+        this.gastos = gastoCombustible + gastoAlmuerzo + this.costoMaterialesAdicionales;
         return this.gastos;
     }
 
-    public double calcularMargenReal(double combustible, Compania compania) {
-        double margenReal = calcularPrecioBase(compania) - this.gastos;
+    public double calcularCostoReal(Compania compania){
+        //calculo costo del tiempo base del servicio
+        double costoTiempo = this.calcularCostoTiempoTrabajado(compania);
+        //calculo costo de los materiales base
+        double costoMateriales = 0.0d;
+        for(Articulo articulo: this.materiales){
+            costoMateriales += articulo.getCantidad()*articulo.getPrecio();
+        }
+        double costoReal =
+                costoTiempo
+                +costoMateriales
+                +this.costoMaterialesAdicionales
+                +compania.getCostoDeViaje();
+        //seteo el atributo
+        this.costoReal = costoReal;
+        return costoReal;
+    }
+
+   public double calcularPrecioFinal(){
+        this.precioFinal = (this.costoReal*this.MARGEN) - this.gastos;
+        return precioFinal;
+   }
+
+    public double calcularMargenReal() {
+        double margenReal = (this.precioFinal-this.costoReal)/this.costoReal;
         return margenReal;
     }
 
@@ -97,6 +118,13 @@ public class Servicio {
 
         // TODO implementar
         return null;
+    }
+
+    public void finalizarServicio(Compania compania){
+        this.estado = Estado.Finalizada;
+        this.calcularCostoReal(compania);
+        this.calcularGastos(compania.getPrecioCombustible());
+        this.calcularPrecioFinal();
     }
 
     /** Getters **/

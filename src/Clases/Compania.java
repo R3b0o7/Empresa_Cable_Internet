@@ -130,6 +130,16 @@ public class Compania {
         return null;
     }
 
+    public Object getServicio(int idServicio){
+        Object servicio;
+        if(this.getReparacion(idServicio) != null){
+            servicio = this.getReparacion(idServicio);
+        } else {
+            servicio = this.getInstalacion(idServicio);
+        }
+        return servicio;
+    }
+
     public Reparacion getReparacionPorCliente(int dni){
         for(Reparacion reparacion: this.getReparaciones()){
             if(reparacion.getCliente().getDni() == dni && (reparacion.getEstado() == Estado.En_curso || reparacion.getEstado() == Estado.Programado)){
@@ -159,6 +169,10 @@ public class Compania {
 
     public double getPrecioCombustible(){
         return this.precioCombustible;
+    }
+
+    public double getCostoDeViaje(){
+        return this.costoDeViaje;
     }
 
     public double getCostoTecnico(TipoTecnico tipo){
