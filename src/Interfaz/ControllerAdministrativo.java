@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Clases.*;
+import Enumeraciones.TipoServicio;
 
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class ControllerAdministrativo extends Usuario {
                     this.listarFacturas();
                     break;
                 case 2:
+                    this.menuModificarServicio();
                     break;
                 case 0:
                     break;
@@ -36,14 +38,6 @@ public class ControllerAdministrativo extends Usuario {
     public void imprimirMenuInicial() {
         String[] menu = {"EMPRESA DE CABLE"};
         imprimirEncabezado(menu);
-        System.out.println("1. Listar facturas");
-        System.out.println("2. Modificar servicio");
-        System.out.println("3. Generar factura");
-        System.out.println("0. Salir");
-        System.out.print("Elija una opción: ");
-    }
-
-    public void imprimirModificarServicio() {
         System.out.println("1. Listar facturas");
         System.out.println("2. Modificar servicio");
         System.out.println("3. Generar factura");
@@ -85,7 +79,7 @@ public class ControllerAdministrativo extends Usuario {
         int serviciosFinalizados = 0;
         if(this.compania.getInstalaciones().size() == 0 && this.compania.getReparaciones().size() == 0){
             System.out.println();
-            System.out.println("No existen servicios finalizados.");
+            System.out.println("No existen servicios.");
         } else {
             for (Instalacion instalacion : compania.getInstalaciones()) {
                 System.out.println(instalacion.toString());
@@ -103,7 +97,7 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
-    private void modificarServicio(){
+    private void menuModificarServicio(){
         Scanner sc = new Scanner(System.in);
 
         String[] menu = {"EMPRESA DE CABLE", "MODIFICAR SERVICIO"};
@@ -114,6 +108,7 @@ public class ControllerAdministrativo extends Usuario {
         if(this.compania.getInstalaciones().size() == 0 && this.compania.getReparaciones().size() == 0){
             System.out.println();
             System.out.println("No existen servicios finalizados.");
+            return;
         } else {
             for (Instalacion instalacion : compania.getInstalaciones()) {
                 System.out.println(instalacion.toString());
@@ -126,42 +121,158 @@ public class ControllerAdministrativo extends Usuario {
         }
 
         //obtengo el servicio a modificar
-        Object servicio;
+        TipoServicio tipoServicio;
+        Reparacion servicioR = null;
+        Instalacion servicioI = null;
         System.out.println();
         System.out.println("Ingrese el id de servicio a modificar: ");
         int idServicio = sc.nextInt();
-        if(this.compania.getServicio(idServicio) == null){
+        if(this.compania.getReparacion(idServicio) == null && this.compania.getInstalacion(idServicio) == null){
             System.out.println("El id de servicio ingresado no corresponde a un servicio existente");
             return;
         } else {
-            servicio = this.compania.getServicio(idServicio);
+            if(compania.getInstalacion(idServicio) != null){
+                servicioI = compania.getInstalacion(idServicio);
+                tipoServicio = servicioI.getTipoServicio();
+                System.out.println();
+                System.out.println("Se trabajará con el siguiente servicio:");
+                System.out.println(servicioI.toString());
+                System.out.println();
+            } else {
+                servicioR = compania.getReparacion(idServicio);
+                tipoServicio = servicioR.getTipoServicio();
+                System.out.println();
+                System.out.println("Se trabajará con el siguiente servicio:");
+                System.out.println(servicioR.toString());
+                System.out.println();
+            }
         }
 
-        System.out.println();
-        System.out.println("Se trabajará con el siguiente servicio:");
-        System.out.println(servicio.toString());
-        System.out.println();
-
         //modificacion de valores del servicio
+        if(tipoServicio == TipoServicio.Instalación){
+            this.modificarServicio(servicioI);
+        } else {
+            this.modificarServicio(servicioR);
+        }
+    }
+
+    private void modificarServicio(Instalacion instalacion){
+        Scanner sc = new Scanner(System.in);
+
         boolean run = true;
         while (run) {
             System.out.println("Seleccione valor a modificar: ");
-            System.out.println("1 - ");
-            System.out.println();
+            System.out.println("1 - Costo de materiales adicionales");
+            System.out.println("2 - Combustible");
+            System.out.println("3 - Almuerzo");
+            System.out.println("4 - Precio final");
+            System.out.println("0 - Volver al menú anterior.");
             System.out.println();
             int opcion = sc.nextInt();
             switch(opcion) {
                 case 1:
-                    this.listarFacturas();
+                    System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
+                    double valorCosto = sc.nextDouble();
+                    instalacion.setCostoMaterialesAdicionales(valorCosto);
+                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
                     break;
                 case 2:
+                    System.out.println("Ingrese el nuevo valor para Combustible: ");
+                    double valorCombustible = sc.nextDouble();
+                    instalacion.setCombustible(valorCombustible);
+                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 3:
+                    System.out.println("Ingrese el nuevo valor para Almuerzo (0-NO/1-SI): ");
+                    boolean valorAlmuerzoBool = false;
+                    int valorAlmuerzoInt = sc.nextInt();
+                    if(valorAlmuerzoInt == 1){
+                        valorAlmuerzoBool = true;
+                    } else {
+                        if(valorAlmuerzoInt > 1 || valorAlmuerzoInt < 0){
+                            System.out.println("El valor ingresado no es válido.");
+                        }
+                    }
+                    instalacion.setAlmuerzo(valorAlmuerzoBool);
+                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 4:
+                    System.out.println("Ingrese el nuevo valor para Precio final: ");
+                    double valorPrecioFinal = sc.nextDouble();
+                    instalacion.setPrecioFinal(valorPrecioFinal);
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
                     break;
                 case 0:
+                    run = false;
                     break;
             }
         }
-
-
     }
 
+    private void modificarServicio(Reparacion reparacion) {
+        Scanner sc = new Scanner(System.in);
+
+        boolean run = true;
+        while (run) {
+            System.out.println("Seleccione valor a modificar: ");
+            System.out.println("1 - Costo de materiales adicionales");
+            System.out.println("2 - Combustible");
+            System.out.println("3 - Almuerzo");
+            System.out.println("4 - Precio final");
+            System.out.println("0 - Volver al menú anterior.");
+            System.out.println();
+            int opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
+                    double valorCosto = sc.nextDouble();
+                    reparacion.setCostoMaterialesAdicionales(valorCosto);
+                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.println("Ingrese el nuevo valor para Combustible: ");
+                    double valorCombustible = sc.nextDouble();
+                    reparacion.setCombustible(valorCombustible);
+                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 3:
+                    System.out.println("Ingrese el nuevo valor para Almuerzo (0-NO/1-SI): ");
+                    boolean valorAlmuerzoBool = false;
+                    int valorAlmuerzoInt = sc.nextInt();
+                    if (valorAlmuerzoInt == 1) {
+                        valorAlmuerzoBool = true;
+                    } else {
+                        if (valorAlmuerzoInt > 1 || valorAlmuerzoInt < 0) {
+                            System.out.println("El valor ingresado no es válido.");
+                        }
+                    }
+                    reparacion.setAlmuerzo(valorAlmuerzoBool);
+                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 4:
+                    System.out.println("Ingrese el nuevo valor para Precio final: ");
+                    double valorPrecioFinal = sc.nextDouble();
+                    reparacion.setPrecioFinal(valorPrecioFinal);
+                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println();
+                    break;
+                case 0:
+                    run = false;
+                    break;
+            }
+        }
+    }
 }

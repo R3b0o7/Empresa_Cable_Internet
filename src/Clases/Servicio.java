@@ -2,6 +2,7 @@ package Clases;
 import java.util.*;
 import java.util.Date;
 import Enumeraciones.Estado;
+import Enumeraciones.TipoServicio;
 
 /** Clase abstracta - superclase **/
 
@@ -9,6 +10,7 @@ public class Servicio {
 
     /** Parámetros **/
 
+    protected Enumeraciones.TipoServicio tipoServicio;
     protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion;
@@ -55,7 +57,7 @@ public class Servicio {
         //calculo costo del tiempo trabajado
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
-            costoTiempo += this.tiempoTrabajado.get(tecnico.getNroTécnico())*compania.getCostoTecnico(tecnico.getTipoTecnico());
+            costoTiempo += this.tiempoTrabajado.get(tecnico.getNroTécnico()) * compania.getCostoTecnico(tecnico.getTipoTecnico());
         }
         return costoTiempo;
     }
@@ -142,37 +144,30 @@ public class Servicio {
 
     public Cliente getCliente(){ return this.cliente;};
 
+    public TipoServicio getTipoServicio(){return this.tipoServicio;};
+
     /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {
-        // TODO implementar
+        this.almuerzo = value;
     }
     public void setCombustible(double value) {
-        // TODO implementar
+        this.combustible = value;
+    }
+
+    public void setPrecioFinal(double value){
+        this.precioFinal = value;
     }
 
     public void setMaterialesAdicionales(String value) {
         // TODO implementar
     }
 
-    public void setCostoDeViaje(boolean value) {  //Asumo que lo que era setCostoDeViaje es el SetPrecioCombustible
-        // TODO implementar
+    public void setCostoMaterialesAdicionales(double costo) {
+        this.costoMaterialesAdicionales = costo;
     }
 
     public void setEstado(Enumeraciones.Estado estado) {
-        switch (estado){
-            case En_curso:
-                this.estado = Estado.En_curso;
-                break;
-            case Cancelada:
-                this.estado = Estado.Cancelada;
-                break;
-            case Finalizada:
-                this.estado = Estado.Finalizada;
-                break;
-            case Programado:
-                this.estado = Estado.Programado;
-                break;
-        }
+        this.estado = estado;
     }
 
 }

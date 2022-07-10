@@ -248,6 +248,13 @@ public class Compania {
         this.clientes.add(cliente1);
         this.clientes.add(cliente2);
 
+        //Servicio
+        ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
+        tecnicosPrueba.add(tecnico1);
+        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
+        reparacion.setEstado(Estado.Finalizada);
+        this.reparaciones.add(reparacion);
+
     }
 
 }
