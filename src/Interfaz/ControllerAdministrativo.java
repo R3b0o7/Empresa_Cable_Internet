@@ -156,6 +156,8 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
+    /** Metodos auxiliares**/
+
     private void modificarServicio(Instalacion instalacion){
         Scanner sc = new Scanner(System.in);
 
