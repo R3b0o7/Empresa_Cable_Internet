@@ -1,5 +1,7 @@
 package Clases;
 
+import Enumeraciones.TipoServicio;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ public class Reparacion extends Servicio {
 
     public Reparacion(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
         super(idServicio, fecha, horario, tecnicos, cliente);
+        this.tipoServicio = TipoServicio.Reparación;
         this.tiempoTrabajado = new HashMap<Integer, Float>();
         for(Tecnico tecnico: tecnicos){
             tiempoTrabajado.put(tecnico.getNroTécnico(), 0.5f);
