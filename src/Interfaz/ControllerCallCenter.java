@@ -77,7 +77,7 @@ public class ControllerCallCenter extends Usuario {
         String tiposervicioStr = (tipoServicio==1) ? "REPARACION":"INSTALACION";
 
         //Verifico si hay stock para los materiales base
-        if(!compania.getStock().hayStockInstalacion()){
+        if(!compania.getStock().hayStockInstalacion() && tipoServicio == 1){
             System.out.println("ATENCION!!");
             System.out.println("Se debe solicitar la compra de materiales para la Instalación");
             System.out.println();
@@ -180,11 +180,11 @@ public class ControllerCallCenter extends Usuario {
 
         if(tiposervicioStr.equals("REPARACION")){
             servicioR = new Reparacion(compania.getUltimoServicio()+1, fecha, horarioStr, tecnicosSeleccionados, cliente);
-            costoBase = servicioR.calcularCostoBase(compania);
+            costoBase = servicioR.calcularPrecioBase(compania);
             System.out.println(servicioR.toString());
         } else {
             servicioI = new Instalacion(compania.getUltimoServicio()+1, fecha, horarioStr, tecnicosSeleccionados, cliente, compania.getStock());
-            costoBase = servicioI.calcularCostoBase(compania);
+            costoBase = servicioI.calcularPrecioBase(compania);
             System.out.println(servicioI.toString());
         }
 

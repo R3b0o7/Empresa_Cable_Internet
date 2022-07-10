@@ -9,7 +9,6 @@ public class ControllerAdministrador extends Usuario{
     private Compania compania;
 
     public void menuInicial() {
-        // TODO Auto-generated method stub
 
         //Genero los objetos base
         this.compania = Clases.Compania.getInstance();

@@ -11,12 +11,10 @@ public class Servicio {
 
     protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
-    protected String materialesAdicionalesDescripcion; // no tendría que estar en la lista de articulos?
+    protected String materialesAdicionalesDescripcion;
     protected double costoMaterialesAdicionales;
-    protected boolean costoDeViaje; //?????
     protected boolean almuerzo;
     protected double combustible; //litros
-    private double precioCombustible = 120.3;
     protected int idServicio;
     protected Enumeraciones.Estado estado;
     protected Date fecha;
@@ -32,7 +30,6 @@ public class Servicio {
     public Servicio(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
 
         this.materiales = new ArrayList<Articulo>();
-        this.costoDeViaje = false;
         this.almuerzo = false;
         this.combustible = 0.0d;
         this.idServicio = idServicio;
@@ -61,7 +58,7 @@ public class Servicio {
         return tiempo*cantTecnicos;
     }
 
-    public double calcularCostoBase(Compania compania) {
+    public double calcularPrecioBase(Compania compania) {
         //calculo costo del tiempo base del servicio
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
@@ -72,21 +69,23 @@ public class Servicio {
         for(Articulo articulo: this.materiales){
             costoMateriales += articulo.getCantidad()*articulo.getPrecio();
         }
-        double costoBase = (costoTiempo+costoMateriales)+((costoTiempo+costoMateriales)*this.MARGEN);
-        return costoBase;
+        double precioBase = (costoTiempo+costoMateriales)+((costoTiempo+costoMateriales)*this.MARGEN);
+        return precioBase;
     }
 
-    public double calcularGastos(double combustible) {
+    public double calcularGastos(double combustible, double precioCombustible) {
         double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
         int gastoAlmuerzo = 0;
         if (almuerzo) {
             gastoAlmuerzo = 500;
         }
-        return gastos = gastoCombustible + gastoAlmuerzo;
+        //FALTA AGREGAR GASTO DE ARTICULOS ADICIONALES
+        this.gastos = gastoCombustible + gastoAlmuerzo;
+        return this.gastos;
     }
 
     public double calcularMargenReal(double combustible, Compania compania) {
-        double margenReal = calcularCostoBase(compania) - calcularGastos(combustible);
+        double margenReal = calcularPrecioBase(compania) - this.gastos;
         return margenReal;
     }
 
@@ -129,11 +128,6 @@ public class Servicio {
 
     public void setCostoDeViaje(boolean value) {  //Asumo que lo que era setCostoDeViaje es el SetPrecioCombustible
         // TODO implementar
-    }
-
-    public double setPrecioCombustible(double nuevoPrecio){
-        precioCombustible = nuevoPrecio;
-        return precioCombustible;
     }
 
     public void setEstado(Enumeraciones.Estado estado) {
