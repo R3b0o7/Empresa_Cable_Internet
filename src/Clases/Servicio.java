@@ -72,8 +72,8 @@ public class Servicio {
         return precioBase;
     }
 
-    public double calcularGastos(double combustible, double precioCombustible) {
-        double gastoCombustible = combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
+    public double calcularGastos(double precioCombustible) {
+        double gastoCombustible = this.combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
         int gastoAlmuerzo = 0;
         if (almuerzo) {
             gastoAlmuerzo = 500;
@@ -118,6 +118,13 @@ public class Servicio {
 
         // TODO implementar
         return null;
+    }
+
+    public void finalizarServicio(Compania compania){
+        this.estado = Estado.Finalizada;
+        this.calcularCostoReal(compania);
+        this.calcularGastos(compania.getPrecioCombustible());
+        this.calcularPrecioFinal();
     }
 
     /** Getters **/
