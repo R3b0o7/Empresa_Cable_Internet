@@ -25,6 +25,7 @@ public class ControllerTecnico extends Usuario{
                     this.serviciosAsignados();
                     break;
                 case 2:
+                    this.cargarDatos();
                     break;
                 case 0:
                     run = false;
@@ -89,5 +90,9 @@ public class ControllerTecnico extends Usuario{
             }
         }
         System.out.println("");
+    }
+
+    public void cargarDatos(){
+
     }
 }

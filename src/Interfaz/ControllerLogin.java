@@ -25,6 +25,12 @@ public class ControllerLogin {
         while (run) {
             System.out.println("Ingrese nombre de usuario:");
             usuario = sc.nextLine();
+
+            //Finalizar el sistema
+            if (usuario == "a"){
+                System.out.println("Error de login");
+            }
+
             System.out.println("Ingrese contraseña: ");
             String contraseña = sc.nextLine();
 
