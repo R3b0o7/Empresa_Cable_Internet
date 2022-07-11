@@ -32,4 +32,10 @@ public class Persona {
     public String getDirección() {
         return dirección;
     }
+
+    /** Getters **/
+
+    public void setDirección(String dirección) {
+        this.dirección = dirección;
+    }
 }

@@ -81,6 +81,11 @@ public class Tecnico extends Persona {
         this.estado = estado;
     }
 
+    @Override
+    public void setDirección(String dirección) {
+        super.setDirección(dirección);
+    }
+
     /** Getters **/
 
     public String getTurno() {

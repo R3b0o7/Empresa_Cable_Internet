@@ -33,6 +33,10 @@ public class ControllerAdministrador extends Usuario{
                 case 0:
                     run = false;
                     break;
+                default:
+                    System.out.println("Opcion invalida");
+                    System.out.println();
+                    break;
             }
         }
     }
@@ -89,7 +93,7 @@ public class ControllerAdministrador extends Usuario{
                     System.out.println("Ingrese DNI del Técnico: ");
                     int dni = sc.nextInt();
                     // Validar si existe el técnico antes de crearlo
-                    /** NO SE POR QUE NO FUNCIONA
+                    /** NO SE POR QUE NO FUNCIONA -> cambie los parametros de getTecnico tambien, revisar
                     if (this.compania.getTecnicos() != null) {
                         System.out.println("El Técnico ya existe.");
                         return;
@@ -119,33 +123,15 @@ public class ControllerAdministrador extends Usuario{
                                 turno = "Tarde";
                                 run2 = false;
                                 break;
+                            default:
+                                System.out.println("Opcion invalida");
+                                System.out.println();
+                                break;
                         }
                     }
 
                     //Selecciona el tipo de técnico validando que solo puedan ser las opciones mostradas
-                    TipoTecnico tipoTecnico = TipoTecnico.Junior;
-                    boolean run3 = true;
-                    while (run3){
-                        System.out.println("Tipo Técnico: ");
-                        System.out.println("1. Junior");
-                        System.out.println("2. Semi senior");
-                        System.out.println("3. Senior");
-                        int opcion3 = sc.nextInt();
-                        switch (opcion3) {
-                            case 1:
-                                tipoTecnico = TipoTecnico.Junior;
-                                run3 = false;
-                                break;
-                            case 2:
-                                tipoTecnico = TipoTecnico.Semi_senior;
-                                run3 = false;
-                                break;
-                            case 3:
-                                tipoTecnico = TipoTecnico.Senior;
-                                run3 = false;
-                                break;
-                        }
-                    }
+                    TipoTecnico tipoTecnico = seleccionarTipoTecnico();
 
                     //Se muestran los datos ingresados antes de confirmar la creación
                     System.out.println();
@@ -171,8 +157,8 @@ public class ControllerAdministrador extends Usuario{
                     }
                     break;
 
-                case 2: //Baja de técnico
-                    //Pasar a estado = false
+                case 2: //Baja de técnico -> pasa el atributo del técnico estado = false
+                    //Muestra los técnicos activos de la compañia para dar de baja
                     System.out.println();
                     System.out.println("BAJA DE TÉCNICO");
                     System.out.println("---------------------------------");
@@ -184,6 +170,8 @@ public class ControllerAdministrador extends Usuario{
                     }
                     System.out.println("---------------------------------");
                     System.out.println();
+
+                    //Selecciona un técnico recorre los tecnicos de la compañia y cuando lo encuentra le cambia el estado
                     System.out.println("Seleccione el numero de técncio que desa dar de baja: ");
                     sc.nextLine();
                     int nroTecnico = sc.nextInt();
@@ -194,13 +182,72 @@ public class ControllerAdministrador extends Usuario{
                             System.out.println();
                         }
                     }
+                    //VER COMO MOSTRAR UN MENSAJE QUE EL TECNICO SELECCIONADO NO ES UN TECNICO DISPONIBLE PARA DAR DE BAJA
                     break;
 
-                case 3:
-                    //Modificación de técnico
+                case 3://Modificación de técnico
+                    //Muestra los técnicos activos de la compañia para modificar.
+                    System.out.println();
+                    System.out.println("MODIFICAR TÉCNICO");
+                    System.out.println("---------------------------------");
+                    System.out.println("Técnicos activos de la compania: ");
+                    for (Tecnico tec : compania.getTecnicos()) {
+                        if (tec.getEstado()) { //Muesta solo los tecnicos que no fueron dados de baja -> estado = true
+                            System.out.println("Técnico Nro " + tec.getNroTécnico() + "; DNI: " + tec.getDni() + "; Tipo: " + tec.getTipoTecnico());
+                        }
+                    }
+                    System.out.println("---------------------------------");
+                    System.out.println();
+
+                    //Selecciona un técnico recorre los tecnicos de la compañia
+                    System.out.println("Seleccione el numero de técncio que desa modificar: ");
+                    sc.nextLine();
+                    int nroTecnicoModificar = sc.nextInt();
+                    for (Tecnico tecModificar : compania.getTecnicos()){
+                        if (tecModificar.getNroTécnico() == nroTecnicoModificar && tecModificar.getEstado() == true){
+                            System.out.println("Opciones para modificar:");
+                            System.out.println("1. Cambiar dirección");
+                            System.out.println("2. Cambiar tipo de técnico");
+                            System.out.println("0. Volver");
+                            boolean run4 = true;
+                            int opcion4 = sc.nextInt();
+                            while (run4){
+                                switch (opcion4){
+                                    case 1:
+                                        System.out.println("Ingresar la nueva dirección: ");
+                                        sc.nextLine();
+                                        String nuevaDireccion = sc.nextLine();
+                                        tecModificar.setDirección(nuevaDireccion);
+                                        System.out.println("La modificación fue realizada con exito");
+                                        System.out.println();
+                                        run4 = false;
+                                        break;
+                                    case 2:
+                                        sc.nextLine();
+                                        TipoTecnico tipoTecnico2 = seleccionarTipoTecnico();
+                                        tecModificar.setTipoTecnico(tipoTecnico2);
+                                        System.out.println("La modificación fue realizada con exito");
+                                        System.out.println();
+                                        run4 = false;
+                                        break;
+                                    case 0 :
+                                        run4 = false;
+                                        break;
+                                    default:
+                                        System.out.println("Opcion invalida");
+                                        break;
+                                 }
+                            }
+                        }
+                    }
+
                     break;
+
                 case 0:
                     run = false;
+                    break;
+                default:
+                    System.out.println("Opcion invalida");
                     break;
             }
         }
@@ -211,8 +258,45 @@ public class ControllerAdministrador extends Usuario{
 
     }
 
-    public void configurarParametros(){
+    public void configurarParametros(){ // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
+        //ejecución menu de la configuración de parametros
+        Scanner sc = new Scanner(System.in);
+        boolean run = true;
 
+        String[] menu = {"EMPRESA DE CABLE", "ABM DE TÉCNICOS"};
+        this.imprimirEncabezado(menu);
+    }
+
+    public TipoTecnico seleccionarTipoTecnico(){
+        Scanner sc = new Scanner(System.in);
+        TipoTecnico tipoTecnico = TipoTecnico.Junior;
+        boolean run3 = true;
+        while (run3){
+            System.out.println("Tipo Técnico: ");
+            System.out.println("1. Junior");
+            System.out.println("2. Semi senior");
+            System.out.println("3. Senior");
+            int opcion3 = sc.nextInt();
+            switch (opcion3) {
+                case 1:
+                    tipoTecnico = TipoTecnico.Junior;
+                    run3 = false;
+                    break;
+                case 2:
+                    tipoTecnico = TipoTecnico.Semi_senior;
+                    run3 = false;
+                    break;
+                case 3:
+                    tipoTecnico = TipoTecnico.Senior;
+                    run3 = false;
+                    break;
+                default:
+                    System.out.println("Opcion invalida");
+                    System.out.println();
+                    break;
+            }
+        }
+        return tipoTecnico;
     }
 
 }
