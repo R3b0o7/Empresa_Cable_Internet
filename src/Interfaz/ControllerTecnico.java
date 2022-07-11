@@ -22,6 +22,7 @@ public class ControllerTecnico extends Usuario{
             int opcion = sc.nextInt();
             switch(opcion) {
                 case 1:
+                    this.serviciosAsignados();
                     break;
                 case 2:
                     break;
@@ -52,5 +53,17 @@ public class ControllerTecnico extends Usuario{
         }
         System.out.print("\n");
         System.out.println("##################################");
+    }
+
+    public void serviciosAsignados(){
+        if(this.compania.getReparaciones()!=null){
+            System.out.println("FFGFF");
+        } else {
+            for (Reparacion reparacion : this.compania.getReparaciones()){
+                if (this.compania.getUsuariosTecnicos()==reparacion.get){
+
+                }
+            }
+        }
     }
 }

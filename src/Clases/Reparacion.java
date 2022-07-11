@@ -30,6 +30,11 @@ public class Reparacion extends Servicio {
         }
     }
 
+    //Getters
+    public ArrayList<Tecnico> getTecnicos(){
+        return this.tecnicos;
+    }
+
     @Override
     public String toString() {
         return "Reparacion{" +
