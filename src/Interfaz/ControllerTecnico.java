@@ -21,7 +21,7 @@ public class ControllerTecnico extends Usuario{
         while (run) {
             this.imprimirMenuInicial();
             int opcion = sc.nextInt();
-            switch(opcion) {
+            switch(opcion){
                 case 1:
                     this.serviciosAsignados();
                     break;
@@ -45,8 +45,8 @@ public class ControllerTecnico extends Usuario{
     }
 
     public void imprimirEncabezado(String[] menu) {
-        System.out.println("");
-        System.out.println("");
+        System.out.println("\n");
+        System.out.println("\n");
         for(int i = 0; i < menu.length; i++ ) {
             System.out.print(menu[i]);
             if(i == menu.length-1) {
@@ -74,7 +74,7 @@ public class ControllerTecnico extends Usuario{
                 }
             }
         }
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("INSTALACIONES: ");
         if (this.compania.getInstalaciones().size()==0){
             System.out.println("No existen instalaciones");
@@ -90,7 +90,7 @@ public class ControllerTecnico extends Usuario{
                 }
             }
         }
-        System.out.println("");
+        System.out.println("-----------------------");
     }
 
     public void cargarDatosServicio(){
@@ -118,13 +118,24 @@ public class ControllerTecnico extends Usuario{
                                 //reparacion.setCostoDeViaje(sc.nextDouble());
 
                                 //Ingresa si hubo almuerzo
-                                System.out.println("Realizó almuerzo (Y/N): ");
-                                if (sc.nextLine().equals("Y")){
+                                System.out.println("Realizó almuerzo? (Y/N): ");
+                                String confirmacion = sc.nextLine();
+                                if (confirmacion.equals("Y")){
                                     System.out.println("Y");
                                     reparacion.setAlmuerzo(true);
                                 } else {
                                     System.out.println("N");
                                     reparacion.setAlmuerzo(false);
+                                }
+
+                                //Indica si compro combustible
+                                System.out.println("Compro combustible? (Y/N): ");
+                                if (confirmacion.equals("Y")){
+                                    System.out.println("Y");
+                                    System.out.println("Ingrese el costo del combustible: ");
+                                    reparacion.setCombustible(sc.nextDouble());
+                                } else {
+                                    System.out.println("No se realizo compra de combustible");
                                 }
 
                                 //Ingresa materiales adicionales
@@ -137,14 +148,6 @@ public class ControllerTecnico extends Usuario{
                                         break;
                                     }
                                 }
-
-                                System.out.println("Ingrese el costo del combustible: ");
-                                reparacion.setCombustible(sc.nextDouble());
-
-                                reparacion.calcularCostoReal(compania);
-
-                                //reparacion.calcularGastos();
-
                             }
                         }
                     }
