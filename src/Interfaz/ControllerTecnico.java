@@ -90,7 +90,6 @@ public class ControllerTecnico extends Usuario{
                 }
             }
         }
-        System.out.println("-----------------------");
     }
 
     public void cargarDatosServicio(){
@@ -115,6 +114,7 @@ public class ControllerTecnico extends Usuario{
 
                                 //Ingresa el costo del viaje
                                 System.out.println("Ingrese el costo del viaje: ");
+                                Double costo = sc.nextDouble();
                                 //reparacion.setCostoDeViaje(sc.nextDouble());
 
                                 //Ingresa si hubo almuerzo
