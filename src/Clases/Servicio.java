@@ -161,6 +161,8 @@ public class Servicio {
 
     public void setMaterialesAdicionales(String value) {
         // TODO implementar
+
+        System.out.println("Materiales adicionales cargados");
     }
 
     public void setCostoMaterialesAdicionales(double costo) {

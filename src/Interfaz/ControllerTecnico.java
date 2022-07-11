@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControllerTecnico extends Usuario{
-
+    Scanner sc = new Scanner(System.in);
     private Compania compania;
 
     public void menuInicial() {
@@ -94,7 +94,7 @@ public class ControllerTecnico extends Usuario{
     }
 
     public void cargarDatosServicio(){
-        Scanner sc = new Scanner(System.in);
+        System.out.println("REPARACIONES: ");
         if (this.compania.getReparaciones().size()==0){
             System.out.println("No existen reparaciones");
         } else {
@@ -102,7 +102,8 @@ public class ControllerTecnico extends Usuario{
                 for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
                     for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
                         if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
-                            System.out.println(reparacion.getMaterialesAdicionales());
+                            System.out.println(reparacion);
+                            System.out.println("Ingrese el numero de Servicio a cargar datos: ");
                             if (reparacion.getIdServicio() ==  sc.nextInt()) {
 
                                 //Calcula tiempo trabajado
@@ -110,18 +111,23 @@ public class ControllerTecnico extends Usuario{
                                 int horaInicio = sc.nextInt();
                                 System.out.println("Ingrese la hora de finalizacion: ");
                                 int horaFin = sc.nextInt();
-                                reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
+                                //reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
 
                                 //Ingresa materiales adicionales
-                                boolean run = true;
-                                while (run){
-
+                                while (true){
+                                    System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
+                                    String articulo = sc.nextLine();
+                                    if (articulo=="A"){
+                                        System.out.println("Ingrese el no");
+                                        break;
+                                    } else {
+                                        reparacion.setMaterialesAdicionales(articulo);
+                                    }
                                 }
-                                System.out.println("Ingrese el nombre del material adicional: ");
-                                reparacion.setMaterialesAdicionales(sc.nextLine());
+
 
                                 System.out.println("Ingrese el costo del viaje: ");
-                                reparacion.setCostoDeViaje(sc.nextDouble());
+                                //reparacion.setCostoDeViaje(sc.nextDouble());
 
                                 System.out.println("Realizó almuerzo (Y/N): ");
                                 if (sc.nextLine()=="Y"){
@@ -135,7 +141,7 @@ public class ControllerTecnico extends Usuario{
 
                                 reparacion.calcularCostoReal(compania);
 
-                                reparacion.calcularGastos();
+                                //reparacion.calcularGastos();
 
                             }
                         }
