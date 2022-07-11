@@ -192,8 +192,14 @@ public class Compania {
 
     public String getPerfil(String usuario) {return this.usuarios.get(usuario);};
 
-    /** Setters **/
+    public Map<TipoTecnico, Double> getMaestroCostoTecnicos() {
+        return maestroCostoTecnicos;
+    }
 
+    /** Setters **/
+    public void setCostoDeViaje(double costoDeViaje) {
+        this.costoDeViaje = costoDeViaje;
+    }
     public void setPrecioCombustible(Double precio){
         this.precioCombustible = precio;
     }

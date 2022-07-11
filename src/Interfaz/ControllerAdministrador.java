@@ -3,7 +3,9 @@ package Interfaz;
 import Clases.*;
 import Enumeraciones.TipoTecnico;
 
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class ControllerAdministrador extends Usuario{
 
@@ -113,6 +115,7 @@ public class ControllerAdministrador extends Usuario{
                         System.out.println("Ingrese el turno del Técnico: ");
                         System.out.println("1.Mañana");
                         System.out.println("2.Tarde");
+                        System.out.print("Elija una opción: ");
                         int opcion2 = sc.nextInt();
                         switch (opcion2) {
                             case 1:
@@ -209,6 +212,7 @@ public class ControllerAdministrador extends Usuario{
                             System.out.println("1. Cambiar dirección");
                             System.out.println("2. Cambiar tipo de técnico");
                             System.out.println("0. Volver");
+                            System.out.print("Elija una opción: ");
                             boolean run4 = true;
                             int opcion4 = sc.nextInt();
                             while (run4){
@@ -258,13 +262,105 @@ public class ControllerAdministrador extends Usuario{
 
     }
 
-    public void configurarParametros(){ // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
+    public void configurarParametros() { // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
         //ejecución menu de la configuración de parametros
         Scanner sc = new Scanner(System.in);
         boolean run = true;
 
-        String[] menu = {"EMPRESA DE CABLE", "ABM DE TÉCNICOS"};
+        String[] menu = {"EMPRESA DE CABLE", "CONFIGURAR PARÁMETROS"};
         this.imprimirEncabezado(menu);
+
+        while(run) {
+            System.out.println("Parametro a modificar:");
+            System.out.println("1. Precio por Tipo Técnico");
+            System.out.println("2. Costo Combustible");
+            System.out.println("3. Costo base de Viaje");
+            System.out.println("0. Volver");
+            System.out.print("Elija una opción: ");
+
+            int opcion = sc.nextInt();
+            switch (opcion){
+                case 1: //Cambia el precio por tipo de tecnico (seniority)
+                    System.out.println();
+                    boolean run2 = true;
+                    while (run2){
+                        System.out.println("Tipo de Técnico a modificar:");
+                        System.out.println("1. Junior");
+                        System.out.println("2. Semi senior");
+                        System.out.println("3. Senior");
+                        System.out.println("0. Volver");
+                        System.out.print("Elija una opción: ");
+                        int opcion2 = sc.nextInt();
+                        switch (opcion2){
+                            case 1: //Cambia precio de Junior
+                                System.out.println("El costo actual por hora del técnico Junior es " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Junior) + "$");
+                                System.out.println("Ingresar nuevo valor por hora para el técnico Junior:");
+                                sc.nextLine();
+                                double costoJunior = sc.nextDouble();
+                                compania.getMaestroCostoTecnicos().put(TipoTecnico.Junior,costoJunior);
+                                System.out.println("El costo actual por hora del técnico Junior fue actualizado correctamente a " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Junior) + "$");
+                                run2 = false;
+                                break;
+                            case 2: //Cambia precio de Semi senior
+                                System.out.println("El costo actual por hora del técnico Semi senior es " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Semi_senior) + "$");
+                                System.out.println("Ingresar nuevo valor por hora para el técnico Semi senior:");
+                                sc.nextLine();
+                                double costoJSemi_senior = sc.nextDouble();
+                                compania.getMaestroCostoTecnicos().put(TipoTecnico.Semi_senior,costoJSemi_senior);
+                                System.out.println("El costo actual por hora del técnico Semi senior fue actualizado correctamente a " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Semi_senior) + "$");
+                                run2 = false;
+                                break;
+                            case 3: //Cambia precio de Senior
+                                System.out.println("El costo actual por hora del técnico Senior es " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Senior) + "$");
+                                System.out.println("Ingresar nuevo valor por hora para el técnico Senior:");
+                                sc.nextLine();
+                                double costoSenior = sc.nextDouble();
+                                compania.getMaestroCostoTecnicos().put(TipoTecnico.Senior,costoSenior);
+                                System.out.println("El costo actual por hora del técnico Senior fue actualizado correctamente a " +
+                                        compania.getMaestroCostoTecnicos().get(TipoTecnico.Senior) + "$");
+                                run2 = false;
+                                break;
+                            case 0: //Vuelve
+                                run2 = false;
+                                break;
+                            default: //Para numeros invalidos
+                                System.out.println("Opcion invalida");
+                                System.out.println();
+                                break;
+                        }
+                    }
+                    break;
+                case 2: //Cambia el precio del combustible
+                    System.out.println("El costo actual del combustible es " + compania.getPrecioCombustible() + "$/litro");
+                    System.out.println("Ingresar nuevo valor del combustible");
+                    sc.nextLine();
+                    double nuevoPrecioCombustible = sc.nextDouble();
+                    compania.setPrecioCombustible(nuevoPrecioCombustible);
+                    System.out.println("El precio del combustible fue actualizado correctamente a "
+                            + nuevoPrecioCombustible + "$/litro");
+                    break;
+                case 3: //Cambia el costo base del viaje
+                    System.out.println("El costo base actual del viaje es " + compania.getCostoDeViaje() + "$");
+                    System.out.println("Ingresar nuevo costo base de viaje");
+                    sc.nextLine();
+                    double nuevoCostoViaje = sc.nextDouble();
+                    compania.setCostoDeViaje(nuevoCostoViaje);
+                    System.out.println("El costo base del viaje fue actualizado correctamente a " + nuevoCostoViaje + "$");
+                    break;
+                case 0:
+                    run = false;
+                    break;
+                default:
+                    System.out.println("Opcion invalida");
+                    System.out.println();
+                    break;
+            }
+        }
     }
 
     public TipoTecnico seleccionarTipoTecnico(){
@@ -276,6 +372,7 @@ public class ControllerAdministrador extends Usuario{
             System.out.println("1. Junior");
             System.out.println("2. Semi senior");
             System.out.println("3. Senior");
+            System.out.print("Elija una opción: ");
             int opcion3 = sc.nextInt();
             switch (opcion3) {
                 case 1:
