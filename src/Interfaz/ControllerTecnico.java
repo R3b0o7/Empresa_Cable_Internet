@@ -119,7 +119,7 @@ public class ControllerTecnico extends Usuario{
 
                                 //Ingresa si hubo almuerzo
                                 System.out.println("Realizó almuerzo (Y/N): ");
-                                if (sc.nextLine()=="Y"){
+                                if (sc.nextLine().equals("Y")){
                                     System.out.println("Y");
                                     reparacion.setAlmuerzo(true);
                                 } else {
@@ -130,9 +130,8 @@ public class ControllerTecnico extends Usuario{
                                 //Ingresa materiales adicionales
                                 while (true){
                                     System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
-                                    String articulo = sc.nextLine();
-                                    if (articulo!=""){
-                                        reparacion.setMaterialesAdicionales(articulo);
+                                    if (sc.nextLine().equals("")){
+                                        reparacion.setMaterialesAdicionales(sc.nextLine());
                                     } else {
                                         System.out.println("Ingrese el no");
                                         break;
