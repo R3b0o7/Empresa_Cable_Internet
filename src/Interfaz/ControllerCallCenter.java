@@ -86,12 +86,12 @@ public class ControllerCallCenter extends Usuario {
         //obtengo datos fecha
         System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
         int turno = sc.nextInt();
-        if (turno != 1 && turno != 2) {
-            System.out.println("Valor indicado incorrecto.");
-            return;
-        }
         Date fecha;
         try {
+            if (turno != 1 && turno != 2) {
+                System.out.println("Valor indicado incorrecto.");
+                return;
+            }
             fecha = this.obtenerFecha();
         } catch (ParseException e) {
             throw new RuntimeException(e);
