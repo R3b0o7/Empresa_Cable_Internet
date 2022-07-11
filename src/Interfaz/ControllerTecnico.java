@@ -56,7 +56,7 @@ public class ControllerTecnico extends Usuario{
     }
 
     public void serviciosAsignados(){
-        if(this.compania.getReparaciones()==null){
+        if (this.compania.getReparaciones()==null){
             System.out.println("No existen reparaciones");
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()){
