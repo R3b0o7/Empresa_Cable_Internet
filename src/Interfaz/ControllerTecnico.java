@@ -113,27 +113,30 @@ public class ControllerTecnico extends Usuario{
                                 int horaFin = sc.nextInt();
                                 //reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
 
+                                //Ingresa el costo del viaje
+                                System.out.println("Ingrese el costo del viaje: ");
+                                //reparacion.setCostoDeViaje(sc.nextDouble());
+
+                                //Ingresa si hubo almuerzo
+                                System.out.println("Realizó almuerzo (Y/N): ");
+                                if (sc.nextLine()=="Y"){
+                                    System.out.println("Y");
+                                    reparacion.setAlmuerzo(true);
+                                } else {
+                                    System.out.println("N");
+                                    reparacion.setAlmuerzo(false);
+                                }
+
                                 //Ingresa materiales adicionales
                                 while (true){
                                     System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
                                     String articulo = sc.nextLine();
-                                    if (articulo=="A"){
+                                    if (articulo!=""){
+                                        reparacion.setMaterialesAdicionales(articulo);
+                                    } else {
                                         System.out.println("Ingrese el no");
                                         break;
-                                    } else {
-                                        reparacion.setMaterialesAdicionales(articulo);
                                     }
-                                }
-
-
-                                System.out.println("Ingrese el costo del viaje: ");
-                                //reparacion.setCostoDeViaje(sc.nextDouble());
-
-                                System.out.println("Realizó almuerzo (Y/N): ");
-                                if (sc.nextLine()=="Y"){
-                                    reparacion.setAlmuerzo(true);
-                                } else {
-                                    reparacion.setAlmuerzo(false);
                                 }
 
                                 System.out.println("Ingrese el costo del combustible: ");
