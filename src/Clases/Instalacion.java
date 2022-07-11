@@ -46,6 +46,11 @@ public class Instalacion extends Servicio {
         this.materiales.add(divisor);
     }
 
+    //Getters
+    public ArrayList<Tecnico> getTecnicos(){
+        return this.tecnicos;
+    }
+
     public String toString() {
         return "Instalacion{" +
                 "idServicio=" + idServicio +

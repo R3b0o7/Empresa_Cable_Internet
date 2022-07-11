@@ -23,7 +23,7 @@ public class ControllerLogin {
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         while (run) {
-            System.out.println("Ingrese nombre de usuario:");;
+            System.out.println("Ingrese nombre de usuario:");
             usuario = sc.nextLine();
             System.out.println("Ingrese contraseña: ");
             String contraseña = sc.nextLine();

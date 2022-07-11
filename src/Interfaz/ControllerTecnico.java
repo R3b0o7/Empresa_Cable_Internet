@@ -27,6 +27,7 @@ public class ControllerTecnico extends Usuario{
                 case 2:
                     break;
                 case 0:
+                    run = false;
                     break;
             }
         }
@@ -56,7 +57,8 @@ public class ControllerTecnico extends Usuario{
     }
 
     public void serviciosAsignados(){
-        if (this.compania.getReparaciones()==null){
+        System.out.println("REPARACIONES: ");
+        if (this.compania.getReparaciones().size()==0){
             System.out.println("No existen reparaciones");
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()){
@@ -64,13 +66,28 @@ public class ControllerTecnico extends Usuario{
                     for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
                         if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
                             this.compania.getReparacion(reparacion.getIdServicio());
-                            System.out.println("REPARACIONES");
                             System.out.println(reparacion);
                         }
                     }
                 }
             }
         }
-
+        System.out.println("");
+        System.out.println("INSTALACIONES: ");
+        if (this.compania.getInstalaciones().size()==0){
+            System.out.println("No existen instalaciones");
+        } else{
+            for (Instalacion instalacion : this.compania.getInstalaciones()){
+                for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()){
+                    for (Tecnico tecnicoUsuario : this.compania.getTecnicos()){
+                        if (tecnicoInstalacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()){
+                            this.compania.getInstalacion(instalacion.getIdServicio());
+                            System.out.println(instalacion);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("");
     }
 }
