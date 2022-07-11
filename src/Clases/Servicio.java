@@ -150,6 +150,7 @@ public class Servicio {
     public void setAlmuerzo(boolean value) {
         this.almuerzo = value;
     }
+
     public void setCombustible(double value) {
         this.combustible = value;
     }
@@ -160,6 +161,8 @@ public class Servicio {
 
     public void setMaterialesAdicionales(String value) {
         // TODO implementar
+
+        System.out.println("Materiales adicionales cargados");
     }
 
     public void setCostoMaterialesAdicionales(double costo) {
