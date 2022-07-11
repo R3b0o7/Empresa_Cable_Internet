@@ -150,6 +150,7 @@ public class Servicio {
     public void setAlmuerzo(boolean value) {
         this.almuerzo = value;
     }
+
     public void setCombustible(double value) {
         this.combustible = value;
     }

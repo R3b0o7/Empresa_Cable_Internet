@@ -2,6 +2,7 @@ package Interfaz;
 
 import Clases.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControllerTecnico extends Usuario{
@@ -25,7 +26,7 @@ public class ControllerTecnico extends Usuario{
                     this.serviciosAsignados();
                     break;
                 case 2:
-                    this.cargarDatos();
+                    this.cargarDatosServicio();
                     break;
                 case 0:
                     run = false;
@@ -92,7 +93,55 @@ public class ControllerTecnico extends Usuario{
         System.out.println("");
     }
 
-    public void cargarDatos(){
+    public void cargarDatosServicio(){
+        Scanner sc = new Scanner(System.in);
+        if (this.compania.getReparaciones().size()==0){
+            System.out.println("No existen reparaciones");
+        } else {
+            for (Reparacion reparacion : this.compania.getReparaciones()) {
+                for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
+                    for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
+                        if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
+                            System.out.println(reparacion.getMaterialesAdicionales());
+                            if (reparacion.getIdServicio() ==  sc.nextInt()) {
 
+                                //Calcula tiempo trabajado
+                                System.out.println("Ingrese la hora de inicio: ");
+                                int horaInicio = sc.nextInt();
+                                System.out.println("Ingrese la hora de finalizacion: ");
+                                int horaFin = sc.nextInt();
+                                reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
+
+                                //Ingresa materiales adicionales
+                                boolean run = true;
+                                while (run){
+
+                                }
+                                System.out.println("Ingrese el nombre del material adicional: ");
+                                reparacion.setMaterialesAdicionales(sc.nextLine());
+
+                                System.out.println("Ingrese el costo del viaje: ");
+                                reparacion.setCostoDeViaje(sc.nextDouble());
+
+                                System.out.println("Realizó almuerzo (Y/N): ");
+                                if (sc.nextLine()=="Y"){
+                                    reparacion.setAlmuerzo(true);
+                                } else {
+                                    reparacion.setAlmuerzo(false);
+                                }
+
+                                System.out.println("Ingrese el costo del combustible: ");
+                                reparacion.setCombustible(sc.nextDouble());
+
+                                reparacion.calcularCostoReal(compania);
+
+                                reparacion.calcularGastos();
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
