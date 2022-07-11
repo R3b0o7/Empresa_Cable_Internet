@@ -20,18 +20,34 @@ public class ControllerLogin {
         String usuario = "";
 
         //ejecución login
+        usuario = login(usuario);
+
+        //obtengo perfil del usuario
+        if (usuario != ""){obtenerPerfil(usuario);}
+    }
+
+    private boolean validarCredenciales(String usuario, String contraseña){
+        if(this.compania.getContraseña(usuario) != null){
+            return this.compania.getContraseña(usuario).equals(contraseña);
+        }
+        return false;
+    }
+
+    private String login(String usuario){
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         while (run) {
-            System.out.println("Ingrese nombre de usuario:");
+            System.out.println("Ingrese nombre de usuario (usrAdministrador / usrAdministrativo / usrCallCenter / usrTecnico / vacio para terminar): ");
             usuario = sc.nextLine();
 
             //Finalizar el sistema
-            if (usuario == "a"){
-                System.out.println("Error de login");
+            if (usuario == ""){
+                System.out.println("Cierre del sistema");
+                run = false;
+                break;
             }
 
-            System.out.println("Ingrese contraseña: ");
+            System.out.println("Ingrese contraseña (admin): ");
             String contraseña = sc.nextLine();
 
             //valido credenciales
@@ -41,8 +57,11 @@ public class ControllerLogin {
                 break;
             }
         }
+        return usuario;
+    }
 
-        //obtengo perfil del usuario
+    private void obtenerPerfil(String usuario){
+        boolean run = true;
         this.perfil = compania.getPerfil(usuario);
         while (run){
             switch(perfil) {
@@ -69,13 +88,7 @@ public class ControllerLogin {
             }
             break;
         }
+        usuario = login("");
+        if (usuario != ""){obtenerPerfil(usuario);}
     }
-
-    private boolean validarCredenciales(String usuario, String contraseña){
-        if(this.compania.getContraseña(usuario) != null){
-            return this.compania.getContraseña(usuario).equals(contraseña);
-        }
-        return false;
-    }
-
 }
