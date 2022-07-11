@@ -57,18 +57,20 @@ public class ControllerTecnico extends Usuario{
 
     public void serviciosAsignados(){
         if(this.compania.getReparaciones()==null){
-            System.out.println("FFGFF");
+            System.out.println("No existen reparaciones");
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()){
                 for(Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
                     for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
                         if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
                             this.compania.getReparacion(reparacion.getIdServicio());
+                            System.out.println("REPARACIONES");
                             System.out.println(reparacion);
                         }
                     }
                 }
             }
         }
+
     }
 }
