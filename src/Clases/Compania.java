@@ -167,9 +167,9 @@ public class Compania {
         return null;
     }
 
-    public Tecnico getTecnico(int dni){
+    public Tecnico getTecnico(int nroTecnico){
         for(Tecnico tecnico: this.tecnicos){
-            if(tecnico.getDni() == dni){
+            if(tecnico.getNroTécnico() == nroTecnico){
                 return tecnico;
             }
         }
