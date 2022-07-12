@@ -42,7 +42,7 @@ public class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==button){
-            //ControllerLogin login = new ControllerLogin();
+            //ControllerLogin login = new ControllerLogin().getInstance();
             //login.validarCredenciales(textField.getText(),textField2.getText());
 
         }

@@ -76,16 +76,17 @@ public class ControllerTecnico extends Usuario {
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()) {
                 for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
-                    for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
-                        if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
-                            this.compania.getReparacion(reparacion.getIdServicio());
-                            System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
-                                    "\nFecha: " + reparacion.getFecha() +
-                                    "\nHorario: " + reparacion.getHora() +
-                                    "\nTecnicos: " + reparacion.getTecnicos() +
-                                    "\nCliente: " + reparacion.getCliente().getNombreApellido() +
-                                    "\nDNI cliente: " + reparacion.getCliente().getDni());
-                        }
+                    System.out.println("Ingrese su numero de tecnico: ");
+                    int nroTecnico = sc.nextInt();
+                    if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
+                        System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
+                                "\nFecha: " + reparacion.getFecha() +
+                                "\nHorario: " + reparacion.getHora() +
+                                "\nTecnicos: " + reparacion.getTecnicos() +
+                                "\nCliente: " + reparacion.getCliente().getNombreApellido() +
+                                "\nDNI cliente: " + reparacion.getCliente().getDni());
+                    } else {
+                        System.out.println("No existen Reparaciones asignadas");
                     }
                 }
             }
@@ -97,11 +98,17 @@ public class ControllerTecnico extends Usuario {
         } else {
             for (Instalacion instalacion : this.compania.getInstalaciones()) {
                 for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
-                    for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
-                        if (tecnicoInstalacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
-                            this.compania.getInstalacion(instalacion.getIdServicio());
-                            System.out.println(instalacion);
-                        }
+                    System.out.println("Ingrese su numero de tecnico: ");
+                    int nroTecnico = sc.nextInt();
+                    if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
+                        System.out.println("ID Reparacion: " + instalacion.getIdServicio() +
+                                "\nFecha: " + instalacion.getFecha() +
+                                "\nHorario: " + instalacion.getHora() +
+                                "\nTecnicos: " + instalacion.getTecnicos() +
+                                "\nCliente: " + instalacion.getCliente().getNombreApellido() +
+                                "\nDNI cliente: " + instalacion.getCliente().getDni());
+                    } else {
+                        System.out.println("No existen Instalaciones asignadas");
                     }
                 }
             }
@@ -116,6 +123,7 @@ public class ControllerTecnico extends Usuario {
                 int res = sc.nextInt();
                 switch (res) {
                     case 0:
+                        System.out.println("Saliendo");
                         run = false;
                         break;
                     case 1:
@@ -162,9 +170,7 @@ public class ControllerTecnico extends Usuario {
                                             }
 
                                             //Ingresa el costo del viaje
-                                            System.out.println("Ingrese el costo del viaje: ");
-                                            Double costo = sc.nextDouble();
-                                            //reparacion.setCostoDeViaje(sc.nextDouble());
+                                            //reparacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                             //Ingresa si hubo almuerzo
                                             System.out.println("Realizó almuerzo? (Y/N): ");
@@ -184,7 +190,7 @@ public class ControllerTecnico extends Usuario {
                                             if (confirmacion.equals("Y")) {
                                                 System.out.println("Y");
                                                 System.out.println("Ingrese los litros cúbicos cargados: ");
-                                                double costoCombustible = sc.nextDouble() * 200; //Precio del litro de combustible = 200
+                                                double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
                                                 reparacion.setCombustible(costoCombustible);
                                             } else {
                                                 System.out.println("No se realizo compra de combustible");
@@ -241,9 +247,7 @@ public class ControllerTecnico extends Usuario {
                                             }
 
                                             //Ingresa el costo del viaje
-                                            System.out.println("Ingrese el costo del viaje: ");
-                                            Double costo = sc.nextDouble();
-                                            //instalacion.setCostoDeViaje(sc.nextDouble());
+                                            //instalacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                             //Ingresa si hubo almuerzo
                                             System.out.println("Realizó almuerzo? (Y/N): ");
@@ -263,7 +267,7 @@ public class ControllerTecnico extends Usuario {
                                             if (confirmacion.equals("Y")) {
                                                 System.out.println("Y");
                                                 System.out.println("Ingrese los litros cúbicos cargados: ");
-                                                double costoCombustible = sc.nextDouble() * 200; //Precio del litro de combustible = 200
+                                                double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
                                                 instalacion.setCombustible(costoCombustible);
                                             } else {
                                                 System.out.println("No se realizo compra de combustible");
