@@ -220,6 +220,8 @@ public class Compania {
         this.tecnicos.add(tecnico);
     }
 
+    public void guardarFactura(Factura factura){ this.facturas.add(factura);}
+
     /** Inicialización de la Base de Datos - Programa Inicial **/
 
     private void inicializarBDD(){
@@ -267,12 +269,12 @@ public class Compania {
         this.clientes.add(cliente1);
         this.clientes.add(cliente2);
 
-        //Servicio
-        ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
-        tecnicosPrueba.add(tecnico1);
-        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
-        reparacion.setEstado(Estado.Finalizada);
-        this.reparaciones.add(reparacion);
+//        //Servicio
+//        ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
+//        tecnicosPrueba.add(tecnico1);
+//        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
+//        reparacion.finalizarServicio();
+//        this.reparaciones.add(reparacion);
 
     }
 

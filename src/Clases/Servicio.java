@@ -122,11 +122,16 @@ public class Servicio {
         return null;
     }
 
-    public void finalizarServicio(Compania compania){
+    public void finalizarServicio(){
+        Compania compania = Compania.getInstance();
         this.estado = Estado.Finalizada;
         this.calcularCostoReal(compania);
         this.calcularGastos(compania.getPrecioCombustible());
         this.calcularPrecioFinal();
+    }
+
+    public void facturar(){
+        this.factura = new Factura(this, this.cliente);
     }
 
     /** Getters **/
@@ -145,6 +150,31 @@ public class Servicio {
     public Cliente getCliente(){ return this.cliente;};
 
     public TipoServicio getTipoServicio(){return this.tipoServicio;};
+
+    public float getTiempoTrabajado(){
+        float tiempo = 0;
+        for(Tecnico tecnico: this.tecnicos){
+            tiempo += this.tiempoTrabajado.get(tecnico.getNroTécnico());
+        }
+        return tiempo;
+    }
+
+    public double getPrecioFinal(){return this.precioFinal;};
+
+    public String listarMaterialesUtilizados(){
+        String listado = "";
+        for(Articulo articulo: this.materiales){
+            listado += articulo.getArticulo().toString() + ", ";
+        }
+        if(listado.length()>0){
+            listado = listado.substring(1, listado.length()-2);
+        }
+        return listado;
+    };
+
+    public Factura getFactura(){return this.factura;};
+
+    public double getCostoReal(){return this.costoReal;};
 
     /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {

@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Clases.*;
+import Enumeraciones.Estado;
 import Excepciones.GenericException;
 
 import java.text.ParseException;
@@ -34,6 +35,9 @@ public class ControllerCallCenter extends Usuario {
                     break;
                 case 2:
                     this.altaCliente();
+                    break;
+                case 3:
+                    this.listarServiciosPorEstado();
                     break;
                 case 0:
                     run = false;
@@ -127,7 +131,7 @@ public class ControllerCallCenter extends Usuario {
         ArrayList<Tecnico> tecnicosDisponibles = new ArrayList<Tecnico>();
         try {
             for (Tecnico tecnico : compania.getTecnicos()) {
-                if (tecnico.getTurno().equals(turnoStr) && tecnico.poseeDisponibilidad(fecha, horarioStr, tiposervicioStr)) {
+                if (tecnico.getTurno().equals(turnoStr) && tecnico.poseeDisponibilidad(fecha, horarioStr, tiposervicioStr) && tecnico.getEstado()) {
                     tecnicosDisponibles.add(tecnico);
                 }
             }
@@ -292,11 +296,63 @@ public class ControllerCallCenter extends Usuario {
 
     }
 
+    public void listarServiciosPorEstado(){
+        Scanner sc = new Scanner(System.in);
+
+        String[] menu = {"EMPRESA DE CABLE", "LISTADO DE SERVICIOS POR ESTADO"};
+        this.imprimirEncabezado(menu);
+
+        //obtengo estado a listar
+        System.out.println("Indique el estado a consultar: ");
+        System.out.println("1. PROGRAMADO");
+        System.out.println("2. EN CURSO");
+        System.out.println("3. CANCELADO");
+        System.out.println("4. FINALIZADO");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        Estado estado;
+        switch (opcion){
+            default:
+                System.out.println("Opcion inválida");
+                return;
+            case 1:
+                estado = Estado.Programado;
+                break;
+            case 2:
+                estado = Estado.En_curso;
+                break;
+            case 3:
+                estado = Estado.Cancelada;
+                break;
+            case 4:
+                estado = Estado.Finalizada;
+        }
+        System.out.println();
+        int totalServicio = 0;
+        for(Reparacion reparacion: this.compania.getReparaciones()){
+            if(reparacion.getEstado().equals(estado)){
+                System.out.println(reparacion.toString());
+                totalServicio++;
+            }
+        }
+        for(Instalacion instalacion: this.compania.getInstalaciones()){
+            if(instalacion.getEstado().equals(estado)) {
+                System.out.println(instalacion.toString());
+                totalServicio++;
+            }
+        }
+        if(totalServicio == 0){
+            System.out.println("No existen servicios a listar.");
+        }
+
+    }
+
     public void imprimirMenuInicial() {
         String[] menu = {"EMPRESA DE CABLE"};
         imprimirEncabezado(menu);
         System.out.println("1. Reservar Servicio");
         System.out.println("2. Alta de cliente");
+        System.out.println("3. Listar servicios por estado");
         System.out.println("0. Salir");
         System.out.print("Elija una opción: ");
     }

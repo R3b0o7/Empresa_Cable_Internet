@@ -2,7 +2,10 @@ package Interfaz;
 
 import Clases.*;
 import Enumeraciones.TipoServicio;
+import Enumeraciones.TipoTecnico;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class ControllerAdministrativo extends Usuario {
@@ -15,6 +18,27 @@ public class ControllerAdministrativo extends Usuario {
 
         //Genero los objetos base
         this.compania = Clases.Compania.getInstance();
+
+        //Genero datos de prueba
+        Clases.Cliente cliente999 = new Cliente(12345, "Juan", "salta");
+        Clases.Cliente cliente888 = new Cliente(1234, "Juan", "salta");
+        compania.guardarCliente(cliente888);
+        compania.guardarCliente(cliente999);
+
+        Clases.Tecnico tecnico999 = new Tecnico(123, "Gonzalo", "salta", TipoTecnico.Junior, "Tarde");
+        ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
+        tecnicosPrueba.add(tecnico999);
+        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente999);
+        reparacion.finalizarServicio();
+        compania.guardarReparacion(reparacion);
+
+        Clases.Tecnico tecnico888 = new Tecnico(1234, "Gonzalo", "salta", TipoTecnico.Senior, "Tarde");
+        ArrayList<Tecnico> tecnicosPrueba2 = new ArrayList<Tecnico>();
+        tecnicosPrueba2.add(tecnico888);
+        Instalacion instalacion = new Instalacion(2, new Date(), "9:00", tecnicosPrueba2, cliente888, compania.getStock());
+        instalacion.finalizarServicio();
+        compania.guardarInstalacion(instalacion);
+
 
         //ejecución menu principal
         Scanner sc = new Scanner(System.in);
@@ -29,7 +53,11 @@ public class ControllerAdministrativo extends Usuario {
                 case 2:
                     this.menuModificarServicio();
                     break;
+                case 3:
+                    this.generarFactura();
+                    break;
                 case 0:
+                    run = false;
                     break;
             }
         }
@@ -111,13 +139,22 @@ public class ControllerAdministrativo extends Usuario {
             return;
         } else {
             for (Instalacion instalacion : compania.getInstalaciones()) {
-                System.out.println(instalacion.toString());
-                serviciosFinalizados++;
+                if(instalacion.getFactura() == null){
+                    System.out.println(instalacion.toString());
+                    serviciosFinalizados++;
+                }
             }
             for(Reparacion reparacion: this.compania.getReparaciones()){
-                System.out.println(reparacion.toString());
-                serviciosFinalizados++;
+                if(reparacion.getFactura() == null) {
+                    System.out.println(reparacion.toString());
+                    serviciosFinalizados++;
+                }
             }
+        }
+
+        if(serviciosFinalizados == 0){
+            System.out.println("Todos los servicios se encuentran facturados");
+            return;
         }
 
         //obtengo el servicio a modificar
@@ -156,6 +193,97 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
+
+    private void generarFactura(){
+        Scanner sc = new Scanner(System.in);
+
+        String[] menu = {"EMPRESA DE CABLE", "GENERAR FACTURA"};
+        this.imprimirEncabezado(menu);
+
+        //listo los servicios finalizados
+        int serviciosFinalizados = 0;
+        ArrayList<Integer> control = new ArrayList<Integer>();
+        if(this.compania.getInstalaciones().size() == 0 && this.compania.getReparaciones().size() == 0){
+            System.out.println();
+            System.out.println("No existen servicios finalizados.");
+            return;
+        } else {
+            for (Instalacion instalacion : compania.getInstalaciones()) {
+                if(instalacion.getFactura() == null) {
+                    System.out.println(instalacion.toString());
+                    control.add(instalacion.getIdServicio());
+                    serviciosFinalizados++;
+                }
+            }
+            for(Reparacion reparacion: this.compania.getReparaciones()) {
+                if (reparacion.getFactura() == null){
+                    System.out.println(reparacion.toString());
+                    control.add(reparacion.getIdServicio());
+                    serviciosFinalizados++;
+                }
+            }
+        }
+
+        //obtengo el servicio a facturar
+        TipoServicio tipoServicio;
+        Reparacion servicioR = null;
+        Instalacion servicioI = null;
+        System.out.println();
+        System.out.println("Ingrese el id de servicio a facturar: ");
+        int idServicio = sc.nextInt();
+        if(!control.contains(idServicio)) {
+            System.out.println("El id ingresado no corresponde a un servicio apto para facturar.");
+            return;
+        } else {
+            if(compania.getInstalacion(idServicio) != null){
+                servicioI = compania.getInstalacion(idServicio);
+                tipoServicio = servicioI.getTipoServicio();
+                System.out.println();
+                System.out.println("Se generará la factura correspondiente al siguiente servicio servicio:");
+                System.out.println(servicioI.toString());
+                System.out.println();
+            } else {
+                servicioR = compania.getReparacion(idServicio);
+                tipoServicio = servicioR.getTipoServicio();
+                System.out.println();
+                System.out.println("Se generará la factura correspondiente al siguiente servicio servicio:");
+                System.out.println(servicioR.toString());
+                System.out.println();
+            }
+        }
+
+        System.out.println("¿Confirma la generación de la factura? Y/n");
+        sc.nextLine();
+        String confirma = sc.nextLine();
+        if(confirma.equals("n")){
+            return;
+        }
+
+        //genero la factura correspondiente
+        if(tipoServicio == TipoServicio.Instalación){
+            servicioI.facturar();
+            this.compania.guardarFactura(servicioI.getFactura());
+            System.out.println("Factura generada correctamente");
+            System.out.println();
+            System.out.println("¿Desea imprimir la factura? Y/n");
+            String imprime = sc.nextLine();
+            if(imprime.equals("Y")){
+                System.out.println(servicioI.getFactura().imprimirFactura());
+            }
+        } else {
+            servicioR.facturar();
+            this.compania.guardarFactura(servicioR.getFactura());
+            System.out.println("Factura generada correctamente");
+            System.out.println();
+            System.out.println("¿Desea imprimir la factura? Y/n");
+            String imprime = sc.nextLine();
+            if(imprime.equals("Y")){
+                System.out.println(servicioR.getFactura().imprimirFactura());
+            }
+        }
+
+    }
+
     /** Metodos auxiliares**/
 
     private void modificarServicio(Instalacion instalacion){
@@ -176,7 +304,7 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
                     double valorCosto = sc.nextDouble();
                     instalacion.setCostoMaterialesAdicionales(valorCosto);
-                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
@@ -184,7 +312,7 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println("Ingrese el nuevo valor para Combustible: ");
                     double valorCombustible = sc.nextDouble();
                     instalacion.setCombustible(valorCombustible);
-                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
@@ -200,7 +328,7 @@ public class ControllerAdministrativo extends Usuario {
                         }
                     }
                     instalacion.setAlmuerzo(valorAlmuerzoBool);
-                    instalacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
@@ -236,7 +364,7 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
                     double valorCosto = sc.nextDouble();
                     reparacion.setCostoMaterialesAdicionales(valorCosto);
-                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    reparacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
@@ -244,7 +372,7 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println("Ingrese el nuevo valor para Combustible: ");
                     double valorCombustible = sc.nextDouble();
                     reparacion.setCombustible(valorCombustible);
-                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    reparacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
@@ -260,7 +388,7 @@ public class ControllerAdministrativo extends Usuario {
                         }
                     }
                     reparacion.setAlmuerzo(valorAlmuerzoBool);
-                    reparacion.finalizarServicio(this.compania); //esta linea recalcula el costo del servicio
+                    reparacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
                     break;
