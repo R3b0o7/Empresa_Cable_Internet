@@ -146,6 +146,10 @@ public class Servicio {
 
     public TipoServicio getTipoServicio(){return this.tipoServicio;};
 
+    public Date getFecha(){return fecha;};
+
+    public String getHora(){return horario;};
+
     /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {
         this.almuerzo = value;
