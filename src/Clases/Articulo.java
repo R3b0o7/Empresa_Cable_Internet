@@ -22,8 +22,8 @@ public class Articulo {
 
     public int agregarCantidadArticulos(int cantidad){
         // Suma la cantidad ingresada a la cantidad de articulos existentes
-        cantidad += cantidad;
-        return cantidad;
+        this.cantidad += cantidad;
+        return this.cantidad;
     }
 
     /** Getters**/
