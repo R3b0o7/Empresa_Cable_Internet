@@ -21,8 +21,7 @@ public class App {
         frame.setSize(600,420);     //Setea el tamaño en x e y
         frame.setVisible(true);     //Hace el frame visible
 
-        ImageIcon image = new ImageIcon("C:\\Users\\Nothi\\OneDrive\\Documentos\\OneDrive\\01. Facultad\\2022\\" +
-                "4. Introducción a la Orientación a Objetos\\Empresa_Cable_Internet\\src\\Interfaz\\Logo.png"); //crea un icono de la imagen
+        ImageIcon image = new ImageIcon("Logo.png"); //crea un icono de la imagen
         frame.setIconImage(image.getImage());  //cambia el icono del frame
         frame.getContentPane().setBackground(new Color(107,108,109));
 
