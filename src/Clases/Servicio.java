@@ -161,7 +161,7 @@ public class Servicio {
 
     public void setMaterialesAdicionales(String value) {
         // TODO implementar
-
+        this.materialesAdicionalesDescripcion = value;
         System.out.println("Materiales adicionales cargados");
     }
 

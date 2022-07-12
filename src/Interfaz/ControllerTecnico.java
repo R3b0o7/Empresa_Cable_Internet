@@ -119,17 +119,19 @@ public class ControllerTecnico extends Usuario{
 
                                 //Ingresa si hubo almuerzo
                                 System.out.println("Realizó almuerzo? (Y/N): ");
+                                sc.nextLine();
                                 String confirmacion = sc.nextLine();
                                 if (confirmacion.equals("Y")){
-                                    System.out.println("Y");
+                                    System.out.println("Almuerzo cargado");
                                     reparacion.setAlmuerzo(true);
                                 } else {
-                                    System.out.println("N");
+                                    System.out.println("No se realizo almuerzo");
                                     reparacion.setAlmuerzo(false);
                                 }
 
                                 //Indica si compro combustible
                                 System.out.println("Compro combustible? (Y/N): ");
+                                sc.nextLine();
                                 if (confirmacion.equals("Y")){
                                     System.out.println("Y");
                                     System.out.println("Ingrese el costo del combustible: ");
@@ -141,10 +143,11 @@ public class ControllerTecnico extends Usuario{
                                 //Ingresa materiales adicionales
                                 while (true){
                                     System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
-                                    if (sc.nextLine().equals("")){
-                                        reparacion.setMaterialesAdicionales(sc.nextLine());
+                                    String material = sc.nextLine();
+                                    if (!material.equals("")){
+                                        reparacion.setMaterialesAdicionales(material);
                                     } else {
-                                        System.out.println("Ingrese el no");
+                                        System.out.println("No se ingresan materiales adicionales");
                                         break;
                                     }
                                 }
