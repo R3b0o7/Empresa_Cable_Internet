@@ -18,16 +18,18 @@ public class Usuario {
 //        this.nombreUsuario = nombreUsuario;
 //        this.password = password;
 //    }
-
+    private Compania compania;
 
     /** Metodos de la clase **/
-    public Void login() { //Persona tiene el mismo metodo
+    public Void login() {
         // TODO implementar
         return null;
     }
     public void menuInicial(){
+        //Genero los objetos base
 
     }
+
     public void imprimirMenuInicial() {
     }
 
