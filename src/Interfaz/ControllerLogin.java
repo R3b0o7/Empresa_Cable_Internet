@@ -26,7 +26,7 @@ public class ControllerLogin {
         if (usuario != ""){obtenerPerfil(usuario);}
     }
 
-    private boolean validarCredenciales(String usuario, String contraseña){
+    public boolean validarCredenciales(String usuario, String contraseña){
         if(this.compania.getContraseña(usuario) != null){
             return this.compania.getContraseña(usuario).equals(contraseña);
         }
