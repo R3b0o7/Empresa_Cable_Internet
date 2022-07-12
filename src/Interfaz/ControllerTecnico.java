@@ -21,7 +21,7 @@ public class ControllerTecnico extends Usuario{
         while (run) {
             this.imprimirMenuInicial();
             int opcion = sc.nextInt();
-            switch(opcion) {
+            switch(opcion){
                 case 1:
                     this.serviciosAsignados();
                     break;
@@ -45,8 +45,8 @@ public class ControllerTecnico extends Usuario{
     }
 
     public void imprimirEncabezado(String[] menu) {
-        System.out.println("");
-        System.out.println("");
+        System.out.println("\n");
+        System.out.println("\n");
         for(int i = 0; i < menu.length; i++ ) {
             System.out.print(menu[i]);
             if(i == menu.length-1) {
@@ -74,7 +74,7 @@ public class ControllerTecnico extends Usuario{
                 }
             }
         }
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("INSTALACIONES: ");
         if (this.compania.getInstalaciones().size()==0){
             System.out.println("No existen instalaciones");
@@ -90,7 +90,6 @@ public class ControllerTecnico extends Usuario{
                 }
             }
         }
-        System.out.println("");
     }
 
     public void cargarDatosServicio(){
@@ -113,36 +112,45 @@ public class ControllerTecnico extends Usuario{
                                 int horaFin = sc.nextInt();
                                 //reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
 
-                                //Ingresa materiales adicionales
-                                while (true){
-                                    System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
-                                    String articulo = sc.nextLine();
-                                    if (articulo=="A"){
-                                        System.out.println("Ingrese el no");
-                                        break;
-                                    } else {
-                                        reparacion.setMaterialesAdicionales(articulo);
-                                    }
-                                }
-
-
+                                //Ingresa el costo del viaje
                                 System.out.println("Ingrese el costo del viaje: ");
+                                Double costo = sc.nextDouble();
                                 //reparacion.setCostoDeViaje(sc.nextDouble());
 
-                                System.out.println("Realizó almuerzo (Y/N): ");
-                                if (sc.nextLine()=="Y"){
+                                //Ingresa si hubo almuerzo
+                                System.out.println("Realizó almuerzo? (Y/N): ");
+                                sc.nextLine();
+                                String confirmacion = sc.nextLine();
+                                if (confirmacion.equals("Y")){
+                                    System.out.println("Almuerzo cargado");
                                     reparacion.setAlmuerzo(true);
                                 } else {
+                                    System.out.println("No se realizo almuerzo");
                                     reparacion.setAlmuerzo(false);
                                 }
 
-                                System.out.println("Ingrese el costo del combustible: ");
-                                reparacion.setCombustible(sc.nextDouble());
+                                //Indica si compro combustible
+                                System.out.println("Compro combustible? (Y/N): ");
+                                sc.nextLine();
+                                if (confirmacion.equals("Y")){
+                                    System.out.println("Y");
+                                    System.out.println("Ingrese el costo del combustible: ");
+                                    reparacion.setCombustible(sc.nextDouble());
+                                } else {
+                                    System.out.println("No se realizo compra de combustible");
+                                }
 
-                                reparacion.calcularCostoReal(compania);
-
-                                //reparacion.calcularGastos();
-
+                                //Ingresa materiales adicionales
+                                while (true){
+                                    System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
+                                    String material = sc.nextLine();
+                                    if (!material.equals("")){
+                                        reparacion.setMaterialesAdicionales(material);
+                                    } else {
+                                        System.out.println("No se ingresan materiales adicionales");
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
