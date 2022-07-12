@@ -178,6 +178,7 @@ public class Servicio {
 
     public double getCostoReal(){return this.costoReal;};
 
+
     /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {
         this.almuerzo = value;
