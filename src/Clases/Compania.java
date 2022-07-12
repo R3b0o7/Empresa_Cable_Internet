@@ -238,11 +238,11 @@ public class Compania {
         /** Creación de Articulos  **/
         // Los mismos tienen una cantidad por defecto para simplificar el caso, pero podría ser 0
 
-        Articulo artCable = new Articulo(Articulos.Cable,0,250.90);
-        Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,0,62.25);
-        Articulo artDecodificador = new Articulo(Articulos.Decodificador,0,1850);
-        Articulo artDivisor = new Articulo(Articulos.Divisor,0,120.30);
-        Articulo artModem = new Articulo(Articulos.Modem,0,2135.50);
+        Articulo artCable = new Articulo(Articulos.Cable,1500,250.90);
+        Articulo artConector_coaxial_RG6 = new Articulo(Articulos.Conector_coaxial_RG6,80,62.25);
+        Articulo artDecodificador = new Articulo(Articulos.Decodificador,50,1850);
+        Articulo artDivisor = new Articulo(Articulos.Divisor,900,120.30);
+        Articulo artModem = new Articulo(Articulos.Modem,60,2135.50);
 
         /** Creación de Stock y la lista de articulos en el stock  **/
 
