@@ -16,6 +16,14 @@ import static java.util.Calendar.DAY_OF_WEEK;
 public class ControllerCallCenter extends Usuario {
 
     private Compania compania;
+    private static ControllerCallCenter controladorCallCenter;
+
+    public static ControllerCallCenter getInstance(){
+        if(controladorCallCenter == null){
+            controladorCallCenter = new ControllerCallCenter();
+        }
+        return controladorCallCenter;
+    }
 
     public void menuInicial() {
         // TODO Auto-generated method stub

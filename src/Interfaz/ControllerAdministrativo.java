@@ -11,11 +11,9 @@ import java.util.Scanner;
 public class ControllerAdministrativo extends Usuario {
 
     private Compania compania;
+    private static ControllerAdministrativo controladorAdministrativo;
 
-
-    public void menuInicial() {
-        // TODO Auto-generated method stub
-
+    private ControllerAdministrativo() {
         //Genero los objetos base
         this.compania = Clases.Compania.getInstance();
 
@@ -38,6 +36,17 @@ public class ControllerAdministrativo extends Usuario {
         Instalacion instalacion = new Instalacion(2, new Date(), "9:00", tecnicosPrueba2, cliente888, compania.getStock());
         instalacion.finalizarServicio();
         compania.guardarInstalacion(instalacion);
+    }
+
+    public static ControllerAdministrativo getInstance(){
+        if(controladorAdministrativo == null){
+            controladorAdministrativo = new ControllerAdministrativo();
+        }
+        return controladorAdministrativo;
+    }
+
+    public void menuInicial() {
+        // TODO Auto-generated method stub
 
 
         //ejecución menu principal

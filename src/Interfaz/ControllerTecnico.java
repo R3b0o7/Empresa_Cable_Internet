@@ -9,6 +9,14 @@ import java.util.Scanner;
 public class ControllerTecnico extends Usuario {
     Scanner sc = new Scanner(System.in);
     private Compania compania;
+    private static ControllerTecnico controladorTecnico;
+
+    public static ControllerTecnico getInstance(){
+        if(controladorTecnico == null){
+            controladorTecnico = new ControllerTecnico();
+        }
+        return controladorTecnico;
+    }
 
     public void menuInicial() {
         // TODO Auto-generated method stub

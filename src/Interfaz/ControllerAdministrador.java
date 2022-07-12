@@ -4,6 +4,7 @@ import Clases.*;
 import Enumeraciones.Articulos;
 import Enumeraciones.TipoTecnico;
 
+import javax.naming.ldap.Control;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -12,6 +13,14 @@ import java.util.TreeMap;
 public class ControllerAdministrador extends Usuario{
 
     private Compania compania;
+    private static ControllerAdministrador controladorAdministrador;
+
+    public static ControllerAdministrador getInstance(){
+        if(controladorAdministrador == null){
+            controladorAdministrador = new ControllerAdministrador();
+        }
+        return controladorAdministrador;
+    }
 
     public void menuInicial() {
 

@@ -7,11 +7,23 @@ import java.util.Scanner;
 public class ControllerLogin {
 
     private Compania compania;
+    private static ControllerLogin controladorLogin;
     private ControllerCallCenter controladorCallCenter;
     private ControllerAdministrativo controladorAdministrativo;
     private ControllerAdministrador controladorAdministrador;
     private ControllerTecnico controladorTecnico;
     private String perfil;
+
+    private ControllerLogin(){
+    }
+
+    public static ControllerLogin getInstance(){
+        if(controladorLogin == null){
+            controladorLogin = new ControllerLogin();
+        }
+        return controladorLogin;
+    }
+
 
     public void main(){
 
@@ -66,22 +78,22 @@ public class ControllerLogin {
         while (run){
             switch(perfil) {
                 case "callCenter":
-                    this.controladorCallCenter = new ControllerCallCenter();
+                    this.controladorCallCenter = ControllerCallCenter.getInstance();
                     controladorCallCenter.menuInicial();
                     run = false;
                     break;
                 case "tecnico":
-                    this.controladorTecnico = new ControllerTecnico();
+                    this.controladorTecnico = ControllerTecnico.getInstance();
                     controladorTecnico.menuInicial();
                     run = false;
                     break;
                 case "administrador":
-                    this.controladorAdministrador = new ControllerAdministrador();
+                    this.controladorAdministrador = ControllerAdministrador.getInstance();
                     controladorAdministrador.menuInicial();
                     run = false;
                     break;
                 case "administrativo":
-                    this.controladorAdministrativo = new ControllerAdministrativo();
+                    this.controladorAdministrativo = ControllerAdministrativo.getInstance();
                     controladorAdministrativo.menuInicial();
                     run = false;
                     break;
