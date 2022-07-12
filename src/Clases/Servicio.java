@@ -53,7 +53,8 @@ public class Servicio {
         this.tecnicos = tecnicos;
     }
 
-    public double calcularCostoTiempoTrabajado(Compania compania) {  //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos? LO UNIFICO
+    public double calcularCostoTiempoTrabajado(Compania compania) {
+        //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos? LO UNIFICO
         //calculo costo del tiempo trabajado
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
@@ -130,6 +131,10 @@ public class Servicio {
 
     public void facturar(){
         this.factura = new Factura(this, this.cliente);
+    }
+
+    public void calcularTiempoTrabajado(int horaInicio, int horaFin) {
+
     }
 
     /** Getters **/

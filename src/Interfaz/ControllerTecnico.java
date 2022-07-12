@@ -141,7 +141,7 @@ public class ControllerTecnico extends Usuario {
                                                 System.out.println("Ingrese la hora de finalizacion: ");
                                                 int horaFin = sc.nextInt();
                                                 if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
-                                                    //reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
+                                                    reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
                                                     break;
                                                 } else {
                                                     System.out.println("Tiempo trabajado incorrecto");
