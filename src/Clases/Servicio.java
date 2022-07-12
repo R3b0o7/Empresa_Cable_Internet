@@ -70,8 +70,7 @@ public class Servicio {
         for(Articulo articulo: this.materiales){
             costoMateriales += articulo.getCantidad()*articulo.getPrecio();
         }
-        double precioBase = (costoTiempo+costoMateriales)+((costoTiempo+costoMateriales)*this.MARGEN);
-        return precioBase;
+        return (costoTiempo+costoMateriales)+((costoTiempo+costoMateriales)*this.MARGEN);
     }
 
     public double calcularGastos(double precioCombustible) {
@@ -108,8 +107,7 @@ public class Servicio {
    }
 
     public double calcularMargenReal() {
-        double margenReal = (this.precioFinal-this.costoReal)/this.costoReal;
-        return margenReal;
+        return (this.precioFinal-this.costoReal)/this.costoReal;
     }
 
     public Factura generarFactura() {
@@ -142,13 +140,13 @@ public class Servicio {
         return idServicio;
     }
 
-    public Cliente getCliente(){ return this.cliente;};
+    public Cliente getCliente(){ return this.cliente;}
 
-    public TipoServicio getTipoServicio(){return this.tipoServicio;};
+    public TipoServicio getTipoServicio(){return this.tipoServicio;}
 
-    public Date getFecha(){return fecha;};
+    public Date getFecha(){return fecha;}
 
-    public String getHora(){return horario;};
+    public String getHora(){return horario;}
 
     /** Setters **/ //TODOS LOS QUE DICEN TO DO NO ME LOS DEJO CREAR AUTOMATICO -> Ver por qué
     public void setAlmuerzo(boolean value) {
@@ -163,18 +161,18 @@ public class Servicio {
         this.precioFinal = value;
     }
 
-    public void setMaterialesAdicionales(String value) {
-        // TODO implementar
-        this.materialesAdicionalesDescripcion = value;
-        System.out.println("Materiales adicionales cargados");
-    }
+    public void setMaterialesAdicionales(String value) {this.materialesAdicionalesDescripcion = value;}
 
     public void setCostoMaterialesAdicionales(double costo) {
         this.costoMaterialesAdicionales = costo;
+        System.out.println("Materiales adicionales cargados");
     }
 
     public void setEstado(Enumeraciones.Estado estado) {
         this.estado = estado;
     }
 
+    public void addMaterial(String material){
+
+    }
 }
