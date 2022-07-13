@@ -6,15 +6,12 @@ import Excepciones.GenericException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.util.Calendar.DAY_OF_WEEK;
 
 public class ControllerCallCenter extends Usuario {
-
+    static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerCallCenter controladorCallCenter;
 
@@ -387,6 +384,45 @@ public class ControllerCallCenter extends Usuario {
         SimpleDateFormat sdfInicio = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = sdfInicio.parse(fechaTexto);
         return fecha;
+    }
+    public static int ingresarEntero() {
+        boolean repetir;
+        int n = 100;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextInt();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Entero. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
+    }
+
+    public static double ingresarDouble() {
+        boolean repetir;
+        double n = 100.0;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextDouble();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Número con Decimales. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
     }
 
 }

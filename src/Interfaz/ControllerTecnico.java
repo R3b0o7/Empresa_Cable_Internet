@@ -4,10 +4,12 @@ import Clases.*;
 import Excepciones.GenericException;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ControllerTecnico extends Usuario {
-    Scanner sc = new Scanner(System.in);
+
+    static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerTecnico controladorTecnico;
 
@@ -308,5 +310,44 @@ public class ControllerTecnico extends Usuario {
                 sc.nextLine();
             }
         }
+    }
+    public static int ingresarEntero() {
+        boolean repetir;
+        int n = 100;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextInt();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Entero. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
+    }
+
+    public static double ingresarDouble() {
+        boolean repetir;
+        double n = 100.0;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextDouble();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Número con Decimales. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
     }
 }
