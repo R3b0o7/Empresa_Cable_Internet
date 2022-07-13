@@ -200,7 +200,7 @@ public class ControllerCallCenter extends Usuario {
         System.out.println("El costo base del servicio es:   "+costoBase);
         //solicito confirmacion
         System.out.println();
-        sc.nextLine(); //para capturar el enter
+        //sc.nextLine(); para capturar el enter
         System.out.println("¿Confirma el servicio? Y/n");
         String confirmacion = sc.nextLine();
 

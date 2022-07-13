@@ -153,7 +153,6 @@ public class ControllerTecnico extends Usuario {
                                         //Ingresa materiales usados
                                         for (Articulo articulo : this.compania.getStock().getArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
-                                            sc.nextLine();
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")){
                                                 System.out.println("Que cantidad?: ");
@@ -163,12 +162,8 @@ public class ControllerTecnico extends Usuario {
                                                 this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
-                                        System.out.println("Ingrese los materiales utilizados: ");
-
-                                        //reparacion.addMaterial(sc.nextLine());
 
                                         //Ingresa materiales adicionales
-                                        sc.nextLine();
                                         while (true) {
                                             System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
                                             String material = sc.nextLine();
@@ -186,7 +181,6 @@ public class ControllerTecnico extends Usuario {
 
                                         //Ingresa si hubo almuerzo
                                         System.out.println("Realizó almuerzo? (Y/N): ");
-                                        sc.nextLine();
                                         String confirmacion = sc.nextLine();
                                         if (confirmacion.equals("Y")) {
                                             System.out.println("Almuerzo cargado");
@@ -197,8 +191,9 @@ public class ControllerTecnico extends Usuario {
                                         }
 
                                         //Indica si compro combustible
+
                                         System.out.println("Compro combustible? (Y/N): ");
-                                        sc.nextLine();
+                                        confirmacion = sc.nextLine();
                                         if (confirmacion.equals("Y")) {
                                             System.out.println("Y");
                                             System.out.println("Ingrese los litros cúbicos cargados: ");
@@ -223,7 +218,7 @@ public class ControllerTecnico extends Usuario {
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
                                 if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
                                     serviciosAsignados();
-                                    System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
+                                    System.out.println("Ingrese el numero de Instalacion a cargar datos: ");
                                     if (instalacion.getIdServicio() == ingresarEntero()) {
                                         /*Calcula tiempo trabajado
                                         while (true) {
@@ -242,7 +237,6 @@ public class ControllerTecnico extends Usuario {
                                         //Ingresa materiales usados
                                         for (Articulo articulo : this.compania.getStock().getArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
-                                            sc.nextLine();
                                             if (sc.nextLine() == "Y"){
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = ingresarEntero();
@@ -269,7 +263,6 @@ public class ControllerTecnico extends Usuario {
 
                                             //Ingresa si hubo almuerzo
                                             System.out.println("Realizó almuerzo? (Y/N): ");
-                                            sc.nextLine();
                                             String confirmacion = sc.nextLine();
                                             if (confirmacion.equals("Y")) {
                                                 System.out.println("Almuerzo cargado");
@@ -281,7 +274,7 @@ public class ControllerTecnico extends Usuario {
 
                                             //Indica si compro combustible
                                             System.out.println("Compro combustible? (Y/N): ");
-                                            sc.nextLine();
+                                            confirmacion = sc.nextLine();
                                             if (confirmacion.equals("Y")) {
                                                 System.out.println("Y");
                                                 System.out.println("Ingrese los litros cúbicos cargados: ");
