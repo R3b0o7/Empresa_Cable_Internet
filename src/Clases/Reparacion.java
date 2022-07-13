@@ -70,6 +70,7 @@ public class Reparacion extends Servicio {
                 " - Almuerzo=" + almuerzo +
                 " - Costo Real=" + costoReal +
                 " - Gastos=" + gastos +
+                " - tiempoTrabajado=" + tiempoTrabajado +
                 "} ";
     }
 }

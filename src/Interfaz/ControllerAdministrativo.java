@@ -415,10 +415,16 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println();
                     break;
                 case 4:
-                    System.out.println("Ingrese el nuevo valor para Precio final: ");
-                    double valorPrecioFinal = ingresarDouble();
-                    reparacion.setPrecioFinal(valorPrecioFinal);
-                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println("Ingrese el porcentaje a descontar del ajuste (1-100%): ");
+                    int descuento = sc.nextInt();
+                    sc.nextLine();
+                    if(descuento > 100 || descuento <= 0){
+                        System.out.println("Valor inválido");
+                        break;
+                    }
+                    float descuentoF = descuento/100;
+                    reparacion.setPrecioFinal(reparacion.getPrecioFinal() - reparacion.getPrecioFinal()*descuentoF);
+                    System.out.println("Se hará un descuento del "+descuento+"%");
                     System.out.println();
                     break;
                 case 0:

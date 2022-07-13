@@ -79,7 +79,7 @@ public class Servicio {
         double gastoCombustible = this.combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
         int gastoAlmuerzo = 0;
         if (almuerzo) {
-            gastoAlmuerzo = 500;
+            gastoAlmuerzo = 20;
         }
         this.gastos = gastoCombustible + gastoAlmuerzo + this.costoMaterialesAdicionales;
         return this.gastos;
