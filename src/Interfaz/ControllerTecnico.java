@@ -128,9 +128,9 @@ public class ControllerTecnico extends Usuario {
                         break;
                     case 1:
                         for (Reparacion reparacion : this.compania.getReparaciones()) {
+                            System.out.println("Ingrese su numero de tecnico: ");
+                            int nroTecnico = sc.nextInt();
                             for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
-                                System.out.println("Ingrese su numero de tecnico: ");
-                                int nroTecnico = sc.nextInt();
                                 if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
@@ -149,8 +149,18 @@ public class ControllerTecnico extends Usuario {
                                         }*/
 
                                         //Ingresa materiales usados
+                                        for (Articulo articulo : this.compania.getStock().getArticulos()){
+                                            System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
+                                            sc.nextLine();
+                                            if (sc.nextLine() == "Y"){
+                                                System.out.println("Que cantidad?: ");
+                                                int cantidad = sc.nextInt();
+                                                reparacion.addMaterial(articulo,cantidad);
+                                            }
+                                        }
                                         System.out.println("Ingrese los materiales utilizados: ");
-                                        reparacion.addMaterial(sc.nextLine());
+
+                                        //reparacion.addMaterial(sc.nextLine());
 
                                         //Ingresa materiales adicionales
                                         sc.nextLine();
@@ -206,14 +216,14 @@ public class ControllerTecnico extends Usuario {
                         }
                     case 2:
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
+                            System.out.println("Ingrese su numero de tecnico: ");
+                            int nroTecnico = sc.nextInt();
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
-                                System.out.println("Ingrese su numero de tecnico: ");
-                                int nroTecnico = sc.nextInt();
                                 if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
                                     if (instalacion.getIdServicio() == sc.nextInt()) {
-                                        //Calcula tiempo trabajado
+                                        /*Calcula tiempo trabajado
                                         while (true) {
                                             System.out.println("Ingrese la hora de inicio: ");
                                             int horaInicio = sc.nextInt();
@@ -225,11 +235,18 @@ public class ControllerTecnico extends Usuario {
                                             } else {
                                                 System.out.println("Tiempo trabajado incorrecto");
                                             }
-                                        }
+                                        }*/
 
-                                            //Ingresa materiales usados
-                                            System.out.println("Ingrese los materiales utilizados: ");
-                                            instalacion.addMaterial(sc.nextLine());
+                                        //Ingresa materiales usados
+                                        for (Articulo articulo : this.compania.getStock().getArticulos()){
+                                            System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
+                                            sc.nextLine();
+                                            if (sc.nextLine() == "Y"){
+                                                System.out.println("Que cantidad?: ");
+                                                int cantidad = sc.nextInt();
+                                                instalacion.addMaterial(articulo,cantidad);
+                                            }
+                                        }
 
                                             //Ingresa materiales adicionales
                                             sc.nextLine();

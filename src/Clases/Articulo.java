@@ -46,6 +46,8 @@ public class Articulo {
         this.precio = precio;
     }
 
+    public void setCantidad(int cantidad){this.cantidad = cantidad;}
+
     @Override
     public String toString() {
         return "Articulo{" +

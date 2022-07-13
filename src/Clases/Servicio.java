@@ -208,7 +208,11 @@ public class Servicio {
         this.estado = estado;
     }
 
-    public void addMaterial(String material){
-
+    public void addMaterial(Articulo material, int cantidad){
+        for (Articulo articulo : materiales){
+            if (material.getArticulo() == articulo.getArticulo()){
+                articulo.setCantidad(cantidad);
+            }
+        }
     }
 }
