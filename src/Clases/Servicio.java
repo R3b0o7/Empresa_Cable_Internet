@@ -174,7 +174,7 @@ public class Servicio {
             listado += articulo.getArticulo().toString() + ", ";
         }
         if(listado.length()>0){
-            listado = listado.substring(1, listado.length()-2);
+            listado = listado.substring(0, listado.length()-2);
         }
         return listado;
     };

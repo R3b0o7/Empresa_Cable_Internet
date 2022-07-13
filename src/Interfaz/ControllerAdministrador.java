@@ -107,13 +107,13 @@ public class ControllerAdministrador extends Usuario{
                     int dni = sc.nextInt();
                     // Validar si existe el técnico antes de crearlo
                     /** NO SE POR QUE NO FUNCIONA -> cambie los parametros de getTecnico tambien por el numero de
-                        en vez de dni por que lo necesitava, revisar
+                        en vez de dni por que lo necesitava, revisar**/
 
-                    if (this.compania.getTecnicos() != null) {
+                    if (this.compania.getTecnicoDNI(dni) != null) {
                         System.out.println("El Técnico ya existe.");
                         return;
                     }
-                    */
+
                     // Ingresar el resto de los datos del técnico
                     sc.nextLine();
                     System.out.println("Ingrese nombre del Técnico: ");

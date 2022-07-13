@@ -140,7 +140,7 @@ public class Compania {
         return servicio;
     }
 
-    public Reparacion getReparacionPorCliente(int dni){
+    public Reparacion getReparacionVigentePorCliente(int dni){
         for(Reparacion reparacion: this.getReparaciones()){
             if(reparacion.getCliente().getDni() == dni && (reparacion.getEstado() == Estado.En_curso || reparacion.getEstado() == Estado.Programado)){
                 return reparacion;
@@ -149,7 +149,7 @@ public class Compania {
         return null;
     }
 
-    public Instalacion getInstalacionPorCliente(int dni){
+    public Instalacion getInstalacionVigentePorCliente(int dni){
         for(Instalacion instalacion: this.instalaciones){
             if(instalacion.getCliente().getDni() == dni && (instalacion.getEstado() == Estado.En_curso || instalacion.getEstado() == Estado.Programado)){
                 return instalacion;
@@ -170,6 +170,15 @@ public class Compania {
     public Tecnico getTecnico(int nroTecnico){
         for(Tecnico tecnico: this.tecnicos){
             if(tecnico.getNroTécnico() == nroTecnico){
+                return tecnico;
+            }
+        }
+        return null;
+    }
+
+    public Tecnico getTecnicoDNI(int dni){
+        for(Tecnico tecnico: this.tecnicos){
+            if(tecnico.getDni() == dni){
                 return tecnico;
             }
         }

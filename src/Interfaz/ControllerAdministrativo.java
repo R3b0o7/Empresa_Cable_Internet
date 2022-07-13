@@ -23,7 +23,7 @@ public class ControllerAdministrativo extends Usuario {
         compania.guardarCliente(cliente888);
         compania.guardarCliente(cliente999);
 
-        int idServicio1 = compania.getUltimoServicio();
+        int idServicio1 = compania.getUltimoServicio()+1;
         Clases.Tecnico tecnico999 = new Tecnico(123, "Gonzalo", "salta", TipoTecnico.Junior, "Tarde");
         ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
         tecnicosPrueba.add(tecnico999);
@@ -32,7 +32,7 @@ public class ControllerAdministrativo extends Usuario {
         reparacion.finalizarServicio();
         compania.guardarReparacion(reparacion);
 
-        int idServicio2 = compania.getUltimoServicio();
+        int idServicio2 = compania.getUltimoServicio()+1;
         Clases.Tecnico tecnico888 = new Tecnico(1234, "Gonzalo", "salta", TipoTecnico.Senior, "Tarde");
         ArrayList<Tecnico> tecnicosPrueba2 = new ArrayList<Tecnico>();
         tecnicosPrueba2.add(tecnico888);

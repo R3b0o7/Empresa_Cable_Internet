@@ -74,12 +74,12 @@ public class ControllerCallCenter extends Usuario {
         }
 
         //verifico si el cliente tiene otros servicios reservados
-        if (compania.getReparacionPorCliente(dni) != null) {
-            Reparacion reparacion = compania.getReparacionPorCliente(dni);
-            System.out.println("El cliente posee vigente el servicio" + reparacion.getIdServicio());
+        if (compania.getReparacionVigentePorCliente(dni) != null) {
+            Reparacion reparacion = compania.getReparacionVigentePorCliente(dni);
+            System.out.println("El cliente posee vigente el servicio número " + reparacion.getIdServicio());
             return;
-        } else if (compania.getInstalacionPorCliente(dni) != null) {
-            Instalacion instalacion = compania.getInstalacionPorCliente(dni);
+        } else if (compania.getInstalacionVigentePorCliente(dni) != null) {
+            Instalacion instalacion = compania.getInstalacionVigentePorCliente(dni);
             System.out.println("El cliente posee vigente el servicio" + instalacion.getIdServicio());
             return;
         }

@@ -50,6 +50,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        //MyFrame ventanaLogin = new MyFrame();
+        MyFrame ventanaLogin = new MyFrame();
     }
 }
