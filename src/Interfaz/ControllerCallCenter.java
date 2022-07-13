@@ -23,8 +23,6 @@ public class ControllerCallCenter extends Usuario {
     }
 
     public void menuInicial() {
-        // TODO Auto-generated method stub
-
         //Genero los objetos base
         this.compania = Clases.Compania.getInstance();
 
