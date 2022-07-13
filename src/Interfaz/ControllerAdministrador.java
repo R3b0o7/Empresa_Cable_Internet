@@ -677,4 +677,23 @@ public class ControllerAdministrador extends Usuario{
         } while (repetir);
         return n;
     }
+
+    public static double leerDouble(String s) {
+        Scanner sc = new Scanner(System.in);
+        boolean repetir;
+        double n=0;
+        do {
+            repetir = false;
+            try {
+                System.out.print(s);
+                n = sc.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido");
+                repetir = true;
+            }finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
+    }
 }
