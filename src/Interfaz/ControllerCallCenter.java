@@ -184,11 +184,10 @@ public class ControllerCallCenter extends Usuario {
                         System.out.println();
                     }
                 }
-                for(Tecnico tecnico: tecnicosDisponibles){
+                for(Tecnico tecnico: tecnicosSeleccionados){
                     if (tecnico.getNroTécnico() == nroTecnico) {
                         tecnicosDisponibles.remove(tecnico);
                         Integer nro = tecnico.getNroTécnico();
-                        idTecnicosDisponibles.remove(nro);
                     }
                 }
             }
@@ -221,7 +220,7 @@ public class ControllerCallCenter extends Usuario {
         System.out.println("El costo base del servicio es:   "+costoBase);
         //solicito confirmacion
         System.out.println();
-        //sc.nextLine(); para capturar el enter
+        sc.nextLine();
         System.out.println("¿Confirma el servicio? Y/n");
         String confirmacion = sc.nextLine();
 

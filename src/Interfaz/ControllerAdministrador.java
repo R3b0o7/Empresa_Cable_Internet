@@ -24,12 +24,12 @@ public class ControllerAdministrador extends Usuario{
         this.compania = Clases.Compania.getInstance();
 
         //ejecución menu principal
+        Scanner sc = new Scanner(System.in);
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
 
-            int opcion = ingresarEntero();
-
+            int opcion = leerEntero(sc.nextLine());
             switch(opcion) {
                 case 1:
                     this.abmTecnico();
@@ -152,6 +152,7 @@ public class ControllerAdministrador extends Usuario{
                     System.out.println("Turno: " + turno);
                     System.out.println("¿Confirma el alta? y/n :");
                     //Confirmación de guardado
+                    sc.nextLine();
                     String confirma = sc.nextLine();
                     if (confirma.equals("y")) {
                         tecnico = new Tecnico(dni, nombre, direccion, tipoTecnico, turno);
@@ -221,6 +222,7 @@ public class ControllerAdministrador extends Usuario{
                                 switch (opcion4){
                                     case 1:
                                         System.out.println("Ingresar la nueva dirección: ");
+                                        sc.nextLine();
                                         String nuevaDireccion = sc.nextLine();
                                         tecModificar.setDirección(nuevaDireccion);
                                         System.out.println("La modificación fue realizada con exito");
@@ -228,6 +230,7 @@ public class ControllerAdministrador extends Usuario{
                                         run4 = false;
                                         break;
                                     case 2:
+                                        sc.nextLine();
                                         TipoTecnico tipoTecnico2 = seleccionarTipoTecnico();
                                         tecModificar.setTipoTecnico(tipoTecnico2);
                                         System.out.println("La modificación fue realizada con exito");
@@ -256,7 +259,7 @@ public class ControllerAdministrador extends Usuario{
     }
 
     public void abmArticulo(){
-
+        Scanner sc = new Scanner(System.in);
         boolean run = true;
 
         String[] menu = {"EMPRESA DE CABLE", "ABM DE ARTÍCULO"};
@@ -269,7 +272,7 @@ public class ControllerAdministrador extends Usuario{
             System.out.println("0. Volver");
             System.out.print("Elija una opción: ");
             System.out.println();
-            int opcion = ingresarEntero();
+            int opcion = sc.nextInt();
             switch (opcion) {
                 case 1: //Alta de artículo -> Alta de Stock
                     System.out.println("ALTA DE ARTICULOS EN EL STOCK");
@@ -283,11 +286,13 @@ public class ControllerAdministrador extends Usuario{
                     boolean run1 = true;
                     while(run1){
                         System.out.println("Seleccionar producto:");
-                        int opcion1 = ingresarEntero();
+                        sc.nextLine();
+                        int opcion1 = sc.nextInt();
                         switch (opcion1){
                             case 1:
                                 System.out.println("Ingrese la cantidad de articulos de Cable a agregar:");
-                                int nuevoCantidad = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad = sc.nextInt();
                                 compania.getStock().getArticulos().get(0).agregarCantidadArticulos(nuevoCantidad);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad + ", con un total de "
                                         + compania.getStock().getArticulos().get(0).getCantidad() + " articulos en existencias de Cable");
@@ -296,7 +301,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 2:
                                 System.out.println("Ingrese la cantidad de articulos de Conector coaxial RG6 a agregar:");
-                                int nuevoCantidad2 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad2 = sc.nextInt();
                                 compania.getStock().getArticulos().get(1).agregarCantidadArticulos(nuevoCantidad2);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad2 + ", con un total de "
                                         + compania.getStock().getArticulos().get(1).getCantidad() + " articulos en existencias de Conector coaxial RG6");
@@ -305,7 +311,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 3:
                                 System.out.println("Ingrese la cantidad de articulos de Decodificador a agregar:");
-                                int nuevoCantidad3 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad3 = sc.nextInt();
                                 compania.getStock().getArticulos().get(2).agregarCantidadArticulos(nuevoCantidad3);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad3 + ", con un total de "
                                         + compania.getStock().getArticulos().get(2).getCantidad() + " articulos en existencias de Decodificador");
@@ -314,7 +321,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 4:
                                 System.out.println("Ingrese la cantidad de articulos de Divisor a agregar:");
-                                int nuevoCantidad4 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad4 = sc.nextInt();
                                 compania.getStock().getArticulos().get(3).agregarCantidadArticulos(nuevoCantidad4);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad4 + ", con un total de "
                                         + compania.getStock().getArticulos().get(3).getCantidad() + " articulos en existencias de Divisor");
@@ -323,7 +331,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 5:
                                 System.out.println("Ingrese la cantidad de articulos de Modem a agregar:");
-                                int nuevoCantidad5 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad5 = sc.nextInt();
                                 compania.getStock().getArticulos().get(4).agregarCantidadArticulos(nuevoCantidad5);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad5 + ", con un total de "
                                         + compania.getStock().getArticulos().get(4).getCantidad() + " articulos en existencias de Modem");
@@ -345,11 +354,13 @@ public class ControllerAdministrador extends Usuario{
                     boolean run2 = true;
                     while(run2){
                         System.out.println("Seleccionar producto:");
-                        int opcion2 = ingresarEntero();
+                        sc.nextLine();
+                        int opcion2 = sc.nextInt();
                         switch (opcion2){
                             case 1:
                                 System.out.println("Ingrese la cantidad de articulos de Cable a dar de baja:");
-                                int nuevoCantidad = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad = sc.nextInt();
                                 compania.getStock().getArticulos().get(0).agregarCantidadArticulos(-nuevoCantidad);
                                 if (compania.getStock().getArticulos().get(0).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
@@ -364,7 +375,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 2:
                                 System.out.println("Ingrese la cantidad de articulos de Conector coaxial RG6 a dar de baja:");
-                                int nuevoCantidad2 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad2 = sc.nextInt();
                                 compania.getStock().getArticulos().get(1).agregarCantidadArticulos(-nuevoCantidad2);
                                 if (compania.getStock().getArticulos().get(1).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
@@ -379,7 +391,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 3:
                                 System.out.println("Ingrese la cantidad de articulos de Decodificador a dar de baja:");
-                                int nuevoCantidad3 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad3 = sc.nextInt();
                                 compania.getStock().getArticulos().get(2).agregarCantidadArticulos(-nuevoCantidad3);
                                 if (compania.getStock().getArticulos().get(2).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
@@ -394,7 +407,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 4:
                                 System.out.println("Ingrese la cantidad de articulos de Divisor a dar de baja:");
-                                int nuevoCantidad4 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad4 = sc.nextInt();
                                 compania.getStock().getArticulos().get(3).agregarCantidadArticulos(-nuevoCantidad4);
                                 if (compania.getStock().getArticulos().get(3).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
@@ -409,7 +423,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 5:
                                 System.out.println("Ingrese la cantidad de articulos de Modem a dar de baja:");
-                                int nuevoCantidad5 = ingresarEntero();
+                                sc.nextLine();
+                                int nuevoCantidad5 = sc.nextInt();
                                 compania.getStock().getArticulos().get(4).agregarCantidadArticulos(-nuevoCantidad5);
                                 if (compania.getStock().getArticulos().get(4).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
@@ -437,11 +452,13 @@ public class ControllerAdministrador extends Usuario{
                     boolean run3 = true;
                     while (run3) {
                         System.out.println("Seleccionar producto:");
-                        int opcion2 = ingresarEntero();
+                        sc.nextLine();
+                        int opcion2 = sc.nextInt();
                         switch (opcion2) {
                             case 1:
                                 System.out.println("Ingrese el nuevo precio para el Cable:");
-                                double nuevoPrecio = ingresarDouble();
+                                sc.nextLine();
+                                double nuevoPrecio = sc.nextDouble();
                                 compania.getStock().getArticulos().get(0).setPrecio(nuevoPrecio);
                                 System.out.println("El precio del cable fue actualizado correctamente a " + nuevoPrecio + "$");
                                 System.out.println();
@@ -449,7 +466,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 2:
                                 System.out.println("Ingrese el nuevo precio para el Conector coaxial RG6:");
-                                double nuevoPrecio2 = ingresarDouble();
+                                sc.nextLine();
+                                double nuevoPrecio2 = sc.nextDouble();
                                 compania.getStock().getArticulos().get(1).setPrecio(nuevoPrecio2);
                                 System.out.println("El precio del Conector coaxial RG6 fue actualizado correctamente a " + nuevoPrecio2 + "$");
                                 System.out.println();
@@ -457,7 +475,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 3:
                                 System.out.println("Ingrese el nuevo precio para el Decodificador:");
-                                double nuevoPrecio3 = ingresarDouble();
+                                sc.nextLine();
+                                double nuevoPrecio3 = sc.nextDouble();
                                 compania.getStock().getArticulos().get(2).setPrecio(nuevoPrecio3);
                                 System.out.println("El precio del Decodificador fue actualizado correctamente a " + nuevoPrecio3 + "$");
                                 System.out.println();
@@ -465,7 +484,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 4:
                                 System.out.println("Ingrese el nuevo precio para el Divisor:");
-                                double nuevoPrecio4 = ingresarDouble();
+                                sc.nextLine();
+                                double nuevoPrecio4 = sc.nextDouble();
                                 compania.getStock().getArticulos().get(3).setPrecio(nuevoPrecio4);
                                 System.out.println("El precio del Divisor fue actualizado correctamente a " + nuevoPrecio4 + "$");
                                 System.out.println();
@@ -473,7 +493,8 @@ public class ControllerAdministrador extends Usuario{
                                 break;
                             case 5:
                                 System.out.println("Ingrese el nuevo precio para el Modem:");
-                                double nuevoPrecio5 = ingresarDouble();
+                                sc.nextLine();
+                                double nuevoPrecio5 = sc.nextDouble();
                                 compania.getStock().getArticulos().get(4).setPrecio(nuevoPrecio5);
                                 System.out.println("El precio del Modem fue actualizado correctamente a " + nuevoPrecio5 + "$");
                                 System.out.println();
@@ -513,7 +534,7 @@ public class ControllerAdministrador extends Usuario{
             System.out.println("0. Volver");
             System.out.print("Elija una opción: ");
 
-            int opcion = ingresarEntero();
+            int opcion = sc.nextInt();
             switch (opcion){
                 case 1: //Cambia el precio por tipo de tecnico (seniority)
                     System.out.println();
@@ -525,13 +546,14 @@ public class ControllerAdministrador extends Usuario{
                         System.out.println("3. Senior");
                         System.out.println("0. Volver");
                         System.out.print("Elija una opción: ");
-                        int opcion2 = ingresarEntero();
+                        int opcion2 = sc.nextInt();
                         switch (opcion2){
                             case 1: //Cambia precio de Junior
                                 System.out.println("El costo actual por hora del técnico Junior es " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Junior) + "$");
                                 System.out.println("Ingresar nuevo valor por hora para el técnico Junior:");
-                                double costoJunior = ingresarDouble();
+                                sc.nextLine();
+                                double costoJunior = sc.nextDouble();
                                 compania.getMaestroCostoTecnicos().put(TipoTecnico.Junior,costoJunior);
                                 System.out.println("El costo actual por hora del técnico Junior fue actualizado correctamente a " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Junior) + "$");
@@ -541,7 +563,8 @@ public class ControllerAdministrador extends Usuario{
                                 System.out.println("El costo actual por hora del técnico Semi senior es " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Semi_senior) + "$");
                                 System.out.println("Ingresar nuevo valor por hora para el técnico Semi senior:");
-                                double costoJSemi_senior = ingresarDouble();
+                                sc.nextLine();
+                                double costoJSemi_senior = sc.nextDouble();
                                 compania.getMaestroCostoTecnicos().put(TipoTecnico.Semi_senior,costoJSemi_senior);
                                 System.out.println("El costo actual por hora del técnico Semi senior fue actualizado correctamente a " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Semi_senior) + "$");
@@ -551,7 +574,8 @@ public class ControllerAdministrador extends Usuario{
                                 System.out.println("El costo actual por hora del técnico Senior es " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Senior) + "$");
                                 System.out.println("Ingresar nuevo valor por hora para el técnico Senior:");
-                                double costoSenior = ingresarDouble();
+                                sc.nextLine();
+                                double costoSenior = sc.nextDouble();
                                 compania.getMaestroCostoTecnicos().put(TipoTecnico.Senior,costoSenior);
                                 System.out.println("El costo actual por hora del técnico Senior fue actualizado correctamente a " +
                                         compania.getMaestroCostoTecnicos().get(TipoTecnico.Senior) + "$");
@@ -570,7 +594,8 @@ public class ControllerAdministrador extends Usuario{
                 case 2: //Cambia el precio del combustible
                     System.out.println("El costo actual del combustible es " + compania.getPrecioCombustible() + "$/litro");
                     System.out.println("Ingresar nuevo valor del combustible");
-                    double nuevoPrecioCombustible = ingresarDouble();
+                    sc.nextLine();
+                    double nuevoPrecioCombustible = sc.nextDouble();
                     compania.setPrecioCombustible(nuevoPrecioCombustible);
                     System.out.println("El precio del combustible fue actualizado correctamente a "
                             + nuevoPrecioCombustible + "$/litro");
@@ -578,7 +603,8 @@ public class ControllerAdministrador extends Usuario{
                 case 3: //Cambia el costo base del viaje
                     System.out.println("El costo base actual del viaje es " + compania.getCostoDeViaje() + "$");
                     System.out.println("Ingresar nuevo costo base de viaje");
-                    double nuevoCostoViaje = ingresarDouble();
+                    sc.nextLine();
+                    double nuevoCostoViaje = sc.nextDouble();
                     compania.setCostoDeViaje(nuevoCostoViaje);
                     System.out.println("El costo base del viaje fue actualizado correctamente a " + nuevoCostoViaje + "$");
                     break;
@@ -594,27 +620,28 @@ public class ControllerAdministrador extends Usuario{
     }
 
     public TipoTecnico seleccionarTipoTecnico(){
+        Scanner sc = new Scanner(System.in);
         TipoTecnico tipoTecnico = TipoTecnico.Junior;
-        boolean run = true;
-        while (run){
+        boolean run3 = true;
+        while (run3){
             System.out.println("Tipo Técnico: ");
             System.out.println("1. Junior");
             System.out.println("2. Semi senior");
             System.out.println("3. Senior");
             System.out.print("Elija una opción: ");
-            int opcion3 = ingresarEntero();
+            int opcion3 = sc.nextInt();
             switch (opcion3) {
                 case 1:
                     tipoTecnico = TipoTecnico.Junior;
-                    run = false;
+                    run3 = false;
                     break;
                 case 2:
                     tipoTecnico = TipoTecnico.Semi_senior;
-                    run = false;
+                    run3 = false;
                     break;
                 case 3:
                     tipoTecnico = TipoTecnico.Senior;
-                    run = false;
+                    run3 = false;
                     break;
                 default:
                     System.out.println("Opcion invalida");
@@ -645,24 +672,22 @@ public class ControllerAdministrador extends Usuario{
         return n;
     }
 
-    public static double ingresarDouble() {
+    public static int leerEntero(String s) {
+        Scanner sc = new Scanner(System.in);
         boolean repetir;
-        double n = 100.0;
+        int n=0;
         do {
             repetir = false;
             try {
-                n = sc.nextDouble();
-                return n;
-            }
-            catch (InputMismatchException exception) {
-                System.out.println("ERROR. El valor no corresponde a un Número con Decimales. Volver a ingresar: ");
+                System.out.print(s);
+                n = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido");
                 repetir = true;
-            }
-            finally {
+            }finally {
                 sc.nextLine();
             }
         } while (repetir);
         return n;
     }
-
 }
