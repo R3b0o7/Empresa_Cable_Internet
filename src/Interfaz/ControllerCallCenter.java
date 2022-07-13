@@ -105,6 +105,11 @@ public class ControllerCallCenter extends Usuario {
                 return;
             }
             fecha = this.obtenerFecha();
+            Date fechaactual = new Date(System.currentTimeMillis());
+            if(fecha.before(fechaactual)){
+                System.out.println("La fecha debe ser posterior al día de hoy.");
+                return;
+            }
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -120,7 +125,6 @@ public class ControllerCallCenter extends Usuario {
 
         //obtengo horario
         Agenda agendaModelo = new Agenda();
-        System.out.println(agendaModelo.getEquivalenciaFilaHora().toString());
         System.out.println("Seleccione el horario: ");
         if (turno == 1) {
             for (int k = 0; k < 12; k++) {
@@ -137,10 +141,12 @@ public class ControllerCallCenter extends Usuario {
         //obtengo los tecnicos disponibles
         String turnoStr = (turno == 1) ? "Mañana" : "Tarde";
         ArrayList<Tecnico> tecnicosDisponibles = new ArrayList<Tecnico>();
+        ArrayList<Integer> idTecnicosDisponibles = new ArrayList<Integer>();
         try {
             for (Tecnico tecnico : compania.getTecnicos()) {
                 if (tecnico.getTurno().equals(turnoStr) && tecnico.poseeDisponibilidad(fecha, horarioStr, tiposervicioStr) && tecnico.getEstado()) {
                     tecnicosDisponibles.add(tecnico);
+                    idTecnicosDisponibles.add(tecnico.getNroTécnico());
                 }
             }
         } catch (GenericException exc) {
@@ -158,27 +164,41 @@ public class ControllerCallCenter extends Usuario {
                 break;
             }
             System.out.println("Tecnicos disponibles:");
-            for (Tecnico tecnico : tecnicosDisponibles) {
-                System.out.println(tecnico.toString());
+            for (Tecnico tec : tecnicosDisponibles) {
+                if (tec.getEstado()) {
+                    System.out.println("Técnico Nro " + tec.getNroTécnico() + "; DNI: " + tec.getDni() + "; Tipo: " + tec.getTipoTecnico());
+                }
             }
+            System.out.println("---------------------------------");
+            System.out.println();
             int nroTecnico = sc.nextInt();
             if (nroTecnico == 0) {
                 escape = 0;
+            } else if(!idTecnicosDisponibles.contains(nroTecnico)){
+                System.out.println("Número de técnico incorrecto.");
+                return;
             } else {
                 for (Tecnico tecnico : tecnicosDisponibles) {
                     if (tecnico.getNroTécnico() == nroTecnico) {
                         tecnicosSeleccionados.add(tecnico);
                         System.out.println("Se seleccionó correctamente el siguiente Tecnico:");
-                        System.out.println(tecnico.toString());
+                        System.out.println("Técnico Nro " + tecnico.getNroTécnico() + "; DNI: " + tecnico.getDni() + "; Tipo: " + tecnico.getTipoTecnico());
                         System.out.println();
                     }
                 }
-                for(Tecnico tecnico: tecnicosSeleccionados){
+                for(Tecnico tecnico: tecnicosDisponibles){
                     if (tecnico.getNroTécnico() == nroTecnico) {
                         tecnicosDisponibles.remove(tecnico);
+                        Integer nro = tecnico.getNroTécnico();
+                        idTecnicosDisponibles.remove(nro);
                     }
                 }
             }
+        }
+
+        if(tecnicosSeleccionados.size() == 0){
+            System.out.println("No se seleccionó ningún técnico");
+            return;
         }
 
         //Instancio el servicio, calculo el costo base e imprimo por pantalla

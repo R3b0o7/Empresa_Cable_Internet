@@ -45,7 +45,7 @@ public class Factura {
         return "N° Factura = " + nroFactura
                 + " - Costo Real = " + this.servicio.getCostoReal()
                 + " - Precio final = "+ this.servicio.getPrecioFinal()
-                + " - Margen real = "+ this.servicio.calcularMargenReal();
+                + " - Margen real = "+ this.servicio.calcularMargenReal()*100+ "%";
     }
 
 }

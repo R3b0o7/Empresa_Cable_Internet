@@ -111,16 +111,6 @@ public class Servicio {
         return (this.precioFinal-this.costoReal)/this.costoReal;
     }
 
-    public Factura generarFactura() {
-        //Ver como generar un ID de factura automatico, y ver como hacer auto refencia a la instancia de este objeto
-
-        //Factura factura = new Factura(1,Servicio,cliente);
-        //Compania.getInstance().getFacturas().add(factura);
-
-        // TODO implementar
-        return null;
-    }
-
     public void finalizarServicio(){
         Compania compania = Compania.getInstance();
         this.estado = Estado.Finalizada;
@@ -215,4 +205,6 @@ public class Servicio {
             }
         }
     }
+
+
 }

@@ -6,6 +6,7 @@ import Enumeraciones.TipoServicio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /** Clase heredada de Servicio **/
 
@@ -52,12 +53,39 @@ public class Instalacion extends Servicio {
     }
 
     public String toString() {
-        return "Instalacion{" +
+        String tecnicosStr = "";
+        for(Tecnico tec: this.tecnicos){
+            tecnicosStr += "id-"+ tec.getNroTécnico()+" ";
+        }
+        return "Instalacion - " +
                 "idServicio=" + idServicio +
-                ", fecha=" + fecha +
-                ", horario='" + horario + '\'' +
-                ", tecnicos=" + tecnicos +
-                ", cliente=" + cliente +
+                " - fecha=" + fecha +
+                " - horario='" + horario + '\'' +
+                " - tecnicos=" + tecnicosStr +
+                " - Estado=" + estado +
+                " - cliente=" + cliente +
+                "} ";
+    }
+
+    public String toStringDetalle() {
+        String tecnicosStr = "";
+        for(Tecnico tec: this.tecnicos){
+            tecnicosStr += "id-"+ tec.getNroTécnico()+" ";
+        }
+        String articulosStr = "";
+        for(Articulo art: this.materiales){
+            articulosStr += art.getArticulo()+" ";
+        }
+        return "Instalacion - " +
+                "idServicio=" + idServicio +
+                " - tecnicos=" + tecnicosStr +
+                " - cliente=" + cliente +
+                " - Estado=" + estado +
+                " - Materiales=" + articulosStr +
+                " - Costo Materiales adicionales=" + costoMaterialesAdicionales +
+                " - Almuerzo=" + almuerzo +
+                " - Costo Real=" + costoReal +
+                " - Gastos=" + gastos +
                 "} ";
     }
 
