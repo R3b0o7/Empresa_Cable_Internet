@@ -5,10 +5,7 @@ import Enumeraciones.Articulos;
 import Enumeraciones.TipoTecnico;
 
 import javax.naming.ldap.Control;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ControllerAdministrador extends Usuario{
 
@@ -32,7 +29,8 @@ public class ControllerAdministrador extends Usuario{
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
-            int opcion = sc.nextInt();
+
+            int opcion = leerEntero(sc.nextLine());
             switch(opcion) {
                 case 1:
                     this.abmTecnico();
@@ -659,5 +657,24 @@ public class ControllerAdministrador extends Usuario{
             }
         }
         return tipoTecnico;
+    }
+
+    public static int leerEntero(String s) {
+        Scanner sc = new Scanner(System.in);
+        boolean repetir;
+        int n=0;
+        do {
+            repetir = false;
+            try {
+                System.out.print(s);
+                n = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido");
+                repetir = true;
+            }finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
     }
 }
