@@ -28,7 +28,7 @@ public class ControllerAdministrador extends Usuario{
         while (run) {
             this.imprimirMenuInicial();
 
-            int opcion = leerEntero();
+            int opcion = ingresarEntero();
 
             switch(opcion) {
                 case 1:
@@ -655,7 +655,7 @@ public class ControllerAdministrador extends Usuario{
         return tipoTecnico;
     }
 
-    public static int leerEntero() {
+    public static int ingresarEntero() {
         boolean repetir;
         int n = 10;
         do {
@@ -665,7 +665,7 @@ public class ControllerAdministrador extends Usuario{
                 return n;
             }
             catch (InputMismatchException exception) {
-                System.out.println("El valor no corresponde a un número. Volver a ingresar: ");
+                System.out.println("ERROR. El valor no corresponde a un número. Volver a ingresar: ");
                 repetir = true;
             }
             finally {
