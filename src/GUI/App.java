@@ -6,16 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
-public class App {
+public class App extends JFrame implements ActionListener{
 
     private JTextField textField1;
     private JPasswordField passwordField1;
     private JButton enviarButton;
-
-    public JPanel getLogin() {
-        return login;
-    }
-
     private JPanel login;
 
     public App() {
@@ -49,7 +44,16 @@ public class App {
         });
     }
 
+    public JPanel getLogin() {
+        return login;
+    }
+
     public static void main(String[] args) {
         MyFrame ventanaLogin = new MyFrame();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("HOLA");
     }
 }

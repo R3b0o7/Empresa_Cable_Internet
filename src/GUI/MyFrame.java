@@ -8,10 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame implements ActionListener {
-    JButton button;
-    JTextField textField;
-    JTextField textField2;
-    MyFrame(){
+
+    private JPasswordField passwordField1;
+    private JTextField textField1;
+    private JButton enviarButton;
+    private JPanel login;
+
+
+    /*
+    public MyFrame(){
+
         this.setTitle("Empresa de Cable Internet");    //Titulo de la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //Cierra la aplicación al apretar la x
         this.setLayout(new FlowLayout());
@@ -37,11 +43,11 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setIconImage(image.getImage());  //cambia el icono del frame
         this.getContentPane().setBackground(new Color(107,108,109));
     }
-
+*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==button){
+        if(e.getSource()==enviarButton){
             //ControllerLogin login = new ControllerLogin().getInstance();
             //login.validarCredenciales(textField.getText(),textField2.getText());
 

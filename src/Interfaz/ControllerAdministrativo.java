@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Clases.*;
+import Enumeraciones.Estado;
 import Enumeraciones.TipoServicio;
 import Enumeraciones.TipoTecnico;
 
@@ -60,7 +61,7 @@ public class ControllerAdministrativo extends Usuario {
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
-            int opcion = ingresarEntero();
+            int opcion = sc.nextInt();
             switch(opcion) {
                 case 1:
                     this.listarFacturas();
@@ -154,21 +155,21 @@ public class ControllerAdministrativo extends Usuario {
             return;
         } else {
             for (Instalacion instalacion : compania.getInstalaciones()) {
-                if(instalacion.getFactura() == null){
-                    System.out.println(instalacion.toString());
+                if(instalacion.getFactura() == null && instalacion.getEstado() == Estado.Finalizada){
+                    System.out.println(instalacion.toStringDetalle());
                     serviciosFinalizados++;
                 }
             }
             for(Reparacion reparacion: this.compania.getReparaciones()){
-                if(reparacion.getFactura() == null) {
-                    System.out.println(reparacion.toString());
+                if(reparacion.getFactura() == null && reparacion.getEstado() == Estado.Finalizada) {
+                    System.out.println(reparacion.toStringDetalle());
                     serviciosFinalizados++;
                 }
             }
         }
 
         if(serviciosFinalizados == 0){
-            System.out.println("Todos los servicios se encuentran facturados");
+            System.out.println("No existen servicios en estado de ser modificados por el Administrativo.");
             return;
         }
 
@@ -224,15 +225,15 @@ public class ControllerAdministrativo extends Usuario {
             return;
         } else {
             for (Instalacion instalacion : compania.getInstalaciones()) {
-                if(instalacion.getFactura() == null) {
-                    System.out.println(instalacion.toString());
+                if(instalacion.getFactura() == null && instalacion.getEstado() == Estado.Finalizada) {
+                    System.out.println(instalacion.toStringDetalle());
                     control.add(instalacion.getIdServicio());
                     serviciosFinalizados++;
                 }
             }
             for(Reparacion reparacion: this.compania.getReparaciones()) {
-                if (reparacion.getFactura() == null){
-                    System.out.println(reparacion.toString());
+                if (reparacion.getFactura() == null && reparacion.getEstado() == Estado.Finalizada){
+                    System.out.println(reparacion.toStringDetalle());
                     control.add(reparacion.getIdServicio());
                     serviciosFinalizados++;
                 }
@@ -310,7 +311,7 @@ public class ControllerAdministrativo extends Usuario {
             System.out.println("1 - Costo de materiales adicionales");
             System.out.println("2 - Combustible");
             System.out.println("3 - Almuerzo");
-            System.out.println("4 - Precio final");
+            System.out.println("4 - Ajuste precio final");
             System.out.println("0 - Volver al menú anterior.");
             System.out.println();
             int opcion = ingresarEntero();
@@ -325,7 +326,7 @@ public class ControllerAdministrativo extends Usuario {
                     break;
                 case 2:
                     System.out.println("Ingrese el nuevo valor para Combustible: ");
-                    double valorCombustible = ingresarDouble();
+                    double valorCombustible = sc.nextDouble();
                     instalacion.setCombustible(valorCombustible);
                     instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
@@ -348,10 +349,16 @@ public class ControllerAdministrativo extends Usuario {
                     System.out.println();
                     break;
                 case 4:
-                    System.out.println("Ingrese el nuevo valor para Precio final: ");
-                    double valorPrecioFinal = ingresarDouble();
-                    instalacion.setPrecioFinal(valorPrecioFinal);
-                    System.out.println("Se guardó el valor correctamente.");
+                    System.out.println("Ingrese el porcentaje a descontar del ajuste (1-100%): ");
+                    int descuento = sc.nextInt();
+                    sc.nextLine();
+                    if(descuento > 100 || descuento <= 0){
+                        System.out.println("Valor inválido");
+                        break;
+                    }
+                    float descuentoF = descuento/100;
+                    instalacion.setPrecioFinal(instalacion.getPrecioFinal() - instalacion.getPrecioFinal()*descuentoF);
+                    System.out.println("Se hará un descuento del "+descuento+"%");
                     System.out.println();
                     break;
                 case 0:

@@ -11,7 +11,7 @@ public class Servicio {
     /** Parámetros **/
 
     protected Enumeraciones.TipoServicio tipoServicio;
-    protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
+    protected Map<Integer, Double> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion;
     protected double costoMaterialesAdicionales;
@@ -111,16 +111,6 @@ public class Servicio {
         return (this.precioFinal-this.costoReal)/this.costoReal;
     }
 
-    public Factura generarFactura() {
-        //Ver como generar un ID de factura automatico, y ver como hacer auto refencia a la instancia de este objeto
-
-        //Factura factura = new Factura(1,Servicio,cliente);
-        //Compania.getInstance().getFacturas().add(factura);
-
-        // TODO implementar
-        return null;
-    }
-
     public void finalizarServicio(){
         Compania compania = Compania.getInstance();
         this.estado = Estado.Finalizada;
@@ -133,8 +123,8 @@ public class Servicio {
         this.factura = new Factura(this, this.cliente);
     }
 
-    public void calcularTiempoTrabajado(int horaInicio, int horaFin) {
-
+    public void calcularTiempoTrabajado(double horaFin, int nroTecnico) {
+        this.tiempoTrabajado.put(this.tecnicos.get(nroTecnico).getNroTécnico(), horaFin / 2f);
     }
 
     /** Getters **/
@@ -215,4 +205,6 @@ public class Servicio {
             }
         }
     }
+
+
 }
