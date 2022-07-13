@@ -135,10 +135,10 @@ public class ControllerTecnico extends Usuario {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
                                     if (reparacion.getIdServicio() == sc.nextInt()) {
-                                        //Calcula tiempo trabajado
+                                        /*Calcula tiempo trabajado
                                         while (true) {
-                                            System.out.println("Hora de inicio: " + reparacion.getHora());
-                                            System.out.println("Ingrese la hora de finalizacion: ");
+                                            System.out.println("Ingrese la hora de finalizacion: " +
+                                                    "\n1-0:30");
                                             int horaFin = sc.nextInt();
                                             if (reparacion.getHora() < horaFin && reparacion.getHora() < 23 && horaFin > 1) {
                                                 reparacion.calcularTiempoTrabajado(reparacion.getHora(), horaFin);
@@ -146,7 +146,7 @@ public class ControllerTecnico extends Usuario {
                                             } else {
                                                 System.out.println("Tiempo trabajado incorrecto");
                                             }
-                                        }
+                                        }*/
 
                                         //Ingresa materiales usados
                                         System.out.println("Ingrese los materiales utilizados: ");
@@ -202,8 +202,8 @@ public class ControllerTecnico extends Usuario {
                                     System.out.println("No existen Reparaciones a finalizar");
                                 }
                             }
-                        }
                         break;
+                        }
                     case 2:
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
