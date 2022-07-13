@@ -23,17 +23,21 @@ public class ControllerAdministrativo extends Usuario {
         compania.guardarCliente(cliente888);
         compania.guardarCliente(cliente999);
 
+        int idServicio1 = compania.getUltimoServicio()+1;
         Clases.Tecnico tecnico999 = new Tecnico(123, "Gonzalo", "salta", TipoTecnico.Junior, "Tarde");
         ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
         tecnicosPrueba.add(tecnico999);
-        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente999);
+        Reparacion reparacion = new Reparacion(idServicio1, new Date(), "9:00", tecnicosPrueba, cliente999);
+        compania.incrementarUltimoServicio();
         reparacion.finalizarServicio();
         compania.guardarReparacion(reparacion);
 
+        int idServicio2 = compania.getUltimoServicio()+1;
         Clases.Tecnico tecnico888 = new Tecnico(1234, "Gonzalo", "salta", TipoTecnico.Senior, "Tarde");
         ArrayList<Tecnico> tecnicosPrueba2 = new ArrayList<Tecnico>();
         tecnicosPrueba2.add(tecnico888);
-        Instalacion instalacion = new Instalacion(2, new Date(), "9:00", tecnicosPrueba2, cliente888, compania.getStock());
+        Instalacion instalacion = new Instalacion(idServicio2, new Date(), "9:00", tecnicosPrueba2, cliente888, compania.getStock());
+        compania.incrementarUltimoServicio();
         instalacion.finalizarServicio();
         compania.guardarInstalacion(instalacion);
     }

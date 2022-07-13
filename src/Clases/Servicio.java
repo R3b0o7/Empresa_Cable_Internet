@@ -53,7 +53,8 @@ public class Servicio {
         this.tecnicos = tecnicos;
     }
 
-    public double calcularCostoTiempoTrabajado(Compania compania) {  //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos? LO UNIFICO
+    public double calcularCostoTiempoTrabajado(Compania compania) {
+        //Esto esta calculado en calcularCostoBase, vale la pena tener 2 metodos? LO UNIFICO
         //calculo costo del tiempo trabajado
         double costoTiempo = 0.0d;
         for(Tecnico tecnico: this.tecnicos){
@@ -101,7 +102,7 @@ public class Servicio {
         return costoReal;
     }
 
-   public double calcularPrecioFinal(){
+    public double calcularPrecioFinal(){
         this.precioFinal = (this.costoReal*this.MARGEN) - this.gastos;
         return precioFinal;
    }
@@ -130,6 +131,10 @@ public class Servicio {
 
     public void facturar(){
         this.factura = new Factura(this, this.cliente);
+    }
+
+    public void calcularTiempoTrabajado(int horaInicio, int horaFin) {
+
     }
 
     /** Getters **/
@@ -169,7 +174,7 @@ public class Servicio {
             listado += articulo.getArticulo().toString() + ", ";
         }
         if(listado.length()>0){
-            listado = listado.substring(1, listado.length()-2);
+            listado = listado.substring(0, listado.length()-2);
         }
         return listado;
     };
@@ -203,7 +208,11 @@ public class Servicio {
         this.estado = estado;
     }
 
-    public void addMaterial(String material){
-
+    public void addMaterial(Articulo material, int cantidad){
+        for (Articulo articulo : materiales){
+            if (material.getArticulo() == articulo.getArticulo()){
+                articulo.setCantidad(cantidad);
+            }
+        }
     }
 }
