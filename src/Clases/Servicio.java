@@ -17,6 +17,7 @@ public class Servicio {
     protected double costoMaterialesAdicionales;
     protected boolean almuerzo;
     protected double combustible; //litros
+
     protected int idServicio;
     protected Enumeraciones.Estado estado;
     protected Date fecha;
@@ -25,7 +26,7 @@ public class Servicio {
     protected double MARGEN;
     protected Factura factura;
     protected double costoReal; //es el costo calculado cuando se finaliza el servicio
-    protected double gastos;  //Por que tenemos un gastos?
+    protected double gastos;
     protected double precioFinal;
     protected Cliente cliente;
 

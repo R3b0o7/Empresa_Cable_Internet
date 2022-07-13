@@ -21,18 +21,9 @@ public class Stock {
         stockArticulos.add(articulo);
     }
 
-    public Articulo getArticulo(Enumeraciones.Articulos nombreArticulo){
-        for(Articulo articulo: this.stockArticulos){
-            if(articulo.getArticulo().equals(nombreArticulo)){
-                return articulo;
-            }
-        }
-        return null;
-    }
-
     public boolean verificarStock(Articulo artVerificar) {
         int cantidadActual = 0;                               // variable auxiliar para guardar la cantidad actual de la instancia
-        for(Articulo articulo : stockArticulos)                    // recorro los articulos dentro de la lista de articulos
+        for(Articulo articulo : stockArticulos)               // recorro los articulos dentro de la lista de articulos
             if(articulo.equals(artVerificar)) {               // si el articulo que estoy recorriendo es igual al que busco
                 cantidadActual = articulo.getCantidad();      // asigno a la variable auxiliar la cantidad de la instancia
                 if (cantidadActual > 0)                       // si es mayor a 0 hay stock
@@ -63,6 +54,15 @@ public class Stock {
 
     public ArrayList<Articulo> getStockArticulos() {
         return (ArrayList<Articulo>) stockArticulos;
+    }
+
+    public Articulo getArticulo(Enumeraciones.Articulos nombreArticulo){
+        for(Articulo articulo: this.stockArticulos){
+            if(articulo.getArticulo().equals(nombreArticulo)){
+                return articulo;
+            }
+        }
+        return null;
     }
 
 }

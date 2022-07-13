@@ -125,7 +125,7 @@ public class ControllerTecnico extends Usuario {
                         System.out.println("Saliendo");
                         run = false;
                         break;
-                    case 1:
+                    case 1: //Cargar datos REPARACIONES
                         for (Reparacion reparacion : this.compania.getReparaciones()) {
                             System.out.println("Ingrese su numero de tecnico: ");
                             int nroTecnico = ingresarEntero();
@@ -211,7 +211,7 @@ public class ControllerTecnico extends Usuario {
                             }
                         break;
                         }
-                    case 2:
+                    case 2: //Cargar datos INSTALACIONES
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
                             System.out.println("Ingrese su numero de tecnico: ");
                             int nroTecnico = ingresarEntero();
