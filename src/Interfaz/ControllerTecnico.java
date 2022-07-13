@@ -4,10 +4,12 @@ import Clases.*;
 import Excepciones.GenericException;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ControllerTecnico extends Usuario {
-    Scanner sc = new Scanner(System.in);
+
+    static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerTecnico controladorTecnico;
 
@@ -76,7 +78,7 @@ public class ControllerTecnico extends Usuario {
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()) {
                 System.out.println("Ingrese su numero de tecnico: ");
-                int nroTecnico = sc.nextInt();
+                int nroTecnico = ingresarEntero();
                 for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
                     if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
                         System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
@@ -98,7 +100,7 @@ public class ControllerTecnico extends Usuario {
         } else {
             for (Instalacion instalacion : this.compania.getInstalaciones()) {
                 System.out.println("Ingrese su numero de tecnico: ");
-                int nroTecnico = sc.nextInt();
+                int nroTecnico = ingresarEntero();
                 for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
                     if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
                         System.out.println("ID Instalacion: " + instalacion.getIdServicio() +
@@ -120,7 +122,7 @@ public class ControllerTecnico extends Usuario {
         while (run) {
             System.out.println("Desea cargar datos de 1-REPARACIONES / 2-INSTALACIONES / 0-SALIR: ");
             try {
-                int res = sc.nextInt();
+                int res = ingresarEntero();
                 switch (res) {
                     case 0:
                         System.out.println("Saliendo");
@@ -129,17 +131,17 @@ public class ControllerTecnico extends Usuario {
                     case 1:
                         for (Reparacion reparacion : this.compania.getReparaciones()) {
                             System.out.println("Ingrese su numero de tecnico: ");
-                            int nroTecnico = sc.nextInt();
+                            int nroTecnico = ingresarEntero();
                             for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
                                 if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
-                                    if (reparacion.getIdServicio() == sc.nextInt()) {
+                                    if (reparacion.getIdServicio() == ingresarEntero()) {
                                         /*Calcula tiempo trabajado
                                         while (true) {
                                             System.out.println("Ingrese la hora de finalizacion: " +
                                                     "\n1-0:30");
-                                            int horaFin = sc.nextInt();
+                                            int horaFin = ingresarEntero();
                                             if (reparacion.getHora() < horaFin && reparacion.getHora() < 23 && horaFin > 1) {
                                                 reparacion.calcularTiempoTrabajado(reparacion.getHora(), horaFin);
                                                 break;
@@ -155,8 +157,10 @@ public class ControllerTecnico extends Usuario {
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")){
                                                 System.out.println("Que cantidad?: ");
-                                                int cantidad = sc.nextInt();
+                                                int cantidad = ingresarEntero();
                                                 reparacion.addMaterial(articulo,cantidad);
+                                                this.compania.getStock().getArticulo(articulo.getArticulo()).setCantidad(this.compania.getStock().getArticulo(articulo.getArticulo()).getCantidad()-cantidad);
+                                                this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
                                         System.out.println("Ingrese los materiales utilizados: ");
@@ -171,7 +175,7 @@ public class ControllerTecnico extends Usuario {
                                             if (!material.equals("")) {
                                                 reparacion.setMaterialesAdicionales(material);
                                                 System.out.println("Ingrese el costo del " + material + ": ");
-                                                double costo = sc.nextDouble();
+                                                double costo = ingresarDouble();
                                                 reparacion.setCostoMaterialesAdicionales(costo);
                                                 sc.nextLine();
                                             } else {
@@ -179,9 +183,6 @@ public class ControllerTecnico extends Usuario {
                                                 break;
                                             }
                                         }
-
-                                        //Ingresa el costo del viaje
-                                        //reparacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                         //Ingresa si hubo almuerzo
                                         System.out.println("Realizó almuerzo? (Y/N): ");
@@ -201,7 +202,7 @@ public class ControllerTecnico extends Usuario {
                                         if (confirmacion.equals("Y")) {
                                             System.out.println("Y");
                                             System.out.println("Ingrese los litros cúbicos cargados: ");
-                                            double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
+                                            double costoCombustible = ingresarDouble() * this.compania.getPrecioCombustible();
                                             reparacion.setCombustible(costoCombustible);
                                         } else {
                                             System.out.println("No se realizo compra de combustible");
@@ -218,18 +219,18 @@ public class ControllerTecnico extends Usuario {
                     case 2:
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
                             System.out.println("Ingrese su numero de tecnico: ");
-                            int nroTecnico = sc.nextInt();
+                            int nroTecnico = ingresarEntero();
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
                                 if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
-                                    if (instalacion.getIdServicio() == sc.nextInt()) {
+                                    if (instalacion.getIdServicio() == ingresarEntero()) {
                                         /*Calcula tiempo trabajado
                                         while (true) {
                                             System.out.println("Ingrese la hora de inicio: ");
-                                            int horaInicio = sc.nextInt();
+                                            int horaInicio = ingresarEntero();
                                             System.out.println("Ingrese la hora de finalizacion: ");
-                                            int horaFin = sc.nextInt();
+                                            int horaFin = ingresarEntero();
                                             if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
                                                 //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
                                                 break;
@@ -244,7 +245,7 @@ public class ControllerTecnico extends Usuario {
                                             sc.nextLine();
                                             if (sc.nextLine() == "Y"){
                                                 System.out.println("Que cantidad?: ");
-                                                int cantidad = sc.nextInt();
+                                                int cantidad = ingresarEntero();
                                                 instalacion.addMaterial(articulo,cantidad);
                                             }
                                         }
@@ -257,7 +258,7 @@ public class ControllerTecnico extends Usuario {
                                                 if (!material.equals("")) {
                                                     instalacion.setMaterialesAdicionales(material);
                                                     System.out.println("Ingrese el costo del " + material + ": ");
-                                                    double costo = sc.nextDouble();
+                                                    double costo = ingresarDouble();
                                                     instalacion.setCostoMaterialesAdicionales(costo);
                                                     sc.nextLine();
                                                 } else {
@@ -265,9 +266,6 @@ public class ControllerTecnico extends Usuario {
                                                     break;
                                                 }
                                             }
-
-                                            //Ingresa el costo del viaje
-                                            //instalacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                             //Ingresa si hubo almuerzo
                                             System.out.println("Realizó almuerzo? (Y/N): ");
@@ -287,7 +285,7 @@ public class ControllerTecnico extends Usuario {
                                             if (confirmacion.equals("Y")) {
                                                 System.out.println("Y");
                                                 System.out.println("Ingrese los litros cúbicos cargados: ");
-                                                double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
+                                                double costoCombustible = ingresarDouble() * this.compania.getPrecioCombustible();
                                                 instalacion.setCombustible(costoCombustible);
                                             } else {
                                                 System.out.println("No se realizo compra de combustible");
@@ -308,5 +306,44 @@ public class ControllerTecnico extends Usuario {
                 sc.nextLine();
             }
         }
+    }
+    public static int ingresarEntero() {
+        boolean repetir;
+        int n = 100;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextInt();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Entero. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
+    }
+
+    public static double ingresarDouble() {
+        boolean repetir;
+        double n = 100.0;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextDouble();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Número con Decimales. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
     }
 }

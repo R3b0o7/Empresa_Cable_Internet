@@ -6,15 +6,12 @@ import Excepciones.GenericException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.util.Calendar.DAY_OF_WEEK;
 
 public class ControllerCallCenter extends Usuario {
-
+    static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerCallCenter controladorCallCenter;
 
@@ -36,7 +33,7 @@ public class ControllerCallCenter extends Usuario {
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
-            int opcion = sc.nextInt();
+            int opcion = ingresarEntero();
             switch(opcion) {
                 case 1:
                     this.reservarServicio();
@@ -65,7 +62,7 @@ public class ControllerCallCenter extends Usuario {
         //obtengo cliente
         Cliente cliente;
         System.out.println("Ingrese DNI del cliente: ");
-        int dni = sc.nextInt();
+        int dni = ingresarEntero();
         if (this.compania.getCliente(dni) == null) {
             System.out.println("El cliente no existe.");
             return;
@@ -85,7 +82,7 @@ public class ControllerCallCenter extends Usuario {
         }
         //obtengo tipo de servicio
         System.out.println("Seleccione el tipo de servicio (1-REPARACION/2-INSTALACION)");
-        int tipoServicio = sc.nextInt();
+        int tipoServicio = ingresarEntero();
         String tiposervicioStr = (tipoServicio==1) ? "REPARACION":"INSTALACION";
 
         //Verifico si hay stock para los materiales base
@@ -97,7 +94,7 @@ public class ControllerCallCenter extends Usuario {
 
         //obtengo datos fecha
         System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
-        int turno = sc.nextInt();
+        int turno = ingresarEntero();
         Date fecha;
         try {
             if (turno != 1 && turno != 2) {
@@ -125,6 +122,7 @@ public class ControllerCallCenter extends Usuario {
 
         //obtengo horario
         Agenda agendaModelo = new Agenda();
+        System.out.println(agendaModelo.getEquivalenciaFilaHora().toString());
         System.out.println("Seleccione el horario: ");
         if (turno == 1) {
             for (int k = 0; k < 12; k++) {
@@ -135,7 +133,7 @@ public class ControllerCallCenter extends Usuario {
                 System.out.println(k + "-" + agendaModelo.getEquivalenciaFilaHora().get(k));
             }
         }
-        int horario = sc.nextInt();
+        int horario = ingresarEntero();
         String horarioStr = agendaModelo.getEquivalenciaFilaHora().get(horario);
 
         //obtengo los tecnicos disponibles
@@ -295,7 +293,7 @@ public class ControllerCallCenter extends Usuario {
         //obtengo cliente
         Cliente cliente;
         System.out.println("Ingrese DNI del cliente: ");
-        int dni = sc.nextInt();
+        int dni = ingresarEntero();
         if (this.compania.getCliente(dni) != null) {
             System.out.println("El cliente ya existe.");
             return;
@@ -336,7 +334,7 @@ public class ControllerCallCenter extends Usuario {
         System.out.println("2. EN CURSO");
         System.out.println("3. CANCELADO");
         System.out.println("4. FINALIZADO");
-        int opcion = sc.nextInt();
+        int opcion = ingresarEntero();
         sc.nextLine();
         Estado estado;
         switch (opcion){
@@ -407,6 +405,45 @@ public class ControllerCallCenter extends Usuario {
         SimpleDateFormat sdfInicio = new SimpleDateFormat("dd/MM/yyyy");
         Date fecha = sdfInicio.parse(fechaTexto);
         return fecha;
+    }
+    public static int ingresarEntero() {
+        boolean repetir;
+        int n = 100;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextInt();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Entero. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
+    }
+
+    public static double ingresarDouble() {
+        boolean repetir;
+        double n = 100.0;
+        do {
+            repetir = false;
+            try {
+                n = sc.nextDouble();
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("ERROR. El valor no corresponde a un Número con Decimales. Volver a ingresar: ");
+                repetir = true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        } while (repetir);
+        return n;
     }
 
 }
