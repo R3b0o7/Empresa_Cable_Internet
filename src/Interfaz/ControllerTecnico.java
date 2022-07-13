@@ -151,13 +151,13 @@ public class ControllerTecnico extends Usuario {
                                         }*/
 
                                         //Ingresa materiales usados
-                                        for (Articulo articulo : this.compania.getStock().getArticulos()){
-                                            System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
+                                        for (Articulo articulo : this.compania.getStock().getArticulos()) {
+                                            System.out.println("Utilizó " + articulo.getArticulo() + " (Y/N): ");
                                             String opcion = sc.nextLine();
-                                            if (opcion.equals("Y")){
+                                            if (opcion.equals("Y")) {
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = ingresarEntero();
-                                                reparacion.addMaterial(articulo,cantidad);
+                                                reparacion.addMaterial(articulo, cantidad);
                                                 this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
@@ -201,6 +201,7 @@ public class ControllerTecnico extends Usuario {
                                             System.out.println("No se realizo compra de combustible");
                                         }
                                         System.out.println("DATOS CARGADOS");
+                                        reparacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
@@ -281,6 +282,7 @@ public class ControllerTecnico extends Usuario {
                                             System.out.println("No se realizo compra de combustible");
                                         }
                                         System.out.println("DATOS CARGADOS");
+                                        instalacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");
