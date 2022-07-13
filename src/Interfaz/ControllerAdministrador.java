@@ -1,14 +1,13 @@
 package Interfaz;
 
 import Clases.*;
-import Enumeraciones.Articulos;
 import Enumeraciones.TipoTecnico;
 
-import javax.naming.ldap.Control;
 import java.util.*;
 
 public class ControllerAdministrador extends Usuario{
 
+    static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerAdministrador controladorAdministrador;
 
@@ -25,12 +24,12 @@ public class ControllerAdministrador extends Usuario{
         this.compania = Clases.Compania.getInstance();
 
         //ejecución menu principal
-        Scanner sc = new Scanner(System.in);
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
 
-            int opcion = leerEntero(sc.nextLine());
+            int opcion = leerEntero();
+
             switch(opcion) {
                 case 1:
                     this.abmTecnico();
@@ -104,9 +103,6 @@ public class ControllerAdministrador extends Usuario{
                     System.out.println("Ingrese DNI del Técnico: ");
                     int dni = sc.nextInt();
                     // Validar si existe el técnico antes de crearlo
-                    /** NO SE POR QUE NO FUNCIONA -> cambie los parametros de getTecnico tambien por el numero de
-                        en vez de dni por que lo necesitava, revisar**/
-
                     if (this.compania.getTecnicoDNI(dni) != null) {
                         System.out.println("El Técnico ya existe.");
                         return;
@@ -659,41 +655,24 @@ public class ControllerAdministrador extends Usuario{
         return tipoTecnico;
     }
 
-    public static int leerEntero(String s) {
-        Scanner sc = new Scanner(System.in);
+    public static int leerEntero() {
         boolean repetir;
-        int n=0;
+        int n = 10;
         do {
             repetir = false;
             try {
-                System.out.print(s);
                 n = sc.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido");
+                return n;
+            }
+            catch (InputMismatchException exception) {
+                System.out.println("El valor no corresponde a un número. Volver a ingresar: ");
                 repetir = true;
-            }finally {
+            }
+            finally {
                 sc.nextLine();
             }
         } while (repetir);
         return n;
     }
 
-    public static double leerDouble(String s) {
-        Scanner sc = new Scanner(System.in);
-        boolean repetir;
-        double n=0;
-        do {
-            repetir = false;
-            try {
-                System.out.print(s);
-                n = sc.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido");
-                repetir = true;
-            }finally {
-                sc.nextLine();
-            }
-        } while (repetir);
-        return n;
-    }
 }
