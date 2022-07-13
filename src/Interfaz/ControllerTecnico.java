@@ -121,8 +121,7 @@ public class ControllerTecnico extends Usuario {
         boolean run = true;
         while (run) {
             System.out.println("Desea cargar datos de 1-REPARACIONES / 2-INSTALACIONES / 0-SALIR: ");
-            try {
-                int res = ingresarEntero();
+            int res = ingresarEntero();
                 switch (res) {
                     case 0:
                         System.out.println("Saliendo");
@@ -137,18 +136,6 @@ public class ControllerTecnico extends Usuario {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
                                     if (reparacion.getIdServicio() == ingresarEntero()) {
-                                        /*Calcula tiempo trabajado
-                                        while (true) {
-                                            System.out.println("Ingrese la hora de finalizacion: " +
-                                                    "\n1-0:30");
-                                            int horaFin = ingresarEntero();
-                                            if (reparacion.getHora() < horaFin && reparacion.getHora() < 23 && horaFin > 1) {
-                                                reparacion.calcularTiempoTrabajado(reparacion.getHora(), horaFin);
-                                                break;
-                                            } else {
-                                                System.out.println("Tiempo trabajado incorrecto");
-                                            }
-                                        }*/
 
                                         //Ingresa materiales usados
                                         for (Articulo articulo : this.compania.getStock().getArticulos()) {
@@ -202,6 +189,23 @@ public class ControllerTecnico extends Usuario {
                                         }
                                         System.out.println("DATOS CARGADOS");
                                         reparacion.finalizarServicio();
+
+                                        //Calcula tiempo trabajado
+                                        while (true) {
+                                            System.out.println("Ingrese la cantidad de horas trabajadas (0.5 = media hora, 1 = una hora, 1.5 = una hora y media, etc): ");
+                                            for (double k = 0; k < 24; k+=0.5f){
+                                                if (Double.valueOf(reparacion.getHora()) < k ){
+                                                    System.out.println(k+"- "+k);
+                                                }
+                                            }
+                                            double horaFin = ingresarDouble();
+                                            if (horaFin < 25 && horaFin > 0) {
+                                                reparacion.calcularTiempoTrabajado(horaFin,nroTecnico);
+                                                break;
+                                            } else {
+                                                System.out.println("Tiempo trabajado incorrecto");
+                                            }
+                                        }
                                     }
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
@@ -218,20 +222,6 @@ public class ControllerTecnico extends Usuario {
                                     serviciosAsignados();
                                     System.out.println("Ingrese el numero de Instalacion a cargar datos: ");
                                     if (instalacion.getIdServicio() == ingresarEntero()) {
-                                        /*Calcula tiempo trabajado
-                                        while (true) {
-                                            System.out.println("Ingrese la hora de inicio: ");
-                                            int horaInicio = ingresarEntero();
-                                            System.out.println("Ingrese la hora de finalizacion: ");
-                                            int horaFin = ingresarEntero();
-                                            if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
-                                                //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
-                                                break;
-                                            } else {
-                                                System.out.println("Tiempo trabajado incorrecto");
-                                            }
-                                        }*/
-
                                         //Ingresa materiales usados
                                         for (Articulo articulo : this.compania.getStock().getArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
@@ -283,6 +273,20 @@ public class ControllerTecnico extends Usuario {
                                         }
                                         System.out.println("DATOS CARGADOS");
                                         instalacion.finalizarServicio();
+
+                                        /*Calcula tiempo trabajado
+                                        while (true) {
+                                            System.out.println("Ingrese la hora de inicio: ");
+                                            int horaInicio = ingresarEntero();
+                                            System.out.println("Ingrese la hora de finalizacion: ");
+                                            int horaFin = ingresarEntero();
+                                            if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
+                                                //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
+                                                break;
+                                            } else {
+                                                System.out.println("Tiempo trabajado incorrecto");
+                                            }
+                                        }*/
                                     }
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");
@@ -293,12 +297,9 @@ public class ControllerTecnico extends Usuario {
                     default:
                         System.out.println("No se ingreso una opcion correcta");
                 }
-            } catch (Exception e) {
-                System.out.println("No se ingreso un numero");
-                sc.nextLine();
             }
         }
-    }
+
     public static int ingresarEntero() {
         boolean repetir;
         int n = 100;

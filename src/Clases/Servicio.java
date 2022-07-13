@@ -11,7 +11,7 @@ public class Servicio {
     /** Parámetros **/
 
     protected Enumeraciones.TipoServicio tipoServicio;
-    protected Map<Integer, Float> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
+    protected Map<Integer, Double> tiempoTrabajado; //la clave corresponde al idTecnico y el valor al tiempo trabajado
     protected ArrayList <Articulo> materiales;
     protected String materialesAdicionalesDescripcion;
     protected double costoMaterialesAdicionales;
@@ -123,8 +123,8 @@ public class Servicio {
         this.factura = new Factura(this, this.cliente);
     }
 
-    public void calcularTiempoTrabajado(int horaInicio, int horaFin) {
-
+    public void calcularTiempoTrabajado(double horaFin, int nroTecnico) {
+        this.tiempoTrabajado.put(this.tecnicos.get(nroTecnico).getNroTécnico(), horaFin / 2f);
     }
 
     /** Getters **/

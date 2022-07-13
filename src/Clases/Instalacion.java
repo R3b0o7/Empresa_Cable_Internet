@@ -26,9 +26,9 @@ public class Instalacion extends Servicio {
 
         super(idServicio, fecha, horario, tecnicos, cliente);
         this.tipoServicio = TipoServicio.Instalación;
-        this.tiempoTrabajado = new HashMap<Integer, Float>();
+        this.tiempoTrabajado = new HashMap<Integer, Double>();
         for(Tecnico tecnico: tecnicos){
-            tiempoTrabajado.put(tecnico.getNroTécnico(), 1.0f);
+            tiempoTrabajado.put(tecnico.getNroTécnico(), 1.0);
         }
         this.setMaterialesBasicos(stock);
     }

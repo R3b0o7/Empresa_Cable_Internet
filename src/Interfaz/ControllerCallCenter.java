@@ -167,7 +167,7 @@ public class ControllerCallCenter extends Usuario {
             }
             System.out.println("---------------------------------");
             System.out.println();
-            int nroTecnico = sc.nextInt();
+            int nroTecnico = ingresarEntero();
             if (nroTecnico == 0) {
                 escape = 0;
             } else if(!idTecnicosDisponibles.contains(nroTecnico)){
@@ -218,7 +218,6 @@ public class ControllerCallCenter extends Usuario {
         System.out.println("El costo base del servicio es:   "+costoBase);
         //solicito confirmacion
         System.out.println();
-        sc.nextLine();
         System.out.println("¿Confirma el servicio? Y/n");
         String confirmacion = sc.nextLine();
 

@@ -24,9 +24,9 @@ public class Reparacion extends Servicio {
     public Reparacion(int idServicio, Date fecha, String horario, ArrayList<Tecnico> tecnicos, Cliente cliente) {
         super(idServicio, fecha, horario, tecnicos, cliente);
         this.tipoServicio = TipoServicio.Reparación;
-        this.tiempoTrabajado = new HashMap<Integer, Float>();
+        this.tiempoTrabajado = new HashMap<Integer, Double>();
         for(Tecnico tecnico: tecnicos){
-            tiempoTrabajado.put(tecnico.getNroTécnico(), 0.5f);
+            tiempoTrabajado.put(tecnico.getNroTécnico(), 0.5);
         }
     }
 
