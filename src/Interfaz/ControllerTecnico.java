@@ -152,7 +152,8 @@ public class ControllerTecnico extends Usuario {
                                         for (Articulo articulo : this.compania.getStock().getArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
                                             sc.nextLine();
-                                            if (sc.nextLine() == "Y"){
+                                            String opcion = sc.nextLine();
+                                            if (opcion.equals("Y")){
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = sc.nextInt();
                                                 reparacion.addMaterial(articulo,cantidad);
