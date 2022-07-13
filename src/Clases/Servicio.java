@@ -102,7 +102,7 @@ public class Servicio {
         return costoReal;
     }
 
-   public double calcularPrecioFinal(){
+    public double calcularPrecioFinal(){
         this.precioFinal = (this.costoReal*this.MARGEN) - this.gastos;
         return precioFinal;
    }

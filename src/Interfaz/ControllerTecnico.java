@@ -129,76 +129,77 @@ public class ControllerTecnico extends Usuario {
                     case 1:
                         for (Reparacion reparacion : this.compania.getReparaciones()) {
                             for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
-                                for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
-                                    if (tecnicoReparacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
-                                        serviciosAsignados();
-                                        System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
-                                        if (reparacion.getIdServicio() == sc.nextInt()) {
-                                            //Calcula tiempo trabajado
-                                            while (true) {
-                                                System.out.println("Ingrese la hora de inicio: ");
-                                                int horaInicio = sc.nextInt();
-                                                System.out.println("Ingrese la hora de finalizacion: ");
-                                                int horaFin = sc.nextInt();
-                                                if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
-                                                    reparacion.calcularTiempoTrabajado(horaInicio, horaFin);
-                                                    break;
-                                                } else {
-                                                    System.out.println("Tiempo trabajado incorrecto");
-                                                }
-                                            }
-
-                                            //Ingresa materiales usados
-                                            System.out.println("Ingrese los materiales utilizados: ");
-                                            reparacion.addMaterial(sc.nextLine());
-
-                                            //Ingresa materiales adicionales
-                                            sc.nextLine();
-                                            while (true) {
-                                                System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
-                                                String material = sc.nextLine();
-                                                if (!material.equals("")) {
-                                                    reparacion.setMaterialesAdicionales(material);
-                                                    System.out.println("Ingrese el costo del " + material + ": ");
-                                                    double costo = sc.nextDouble();
-                                                    reparacion.setCostoMaterialesAdicionales(costo);
-                                                    sc.nextLine();
-                                                } else {
-                                                    System.out.println("No se ingresan materiales adicionales");
-                                                    break;
-                                                }
-                                            }
-
-                                            //Ingresa el costo del viaje
-                                            //reparacion.setCostoDeViaje(this.compania.getCostoDeViaje());
-
-                                            //Ingresa si hubo almuerzo
-                                            System.out.println("Realizó almuerzo? (Y/N): ");
-                                            sc.nextLine();
-                                            String confirmacion = sc.nextLine();
-                                            if (confirmacion.equals("Y")) {
-                                                System.out.println("Almuerzo cargado");
-                                                reparacion.setAlmuerzo(true);
+                                System.out.println("Ingrese su numero de tecnico: ");
+                                int nroTecnico = sc.nextInt();
+                                if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
+                                    serviciosAsignados();
+                                    System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
+                                    if (reparacion.getIdServicio() == sc.nextInt()) {
+                                        //Calcula tiempo trabajado
+                                        while (true) {
+                                            System.out.println("Hora de inicio: " + reparacion.getHora());
+                                            System.out.println("Ingrese la hora de finalizacion: ");
+                                            int horaFin = sc.nextInt();
+                                            if (reparacion.getHora() < horaFin && reparacion.getHora() < 23 && horaFin > 1) {
+                                                reparacion.calcularTiempoTrabajado(reparacion.getHora(), horaFin);
+                                                break;
                                             } else {
-                                                System.out.println("No se realizo almuerzo");
-                                                reparacion.setAlmuerzo(false);
+                                                System.out.println("Tiempo trabajado incorrecto");
                                             }
-
-                                            //Indica si compro combustible
-                                            System.out.println("Compro combustible? (Y/N): ");
-                                            sc.nextLine();
-                                            if (confirmacion.equals("Y")) {
-                                                System.out.println("Y");
-                                                System.out.println("Ingrese los litros cúbicos cargados: ");
-                                                double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
-                                                reparacion.setCombustible(costoCombustible);
-                                            } else {
-                                                System.out.println("No se realizo compra de combustible");
-                                            }
-
-                                            System.out.println("DATOS CARGADOS");
                                         }
+
+                                        //Ingresa materiales usados
+                                        System.out.println("Ingrese los materiales utilizados: ");
+                                        reparacion.addMaterial(sc.nextLine());
+
+                                        //Ingresa materiales adicionales
+                                        sc.nextLine();
+                                        while (true) {
+                                            System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
+                                            String material = sc.nextLine();
+                                            if (!material.equals("")) {
+                                                reparacion.setMaterialesAdicionales(material);
+                                                System.out.println("Ingrese el costo del " + material + ": ");
+                                                double costo = sc.nextDouble();
+                                                reparacion.setCostoMaterialesAdicionales(costo);
+                                                sc.nextLine();
+                                            } else {
+                                                System.out.println("No se ingresan materiales adicionales");
+                                                break;
+                                            }
+                                        }
+
+                                        //Ingresa el costo del viaje
+                                        //reparacion.setCostoDeViaje(this.compania.getCostoDeViaje());
+
+                                        //Ingresa si hubo almuerzo
+                                        System.out.println("Realizó almuerzo? (Y/N): ");
+                                        sc.nextLine();
+                                        String confirmacion = sc.nextLine();
+                                        if (confirmacion.equals("Y")) {
+                                            System.out.println("Almuerzo cargado");
+                                            reparacion.setAlmuerzo(true);
+                                        } else {
+                                            System.out.println("No se realizo almuerzo");
+                                            reparacion.setAlmuerzo(false);
+                                        }
+
+                                        //Indica si compro combustible
+                                        System.out.println("Compro combustible? (Y/N): ");
+                                        sc.nextLine();
+                                        if (confirmacion.equals("Y")) {
+                                            System.out.println("Y");
+                                            System.out.println("Ingrese los litros cúbicos cargados: ");
+                                            double costoCombustible = sc.nextDouble() * this.compania.getPrecioCombustible();
+                                            reparacion.setCombustible(costoCombustible);
+                                        } else {
+                                            System.out.println("No se realizo compra de combustible");
+                                        }
+
+                                        System.out.println("DATOS CARGADOS");
                                     }
+                                } else {
+                                    System.out.println("No existen Reparaciones a finalizar");
                                 }
                             }
                         }
@@ -206,24 +207,25 @@ public class ControllerTecnico extends Usuario {
                     case 2:
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
-                                for (Tecnico tecnicoUsuario : this.compania.getTecnicos()) {
-                                    if (tecnicoInstalacion.getNroTécnico() == tecnicoUsuario.getNroTécnico()) {
-                                        serviciosAsignados();
-                                        System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
-                                        if (instalacion.getIdServicio() == sc.nextInt()) {
-                                            //Calcula tiempo trabajado
-                                            while (true) {
-                                                System.out.println("Ingrese la hora de inicio: ");
-                                                int horaInicio = sc.nextInt();
-                                                System.out.println("Ingrese la hora de finalizacion: ");
-                                                int horaFin = sc.nextInt();
-                                                if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
-                                                    //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
-                                                    break;
-                                                } else {
-                                                    System.out.println("Tiempo trabajado incorrecto");
-                                                }
+                                System.out.println("Ingrese su numero de tecnico: ");
+                                int nroTecnico = sc.nextInt();
+                                if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
+                                    serviciosAsignados();
+                                    System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
+                                    if (instalacion.getIdServicio() == sc.nextInt()) {
+                                        //Calcula tiempo trabajado
+                                        while (true) {
+                                            System.out.println("Ingrese la hora de inicio: ");
+                                            int horaInicio = sc.nextInt();
+                                            System.out.println("Ingrese la hora de finalizacion: ");
+                                            int horaFin = sc.nextInt();
+                                            if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
+                                                //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
+                                                break;
+                                            } else {
+                                                System.out.println("Tiempo trabajado incorrecto");
                                             }
+                                        }
 
                                             //Ingresa materiales usados
                                             System.out.println("Ingrese los materiales utilizados: ");
@@ -273,8 +275,9 @@ public class ControllerTecnico extends Usuario {
                                                 System.out.println("No se realizo compra de combustible");
                                             }
                                             System.out.println("DATOS CARGADOS");
-                                        }
                                     }
+                                } else {
+                                    System.out.println("No existen Instalaciones a finalizar");
                                 }
                             }
                         }
