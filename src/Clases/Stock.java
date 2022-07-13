@@ -7,22 +7,22 @@ public class Stock {
 
     /** Parámetros **/
 
-    private Collection<Articulo> articulos;
+    private Collection<Articulo> stockArticulos;
 
     /** Constructor **/
 
     public Stock() {
-        articulos = new ArrayList<Articulo>();
+        stockArticulos = new ArrayList<Articulo>();
     }
 
     /** Metodos de la clase **/
 
     public void agregarArticulo(Articulo articulo) {          // Agrega un articulo a la lista de articulos
-        articulos.add(articulo);
+        stockArticulos.add(articulo);
     }
 
     public Articulo getArticulo(Enumeraciones.Articulos nombreArticulo){
-        for(Articulo articulo: this.articulos){
+        for(Articulo articulo: this.stockArticulos){
             if(articulo.getArticulo().equals(nombreArticulo)){
                 return articulo;
             }
@@ -32,7 +32,7 @@ public class Stock {
 
     public boolean verificarStock(Articulo artVerificar) {
         int cantidadActual = 0;                               // variable auxiliar para guardar la cantidad actual de la instancia
-        for(Articulo articulo : articulos)                    // recorro los articulos dentro de la lista de articulos
+        for(Articulo articulo : stockArticulos)                    // recorro los articulos dentro de la lista de articulos
             if(articulo.equals(artVerificar)) {               // si el articulo que estoy recorriendo es igual al que busco
                 cantidadActual = articulo.getCantidad();      // asigno a la variable auxiliar la cantidad de la instancia
                 if (cantidadActual > 0)                       // si es mayor a 0 hay stock
@@ -49,7 +49,7 @@ public class Stock {
         materialesInstalacion.put(Articulos.Decodificador, 1.0f);
         materialesInstalacion.put(Articulos.Modem, 1.0f);
         materialesInstalacion.put(Articulos.Divisor, 1.0f);
-        for(Articulo articulo: articulos){
+        for(Articulo articulo: stockArticulos){
             if(materialesInstalacion.get(articulo.getArticulo()) != null){
                 if(articulo.getCantidad() <= materialesInstalacion.get(articulo.getArticulo())){
                     res = false;
@@ -61,8 +61,8 @@ public class Stock {
 
     /** Gettes **/
 
-    public ArrayList<Articulo> getArticulos() {
-        return (ArrayList<Articulo>) articulos;
+    public ArrayList<Articulo> getStockArticulos() {
+        return (ArrayList<Articulo>) stockArticulos;
     }
 
 }

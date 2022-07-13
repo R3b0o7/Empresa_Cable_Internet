@@ -20,13 +20,13 @@ public class Articulo {
 
     /** Metodos de la clase **/
 
-    public int agregarCantidadArticulos(int cantidad){
+    public int agregarCantidadArticulos(int cantidad) {
         // Suma la cantidad ingresada a la cantidad de articulos existentes
         this.cantidad += cantidad;
         return this.cantidad;
     }
 
-    /** Getters**/
+    /** Getters **/
 
     public int getCantidad() {
         return cantidad;
@@ -46,14 +46,7 @@ public class Articulo {
         this.precio = precio;
     }
 
-    public void setCantidad(int cantidad){this.cantidad = cantidad;}
-
-    @Override
-    public String toString() {
-        return "Articulo{" +
-                "articulo=" + articulo +
-                ", cantidad=" + cantidad +
-                ", precio=" + precio +
-                '}';
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

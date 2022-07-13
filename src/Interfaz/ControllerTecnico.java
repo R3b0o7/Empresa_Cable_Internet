@@ -1,9 +1,7 @@
 package Interfaz;
 
 import Clases.*;
-import Excepciones.GenericException;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -151,7 +149,7 @@ public class ControllerTecnico extends Usuario {
                                         }*/
 
                                         //Ingresa materiales usados
-                                        for (Articulo articulo : this.compania.getStock().getArticulos()) {
+                                        for (Articulo articulo : this.compania.getStock().getStockArticulos()) {
                                             System.out.println("Utilizó " + articulo.getArticulo() + " (Y/N): ");
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")) {
@@ -233,7 +231,7 @@ public class ControllerTecnico extends Usuario {
                                         }*/
 
                                         //Ingresa materiales usados
-                                        for (Articulo articulo : this.compania.getStock().getArticulos()){
+                                        for (Articulo articulo : this.compania.getStock().getStockArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")){

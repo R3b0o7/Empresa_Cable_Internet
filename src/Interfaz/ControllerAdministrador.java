@@ -274,11 +274,11 @@ public class ControllerAdministrador extends Usuario{
                 case 1: //Alta de artículo -> Alta de Stock
                     System.out.println("ALTA DE ARTICULOS EN EL STOCK");
                     System.out.println("La lista de existencias actual es:\n" +
-                            "1. " + compania.getStock().getArticulos().get(0).getArticulo() + ": " + compania.getStock().getArticulos().get(0).getCantidad() + " articulos\n" +
-                            "2. " + compania.getStock().getArticulos().get(1).getArticulo() + ": " + compania.getStock().getArticulos().get(1).getCantidad() + " articulos\n" +
-                            "3. " + compania.getStock().getArticulos().get(2).getArticulo() + ": " + compania.getStock().getArticulos().get(2).getCantidad() + " articulos\n" +
-                            "4. " + compania.getStock().getArticulos().get(3).getArticulo() + ": " + compania.getStock().getArticulos().get(3).getCantidad() + " articulos\n" +
-                            "5. " + compania.getStock().getArticulos().get(4).getArticulo() + ": " + compania.getStock().getArticulos().get(4).getCantidad() + " articulos\n");
+                            "1. " + compania.getStock().getStockArticulos().get(0).getArticulo() + ": " + compania.getStock().getStockArticulos().get(0).getCantidad() + " articulos\n" +
+                            "2. " + compania.getStock().getStockArticulos().get(1).getArticulo() + ": " + compania.getStock().getStockArticulos().get(1).getCantidad() + " articulos\n" +
+                            "3. " + compania.getStock().getStockArticulos().get(2).getArticulo() + ": " + compania.getStock().getStockArticulos().get(2).getCantidad() + " articulos\n" +
+                            "4. " + compania.getStock().getStockArticulos().get(3).getArticulo() + ": " + compania.getStock().getStockArticulos().get(3).getCantidad() + " articulos\n" +
+                            "5. " + compania.getStock().getStockArticulos().get(4).getArticulo() + ": " + compania.getStock().getStockArticulos().get(4).getCantidad() + " articulos\n");
 
                     boolean run1 = true;
                     while(run1){
@@ -288,45 +288,45 @@ public class ControllerAdministrador extends Usuario{
                             case 1:
                                 System.out.println("Ingrese la cantidad de articulos de Cable a agregar:");
                                 int nuevoCantidad = ingresarEntero();
-                                compania.getStock().getArticulos().get(0).agregarCantidadArticulos(nuevoCantidad);
+                                compania.getStock().getStockArticulos().get(0).agregarCantidadArticulos(nuevoCantidad);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad + ", con un total de "
-                                        + compania.getStock().getArticulos().get(0).getCantidad() + " articulos en existencias de Cable");
+                                        + compania.getStock().getStockArticulos().get(0).getCantidad() + " articulos en existencias de Cable");
                                 System.out.println();
                                 run1 = false;
                                 break;
                             case 2:
                                 System.out.println("Ingrese la cantidad de articulos de Conector coaxial RG6 a agregar:");
                                 int nuevoCantidad2 = ingresarEntero();
-                                compania.getStock().getArticulos().get(1).agregarCantidadArticulos(nuevoCantidad2);
+                                compania.getStock().getStockArticulos().get(1).agregarCantidadArticulos(nuevoCantidad2);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad2 + ", con un total de "
-                                        + compania.getStock().getArticulos().get(1).getCantidad() + " articulos en existencias de Conector coaxial RG6");
+                                        + compania.getStock().getStockArticulos().get(1).getCantidad() + " articulos en existencias de Conector coaxial RG6");
                                 System.out.println();
                                 run1 = false;
                                 break;
                             case 3:
                                 System.out.println("Ingrese la cantidad de articulos de Decodificador a agregar:");
                                 int nuevoCantidad3 = ingresarEntero();
-                                compania.getStock().getArticulos().get(2).agregarCantidadArticulos(nuevoCantidad3);
+                                compania.getStock().getStockArticulos().get(2).agregarCantidadArticulos(nuevoCantidad3);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad3 + ", con un total de "
-                                        + compania.getStock().getArticulos().get(2).getCantidad() + " articulos en existencias de Decodificador");
+                                        + compania.getStock().getStockArticulos().get(2).getCantidad() + " articulos en existencias de Decodificador");
                                 System.out.println();
                                 run1 = false;
                                 break;
                             case 4:
                                 System.out.println("Ingrese la cantidad de articulos de Divisor a agregar:");
                                 int nuevoCantidad4 = ingresarEntero();
-                                compania.getStock().getArticulos().get(3).agregarCantidadArticulos(nuevoCantidad4);
+                                compania.getStock().getStockArticulos().get(3).agregarCantidadArticulos(nuevoCantidad4);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad4 + ", con un total de "
-                                        + compania.getStock().getArticulos().get(3).getCantidad() + " articulos en existencias de Divisor");
+                                        + compania.getStock().getStockArticulos().get(3).getCantidad() + " articulos en existencias de Divisor");
                                 System.out.println();
                                 run1 = false;
                                 break;
                             case 5:
                                 System.out.println("Ingrese la cantidad de articulos de Modem a agregar:");
                                 int nuevoCantidad5 = ingresarEntero();
-                                compania.getStock().getArticulos().get(4).agregarCantidadArticulos(nuevoCantidad5);
+                                compania.getStock().getStockArticulos().get(4).agregarCantidadArticulos(nuevoCantidad5);
                                 System.out.println("La cantidad agregada de articulos es de " + nuevoCantidad5 + ", con un total de "
-                                        + compania.getStock().getArticulos().get(4).getCantidad() + " articulos en existencias de Modem");
+                                        + compania.getStock().getStockArticulos().get(4).getCantidad() + " articulos en existencias de Modem");
                                 System.out.println();
                                 run1 = false;
                                 break;
@@ -336,11 +336,11 @@ public class ControllerAdministrador extends Usuario{
                 case 2: //Baja de artículo -> Baja de Stock
                     System.out.println("BAJA DE ARTICULOS EN EL STOCK");
                     System.out.println("La lista de existencias actual es:\n" +
-                            "1. " + compania.getStock().getArticulos().get(0).getArticulo() + ": " + compania.getStock().getArticulos().get(0).getCantidad() + " articulos\n" +
-                            "2. " + compania.getStock().getArticulos().get(1).getArticulo() + ": " + compania.getStock().getArticulos().get(1).getCantidad() + " articulos\n" +
-                            "3. " + compania.getStock().getArticulos().get(2).getArticulo() + ": " + compania.getStock().getArticulos().get(2).getCantidad() + " articulos\n" +
-                            "4. " + compania.getStock().getArticulos().get(3).getArticulo() + ": " + compania.getStock().getArticulos().get(3).getCantidad() + " articulos\n" +
-                            "5. " + compania.getStock().getArticulos().get(4).getArticulo() + ": " + compania.getStock().getArticulos().get(4).getCantidad() + " articulos\n");
+                            "1. " + compania.getStock().getStockArticulos().get(0).getArticulo() + ": " + compania.getStock().getStockArticulos().get(0).getCantidad() + " articulos\n" +
+                            "2. " + compania.getStock().getStockArticulos().get(1).getArticulo() + ": " + compania.getStock().getStockArticulos().get(1).getCantidad() + " articulos\n" +
+                            "3. " + compania.getStock().getStockArticulos().get(2).getArticulo() + ": " + compania.getStock().getStockArticulos().get(2).getCantidad() + " articulos\n" +
+                            "4. " + compania.getStock().getStockArticulos().get(3).getArticulo() + ": " + compania.getStock().getStockArticulos().get(3).getCantidad() + " articulos\n" +
+                            "5. " + compania.getStock().getStockArticulos().get(4).getArticulo() + ": " + compania.getStock().getStockArticulos().get(4).getCantidad() + " articulos\n");
 
                     boolean run2 = true;
                     while(run2){
@@ -350,75 +350,75 @@ public class ControllerAdministrador extends Usuario{
                             case 1:
                                 System.out.println("Ingrese la cantidad de articulos de Cable a dar de baja:");
                                 int nuevoCantidad = ingresarEntero();
-                                compania.getStock().getArticulos().get(0).agregarCantidadArticulos(-nuevoCantidad);
-                                if (compania.getStock().getArticulos().get(0).getCantidad() < 0){
+                                compania.getStock().getStockArticulos().get(0).agregarCantidadArticulos(-nuevoCantidad);
+                                if (compania.getStock().getStockArticulos().get(0).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
-                                    compania.getStock().getArticulos().get(0).agregarCantidadArticulos(nuevoCantidad);
+                                    compania.getStock().getStockArticulos().get(0).agregarCantidadArticulos(nuevoCantidad);
                                     run2 = false;
                                     break;
                                 }
                                 System.out.println("La cantidad dada de baja de articulos es de " + nuevoCantidad + " ,con un total de "
-                                        + compania.getStock().getArticulos().get(0).getCantidad() + " articulos en existencias de Cable");
+                                        + compania.getStock().getStockArticulos().get(0).getCantidad() + " articulos en existencias de Cable");
                                 System.out.println();
                                 run2 = false;
                                 break;
                             case 2:
                                 System.out.println("Ingrese la cantidad de articulos de Conector coaxial RG6 a dar de baja:");
                                 int nuevoCantidad2 = ingresarEntero();
-                                compania.getStock().getArticulos().get(1).agregarCantidadArticulos(-nuevoCantidad2);
-                                if (compania.getStock().getArticulos().get(1).getCantidad() < 0){
+                                compania.getStock().getStockArticulos().get(1).agregarCantidadArticulos(-nuevoCantidad2);
+                                if (compania.getStock().getStockArticulos().get(1).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
-                                    compania.getStock().getArticulos().get(1).agregarCantidadArticulos(nuevoCantidad2);
+                                    compania.getStock().getStockArticulos().get(1).agregarCantidadArticulos(nuevoCantidad2);
                                     run2 = false;
                                     break;
                                 }
                                 System.out.println("La cantidad dada de baja de articulos es de " + nuevoCantidad2 + " ,con un total de "
-                                        + compania.getStock().getArticulos().get(1).getCantidad() + " articulos en existencias de Conector coaxial RG6");
+                                        + compania.getStock().getStockArticulos().get(1).getCantidad() + " articulos en existencias de Conector coaxial RG6");
                                 System.out.println();
                                 run2 = false;
                                 break;
                             case 3:
                                 System.out.println("Ingrese la cantidad de articulos de Decodificador a dar de baja:");
                                 int nuevoCantidad3 = ingresarEntero();
-                                compania.getStock().getArticulos().get(2).agregarCantidadArticulos(-nuevoCantidad3);
-                                if (compania.getStock().getArticulos().get(2).getCantidad() < 0){
+                                compania.getStock().getStockArticulos().get(2).agregarCantidadArticulos(-nuevoCantidad3);
+                                if (compania.getStock().getStockArticulos().get(2).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
-                                    compania.getStock().getArticulos().get(2).agregarCantidadArticulos(nuevoCantidad3);
+                                    compania.getStock().getStockArticulos().get(2).agregarCantidadArticulos(nuevoCantidad3);
                                     run2 = false;
                                     break;
                                 }
                                 System.out.println("La cantidad dada de baja de articulos es de " + nuevoCantidad3 + " ,con un total de "
-                                        + compania.getStock().getArticulos().get(2).getCantidad() + " articulos en existencias de Decodificador");
+                                        + compania.getStock().getStockArticulos().get(2).getCantidad() + " articulos en existencias de Decodificador");
                                 System.out.println();
                                 run2 = false;
                                 break;
                             case 4:
                                 System.out.println("Ingrese la cantidad de articulos de Divisor a dar de baja:");
                                 int nuevoCantidad4 = ingresarEntero();
-                                compania.getStock().getArticulos().get(3).agregarCantidadArticulos(-nuevoCantidad4);
-                                if (compania.getStock().getArticulos().get(3).getCantidad() < 0){
+                                compania.getStock().getStockArticulos().get(3).agregarCantidadArticulos(-nuevoCantidad4);
+                                if (compania.getStock().getStockArticulos().get(3).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
-                                    compania.getStock().getArticulos().get(3).agregarCantidadArticulos(nuevoCantidad4);
+                                    compania.getStock().getStockArticulos().get(3).agregarCantidadArticulos(nuevoCantidad4);
                                     run2 = false;
                                     break;
                                 }
                                 System.out.println("La cantidad dada de baja de articulos es de " + nuevoCantidad4 + " ,con un total de "
-                                        + compania.getStock().getArticulos().get(3).getCantidad() + " articulos en existencias de Divisor");
+                                        + compania.getStock().getStockArticulos().get(3).getCantidad() + " articulos en existencias de Divisor");
                                 System.out.println();
                                 run2 = false;
                                 break;
                             case 5:
                                 System.out.println("Ingrese la cantidad de articulos de Modem a dar de baja:");
                                 int nuevoCantidad5 = ingresarEntero();
-                                compania.getStock().getArticulos().get(4).agregarCantidadArticulos(-nuevoCantidad5);
-                                if (compania.getStock().getArticulos().get(4).getCantidad() < 0){
+                                compania.getStock().getStockArticulos().get(4).agregarCantidadArticulos(-nuevoCantidad5);
+                                if (compania.getStock().getStockArticulos().get(4).getCantidad() < 0){
                                     System.out.println("La cantidad a dar de baja es superior a la cantidad de existencias del articulo");
-                                    compania.getStock().getArticulos().get(4).agregarCantidadArticulos(nuevoCantidad5);
+                                    compania.getStock().getStockArticulos().get(4).agregarCantidadArticulos(nuevoCantidad5);
                                     run2 = false;
                                     break;
                                 }
                                 System.out.println("La cantidad dada de baja de articulos es de " + nuevoCantidad5 + " ,con un total de "
-                                        + compania.getStock().getArticulos().get(4).getCantidad() + " articulos en existencias de Modem");
+                                        + compania.getStock().getStockArticulos().get(4).getCantidad() + " articulos en existencias de Modem");
                                 System.out.println();
                                 run2 = false;
                                 break;
@@ -428,11 +428,11 @@ public class ControllerAdministrador extends Usuario{
                 case 3: //Modificación de artículo -> cambio de preico
                     System.out.println("MODIFICAR PRECIO");
                     System.out.println("La lista de precio actual es:\n" +
-                            "1. " + compania.getStock().getArticulos().get(0).getArticulo() + ": " + compania.getStock().getArticulos().get(0).getPrecio() + "$\n" +
-                            "2. " + compania.getStock().getArticulos().get(1).getArticulo() + ": " + compania.getStock().getArticulos().get(1).getPrecio() + "$\n" +
-                            "3. " + compania.getStock().getArticulos().get(2).getArticulo() + ": " + compania.getStock().getArticulos().get(2).getPrecio() + "$\n" +
-                            "4. " + compania.getStock().getArticulos().get(3).getArticulo() + ": " + compania.getStock().getArticulos().get(3).getPrecio() + "$\n" +
-                            "5. " + compania.getStock().getArticulos().get(4).getArticulo() + ": " + compania.getStock().getArticulos().get(4).getPrecio() + "$\n");
+                            "1. " + compania.getStock().getStockArticulos().get(0).getArticulo() + ": " + compania.getStock().getStockArticulos().get(0).getPrecio() + "$\n" +
+                            "2. " + compania.getStock().getStockArticulos().get(1).getArticulo() + ": " + compania.getStock().getStockArticulos().get(1).getPrecio() + "$\n" +
+                            "3. " + compania.getStock().getStockArticulos().get(2).getArticulo() + ": " + compania.getStock().getStockArticulos().get(2).getPrecio() + "$\n" +
+                            "4. " + compania.getStock().getStockArticulos().get(3).getArticulo() + ": " + compania.getStock().getStockArticulos().get(3).getPrecio() + "$\n" +
+                            "5. " + compania.getStock().getStockArticulos().get(4).getArticulo() + ": " + compania.getStock().getStockArticulos().get(4).getPrecio() + "$\n");
 
                     boolean run3 = true;
                     while (run3) {
@@ -442,7 +442,7 @@ public class ControllerAdministrador extends Usuario{
                             case 1:
                                 System.out.println("Ingrese el nuevo precio para el Cable:");
                                 double nuevoPrecio = ingresarDouble();
-                                compania.getStock().getArticulos().get(0).setPrecio(nuevoPrecio);
+                                compania.getStock().getStockArticulos().get(0).setPrecio(nuevoPrecio);
                                 System.out.println("El precio del cable fue actualizado correctamente a " + nuevoPrecio + "$");
                                 System.out.println();
                                 run3 = false;
@@ -450,7 +450,7 @@ public class ControllerAdministrador extends Usuario{
                             case 2:
                                 System.out.println("Ingrese el nuevo precio para el Conector coaxial RG6:");
                                 double nuevoPrecio2 = ingresarDouble();
-                                compania.getStock().getArticulos().get(1).setPrecio(nuevoPrecio2);
+                                compania.getStock().getStockArticulos().get(1).setPrecio(nuevoPrecio2);
                                 System.out.println("El precio del Conector coaxial RG6 fue actualizado correctamente a " + nuevoPrecio2 + "$");
                                 System.out.println();
                                 run3 = false;
@@ -458,7 +458,7 @@ public class ControllerAdministrador extends Usuario{
                             case 3:
                                 System.out.println("Ingrese el nuevo precio para el Decodificador:");
                                 double nuevoPrecio3 = ingresarDouble();
-                                compania.getStock().getArticulos().get(2).setPrecio(nuevoPrecio3);
+                                compania.getStock().getStockArticulos().get(2).setPrecio(nuevoPrecio3);
                                 System.out.println("El precio del Decodificador fue actualizado correctamente a " + nuevoPrecio3 + "$");
                                 System.out.println();
                                 run3 = false;
@@ -466,7 +466,7 @@ public class ControllerAdministrador extends Usuario{
                             case 4:
                                 System.out.println("Ingrese el nuevo precio para el Divisor:");
                                 double nuevoPrecio4 = ingresarDouble();
-                                compania.getStock().getArticulos().get(3).setPrecio(nuevoPrecio4);
+                                compania.getStock().getStockArticulos().get(3).setPrecio(nuevoPrecio4);
                                 System.out.println("El precio del Divisor fue actualizado correctamente a " + nuevoPrecio4 + "$");
                                 System.out.println();
                                 run3 = false;
@@ -474,7 +474,7 @@ public class ControllerAdministrador extends Usuario{
                             case 5:
                                 System.out.println("Ingrese el nuevo precio para el Modem:");
                                 double nuevoPrecio5 = ingresarDouble();
-                                compania.getStock().getArticulos().get(4).setPrecio(nuevoPrecio5);
+                                compania.getStock().getStockArticulos().get(4).setPrecio(nuevoPrecio5);
                                 System.out.println("El precio del Modem fue actualizado correctamente a " + nuevoPrecio5 + "$");
                                 System.out.println();
                                 run3 = false;
