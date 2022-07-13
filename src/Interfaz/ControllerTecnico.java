@@ -159,6 +159,8 @@ public class ControllerTecnico extends Usuario {
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = ingresarEntero();
                                                 reparacion.addMaterial(articulo,cantidad);
+                                                this.compania.getStock().getArticulo(articulo.getArticulo()).setCantidad(this.compania.getStock().getArticulo(articulo.getArticulo()).getCantidad()-cantidad);
+                                                this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
                                         System.out.println("Ingrese los materiales utilizados: ");
@@ -181,9 +183,6 @@ public class ControllerTecnico extends Usuario {
                                                 break;
                                             }
                                         }
-
-                                        //Ingresa el costo del viaje
-                                        //reparacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                         //Ingresa si hubo almuerzo
                                         System.out.println("Realizó almuerzo? (Y/N): ");
@@ -267,9 +266,6 @@ public class ControllerTecnico extends Usuario {
                                                     break;
                                                 }
                                             }
-
-                                            //Ingresa el costo del viaje
-                                            //instalacion.setCostoDeViaje(this.compania.getCostoDeViaje());
 
                                             //Ingresa si hubo almuerzo
                                             System.out.println("Realizó almuerzo? (Y/N): ");
