@@ -151,14 +151,13 @@ public class ControllerTecnico extends Usuario {
                                         }*/
 
                                         //Ingresa materiales usados
-                                        for (Articulo articulo : this.compania.getStock().getArticulos()){
-                                            System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
+                                        for (Articulo articulo : this.compania.getStock().getArticulos()) {
+                                            System.out.println("Utilizó " + articulo.getArticulo() + " (Y/N): ");
                                             String opcion = sc.nextLine();
-                                            if (opcion.equals("Y")){
+                                            if (opcion.equals("Y")) {
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = ingresarEntero();
-                                                reparacion.addMaterial(articulo,cantidad);
-                                                this.compania.getStock().getArticulo(articulo.getArticulo()).setCantidad(this.compania.getStock().getArticulo(articulo.getArticulo()).getCantidad()-cantidad);
+                                                reparacion.addMaterial(articulo, cantidad);
                                                 this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
@@ -195,15 +194,14 @@ public class ControllerTecnico extends Usuario {
                                         System.out.println("Compro combustible? (Y/N): ");
                                         confirmacion = sc.nextLine();
                                         if (confirmacion.equals("Y")) {
-                                            System.out.println("Y");
                                             System.out.println("Ingrese los litros cúbicos cargados: ");
                                             double costoCombustible = ingresarDouble() * this.compania.getPrecioCombustible();
                                             reparacion.setCombustible(costoCombustible);
                                         } else {
                                             System.out.println("No se realizo compra de combustible");
                                         }
-
                                         System.out.println("DATOS CARGADOS");
+                                        reparacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
@@ -237,53 +235,54 @@ public class ControllerTecnico extends Usuario {
                                         //Ingresa materiales usados
                                         for (Articulo articulo : this.compania.getStock().getArticulos()){
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
-                                            if (sc.nextLine() == "Y"){
+                                            String opcion = sc.nextLine();
+                                            if (opcion.equals("Y")){
                                                 System.out.println("Que cantidad?: ");
                                                 int cantidad = ingresarEntero();
                                                 instalacion.addMaterial(articulo,cantidad);
+                                                this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }
                                         }
 
-                                            //Ingresa materiales adicionales
-                                            sc.nextLine();
-                                            while (true) {
-                                                System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
-                                                String material = sc.nextLine();
-                                                if (!material.equals("")) {
-                                                    instalacion.setMaterialesAdicionales(material);
-                                                    System.out.println("Ingrese el costo del " + material + ": ");
-                                                    double costo = ingresarDouble();
-                                                    instalacion.setCostoMaterialesAdicionales(costo);
-                                                    sc.nextLine();
-                                                } else {
-                                                    System.out.println("No se ingresan materiales adicionales");
-                                                    break;
-                                                }
-                                            }
-
-                                            //Ingresa si hubo almuerzo
-                                            System.out.println("Realizó almuerzo? (Y/N): ");
-                                            String confirmacion = sc.nextLine();
-                                            if (confirmacion.equals("Y")) {
-                                                System.out.println("Almuerzo cargado");
-                                                instalacion.setAlmuerzo(true);
+                                        //Ingresa materiales adicionales
+                                        while (true) {
+                                            System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
+                                            String material = sc.nextLine();
+                                            if (!material.equals("")) {
+                                                instalacion.setMaterialesAdicionales(material);
+                                                System.out.println("Ingrese el costo del " + material + ": ");
+                                                double costo = ingresarDouble();
+                                                instalacion.setCostoMaterialesAdicionales(costo);
+                                                sc.nextLine();
                                             } else {
-                                                System.out.println("No se realizo almuerzo");
-                                                instalacion.setAlmuerzo(false);
+                                                System.out.println("No se ingresan materiales adicionales");
+                                                break;
                                             }
+                                        }
 
-                                            //Indica si compro combustible
-                                            System.out.println("Compro combustible? (Y/N): ");
-                                            confirmacion = sc.nextLine();
-                                            if (confirmacion.equals("Y")) {
-                                                System.out.println("Y");
-                                                System.out.println("Ingrese los litros cúbicos cargados: ");
-                                                double costoCombustible = ingresarDouble() * this.compania.getPrecioCombustible();
-                                                instalacion.setCombustible(costoCombustible);
-                                            } else {
-                                                System.out.println("No se realizo compra de combustible");
-                                            }
-                                            System.out.println("DATOS CARGADOS");
+                                        //Ingresa si hubo almuerzo
+                                        System.out.println("Realizó almuerzo? (Y/N): ");
+                                        String confirmacion = sc.nextLine();
+                                        if (confirmacion.equals("Y")) {
+                                            System.out.println("Almuerzo cargado");
+                                            instalacion.setAlmuerzo(true);
+                                        } else {
+                                            System.out.println("No se realizo almuerzo");
+                                            instalacion.setAlmuerzo(false);
+                                        }
+
+                                        //Indica si compro combustible
+                                        System.out.println("Compro combustible? (Y/N): ");
+                                        confirmacion = sc.nextLine();
+                                        if (confirmacion.equals("Y")) {
+                                            System.out.println("Ingrese los litros cúbicos cargados: ");
+                                            double costoCombustible = ingresarDouble() * this.compania.getPrecioCombustible();
+                                            instalacion.setCombustible(costoCombustible);
+                                        } else {
+                                            System.out.println("No se realizo compra de combustible");
+                                        }
+                                        System.out.println("DATOS CARGADOS");
+                                        instalacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");
