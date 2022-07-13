@@ -186,24 +186,19 @@ public class ControllerTecnico extends Usuario {
                                             System.out.println("No se realizo compra de combustible");
                                         }
                                         System.out.println("DATOS CARGADOS");
-                                        reparacion.finalizarServicio();
 
                                         //Calcula tiempo trabajado
                                         while (true) {
-                                            System.out.println("Ingrese la cantidad de horas trabajadas (0.5 = media hora, 1 = una hora, 1.5 = una hora y media, etc): ");
-                                            for (double k = 0; k < 24; k+=0.5f){
-                                                if (Double.valueOf(reparacion.getHora()) < k ){
-                                                    System.out.println(k+"- "+k);
-                                                }
-                                            }
-                                            double horaFin = ingresarDouble();
-                                            if (horaFin < 25 && horaFin > 0) {
+                                            System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
+                                            int horaFin = ingresarEntero();
+                                            if (horaFin > 30) {
                                                 reparacion.calcularTiempoTrabajado(horaFin,nroTecnico);
                                                 break;
                                             } else {
                                                 System.out.println("Tiempo trabajado incorrecto");
                                             }
                                         }
+                                        reparacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
@@ -270,21 +265,19 @@ public class ControllerTecnico extends Usuario {
                                             System.out.println("No se realizo compra de combustible");
                                         }
                                         System.out.println("DATOS CARGADOS");
-                                        instalacion.finalizarServicio();
 
-                                        /*Calcula tiempo trabajado
+                                        //Calcula tiempo trabajado
                                         while (true) {
-                                            System.out.println("Ingrese la hora de inicio: ");
-                                            int horaInicio = ingresarEntero();
-                                            System.out.println("Ingrese la hora de finalizacion: ");
+                                            System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
                                             int horaFin = ingresarEntero();
-                                            if (horaInicio < horaFin && horaInicio < 23 && horaFin > 1) {
-                                                //instalacion.calcularTiempoTrabajado(horaInicio, horaFin);
+                                            if (horaFin > 30) {
+                                                instalacion.calcularTiempoTrabajado(horaFin,nroTecnico);
                                                 break;
                                             } else {
                                                 System.out.println("Tiempo trabajado incorrecto");
                                             }
-                                        }*/
+                                        }
+                                        instalacion.finalizarServicio();
                                     }
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");

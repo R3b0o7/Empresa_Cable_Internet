@@ -124,8 +124,12 @@ public class Servicio {
         this.factura = new Factura(this, this.cliente);
     }
 
-    public void calcularTiempoTrabajado(double horaFin, int nroTecnico) {
-        this.tiempoTrabajado.put(this.tecnicos.get(nroTecnico).getNroTécnico(), horaFin / 2f);
+    public void calcularTiempoTrabajado(int horaFin, int nroTecnico) {
+        for (Tecnico tecnico : tecnicos){
+            if (nroTecnico == tecnico.getNroTécnico()){
+                this.tiempoTrabajado.put(tecnico.getNroTécnico(), horaFin / 60d);
+            }
+        }
     }
 
     /** Getters **/
