@@ -60,7 +60,7 @@ public class ControllerAdministrativo extends Usuario {
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
-            int opcion = sc.nextInt();
+            int opcion = ingresarEntero();
             switch(opcion) {
                 case 1:
                     this.listarFacturas();
@@ -178,7 +178,7 @@ public class ControllerAdministrativo extends Usuario {
         Instalacion servicioI = null;
         System.out.println();
         System.out.println("Ingrese el id de servicio a modificar: ");
-        int idServicio = sc.nextInt();
+        int idServicio = ingresarEntero();
         if(this.compania.getReparacion(idServicio) == null && this.compania.getInstalacion(idServicio) == null){
             System.out.println("El id de servicio ingresado no corresponde a un servicio existente");
             return;
@@ -245,7 +245,7 @@ public class ControllerAdministrativo extends Usuario {
         Instalacion servicioI = null;
         System.out.println();
         System.out.println("Ingrese el id de servicio a facturar: ");
-        int idServicio = sc.nextInt();
+        int idServicio = ingresarEntero();
         if(!control.contains(idServicio)) {
             System.out.println("El id ingresado no corresponde a un servicio apto para facturar.");
             return;
@@ -313,11 +313,11 @@ public class ControllerAdministrativo extends Usuario {
             System.out.println("4 - Precio final");
             System.out.println("0 - Volver al menú anterior.");
             System.out.println();
-            int opcion = sc.nextInt();
+            int opcion = ingresarEntero();
             switch(opcion) {
                 case 1:
                     System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
-                    double valorCosto = sc.nextDouble();
+                    double valorCosto = ingresarDouble();
                     instalacion.setCostoMaterialesAdicionales(valorCosto);
                     instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
@@ -325,7 +325,7 @@ public class ControllerAdministrativo extends Usuario {
                     break;
                 case 2:
                     System.out.println("Ingrese el nuevo valor para Combustible: ");
-                    double valorCombustible = sc.nextDouble();
+                    double valorCombustible = ingresarDouble();
                     instalacion.setCombustible(valorCombustible);
                     instalacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
@@ -334,7 +334,7 @@ public class ControllerAdministrativo extends Usuario {
                 case 3:
                     System.out.println("Ingrese el nuevo valor para Almuerzo (0-NO/1-SI): ");
                     boolean valorAlmuerzoBool = false;
-                    int valorAlmuerzoInt = sc.nextInt();
+                    int valorAlmuerzoInt = ingresarEntero();
                     if(valorAlmuerzoInt == 1){
                         valorAlmuerzoBool = true;
                     } else {
@@ -349,7 +349,7 @@ public class ControllerAdministrativo extends Usuario {
                     break;
                 case 4:
                     System.out.println("Ingrese el nuevo valor para Precio final: ");
-                    double valorPrecioFinal = sc.nextDouble();
+                    double valorPrecioFinal = ingresarDouble();
                     instalacion.setPrecioFinal(valorPrecioFinal);
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
@@ -373,11 +373,11 @@ public class ControllerAdministrativo extends Usuario {
             System.out.println("4 - Precio final");
             System.out.println("0 - Volver al menú anterior.");
             System.out.println();
-            int opcion = sc.nextInt();
+            int opcion = ingresarEntero();
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese el nuevo valor para Costo de materiales adicionales: ");
-                    double valorCosto = sc.nextDouble();
+                    double valorCosto = ingresarDouble();
                     reparacion.setCostoMaterialesAdicionales(valorCosto);
                     reparacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
@@ -385,7 +385,7 @@ public class ControllerAdministrativo extends Usuario {
                     break;
                 case 2:
                     System.out.println("Ingrese el nuevo valor para Combustible: ");
-                    double valorCombustible = sc.nextDouble();
+                    double valorCombustible = ingresarDouble();
                     reparacion.setCombustible(valorCombustible);
                     reparacion.finalizarServicio(); //esta linea recalcula el costo del servicio
                     System.out.println("Se guardó el valor correctamente.");
@@ -394,7 +394,7 @@ public class ControllerAdministrativo extends Usuario {
                 case 3:
                     System.out.println("Ingrese el nuevo valor para Almuerzo (0-NO/1-SI): ");
                     boolean valorAlmuerzoBool = false;
-                    int valorAlmuerzoInt = sc.nextInt();
+                    int valorAlmuerzoInt = ingresarEntero();
                     if (valorAlmuerzoInt == 1) {
                         valorAlmuerzoBool = true;
                     } else {
@@ -409,7 +409,7 @@ public class ControllerAdministrativo extends Usuario {
                     break;
                 case 4:
                     System.out.println("Ingrese el nuevo valor para Precio final: ");
-                    double valorPrecioFinal = sc.nextDouble();
+                    double valorPrecioFinal = ingresarDouble();
                     reparacion.setPrecioFinal(valorPrecioFinal);
                     System.out.println("Se guardó el valor correctamente.");
                     System.out.println();
