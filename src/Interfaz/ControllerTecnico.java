@@ -75,9 +75,9 @@ public class ControllerTecnico extends Usuario {
             System.out.println("No existen reparaciones");
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()) {
+                System.out.println("Ingrese su numero de tecnico: ");
+                int nroTecnico = sc.nextInt();
                 for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
-                    System.out.println("Ingrese su numero de tecnico: ");
-                    int nroTecnico = sc.nextInt();
                     if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
                         System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
                                 "\nFecha: " + reparacion.getFecha() +
@@ -97,11 +97,11 @@ public class ControllerTecnico extends Usuario {
             System.out.println("No existen instalaciones");
         } else {
             for (Instalacion instalacion : this.compania.getInstalaciones()) {
+                System.out.println("Ingrese su numero de tecnico: ");
+                int nroTecnico = sc.nextInt();
                 for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
-                    System.out.println("Ingrese su numero de tecnico: ");
-                    int nroTecnico = sc.nextInt();
                     if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
-                        System.out.println("ID Reparacion: " + instalacion.getIdServicio() +
+                        System.out.println("ID Instalacion: " + instalacion.getIdServicio() +
                                 "\nFecha: " + instalacion.getFecha() +
                                 "\nHorario: " + instalacion.getHora() +
                                 "\nTecnicos: " + instalacion.getTecnicos() +
