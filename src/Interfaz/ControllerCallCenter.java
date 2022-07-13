@@ -33,7 +33,7 @@ public class ControllerCallCenter extends Usuario {
         boolean run = true;
         while (run) {
             this.imprimirMenuInicial();
-            int opcion = sc.nextInt();
+            int opcion = ingresarEntero();
             switch(opcion) {
                 case 1:
                     this.reservarServicio();
@@ -62,7 +62,7 @@ public class ControllerCallCenter extends Usuario {
         //obtengo cliente
         Cliente cliente;
         System.out.println("Ingrese DNI del cliente: ");
-        int dni = sc.nextInt();
+        int dni = ingresarEntero();
         if (this.compania.getCliente(dni) == null) {
             System.out.println("El cliente no existe.");
             return;
@@ -82,7 +82,7 @@ public class ControllerCallCenter extends Usuario {
         }
         //obtengo tipo de servicio
         System.out.println("Seleccione el tipo de servicio (1-REPARACION/2-INSTALACION)");
-        int tipoServicio = sc.nextInt();
+        int tipoServicio = ingresarEntero();
         String tiposervicioStr = (tipoServicio==1) ? "REPARACION":"INSTALACION";
 
         //Verifico si hay stock para los materiales base
@@ -94,7 +94,7 @@ public class ControllerCallCenter extends Usuario {
 
         //obtengo datos fecha
         System.out.println("Indique el turno requerido (1-Mañana/2-Tarde): ");
-        int turno = sc.nextInt();
+        int turno = ingresarEntero();
         Date fecha;
         try {
             if (turno != 1 && turno != 2) {
@@ -128,7 +128,7 @@ public class ControllerCallCenter extends Usuario {
                 System.out.println(k + "-" + agendaModelo.getEquivalenciaFilaHora().get(k));
             }
         }
-        int horario = sc.nextInt();
+        int horario = ingresarEntero();
         String horarioStr = agendaModelo.getEquivalenciaFilaHora().get(horario);
 
         //obtengo los tecnicos disponibles
@@ -158,7 +158,7 @@ public class ControllerCallCenter extends Usuario {
             for (Tecnico tecnico : tecnicosDisponibles) {
                 System.out.println(tecnico.toString());
             }
-            int nroTecnico = sc.nextInt();
+            int nroTecnico = ingresarEntero();
             if (nroTecnico == 0) {
                 escape = 0;
             } else {
@@ -272,7 +272,7 @@ public class ControllerCallCenter extends Usuario {
         //obtengo cliente
         Cliente cliente;
         System.out.println("Ingrese DNI del cliente: ");
-        int dni = sc.nextInt();
+        int dni = ingresarEntero();
         if (this.compania.getCliente(dni) != null) {
             System.out.println("El cliente ya existe.");
             return;
@@ -313,7 +313,7 @@ public class ControllerCallCenter extends Usuario {
         System.out.println("2. EN CURSO");
         System.out.println("3. CANCELADO");
         System.out.println("4. FINALIZADO");
-        int opcion = sc.nextInt();
+        int opcion = ingresarEntero();
         sc.nextLine();
         Estado estado;
         switch (opcion){
