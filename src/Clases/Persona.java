@@ -33,7 +33,7 @@ public class Persona {
         return dirección;
     }
 
-    /** Getters **/
+    /** Setters **/
 
     public void setDirección(String dirección) {
         this.dirección = dirección;
