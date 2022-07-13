@@ -127,7 +127,6 @@ public class Servicio {
         for (Tecnico tecnico : tecnicos){
             if (nroTecnico == tecnico.getNroTécnico()){
                 this.tiempoTrabajado.put(tecnico.getNroTécnico(), horaFin / 60d);
-                System.out.println("HORA FIN: "+horaFin+" NRO TECNICO: "+nroTecnico);
             }
         }
     }
