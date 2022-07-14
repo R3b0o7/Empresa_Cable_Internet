@@ -13,8 +13,9 @@ public class App extends JFrame implements ActionListener{
     private JButton enviarButton;
     private JPanel login;
 
-    public App() {
 
+
+    public App() {
 
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
@@ -44,6 +45,7 @@ public class App extends JFrame implements ActionListener{
 
             }
         });
+
     }
 
     public JPanel getLogin() {
@@ -57,5 +59,9 @@ public class App extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("HOLA");
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
