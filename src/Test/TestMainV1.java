@@ -1,8 +1,5 @@
 package Test;
 
-import GUI.App;
-import GUI.MyFrame;
-import Interfaz.ControllerCallCenter;
 import Interfaz.ControllerLogin;
 
 public class TestMainV1 {

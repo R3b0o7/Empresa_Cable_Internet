@@ -14,6 +14,8 @@ public class App extends JFrame implements ActionListener{
     private JPanel login;
 
     public App() {
+
+
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
@@ -49,7 +51,7 @@ public class App extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        MyFrame ventanaLogin = new MyFrame();
+        //AppPrueba ventanaLogin = new AppPrueba();
     }
 
     @Override
