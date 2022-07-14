@@ -9,15 +9,18 @@ import Interfaz.ControllerTecnico;
 import javax.swing.*;
 import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-//
+
 public class AppPrueba extends JFrame {
 
     ControllerLogin login;
     ControllerAdministrador administrador;
     ControllerAdministrativo administrativo;
     ControllerTecnico tecnico;
+
+    JButton botonEnviar;
 
     public AppPrueba(){
 
@@ -95,7 +98,6 @@ public class AppPrueba extends JFrame {
         textUsuario.setText("Usuario: ");
         textUsuario.setHorizontalAlignment(JLabel.RIGHT);
         textUsuario.setVerticalAlignment(JLabel.CENTER);
-        //textUsuario.setPreferredSize(new Dimension(100,30));
         textUsuario.setBounds(0,150,100,30);
         textUsuario.setForeground(new Color(255, 255, 255));
 
@@ -106,20 +108,20 @@ public class AppPrueba extends JFrame {
         JLabel textContraseña = new JLabel("Contraseña: ");
         textContraseña.setHorizontalAlignment(JLabel.RIGHT);
         textContraseña.setVerticalAlignment(JLabel.CENTER);
-        //textContraseña.setPreferredSize(new Dimension(100, 30));
-        //textUsuario.setBounds(0,190,100,30);
         textContraseña.setForeground(new Color(255, 255, 255));
 
         JPasswordField contraseña = new JPasswordField();
         contraseña.setPreferredSize(new Dimension(380, 30));
 
         //Boton de Enviar
-        JButton botonEnviar = new JButton("Enviar");
+        botonEnviar = new JButton("Enviar");
         botonEnviar.setHorizontalAlignment(JLabel.CENTER);
         botonEnviar.setVerticalAlignment(JLabel.CENTER);
         botonEnviar.setPreferredSize(new Dimension(100, 30));
+        botonEnviar.setBackground(Color.lightGray);
 
-        //button.addActionListener(login.validarCredenciales(usuario.getText(),contraseña.getPassword()));
+        botonEnviar.addActionListener(e ->
+                ControllerLogin.getInstance().validarCredenciales(usuario.getText(), String.valueOf(contraseña.getPassword())));
 
         //Texto adicional
         JLabel usuariosExistentes = new JLabel("(Usuarios: usrAdministrador, usrCallCenter, usrAdministrativo, usrTecnico)");
@@ -160,4 +162,6 @@ public class AppPrueba extends JFrame {
     public static void main(String[] args) {
         AppPrueba ventanaLogin = new AppPrueba();
     }
+
+
 }
