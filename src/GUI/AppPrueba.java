@@ -11,7 +11,7 @@ import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+//
 public class AppPrueba extends JFrame {
 
     ControllerLogin login;
