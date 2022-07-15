@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class VentanaLogin extends JFrame implements ActionListener {
 
-    ControllerLogin login;
+    ControllerLogin login = ControllerLogin.getInstance();
     ControllerAdministrador administrador;
     ControllerAdministrativo administrativo;
     ControllerTecnico tecnico;
@@ -187,14 +187,15 @@ public class VentanaLogin extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==botonEnviar ){
-            /**
+/**
             if(validarCredenciales(ventanaLogin.usuario.getText(), String.valueOf(ventanaLogin.contraseña.getPassword()))){
                 this.dispose();
                 VentanaAdministrador ventana = new VentanaAdministrador();
             }
-             */
+ */
             this.dispose();
             VentanaAdministrador ventana = new VentanaAdministrador();
+
         }
     }
 }
