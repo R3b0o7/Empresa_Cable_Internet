@@ -1,5 +1,6 @@
 package GUI;
 
+import Clases.Compania;
 import Interfaz.ControllerAdministrador;
 import Interfaz.ControllerAdministrativo;
 import Interfaz.ControllerLogin;
@@ -8,15 +9,20 @@ import Interfaz.ControllerTecnico;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class VentanaLogin extends JFrame {
+public class VentanaLogin extends JFrame implements ActionListener {
 
     ControllerLogin login;
     ControllerAdministrador administrador;
     ControllerAdministrativo administrativo;
     ControllerTecnico tecnico;
 
+    public static VentanaLogin ventanaLogin;
+
     JButton botonEnviar;
+    JTextField usuario;
+    JPasswordField contraseña;
 
     public VentanaLogin(){
 
@@ -98,7 +104,7 @@ public class VentanaLogin extends JFrame {
         textUsuario.setForeground(new Color(255, 255, 255));
         textUsuario.setFont(new Font("Consolas",Font.PLAIN, 12));
 
-        JTextField usuario = new JTextField();
+        usuario = new JTextField();
         usuario.setPreferredSize(new Dimension(380, 30));
 
         //Linea de Contraseña
@@ -108,7 +114,7 @@ public class VentanaLogin extends JFrame {
         textContraseña.setForeground(new Color(255, 255, 255));
         textContraseña.setFont(new Font("Consolas",Font.PLAIN, 12));
 
-        JPasswordField contraseña = new JPasswordField();
+        contraseña = new JPasswordField();
         contraseña.setPreferredSize(new Dimension(380, 30));
 
         //Boton de Enviar
@@ -118,7 +124,7 @@ public class VentanaLogin extends JFrame {
         botonEnviar.setPreferredSize(new Dimension(100, 30));
         botonEnviar.setBackground(Color.lightGray);
 
-        botonEnviar.addActionListener(e -> new VentanaAdministrador());  //VER COMO VALIDAR DATOS Y QUE SE ABRA EN LA MISMA VENTANA
+        botonEnviar.addActionListener(this);
 /**
         botonEnviar.addActionListener(e ->
                 ControllerLogin.getInstance().validarCredenciales(usuario.getText(), String.valueOf(contraseña.getPassword())));
@@ -131,6 +137,11 @@ public class VentanaLogin extends JFrame {
         usuariosExistentes.setVerticalAlignment(JLabel.BOTTOM);
         usuariosExistentes.setForeground(new Color(0, 0, 0));
         usuariosExistentes.setFont(new Font("Consolas",Font.PLAIN, 9));
+
+        JLabel usuarioErroneo = new JLabel("El usuario ingresado no existe en el sistema");
+        usuarioErroneo.setVerticalTextPosition(JLabel.BOTTOM);
+        usuarioErroneo.setForeground(new Color(245, 0, 0));
+        usuarioErroneo.setFont(new Font("Consolas",Font.BOLD, 10));
 
         //Agregar items a la ventana
 
@@ -159,9 +170,31 @@ public class VentanaLogin extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        VentanaLogin ventanaLogin = new VentanaLogin();
+    public static VentanaLogin getInstance(){
+        if(ventanaLogin == null){
+            ventanaLogin = new VentanaLogin();
+        }
+        return ventanaLogin;
     }
 
+    public boolean validarCredenciales(String usuario, String contraseña){
+        if(Compania.getInstance().getContraseña(usuario) != null){
+            return Compania.getInstance().getContraseña(usuario).equals(contraseña);
+        }
+        return false;
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==botonEnviar ){
+            /**
+            if(validarCredenciales(ventanaLogin.usuario.getText(), String.valueOf(ventanaLogin.contraseña.getPassword()))){
+                this.dispose();
+                VentanaAdministrador ventana = new VentanaAdministrador();
+            }
+             */
+            this.dispose();
+            VentanaAdministrador ventana = new VentanaAdministrador();
+        }
+    }
 }

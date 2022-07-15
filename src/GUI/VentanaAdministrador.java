@@ -1,12 +1,15 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class VentanaAdministrador extends JFrame {
+public class VentanaAdministrador extends JFrame implements ActionListener {
 
-    JButton BotonABMtecnico;
-    JButton BotonAMBarticulo;
-    JButton BotonConfigurarParametros;
+    JButton botonABMtecnico;
+    JButton botonAMBarticulo;
+    JButton botonConfigurarParametros;
+    JButton botonCerrarSesion;
 
     public VentanaAdministrador(){
         //Encabezado Ventana
@@ -26,37 +29,57 @@ public class VentanaAdministrador extends JFrame {
         //Paneles
         JPanel menuIzquierdo = new JPanel();
         menuIzquierdo.setBackground(Color.red);
-        menuIzquierdo.setBounds(0, 0,150,600);
+        menuIzquierdo.setBounds(0, 0,150,520);
 
         JPanel menuSuperior = new JPanel();
         menuSuperior.setBackground(Color.blue);
         menuSuperior.setBounds(150, 0,750,40);
 
+        JPanel inicio = new JPanel();
+        inicio.setBackground(Color.blue);
+        inicio.setBounds(0, 525,150,40);
+
         //Botones Superiores
 
-        BotonABMtecnico = new JButton("ABM Técnico");
-        BotonABMtecnico.setHorizontalAlignment(JLabel.LEFT);
-        BotonABMtecnico.setBackground(Color.lightGray);
+        botonABMtecnico = new JButton("ABM Técnico");
+        botonABMtecnico.setHorizontalAlignment(JLabel.LEFT);
+        botonABMtecnico.setBackground(Color.lightGray);
 
-        BotonAMBarticulo = new JButton("ABM Articulos");
-        BotonAMBarticulo.setHorizontalAlignment(JLabel.CENTER);
-        BotonAMBarticulo.setBackground(Color.lightGray);
+        botonAMBarticulo = new JButton("ABM Articulos");
+        botonAMBarticulo.setHorizontalAlignment(JLabel.CENTER);
+        botonAMBarticulo.setBackground(Color.lightGray);
 
-        BotonConfigurarParametros = new JButton("Configurar Parametros");
-        BotonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
-        BotonConfigurarParametros.setBackground(Color.lightGray);
+        botonConfigurarParametros = new JButton("Configurar Parametros");
+        botonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
+        botonConfigurarParametros.setBackground(Color.lightGray);
 
         //Botones Laterales
+
+        //Boton Inferior
+
+        botonCerrarSesion = new JButton("Cerrar Sesión");
+        botonCerrarSesion.setHorizontalAlignment(JLabel.CENTER);
+        botonCerrarSesion.setBackground(Color.lightGray);
+        botonCerrarSesion.addActionListener(this);
 
         //Agregar items a la ventana
 
         this.add(menuIzquierdo);
         //Aca van los botones laterales
         this.add(menuSuperior);
-        menuSuperior.add(BotonABMtecnico);
-        menuSuperior.add(BotonAMBarticulo);
-        menuSuperior.add(BotonConfigurarParametros);
+        menuSuperior.add(botonABMtecnico);
+        menuSuperior.add(botonAMBarticulo);
+        menuSuperior.add(botonConfigurarParametros);
+        this.add(inicio);
+        inicio.add(botonCerrarSesion);
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==botonCerrarSesion){
+            this.dispose();
+            VentanaLogin.getInstance();
+        }
+    }
 }
