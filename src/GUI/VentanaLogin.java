@@ -1,19 +1,15 @@
 package GUI;
 
-import Clases.Compania;
 import Interfaz.ControllerAdministrador;
 import Interfaz.ControllerAdministrativo;
 import Interfaz.ControllerLogin;
 import Interfaz.ControllerTecnico;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class AppPrueba extends JFrame {
+public class VentanaLogin extends JFrame {
 
     ControllerLogin login;
     ControllerAdministrador administrador;
@@ -22,7 +18,7 @@ public class AppPrueba extends JFrame {
 
     JButton botonEnviar;
 
-    public AppPrueba(){
+    public VentanaLogin(){
 
         //Titulo Ventana
         this.setTitle("Empresa de Cable Internet");    //Titulo de la ventana
@@ -80,7 +76,7 @@ public class AppPrueba extends JFrame {
         titulo.setHorizontalTextPosition(JLabel.CENTER);
         titulo.setVerticalTextPosition(JLabel.TOP);
         titulo.setForeground(new Color(255, 255, 255));
-        titulo.setFont(new Font("Fuente",Font.BOLD, 15));
+        titulo.setFont(new Font("Consolas",Font.BOLD, 20));
         titulo.setIconTextGap(10);
 
         //Imagen del titulo
@@ -100,6 +96,7 @@ public class AppPrueba extends JFrame {
         textUsuario.setVerticalAlignment(JLabel.CENTER);
         textUsuario.setBounds(0,150,100,30);
         textUsuario.setForeground(new Color(255, 255, 255));
+        textUsuario.setFont(new Font("Consolas",Font.PLAIN, 12));
 
         JTextField usuario = new JTextField();
         usuario.setPreferredSize(new Dimension(380, 30));
@@ -109,6 +106,7 @@ public class AppPrueba extends JFrame {
         textContraseña.setHorizontalAlignment(JLabel.RIGHT);
         textContraseña.setVerticalAlignment(JLabel.CENTER);
         textContraseña.setForeground(new Color(255, 255, 255));
+        textContraseña.setFont(new Font("Consolas",Font.PLAIN, 12));
 
         JPasswordField contraseña = new JPasswordField();
         contraseña.setPreferredSize(new Dimension(380, 30));
@@ -120,9 +118,11 @@ public class AppPrueba extends JFrame {
         botonEnviar.setPreferredSize(new Dimension(100, 30));
         botonEnviar.setBackground(Color.lightGray);
 
+        botonEnviar.addActionListener(e -> new VentanaAdministrador());  //VER COMO VALIDAR DATOS Y QUE SE ABRA EN LA MISMA VENTANA
+/**
         botonEnviar.addActionListener(e ->
                 ControllerLogin.getInstance().validarCredenciales(usuario.getText(), String.valueOf(contraseña.getPassword())));
-
+*/
         //Texto adicional
         JLabel usuariosExistentes = new JLabel("(Usuarios: usrAdministrador, usrCallCenter, usrAdministrativo, usrTecnico)");
         usuariosExistentes.setHorizontalTextPosition(JLabel.CENTER);
@@ -160,7 +160,7 @@ public class AppPrueba extends JFrame {
     }
 
     public static void main(String[] args) {
-        AppPrueba ventanaLogin = new AppPrueba();
+        VentanaLogin ventanaLogin = new VentanaLogin();
     }
 
 
