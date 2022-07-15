@@ -32,7 +32,7 @@ public class VentanaAdministrador extends JFrame {
         menuSuperior.setBackground(Color.blue);
         menuSuperior.setBounds(150, 0,750,40);
 
-        //Botones
+        //Botones Superiores
 
         BotonABMtecnico = new JButton("ABM Técnico");
         BotonABMtecnico.setHorizontalAlignment(JLabel.LEFT);
@@ -46,14 +46,16 @@ public class VentanaAdministrador extends JFrame {
         BotonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
         BotonConfigurarParametros.setBackground(Color.lightGray);
 
+        //Botones Laterales
+
         //Agregar items a la ventana
 
         this.add(menuIzquierdo);
+        //Aca van los botones laterales
         this.add(menuSuperior);
         menuSuperior.add(BotonABMtecnico);
         menuSuperior.add(BotonAMBarticulo);
         menuSuperior.add(BotonConfigurarParametros);
-
 
     }
 
