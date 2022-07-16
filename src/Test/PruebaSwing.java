@@ -2,12 +2,15 @@ package Test;
 
 import javax.swing.*;
 
-public class PruebaSwing {
+public class PruebaSwing extends JFrame {
 
-    private JList listaTecnicos;
     private JPanel panel1;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JButton guardarButton;
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+    public PruebaSwing() {
+        setContentPane(panel1);
     }
 }

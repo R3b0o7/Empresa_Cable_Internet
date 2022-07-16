@@ -37,6 +37,16 @@ public class ControllerAdministrador extends Usuario{
         return listModel;
     }
 
+    public DefaultListModel<String> listModelArticulo(){
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+        for(Articulo art: compania.getStock().getStockArticulos()){
+            listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos");
+            i++;
+        }
+        return listModel;
+    }
+
     public void darDeBajaTecnico(int id){
         for (Tecnico tec : compania.getTecnicos()){
             if (tec.getNroTécnico() == id && tec.getEstado() == true){
@@ -49,7 +59,17 @@ public class ControllerAdministrador extends Usuario{
     }
 
     public void darDeAltaTecnico(int dni, String nombre, String direccion, TipoTecnico tipoTecnico,String turno){
+        compania.guardarTecnico(new Tecnico(dni, nombre, direccion, tipoTecnico, turno ));
+    }
 
+    public String[] listadoArticulosToCombo(){
+        String[] listado = new String[20];
+        int i = 0;
+        for(Articulo art: compania.getStock().getStockArticulos()){
+            listado[i] = art.getArticulo().toString();
+            i++;
+        }
+        return listado;
     }
 
 
