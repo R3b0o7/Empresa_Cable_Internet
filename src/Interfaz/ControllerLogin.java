@@ -29,20 +29,6 @@ public class ControllerLogin {
         return controladorLogin;
     }
 
-
-    public void main(){
-
-        //Genero los objetos base
-        this.compania = Clases.Compania.getInstance();
-        String usuario = "";
-
-        //ejecución login
-        usuario = login(usuario);
-
-        //obtengo perfil del usuario
-        if (usuario != ""){obtenerPerfil(usuario);}
-    }
-
     public boolean validarCredenciales(String usuario, String contraseña){
         if(Compania.getInstance().getContraseña(usuario) != null){
             return Compania.getInstance().getContraseña(usuario).equals(contraseña);
@@ -51,33 +37,6 @@ public class ControllerLogin {
             JOptionPane.showMessageDialog(mensajeError, "Datos ingresados incorrectos");
             return false;
         }
-    }
-
-    private String login(String usuario){
-        Scanner sc = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
-            System.out.println("Ingrese nombre de usuario (usrAdministrador / usrAdministrativo / usrCallCenter / usrTecnico / vacio para terminar): ");
-            usuario = sc.nextLine();
-
-            //Finalizar el sistema
-            if (usuario == ""){
-                System.out.println("Cierre del sistema");
-                run = false;
-                break;
-            }
-
-            System.out.println("Ingrese contraseña (admin): ");
-            String contraseña = sc.nextLine();
-
-            //valido credenciales
-            if(!this.validarCredenciales(usuario, contraseña)){
-                System.out.println("Error de login");
-            } else {
-                break;
-            }
-        }
-        return usuario;
     }
 
     public void obtenerPerfil(String usuario){
