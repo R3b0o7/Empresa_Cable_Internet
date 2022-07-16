@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class VentanaLogin extends JFrame implements ActionListener {
 
-    ControllerLogin login = ControllerLogin.getInstance();
+
     ControllerAdministrador administrador;
     ControllerAdministrativo administrativo;
     ControllerTecnico tecnico;
@@ -138,11 +138,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
         usuariosExistentes.setForeground(new Color(0, 0, 0));
         usuariosExistentes.setFont(new Font("Consolas",Font.PLAIN, 9));
 
-        JLabel usuarioErroneo = new JLabel("El usuario ingresado no existe en el sistema");
-        usuarioErroneo.setVerticalTextPosition(JLabel.BOTTOM);
-        usuarioErroneo.setForeground(new Color(245, 0, 0));
-        usuarioErroneo.setFont(new Font("Consolas",Font.BOLD, 10));
-
         //Agregar items a la ventana
 
         this.add(panelIzquierdoUsuario);
@@ -186,16 +181,26 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource()==botonEnviar ){
-/**
-            if(validarCredenciales(ventanaLogin.usuario.getText(), String.valueOf(ventanaLogin.contraseña.getPassword()))){
+
+
+            new ErrorMSG();
+
+            /**
+            String user = ventanaLogin.usuario.getText();
+            String pass = String.valueOf(ventanaLogin.contraseña.getPassword());
+            if(validarCredenciales(user, pass)){
                 this.dispose();
-                VentanaAdministrador ventana = new VentanaAdministrador();
+                new VentanaAdministrador();
+            } else{
+                new ErrorMSG();
             }
- */
+
+
             this.dispose();
             VentanaAdministrador ventana = new VentanaAdministrador();
-
+             */
         }
     }
 }
