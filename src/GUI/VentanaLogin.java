@@ -1,16 +1,11 @@
 package GUI;
 
-import Clases.Compania;
-import Interfaz.ControllerAdministrador;
-import Interfaz.ControllerAdministrativo;
 import Interfaz.ControllerLogin;
-import Interfaz.ControllerTecnico;
-import com.sun.jdi.CharValue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+
 
 public class VentanaLogin extends JFrame implements ActionListener {
 
@@ -173,11 +168,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
         if(e.getSource()==botonEnviar ){
 
-            //ErrorMSG warning = new ErrorMSG();
-
-            //usuario.addActionListener(e1 -> ventanaLogin.usuario.getText());
-            //contraseña.addActionListener(e2 ->String.valueOf( ventanaLogin.contraseña.getPassword()));
-
             String user = usuario.getText();
             String pass = new String(contraseña.getPassword());
 
@@ -190,7 +180,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
             } else if (ControllerLogin.getInstance().validarCredenciales(user, pass)){
                 this.dispose();
                 ControllerLogin.getInstance().obtenerPerfil(user);
-                //new VentanaAdministrador();
             }
         }
     }
