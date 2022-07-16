@@ -20,14 +20,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 
     //Sub Menu
     JPanel menuABMTec;
-    JPanel altaTecnico;
+    JPanel pnlAltaTecnico;
     JPanel menuABMArt;
-    JPanel menuParametros;
+    JPanel pnlABMArt;
+    JPanel pnlParametros;
     JButton botonAltaTecnico;
     JButton botonBajaTecnico;
     JButton botonModificaTecnico;
+    JButton botonRefrescar;
     JList listaTecnicos;
-
+    JScrollPane scroll;
 
     public VentanaAdministrador(){
         //Encabezado Ventana
@@ -41,11 +43,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         //Paneles -> setSize(Alto: 900,Ancho: 600);
         menuABMTec = new JPanel();
         menuABMTec.setBackground(Color.lightGray);
-        menuABMTec.setBounds(0, 180,600,200);
+        menuABMTec.setBounds(0, 180,600,260);
 
-        altaTecnico = new JPanel();
-        altaTecnico.setBackground(Color.lightGray);
-        altaTecnico.setBounds(0, 380,600,200);
+        menuABMArt = new MenuABMArticulo();
 
         JPanel menuSuperior = new JPanel();
         menuSuperior.setBackground(new Color(107,108,109));
@@ -54,6 +54,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         JPanel inicio = new JPanel();
         inicio.setBackground(new Color(107,108,109));
         inicio.setBounds(0, 525,150,40);
+
+        this.pnlAltaTecnico = new PanelAltaTecnico();
 
         //Botones Superiores
 
@@ -65,6 +67,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonAMBarticulo = new JButton("ABM Articulos");
         botonAMBarticulo.setHorizontalAlignment(JLabel.CENTER);
         botonAMBarticulo.setBackground(Color.lightGray);
+        botonAMBarticulo.addActionListener(this);
 
         botonConfigurarParametros = new JButton("Configurar Parametros");
         botonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
@@ -90,33 +93,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonModificaTecnico.setBackground(Color.lightGray);
         botonModificaTecnico.addActionListener(this);
 
-        //armado de panel de altaTecnico
-        JTextField fieldNroDoc = new JTextField();
-        fieldNroDoc.setPreferredSize(new Dimension(100, 20));
-
-        JTextField fieldNombre = new JTextField();
-        fieldNombre.setPreferredSize(new Dimension(200, 20));
-
-        JTextField fieldDomicilio = new JTextField();
-        fieldDomicilio.setPreferredSize(new Dimension(200, 20));
-
-        JButton buttonGrabarCliente = new JButton("Grabar Cliente");
-        buttonGrabarCliente.addActionListener(this);
-
-        JLabel lblNroDoc = new JLabel("Número de documento");
-        JLabel lblDomLeg = new JLabel("Domicilio legal");
-        JLabel lblDomPer = new JLabel("Domicilio Personal");
-
-//        JPanel panel1 = new JPanel(new BorderLayout());
-//        panel1.add(lblNroDoc, BorderLayout.WEST);
-//        panel1.add(fieldNroDoc, BorderLayout.CENTER);
-//        JPanel panel2 = new JPanel(new BorderLayout());
-//        panel2.add(lblDomLeg, BorderLayout.WEST);
-//        panel2.add(fieldDomicilioLegal, BorderLayout.CENTER);
-//        JPanel panel3 = new JPanel(new BorderLayout());
-//        panel3.add(lblDomPer, BorderLayout.WEST);
-//        panel3.add(fieldDomicilioPersonal, BorderLayout.CENTER);
-
+        botonRefrescar = new JButton("Refrescar");
+        botonRefrescar.setHorizontalAlignment(JLabel.LEFT);
+        botonRefrescar.setVerticalAlignment(JLabel.BOTTOM);
+        botonRefrescar.setBackground(Color.lightGray);
+        botonRefrescar.addActionListener(this);
 
         //Boton Inferior
 
@@ -126,27 +107,32 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonCerrarSesion.addActionListener(this);
 
         //Listas
+
         listaTecnicos = new JList();
+        listaTecnicos.setVisibleRowCount(3);
         listaTecnicos.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
         listaTecnicos.setAlignmentY(JPanel.TOP_ALIGNMENT);
         listaTecnicos.setModel(controller.listModelTecnico());
+        scroll = new JScrollPane(listaTecnicos);
 
+        //armado de submenu
+        menuABMTec.add(botonAltaTecnico);
+        menuABMTec.add(botonBajaTecnico);
+        menuABMTec.add(botonModificaTecnico);
+        menuABMTec.add(botonRefrescar);
+        menuABMTec.add(scroll);
+        menuABMTec.add(pnlAltaTecnico);
+        menuABMTec.setVisible(false);
 
         //Agregar items a la ventana
         this.add(menuABMTec);
+        this.add(menuABMArt);
         this.add(menuSuperior);
         menuSuperior.add(botonABMtecnico);
         menuSuperior.add(botonAMBarticulo);
         menuSuperior.add(botonConfigurarParametros);
         this.add(inicio);
         inicio.add(botonCerrarSesion);
-
-        //armado de menues izquierda
-        menuABMTec.add(botonAltaTecnico);
-        menuABMTec.add(botonBajaTecnico);
-        menuABMTec.add(botonModificaTecnico);
-        menuABMTec.add(listaTecnicos);
-        menuABMTec.setVisible(false);
 
         //Ventana
         this.setSize(900,600);
@@ -164,21 +150,29 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         }
         if (e.getSource()==botonABMtecnico){
             menuABMTec.setVisible(true);
+            pnlAltaTecnico.setVisible(false);
         }
-        if (e.getSource()==botonABMtecnico){
-            menuABMTec.setVisible(true);
+        if (e.getSource()==botonAMBarticulo){
+            menuABMTec.setVisible(false);
+            menuABMArt.setVisible(true);
+        }
+        if (e.getSource()==botonAltaTecnico){
+            pnlAltaTecnico.setVisible(true);
+        }
+        if (e.getSource()==botonRefrescar){
+            pnlAltaTecnico.setVisible(false);
+            listaTecnicos.setModel(controller.listModelTecnico());
         }
         if (e.getSource()==botonBajaTecnico){
+            pnlAltaTecnico.setVisible(false);
             if(listaTecnicos.getSelectedValue() == null){
                 JOptionPane.showMessageDialog(null,"Seleccione un técnico.");
             } else {
-                JOptionPane.showMessageDialog(null,listaTecnicos.getSelectedValue());
                 String id = listaTecnicos.getSelectedValue().toString().substring(0,2).replaceAll(" ", "");
                 Integer idInt = Integer.parseInt(id);
                 controller.darDeBajaTecnico(idInt);
                 listaTecnicos.setModel(controller.listModelTecnico());
             }
-
         }
     }
 }
