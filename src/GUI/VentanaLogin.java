@@ -7,19 +7,19 @@ import Interfaz.ControllerLogin;
 import Interfaz.ControllerTecnico;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class AppPrueba extends JFrame {
+public class VentanaLogin extends JFrame implements ActionListener {
 
-    ControllerLogin login;
-    ControllerAdministrador administrador;
-    ControllerAdministrativo administrativo;
-    ControllerTecnico tecnico;
+    public static VentanaLogin ventanaLogin;
 
-    public AppPrueba(){
+    JButton botonEnviar;
+    JTextField usuario;
+    JPasswordField contraseña;
+
+    public VentanaLogin(){
 
         //Titulo Ventana
         this.setTitle("Empresa de Cable Internet");    //Titulo de la ventana
@@ -77,7 +77,7 @@ public class AppPrueba extends JFrame {
         titulo.setHorizontalTextPosition(JLabel.CENTER);
         titulo.setVerticalTextPosition(JLabel.TOP);
         titulo.setForeground(new Color(255, 255, 255));
-        titulo.setFont(new Font("Fuente",Font.BOLD, 15));
+        titulo.setFont(new Font("Consolas",Font.BOLD, 20));
         titulo.setIconTextGap(10);
 
         //Imagen del titulo
@@ -95,32 +95,36 @@ public class AppPrueba extends JFrame {
         textUsuario.setText("Usuario: ");
         textUsuario.setHorizontalAlignment(JLabel.RIGHT);
         textUsuario.setVerticalAlignment(JLabel.CENTER);
-        //textUsuario.setPreferredSize(new Dimension(100,30));
         textUsuario.setBounds(0,150,100,30);
         textUsuario.setForeground(new Color(255, 255, 255));
+        textUsuario.setFont(new Font("Consolas",Font.PLAIN, 12));
 
-        JTextField usuario = new JTextField();
+        usuario = new JTextField();
         usuario.setPreferredSize(new Dimension(380, 30));
+        usuario.addActionListener(usuario.getAction());
 
         //Linea de Contraseña
         JLabel textContraseña = new JLabel("Contraseña: ");
         textContraseña.setHorizontalAlignment(JLabel.RIGHT);
         textContraseña.setVerticalAlignment(JLabel.CENTER);
-        //textContraseña.setPreferredSize(new Dimension(100, 30));
-        //textUsuario.setBounds(0,190,100,30);
         textContraseña.setForeground(new Color(255, 255, 255));
+        textContraseña.setFont(new Font("Consolas",Font.PLAIN, 12));
 
-        JPasswordField contraseña = new JPasswordField();
+        contraseña = new JPasswordField();
         contraseña.setPreferredSize(new Dimension(380, 30));
 
         //Boton de Enviar
-        JButton botonEnviar = new JButton("Enviar");
+        botonEnviar = new JButton("Enviar");
         botonEnviar.setHorizontalAlignment(JLabel.CENTER);
         botonEnviar.setVerticalAlignment(JLabel.CENTER);
         botonEnviar.setPreferredSize(new Dimension(100, 30));
+        botonEnviar.setBackground(new Color(217, 217, 217));
 
-        //button.addActionListener(login.validarCredenciales(usuario.getText(),contraseña.getPassword()));
-
+        botonEnviar.addActionListener(this);
+/**
+        botonEnviar.addActionListener(e ->
+                ControllerLogin.getInstance().validarCredenciales(usuario.getText(), String.valueOf(contraseña.getPassword())));
+*/
         //Texto adicional
         JLabel usuariosExistentes = new JLabel("(Usuarios: usrAdministrador, usrCallCenter, usrAdministrativo, usrTecnico)");
         usuariosExistentes.setHorizontalTextPosition(JLabel.CENTER);
@@ -154,10 +158,41 @@ public class AppPrueba extends JFrame {
         this.setLayout(null);
         this.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
         this.setVisible(true);        //Hace el frame visible
-
     }
 
-    public static void main(String[] args) {
-        AppPrueba ventanaLogin = new AppPrueba();
+    public static VentanaLogin getInstance(){
+        if(ventanaLogin == null){
+            ventanaLogin = new VentanaLogin();
+        }
+        return ventanaLogin;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==botonEnviar ){
+
+            //ErrorMSG warning = new ErrorMSG();
+
+            //usuario.addActionListener(e1 -> ventanaLogin.usuario.getText());
+            //contraseña.addActionListener(e2 ->String.valueOf( ventanaLogin.contraseña.getPassword()));
+
+            String user = usuario.getText();
+            String pass = contraseña.getText();
+
+            if(user.equals("")&& pass.equals("")){
+                JOptionPane.showMessageDialog(this, "Ingresar usuario y contraseña");
+            } else if (!(user.equals("")) && pass.equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingresar contraseña");
+            } else if (user.equals("") && !(pass.equals(""))) {
+                JOptionPane.showMessageDialog(this, "Ingresar usuario");
+            } else if (ControllerLogin.getInstance().validarCredenciales(user,pass)){
+                this.dispose();
+                ControllerLogin.getInstance().obtenerPerfil(user);
+                //new VentanaAdministrador();
+            }
+
+
+        }
     }
 }
