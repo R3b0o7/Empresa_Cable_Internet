@@ -3,6 +3,7 @@ package Interfaz;
 import Clases.*;
 import Enumeraciones.TipoTecnico;
 
+import javax.swing.*;
 import java.util.*;
 
 public class ControllerAdministrador extends Usuario{
@@ -11,12 +12,46 @@ public class ControllerAdministrador extends Usuario{
     private Compania compania;
     private static ControllerAdministrador controladorAdministrador;
 
+    private ControllerAdministrador(){
+        this.compania = Compania.getInstance();
+    }
+
     public static ControllerAdministrador getInstance(){
         if(controladorAdministrador == null){
             controladorAdministrador = new ControllerAdministrador();
         }
         return controladorAdministrador;
     }
+
+    public DefaultListModel<String> listModelTecnico(){
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+        for(Tecnico tec: compania.getTecnicos()){
+            listModel.add(i,+tec.getNroTécnico()
+                                + " - Nombre: " + tec.getNombreApellido()
+                                + " - Seniority: " + tec.getTipoTecnico()
+                                + " - Estado: " + tec.getEstado()
+            );
+            i++;
+        }
+        return listModel;
+    }
+
+    public void darDeBajaTecnico(int id){
+        for (Tecnico tec : compania.getTecnicos()){
+            if (tec.getNroTécnico() == id && tec.getEstado() == true){
+                compania.getTecnico(id).setEstado(false);
+                System.out.println("El Técnico Nro " + id + " fué dado de baja de manera exitosa.");
+                JOptionPane.showMessageDialog(null, "El Técnico Nro "+ id + " fué dado de baja de manera exitosa.");
+                System.out.println();
+            }
+        }
+    }
+
+    public void darDeAltaTecnico(int dni, String nombre, String direccion, TipoTecnico tipoTecnico,String turno){
+
+    }
+
 
     public void menuInicial() {
 
