@@ -2,6 +2,8 @@ package Interfaz;
 
 import Clases.*;
 import GUI.VentanaAdministrador;
+import GUI.VentanaCallCenter;
+import GUI.VentanaTecnico;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.util.Scanner;
 
 public class ControllerLogin {
     JOptionPane mensajeError = new JOptionPane();
-    private Compania compania;
+    private Compania compania = Compania.getInstance();
     private static ControllerLogin controladorLogin;
     private ControllerCallCenter controladorCallCenter;
     private ControllerAdministrativo controladorAdministrativo;
@@ -85,30 +87,26 @@ public class ControllerLogin {
             switch(perfil) {
                 case "callCenter":
                     this.controladorCallCenter = ControllerCallCenter.getInstance();
-                    //controladorCallCenter.menuInicial();
-                    new VentanaAdministrador();
+                    new VentanaCallCenter();
                     run = false;
                     break;
                 case "tecnico":
                     this.controladorTecnico = ControllerTecnico.getInstance();
-                    //controladorTecnico.menuInicial();
+                    new VentanaTecnico();
                     run = false;
                     break;
                 case "administrador":
                     this.controladorAdministrador = ControllerAdministrador.getInstance();
-                    //controladorAdministrador.menuInicial();
                     new VentanaAdministrador();
                     run = false;
                     break;
                 case "administrativo":
                     this.controladorAdministrativo = ControllerAdministrativo.getInstance();
-                    //controladorAdministrativo.menuInicial();
+                    new VentanaAdministrador();
                     run = false;
                     break;
             }
             break;
         }
-        //usuario = login("");
-        //if (usuario != ""){obtenerPerfil(usuario);}
     }
 }

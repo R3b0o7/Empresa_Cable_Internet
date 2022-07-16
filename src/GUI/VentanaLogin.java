@@ -167,15 +167,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
         return ventanaLogin;
     }
 
-    public boolean validarCredenciales(String usuario, String contraseña){
-        if(Compania.getInstance().getContraseña(usuario) != null){
-            return Compania.getInstance().getContraseña(usuario).equals(contraseña);
-        }else{
-            JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos");
-            return false;
-        }
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -197,8 +188,8 @@ public class VentanaLogin extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Ingresar usuario");
             } else if (ControllerLogin.getInstance().validarCredenciales(user,pass)){
                 this.dispose();
-                //ControllerLogin.getInstance().obtenerPerfil(user);
-                new VentanaAdministrador();
+                ControllerLogin.getInstance().obtenerPerfil(user);
+                //new VentanaAdministrador();
             }
 
 

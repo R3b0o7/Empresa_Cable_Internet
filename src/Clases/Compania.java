@@ -199,7 +199,9 @@ public class Compania {
 
     public String getContraseña(String usuario) {return this.password.get(usuario);};
 
-    public String getPerfil(String usuario) {return this.usuarios.get(usuario);};
+    public String getPerfil(String usuario) {
+        return this.usuarios.get(usuario);
+    };
 
     public Map<TipoTecnico, Double> getMaestroCostoTecnicos() {
         return maestroCostoTecnicos;

@@ -1,17 +1,18 @@
 package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaAdministrador extends JFrame implements ActionListener {
+public class VentanaCallCenter extends JFrame implements ActionListener {
+    JButton botonReservarServicio;
 
-    JButton botonABMtecnico;
-    JButton botonAMBarticulo;
-    JButton botonConfigurarParametros;
+    JButton botonAltaCliente;
+    JButton botonListarServiciosPorEstado;
     JButton botonCerrarSesion;
 
-    public VentanaAdministrador(){
+    public VentanaCallCenter() {
         //Encabezado Ventana
         this.setTitle("Empresa de Cable Internet");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,17 +36,17 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 
         //Botones Superiores
 
-        botonABMtecnico = new JButton("ABM Técnico");
-        botonABMtecnico.setHorizontalAlignment(JLabel.LEFT);
-        botonABMtecnico.setBackground(Color.lightGray);
+        botonReservarServicio = new JButton("Reservar servicio");
+        botonReservarServicio.setHorizontalAlignment(JLabel.LEFT);
+        botonReservarServicio.setBackground(Color.lightGray);
 
-        botonAMBarticulo = new JButton("ABM Articulos");
-        botonAMBarticulo.setHorizontalAlignment(JLabel.CENTER);
-        botonAMBarticulo.setBackground(Color.lightGray);
+        botonAltaCliente = new JButton("Alta cliente");
+        botonAltaCliente.setHorizontalAlignment(JLabel.CENTER);
+        botonAltaCliente.setBackground(Color.lightGray);
 
-        botonConfigurarParametros = new JButton("Configurar Parametros");
-        botonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
-        botonConfigurarParametros.setBackground(Color.lightGray);
+        botonListarServiciosPorEstado = new JButton("Listar servicios por estado");
+        botonListarServiciosPorEstado.setHorizontalAlignment(JLabel.RIGHT);
+        botonListarServiciosPorEstado.setBackground(Color.lightGray);
 
         //Botones Laterales
 
@@ -61,9 +62,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         this.add(menuIzquierdo);
         //Aca van los botones laterales
         this.add(menuSuperior);
-        menuSuperior.add(botonABMtecnico);
-        menuSuperior.add(botonAMBarticulo);
-        menuSuperior.add(botonConfigurarParametros);
+        menuSuperior.add(botonReservarServicio);
+        menuSuperior.add(botonAltaCliente);
+        menuSuperior.add(botonListarServiciosPorEstado);
         this.add(inicio);
         inicio.add(botonCerrarSesion);
 
@@ -73,6 +74,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setVisible(true);
         this.getContentPane().setBackground(new Color(107,108,109));
+
     }
 
     @Override
