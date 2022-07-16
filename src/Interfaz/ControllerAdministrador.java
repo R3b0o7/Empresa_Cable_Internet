@@ -532,7 +532,8 @@ public class ControllerAdministrador extends Usuario{
         }
     }
 
-    public void configurarParametros() { // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
+    public void configurarParametros() {
+        // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
         //ejecución menu de la configuración de parametros
         Scanner sc = new Scanner(System.in);
         boolean run = true;

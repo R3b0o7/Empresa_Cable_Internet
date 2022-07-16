@@ -281,11 +281,10 @@ public class Compania {
         this.clientes.add(cliente2);
 
 //      Servicio
-//      ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
-//      tecnicosPrueba.add(tecnico1);
-//      Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
-//      reparacion.finalizarServicio();
-//      this.reparaciones.add(reparacion);
+        ArrayList<Tecnico> tecnicosPrueba = new ArrayList<Tecnico>();
+        tecnicosPrueba.add(tecnico1);
+        Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
+        this.reparaciones.add(reparacion);
 
     }
 

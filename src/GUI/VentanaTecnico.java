@@ -1,14 +1,24 @@
 package GUI;
 
+import Interfaz.ControllerAdministrador;
+import Interfaz.ControllerLogin;
+import Interfaz.ControllerTecnico;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaTecnico extends JFrame implements ActionListener {
+
+    ControllerTecnico controller = ControllerTecnico.getInstance();
+
     JButton botonServiciosAsignados;
     JButton botonCargarDatosServicio;
     JButton botonCerrarSesion;
+    JButton botonBuscar;
+    JTextField textNroTecnico;
+    JLabel labelNroTecnico;
 
     public VentanaTecnico() {
         //Encabezado Ventana
@@ -32,20 +42,37 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         inicio.setBackground(new Color(107,108,109));
         inicio.setBounds(0, 525, 150, 40);
 
-        //Botones Superiores
+        //Panel Superior
 
         botonServiciosAsignados = new JButton("Servicios asignados");
         botonServiciosAsignados.setHorizontalAlignment(JLabel.LEFT);
         botonServiciosAsignados.setBackground(Color.lightGray);
+        botonServiciosAsignados.addActionListener(this);
 
         botonCargarDatosServicio = new JButton("Cargar datos de servicio");
         botonCargarDatosServicio.setHorizontalAlignment(JLabel.CENTER);
         botonCargarDatosServicio.setBackground(Color.lightGray);
 
-        //Botones Laterales
+        //Panel Lateral
+        labelNroTecnico = new JLabel("Numero de tecnico:");
+        labelNroTecnico.setHorizontalAlignment(JLabel.LEFT);
+        labelNroTecnico.setBackground(Color.lightGray);
+        labelNroTecnico.setForeground(new Color(255, 255, 255));
+        labelNroTecnico.setFont(new Font("Consolas",Font.BOLD, 12));
+        labelNroTecnico.setVisible(false);
 
-        //Boton Inferior
+        textNroTecnico = new JTextField("");
+        textNroTecnico.setHorizontalAlignment(JTextField.CENTER);
+        textNroTecnico.setPreferredSize(new Dimension(100, 18));
+        textNroTecnico.setVisible(false);
 
+        botonBuscar = new JButton("Buscar");
+        botonBuscar.setHorizontalAlignment(JLabel.CENTER);
+        botonBuscar.setBackground(Color.lightGray);
+        botonBuscar.addActionListener(this);
+        botonBuscar.setVisible(false);
+
+        //Panel Inferior
         botonCerrarSesion = new JButton("Cerrar Sesión");
         botonCerrarSesion.setHorizontalAlignment(JLabel.CENTER);
         botonCerrarSesion.setBackground(Color.lightGray);
@@ -53,11 +80,18 @@ public class VentanaTecnico extends JFrame implements ActionListener {
 
         //Agregar items a la ventana
 
+        //Botones en menu lateral
         this.add(menuIzquierdo);
-        //Aca van los botones laterales
+        menuIzquierdo.add(labelNroTecnico);
+        menuIzquierdo.add(textNroTecnico);
+        menuIzquierdo.add(botonBuscar);
+
+        //Botones en menu superior
         this.add(menuSuperior);
         menuSuperior.add(botonServiciosAsignados);
         menuSuperior.add(botonCargarDatosServicio);
+
+        //Botones menu inferior
         this.add(inicio);
         inicio.add(botonCerrarSesion);
 
@@ -74,6 +108,14 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         if (e.getSource() == botonCerrarSesion) {
             this.dispose();
             new VentanaLogin();
+        } else if (e.getSource() == botonServiciosAsignados){
+            labelNroTecnico.setVisible(true);
+            textNroTecnico.setVisible(true);
+            botonBuscar.setVisible(true);
+        } else if (e.getSource() == botonCargarDatosServicio){
+
+        } else if (e.getSource() == botonBuscar){
+            controller.getInstance().serviciosAsignados();
         }
     }
 }

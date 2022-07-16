@@ -22,7 +22,7 @@ public class ControllerTecnico extends Usuario {
         // TODO Auto-generated method stub
 
         //Genero los objetos base
-        this.compania = Clases.Compania.getInstance();
+
 
         //ejecución menu principal
         Scanner sc = new Scanner(System.in);
@@ -70,6 +70,7 @@ public class ControllerTecnico extends Usuario {
     }
 
     public void serviciosAsignados() {
+        this.compania = Clases.Compania.getInstance();
         System.out.println("REPARACIONES: ");
         if (this.compania.getReparaciones().size() == 0) {
             System.out.println("No existen reparaciones");

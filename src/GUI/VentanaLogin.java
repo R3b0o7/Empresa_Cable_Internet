@@ -180,6 +180,9 @@ public class VentanaLogin extends JFrame implements ActionListener {
             } else if (ControllerLogin.getInstance().validarCredenciales(user, pass)){
                 this.dispose();
                 ControllerLogin.getInstance().obtenerPerfil(user);
+            } else {
+                usuario.setText("");
+                contraseña.setText("");
             }
         }
     }
