@@ -1,16 +1,25 @@
 package GUI;
 
+import Interfaz.ControllerAdministrador;
+import Interfaz.ControllerCallCenter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaCallCenter extends JFrame implements ActionListener {
-    JButton botonReservarServicio;
 
+    ControllerCallCenter controller = ControllerCallCenter.getInstance();
+
+    //Botones
+    JButton botonReservarServicio;
     JButton botonAltaCliente;
     JButton botonListarServiciosPorEstado;
     JButton botonCerrarSesion;
+    //Paneles
+    //JPanel menuPrincipal;
+    JPanel altaCliente;
 
     public VentanaCallCenter() {
         //Encabezado Ventana
@@ -21,18 +30,23 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
                 "4. Introducción a la Orientación a Objetos\\TPO\\_Empresa Cable e Internet\\TPO\\src\\GUI\\Logo.png"); //crea un icono de la imagen
         this.setIconImage(image.getImage());
 
-        //Paneles
-        JPanel menuIzquierdo = new JPanel();
-        menuIzquierdo.setBackground(Color.red);
-        menuIzquierdo.setBounds(0, 180,150,200);
+        //Paneles --> (Ancho: 900,Alto: 600)
+        //menuPrincipal = new JPanel();
+        //menuPrincipal.setBackground(new Color(107,108,109));
+        //menuPrincipal.setBounds(0, 50,900,450);
 
         JPanel menuSuperior = new JPanel();
-        menuSuperior.setBackground(new Color(107,108,109));
-        menuSuperior.setBounds(150, 0,750,40);
+        menuSuperior.setBackground(new Color(169, 169, 169));
+        menuSuperior.setBounds(0, 0,900,40);
 
         JPanel inicio = new JPanel();
         inicio.setBackground(new Color(107,108,109));
         inicio.setBounds(0, 525,150,40);
+
+        altaCliente = new JPanel();
+        altaCliente.setBackground(new Color(107,108,109));
+        altaCliente.setBounds(0, 50,900,450);
+
 
         //Botones Superiores
 
@@ -48,8 +62,6 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
         botonListarServiciosPorEstado.setHorizontalAlignment(JLabel.RIGHT);
         botonListarServiciosPorEstado.setBackground(Color.lightGray);
 
-        //Botones Laterales
-
         //Boton Inferior
 
         botonCerrarSesion = new JButton("Cerrar Sesión");
@@ -59,8 +71,7 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
 
         //Agregar items a la ventana
 
-        this.add(menuIzquierdo);
-        //Aca van los botones laterales
+        //this.add(menuPrincipal);
         this.add(menuSuperior);
         menuSuperior.add(botonReservarServicio);
         menuSuperior.add(botonAltaCliente);
@@ -74,7 +85,6 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setVisible(true);
         this.getContentPane().setBackground(new Color(107,108,109));
-
     }
 
     @Override
