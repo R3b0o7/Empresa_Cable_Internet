@@ -13,11 +13,6 @@ import java.awt.event.ActionListener;
 
 public class VentanaLogin extends JFrame implements ActionListener {
 
-
-    ControllerAdministrador administrador;
-    ControllerAdministrativo administrativo;
-    ControllerTecnico tecnico;
-
     public static VentanaLogin ventanaLogin;
 
     JButton botonEnviar;
@@ -106,6 +101,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
         usuario = new JTextField();
         usuario.setPreferredSize(new Dimension(380, 30));
+        usuario.addActionListener(usuario.getAction());
 
         //Linea de Contraseña
         JLabel textContraseña = new JLabel("Contraseña: ");
@@ -122,7 +118,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
         botonEnviar.setHorizontalAlignment(JLabel.CENTER);
         botonEnviar.setVerticalAlignment(JLabel.CENTER);
         botonEnviar.setPreferredSize(new Dimension(100, 30));
-        botonEnviar.setBackground(Color.lightGray);
+        botonEnviar.setBackground(new Color(217, 217, 217));
 
         botonEnviar.addActionListener(this);
 /**
@@ -162,7 +158,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
         this.setVisible(true);        //Hace el frame visible
-
     }
 
     public static VentanaLogin getInstance(){
@@ -175,8 +170,10 @@ public class VentanaLogin extends JFrame implements ActionListener {
     public boolean validarCredenciales(String usuario, String contraseña){
         if(Compania.getInstance().getContraseña(usuario) != null){
             return Compania.getInstance().getContraseña(usuario).equals(contraseña);
+        }else{
+            JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos");
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -184,23 +181,27 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
         if(e.getSource()==botonEnviar ){
 
+            //ErrorMSG warning = new ErrorMSG();
 
-            new ErrorMSG();
+            //usuario.addActionListener(e1 -> ventanaLogin.usuario.getText());
+            //contraseña.addActionListener(e2 ->String.valueOf( ventanaLogin.contraseña.getPassword()));
 
-            /**
-            String user = ventanaLogin.usuario.getText();
-            String pass = String.valueOf(ventanaLogin.contraseña.getPassword());
-            if(validarCredenciales(user, pass)){
+            String user = usuario.getText();
+            String pass = contraseña.getText();
+
+            if(user.equals("")&& pass.equals("")){
+                JOptionPane.showMessageDialog(this, "Ingresar usuario y contraseña");
+            } else if (!(user.equals("")) && pass.equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingresar contraseña");
+            } else if (user.equals("") && !(pass.equals(""))) {
+                JOptionPane.showMessageDialog(this, "Ingresar usuario");
+            } else if (ControllerLogin.getInstance().validarCredenciales(user,pass)){
                 this.dispose();
+                //ControllerLogin.getInstance().obtenerPerfil(user);
                 new VentanaAdministrador();
-            } else{
-                new ErrorMSG();
             }
 
 
-            this.dispose();
-            VentanaAdministrador ventana = new VentanaAdministrador();
-             */
         }
     }
 }

@@ -1,11 +1,14 @@
 package Interfaz;
 
 import Clases.*;
+import GUI.VentanaAdministrador;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 
 public class ControllerLogin {
-
+    JOptionPane mensajeError = new JOptionPane();
     private Compania compania;
     private static ControllerLogin controladorLogin;
     private ControllerCallCenter controladorCallCenter;
@@ -39,10 +42,13 @@ public class ControllerLogin {
     }
 
     public boolean validarCredenciales(String usuario, String contraseña){
-        if(this.compania.getContraseña(usuario) != null){
-            return this.compania.getContraseña(usuario).equals(contraseña);
+        if(Compania.getInstance().getContraseña(usuario) != null){
+            return Compania.getInstance().getContraseña(usuario).equals(contraseña);
         }
-        return false;
+        else{
+            JOptionPane.showMessageDialog(mensajeError, "Datos ingresados incorrectos");
+            return false;
+        }
     }
 
     private String login(String usuario){
@@ -72,35 +78,37 @@ public class ControllerLogin {
         return usuario;
     }
 
-    private void obtenerPerfil(String usuario){
+    public void obtenerPerfil(String usuario){
         boolean run = true;
         this.perfil = compania.getPerfil(usuario);
         while (run){
             switch(perfil) {
                 case "callCenter":
                     this.controladorCallCenter = ControllerCallCenter.getInstance();
-                    controladorCallCenter.menuInicial();
+                    //controladorCallCenter.menuInicial();
+                    new VentanaAdministrador();
                     run = false;
                     break;
                 case "tecnico":
                     this.controladorTecnico = ControllerTecnico.getInstance();
-                    controladorTecnico.menuInicial();
+                    //controladorTecnico.menuInicial();
                     run = false;
                     break;
                 case "administrador":
                     this.controladorAdministrador = ControllerAdministrador.getInstance();
-                    controladorAdministrador.menuInicial();
+                    //controladorAdministrador.menuInicial();
+                    new VentanaAdministrador();
                     run = false;
                     break;
                 case "administrativo":
                     this.controladorAdministrativo = ControllerAdministrativo.getInstance();
-                    controladorAdministrativo.menuInicial();
+                    //controladorAdministrativo.menuInicial();
                     run = false;
                     break;
             }
             break;
         }
-        usuario = login("");
-        if (usuario != ""){obtenerPerfil(usuario);}
+        //usuario = login("");
+        //if (usuario != ""){obtenerPerfil(usuario);}
     }
 }
