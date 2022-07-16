@@ -24,7 +24,7 @@ public class VentanaAdministrativo extends JFrame implements ActionListener {
         //Paneles
         JPanel menuIzquierdo = new JPanel();
         menuIzquierdo.setBackground(Color.red);
-        menuIzquierdo.setBounds(0, 0,150,520);
+        menuIzquierdo.setBounds(0, 180,150,200);
 
         JPanel menuSuperior = new JPanel();
         menuSuperior.setBackground(new Color(107,108,109));

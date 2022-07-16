@@ -6,10 +6,17 @@ import java.awt.event.ActionListener;
 
 public class VentanaAdministrador extends JFrame implements ActionListener {
 
+    //Botones superiores
     JButton botonABMtecnico;
     JButton botonAMBarticulo;
     JButton botonConfigurarParametros;
+
+    //Botones Inferior
     JButton botonCerrarSesion;
+
+    //Lateral Izquierdo
+    JPanel menuIzquierdo;
+    JButton botonAltaTecnico;
 
     public VentanaAdministrador(){
         //Encabezado Ventana
@@ -20,10 +27,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
                 "4. Introducción a la Orientación a Objetos\\TPO\\_Empresa Cable e Internet\\TPO\\src\\GUI\\Logo.png"); //crea un icono de la imagen
         this.setIconImage(image.getImage());
 
-        //Paneles
-        JPanel menuIzquierdo = new JPanel();
+        //Paneles -> setSize(Alto: 900,Ancho: 600);
+        menuIzquierdo = new JPanel();
         menuIzquierdo.setBackground(Color.red);
-        menuIzquierdo.setBounds(0, 0,150,520);
+        menuIzquierdo.setBounds(0, 180,150,200);
 
         JPanel menuSuperior = new JPanel();
         menuSuperior.setBackground(new Color(107,108,109));
@@ -38,6 +45,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonABMtecnico = new JButton("ABM Técnico");
         botonABMtecnico.setHorizontalAlignment(JLabel.LEFT);
         botonABMtecnico.setBackground(Color.lightGray);
+        botonABMtecnico.addActionListener(this);
 
         botonAMBarticulo = new JButton("ABM Articulos");
         botonAMBarticulo.setHorizontalAlignment(JLabel.CENTER);
@@ -49,6 +57,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 
         //Botones Laterales
 
+        botonAltaTecnico = new JButton("Alta Tecnico");
+        botonAltaTecnico.setHorizontalAlignment(JLabel.CENTER);
+        botonAltaTecnico.setVerticalAlignment(JLabel.CENTER);
+        botonAltaTecnico.setBackground(Color.lightGray);
+
         //Boton Inferior
 
         botonCerrarSesion = new JButton("Cerrar Sesión");
@@ -59,7 +72,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         //Agregar items a la ventana
 
         this.add(menuIzquierdo);
-        //Aca van los botones laterales
+        //menuIzquierdo.add(botonAltaTecnico);
         this.add(menuSuperior);
         menuSuperior.add(botonABMtecnico);
         menuSuperior.add(botonAMBarticulo);
@@ -80,6 +93,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         if(e.getSource()==botonCerrarSesion){
             this.dispose();
             new VentanaLogin();
+        }
+        if (e.getSource()==botonABMtecnico){
+            menuIzquierdo.add(botonAltaTecnico);
         }
     }
 }
