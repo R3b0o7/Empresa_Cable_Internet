@@ -5,6 +5,7 @@ import Interfaz.ControllerAdministrador;
 import Interfaz.ControllerAdministrativo;
 import Interfaz.ControllerLogin;
 import Interfaz.ControllerTecnico;
+import com.sun.jdi.CharValue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -178,7 +179,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
             //contraseña.addActionListener(e2 ->String.valueOf( ventanaLogin.contraseña.getPassword()));
 
             String user = usuario.getText();
-            String pass = contraseña.getText();
+            String pass = new String(contraseña.getPassword());
 
             if(user.equals("")&& pass.equals("")){
                 JOptionPane.showMessageDialog(this, "Ingresar usuario y contraseña");
@@ -186,13 +187,11 @@ public class VentanaLogin extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Ingresar contraseña");
             } else if (user.equals("") && !(pass.equals(""))) {
                 JOptionPane.showMessageDialog(this, "Ingresar usuario");
-            } else if (ControllerLogin.getInstance().validarCredenciales(user,pass)){
+            } else if (ControllerLogin.getInstance().validarCredenciales(user, pass)){
                 this.dispose();
                 ControllerLogin.getInstance().obtenerPerfil(user);
                 //new VentanaAdministrador();
             }
-
-
         }
     }
 }

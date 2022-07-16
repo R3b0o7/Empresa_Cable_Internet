@@ -30,11 +30,13 @@ public class ControllerLogin {
     }
 
     public boolean validarCredenciales(String usuario, String contraseña){
-        if(Compania.getInstance().getContraseña(usuario) != null){
-            return Compania.getInstance().getContraseña(usuario).equals(contraseña);
-        }
-        else{
-            JOptionPane.showMessageDialog(mensajeError, "Datos ingresados incorrectos");
+        if(Compania.getInstance().getContraseña(usuario) == null){
+            JOptionPane.showMessageDialog(null, "Usuario incorrecto");
+            return false;
+        } else if(Compania.getInstance().getContraseña(usuario).equals(contraseña)) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
             return false;
         }
     }
