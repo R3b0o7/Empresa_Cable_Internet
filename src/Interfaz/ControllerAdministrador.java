@@ -43,6 +43,56 @@ public class ControllerAdministrador extends Usuario{
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         int i = 0;
         for(Articulo art: compania.getStock().getStockArticulos()){
+            listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos");
+            i++;
+        }
+        return listModel;
+    }
+
+    public void darDeBajaTecnico(int id){
+        for (Tecnico tec : compania.getTecnicos()){
+            if (tec.getNroTécnico() == id && tec.getEstado() == true){
+                compania.getTecnico(id).setEstado(false);
+                System.out.println("El Técnico Nro " + id + " fué dado de baja de manera exitosa.");
+                JOptionPane.showMessageDialog(null, "El Técnico Nro "+ id + " fué dado de baja de manera exitosa.");
+                System.out.println();
+            }
+        }
+    }
+
+    public void darDeAltaTecnico(int dni, String nombre, String direccion, TipoTecnico tipoTecnico,String turno){
+        compania.guardarTecnico(new Tecnico(dni, nombre, direccion, tipoTecnico, turno ));
+    }
+
+    public String[] listadoArticulosToCombo(){
+        String[] listado = new String[20];
+        int i = 0;
+        for(Articulo art: compania.getStock().getStockArticulos()){
+            listado[i] = art.getArticulo().toString();
+            i++;
+        }
+        return listado;
+    }
+
+
+    public DefaultListModel<String> listModelTecnico(){
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+        for(Tecnico tec: compania.getTecnicos()){
+            listModel.add(i,+tec.getNroTécnico()
+                                + " - Nombre: " + tec.getNombreApellido()
+                                + " - Seniority: " + tec.getTipoTecnico()
+                                + " - Estado: " + tec.getEstado()
+            );
+            i++;
+        }
+        return listModel;
+    }
+
+    public DefaultListModel<String> listModelArticulo(){
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+        for(Articulo art: compania.getStock().getStockArticulos()){
             listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos - Precio: $" + art.getPrecio());
             i++;
         }
@@ -581,8 +631,7 @@ public class ControllerAdministrador extends Usuario{
         }
     }
 
-    public void configurarParametros() {
-        // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
+    public void configurarParametros() { // Modificar Costo Tecnico Segun Seniority - Costo Combustible - Costo de Viaje
         //ejecución menu de la configuración de parametros
         Scanner sc = new Scanner(System.in);
         boolean run = true;
