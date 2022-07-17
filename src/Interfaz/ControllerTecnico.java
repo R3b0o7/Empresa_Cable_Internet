@@ -1,7 +1,6 @@
 package Interfaz;
 
 import Clases.*;
-import GUI.VentanaTecnico;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -190,7 +189,7 @@ public class ControllerTecnico extends Usuario {
         return servicios;
     }
 
-    public void cargarDatosServicio(String tipo, int nroTecnico, int nroServicio, ArrayList<String> materiales, ArrayList<String> materialesAdic, String almuerzo, String combustible, String tiempoTrabajado) {
+    public void cargarDatosServicio(String tipo, Integer nroTecnico, int nroServicio, ArrayList<String> materiales, ArrayList<String> materialesAdic, String almuerzo, String combustible, String tiempoTrabajado) {
         //boolean run = true;
         //while (run) {
             System.out.println("Desea cargar datos de 1-REPARACIONES / 2-INSTALACIONES / 0-SALIR: ");
@@ -212,7 +211,7 @@ public class ControllerTecnico extends Usuario {
                                     if (reparacion.getIdServicio() == nroServicio) {
 
                                         //Ingresa materiales usados
-                                        for (int k = 0 ; k < materiales.size() ; k=+2) {
+                                        for (int k = 0 ; k < materiales.size() ; k+=2) {
                                             /*System.out.println("Utilizó " + articulo.getArticulo() + " (Y/N): ");
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")) {
@@ -222,7 +221,7 @@ public class ControllerTecnico extends Usuario {
                                                 this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
                                             }*/
                                             for (Articulo articulo : this.compania.getStock().getStockArticulos()) {
-                                                if (articulo.getArticulo().equals(materiales.get(k))){
+                                                if (String.valueOf(articulo.getArticulo()).equals(materiales.get(k))){
                                                     reparacion.addMaterial(articulo,Integer.valueOf(materiales.get(k+1)));
                                                 }
                                             }
@@ -243,7 +242,7 @@ public class ControllerTecnico extends Usuario {
                                                 break;
                                             }
                                         }*/
-                                        for (int k = 0 ; k < materialesAdic.size() ; k=+2) {
+                                        for (int k = 0 ; k < materialesAdic.size() ; k+=2) {
                                             double costo = Double.valueOf(materialesAdic.get(k+1));
                                             reparacion.setCostoMaterialesAdicionales(costo);
                                             reparacion.setMaterialesAdicionales(materialesAdic.get(k));
@@ -259,11 +258,7 @@ public class ControllerTecnico extends Usuario {
                                             System.out.println("No se realizo almuerzo");
                                             reparacion.setAlmuerzo(false);
                                         }*/
-                                        if (almuerzo.equals("Si")){
-                                            reparacion.setAlmuerzo(true);
-                                        } else {
-                                            reparacion.setAlmuerzo(false);
-                                        }
+                                        reparacion.setAlmuerzo(almuerzo.equals("Si"));
 
                                         //Indica si compro combustible
                                         /* System.out.println("Compro combustible? (Y/N): ");
@@ -275,8 +270,7 @@ public class ControllerTecnico extends Usuario {
                                         } else {
                                             System.out.println("No se realizo compra de combustible");
                                         }*/
-                                        double costoCombustible = Integer.parseInt(combustible) * this.compania.getPrecioCombustible();
-                                        reparacion.setCombustible(costoCombustible);
+                                        reparacion.setCombustible(Double.parseDouble(combustible));
 
                                         //Calcula tiempo trabajado
                                         //while (true) {
