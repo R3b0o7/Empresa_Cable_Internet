@@ -108,15 +108,15 @@ public class VentanaTecnico extends JFrame implements ActionListener {
 
         //Panel Central
         textArea = new JTextArea("");
-        textArea.setText("TEXTO\nTEXTO\nTEXTO\nTEXTO\nTEXTO\nTEXTO\nTEXTO\nTEXTO");
+        textArea.setText("A\nS\nD\nF\nG\nH\nJ\nK\nS\nD\nF\nG\nH\nJ\nK");
         textArea.setAlignmentX(LEFT_ALIGNMENT);
         textArea.setLineWrap(true);
-        textArea.setBackground(new Color(107, 108, 109));
-        textArea.setBounds(0, 0,600,400);
         textArea.setVisible(false);
         textArea.setEditable(false);
 
-        scrollPane = new JScrollPane();
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setBounds(0, 0,600,150);
+        scrollPane.setVisible(false);
 
         labelMaterial = new JLabel("Tipo de material: ");
         labelMaterial.setHorizontalAlignment(JLabel.LEFT);
@@ -271,7 +271,6 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         menuCentro.add(labelCombustible);
         menuCentro.add(labelTipo);
         menuCentro.add(tipo);
-        menuCentro.add(textArea);
 
         //Ventana
         this.setSize(900, 600);
@@ -308,6 +307,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             textTiempo.setVisible(false);
             labelTiempo.setVisible(false);
             cargarDatos.setVisible(false);
+            scrollPane.setVisible(true);
         } else if (e.getSource() == botonCargarDatosServicio){
             labelTipo.setVisible(true);
             tipo.setVisible(true);
