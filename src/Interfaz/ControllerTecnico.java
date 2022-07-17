@@ -3,6 +3,7 @@ package Interfaz;
 import Clases.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class ControllerTecnico extends Usuario {
     static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerTecnico controladorTecnico;
+    public ArrayList<String> servicios;
 
     public static ControllerTecnico getInstance(){
         if(controladorTecnico == null){
@@ -70,7 +72,8 @@ public class ControllerTecnico extends Usuario {
         System.out.println("##################################");
     }
 
-    public void serviciosAsignados(String nroTecnico) {
+    public ArrayList<String> serviciosAsignados(String nroTecnico) {
+        ArrayList<String> servicios = new ArrayList<>();
         this.compania = Clases.Compania.getInstance();
         System.out.println("REPARACIONES: ");
         if (this.compania.getReparaciones().size() == 0) {
@@ -89,6 +92,37 @@ public class ControllerTecnico extends Usuario {
                                     "\nCliente: " + reparacion.getCliente().getNombreApellido() +
                                     "\nDNI cliente: " + reparacion.getCliente().getDni() +
                                     "\nTECNICO: " + Integer.valueOf(nroTecnico));
+                            servicios.add("ID Servicio: ");
+                            servicios.add(String.valueOf(reparacion.getIdServicio()));
+                            servicios.add("Tipo Servicio: ");
+                            servicios.add(String.valueOf(reparacion.getTipoServicio()));
+                            servicios.add("Cliente: ");
+                            servicios.add(String.valueOf(reparacion.getCliente().getNombreApellido()));
+                            servicios.add("Tecnico/s: ");
+                            for (int k = 0 ; k < reparacion.getTecnicos().size() ; k++){
+                                servicios.add("ID: ");
+                                servicios.add(String.valueOf(reparacion.getTecnicos().get(k).getNroTécnico()));
+                                servicios.add("Nombre: ");
+                                servicios.add(String.valueOf(reparacion.getTecnicos().get(k).getNombreApellido()));
+                                servicios.add("Tipo: ");
+                                servicios.add(String.valueOf(reparacion.getTecnicos().get(k).getTipoTecnico()));
+                                servicios.add("Turno: ");
+                                servicios.add(String.valueOf(reparacion.getTecnicos().get(k).getTurno()));
+                            }
+                            servicios.add("Fecha: ");
+                            servicios.add(String.valueOf(reparacion.getFecha()));
+                            servicios.add("Hora servicio: ");
+                            servicios.add(String.valueOf(reparacion.getHora()));
+                            servicios.add("Materiales Adicionales: ");
+                            servicios.add(String.valueOf(reparacion.getMaterialesAdicionales()));
+                            servicios.add("Tiempo Trabajado: ");
+                            servicios.add(String.valueOf(reparacion.getTiempoTrabajado()));
+                            servicios.add("Estado: ");
+                            servicios.add(String.valueOf(reparacion.getEstado()));
+                            servicios.add("Precio Final: ");
+                            servicios.add(String.valueOf(reparacion.getPrecioFinal()));
+                            servicios.add("Costo Real: ");
+                            servicios.add(String.valueOf(reparacion.getCostoReal()));
                         } else {
                             System.out.println("No existen Reparaciones asignadas");
                         }
@@ -115,13 +149,45 @@ public class ControllerTecnico extends Usuario {
                                     "\nTecnicos: " + instalacion.getTecnicos() +
                                     "\nCliente: " + instalacion.getCliente().getNombreApellido() +
                                     "\nDNI cliente: " + instalacion.getCliente().getDni());
+                            servicios.add("ID Servicio: ");
+                            servicios.add(String.valueOf(instalacion.getIdServicio()));
+                            servicios.add("Tipo Servicio: ");
+                            servicios.add(String.valueOf(instalacion.getTipoServicio()));
+                            servicios.add("Cliente: ");
+                            servicios.add(String.valueOf(instalacion.getCliente().getNombreApellido()));
+                            servicios.add("Tecnico/s: ");
+                            for (int k = 0 ; k < instalacion.getTecnicos().size() ; k++){
+                                servicios.add("ID: ");
+                                servicios.add(String.valueOf(instalacion.getTecnicos().get(k).getNroTécnico()));
+                                servicios.add("Nombre: ");
+                                servicios.add(String.valueOf(instalacion.getTecnicos().get(k).getNombreApellido()));
+                                servicios.add("Tipo: ");
+                                servicios.add(String.valueOf(instalacion.getTecnicos().get(k).getTipoTecnico()));
+                                servicios.add("Turno: ");
+                                servicios.add(String.valueOf(instalacion.getTecnicos().get(k).getTurno()));
+                            }
+                            servicios.add("Fecha: ");
+                            servicios.add(String.valueOf(instalacion.getFecha()));
+                            servicios.add("Hora servicio: ");
+                            servicios.add(String.valueOf(instalacion.getHora()));
+                            servicios.add("Materiales Adicionales: ");
+                            servicios.add(String.valueOf(instalacion.getMaterialesAdicionales()));
+                            servicios.add("Tiempo Trabajado: ");
+                            servicios.add(String.valueOf(instalacion.getTiempoTrabajado()));
+                            servicios.add("Estado: ");
+                            servicios.add(String.valueOf(instalacion.getEstado()));
+                            servicios.add("Precio Final: ");
+                            servicios.add(String.valueOf(instalacion.getPrecioFinal()));
+                            servicios.add("Costo Real: ");
+                            servicios.add(String.valueOf(instalacion.getCostoReal()));
                         } else {
                             System.out.println("No existen Instalaciones asignadas");
                         }
-                    } catch (NumberFormatException exception){}
+                    } catch (NumberFormatException exception) {}
                 }
             }
         }
+        return servicios;
     }
 
     public void cargarDatosServicio() {

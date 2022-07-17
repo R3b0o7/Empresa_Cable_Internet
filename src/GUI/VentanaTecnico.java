@@ -9,10 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class VentanaTecnico extends JFrame implements ActionListener {
 
     ControllerTecnico controller = ControllerTecnico.getInstance();
+    ArrayList<String> servicios;
 
     JButton botonServiciosAsignados;
     JButton botonCargarDatosServicio;
@@ -108,11 +110,10 @@ public class VentanaTecnico extends JFrame implements ActionListener {
 
         //Panel Central
         textArea = new JTextArea("");
-        textArea.setText("A\nS\nD\nF\nG\nH\nJ\nK\nS\nD\nF\nG\nH\nJ\nK");
+        textArea.setText("");
         textArea.setAlignmentX(LEFT_ALIGNMENT);
         textArea.setLineWrap(true);
         textArea.setVisible(false);
-        textArea.setEditable(false);
 
         scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(0, 0,600,150);
@@ -286,7 +287,6 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             this.dispose();
             new VentanaLogin();
         } else if (e.getSource() == botonServiciosAsignados){
-            textArea.setVisible(true);
             labelNroTecnico.setVisible(true);
             textNroTecnico.setVisible(true);
             botonBuscar.setVisible(true);
@@ -307,7 +307,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             textTiempo.setVisible(false);
             labelTiempo.setVisible(false);
             cargarDatos.setVisible(false);
-            scrollPane.setVisible(true);
+            scrollPane.setVisible(false);
         } else if (e.getSource() == botonCargarDatosServicio){
             labelTipo.setVisible(true);
             tipo.setVisible(true);
@@ -330,7 +330,18 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             textNroTecnico.setVisible(true);
             botonBuscar.setVisible(true);
         } else if (e.getSource() == botonBuscar){
-            controller.getInstance().serviciosAsignados(textNroTecnico.getText());
+            textArea.setEditable(true);
+            textArea.setText("");
+            servicios = controller.getInstance().serviciosAsignados(textNroTecnico.getText());
+            scrollPane.setVisible(true);
+            if (servicios!=null){
+                for (int k=0;k<servicios.size();k++){
+                    String texto = textArea.getText();
+                    textArea.setText(texto+servicios.get(k)+"\n");
+                    System.out.println(servicios.get(k));
+                }
+            }
+            textArea.setEditable(false);
         }
     }
 }
