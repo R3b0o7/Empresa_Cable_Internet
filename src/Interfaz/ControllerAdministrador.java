@@ -1,7 +1,9 @@
 package Interfaz;
 
 import Clases.*;
+import Enumeraciones.Articulos;
 import Enumeraciones.TipoTecnico;
+import Excepciones.GenericException;
 
 import javax.swing.*;
 import java.util.*;
@@ -41,7 +43,7 @@ public class ControllerAdministrador extends Usuario{
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         int i = 0;
         for(Articulo art: compania.getStock().getStockArticulos()){
-            listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos");
+            listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos - Precio: $" + art.getPrecio());
             i++;
         }
         return listModel;
@@ -72,6 +74,33 @@ public class ControllerAdministrador extends Usuario{
         return listado;
     }
 
+    public void altaDeStock(Enumeraciones.Articulos articulo, int cantidad){
+        for(Articulo art: compania.getStock().getStockArticulos()){
+            if(art.getArticulo().equals(articulo)){
+                art.agregarCantidadArticulos(cantidad);
+            }
+        }
+    }
+
+    public void bajaDeStock(Enumeraciones.Articulos articulo, int cantidad) throws GenericException{
+        for (Articulo art : compania.getStock().getStockArticulos()) {
+            if (art.getArticulo().equals(articulo)) {
+                if(art.getCantidad() >= cantidad) {
+                    art.agregarCantidadArticulos(cantidad * -1);
+                } else {
+                    throw new GenericException("El valor ingresado supera el stock existente.");
+                }
+            }
+        }
+    }
+
+    public void modificarPrecioArticulo(Articulos articulo, Double precio){
+        for (Articulo art : compania.getStock().getStockArticulos()) {
+            if (art.getArticulo().equals(articulo)) {
+                art.setPrecio(precio);
+            }
+        }
+    }
 
     public void menuInicial() {
 

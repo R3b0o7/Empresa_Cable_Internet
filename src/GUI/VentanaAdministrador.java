@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class VentanaAdministrador extends JFrame implements ActionListener {
 
+
     ControllerAdministrador controller = ControllerAdministrador.getInstance();
 
     //Botones superiores
@@ -22,8 +23,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
     JPanel menuABMTec;
     JPanel pnlAltaTecnico;
     JPanel menuABMArt;
-    JPanel pnlABMArt;
-    JPanel pnlParametros;
+    JPanel menuParametria;
     JButton botonAltaTecnico;
     JButton botonBajaTecnico;
     JButton botonModificaTecnico;
@@ -46,6 +46,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         menuABMTec.setBounds(0, 180,600,260);
 
         menuABMArt = new MenuABMArticulo();
+
+        menuParametria = new MenuParametria();
 
         JPanel menuSuperior = new JPanel();
         menuSuperior.setBackground(new Color(107,108,109));
@@ -72,6 +74,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonConfigurarParametros = new JButton("Configurar Parametros");
         botonConfigurarParametros.setHorizontalAlignment(JLabel.RIGHT);
         botonConfigurarParametros.setBackground(Color.lightGray);
+        botonConfigurarParametros.addActionListener(this);
 
         //Botones Laterales submenu tecnico
 
@@ -123,10 +126,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         menuABMTec.add(scroll);
         menuABMTec.add(pnlAltaTecnico);
         menuABMTec.setVisible(false);
+        menuABMTec.setEnabled(false);
 
         //Agregar items a la ventana
         this.add(menuABMTec);
         this.add(menuABMArt);
+        this.add(menuParametria);
         this.add(menuSuperior);
         menuSuperior.add(botonABMtecnico);
         menuSuperior.add(botonAMBarticulo);
@@ -149,22 +154,45 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
             VentanaLogin.getInstance();
         }
         if (e.getSource()==botonABMtecnico){
+            menuABMArt.setVisible(false);
+            menuABMArt.setEnabled(false);
+            menuParametria.setVisible(false);
+            menuParametria.setEnabled(false);
             menuABMTec.setVisible(true);
+            menuABMTec.setEnabled(true);
             pnlAltaTecnico.setVisible(false);
+            pnlAltaTecnico.setEnabled(false);
         }
         if (e.getSource()==botonAMBarticulo){
             menuABMTec.setVisible(false);
+            menuABMTec.setEnabled(false);
+            menuParametria.setVisible(false);
+            menuParametria.setEnabled(false);
             menuABMArt.setVisible(true);
+            menuABMArt.setEnabled(true);
+        }
+        if (e.getSource()==botonConfigurarParametros){
+            menuABMTec.setVisible(false);
+            menuABMTec.setEnabled(false);
+            menuABMArt.setVisible(false);
+            menuABMArt.setEnabled(false);
+            menuParametria.setVisible(true);
+            menuParametria.setEnabled(true);
         }
         if (e.getSource()==botonAltaTecnico){
             pnlAltaTecnico.setVisible(true);
+            pnlAltaTecnico.setEnabled(true);
         }
         if (e.getSource()==botonRefrescar){
             pnlAltaTecnico.setVisible(false);
+            pnlAltaTecnico.setEnabled(false);
             listaTecnicos.setModel(controller.listModelTecnico());
         }
         if (e.getSource()==botonBajaTecnico){
             pnlAltaTecnico.setVisible(false);
+            pnlAltaTecnico.setEnabled(false);
+            menuABMArt.setVisible(false);
+            menuABMArt.setEnabled(false);
             if(listaTecnicos.getSelectedValue() == null){
                 JOptionPane.showMessageDialog(null,"Seleccione un técnico.");
             } else {

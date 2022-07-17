@@ -9,9 +9,7 @@ import java.awt.event.ActionListener;
 
 public class MenuABMArticulo extends JPanel implements ActionListener {
 
-    private final JButton btnAltaArticulo;
-    private final JButton btnBajaStock;
-    private final JButton btnModificaStock;
+    private final JButton btnAltaBajaStock;
     private final JButton botonRefrescar;
     private final JList listaArticulos;
     private final JScrollPane scroll;
@@ -26,23 +24,11 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
 
         //Botones submenu
 
-        btnAltaArticulo = new JButton("Alta de stock");
-        btnAltaArticulo.setHorizontalAlignment(JLabel.LEFT);
-        btnAltaArticulo.setVerticalAlignment(JLabel.BOTTOM);
-        btnAltaArticulo.setBackground(Color.lightGray);
-        btnAltaArticulo.addActionListener(this);
-
-        btnBajaStock = new JButton("Baja stock");
-        btnBajaStock.setHorizontalAlignment(JLabel.LEFT);
-        btnBajaStock.setVerticalAlignment(JLabel.BOTTOM);
-        btnBajaStock.setBackground(Color.lightGray);
-        btnBajaStock.addActionListener(this);
-
-        btnModificaStock = new JButton("Modificar stock");
-        btnModificaStock.setHorizontalAlignment(JLabel.LEFT);
-        btnModificaStock.setVerticalAlignment(JLabel.BOTTOM);
-        btnModificaStock.setBackground(Color.lightGray);
-        btnModificaStock.addActionListener(this);
+        btnAltaBajaStock = new JButton("Actualizar stock y precios");
+        btnAltaBajaStock.setHorizontalAlignment(JLabel.LEFT);
+        btnAltaBajaStock.setVerticalAlignment(JLabel.BOTTOM);
+        btnAltaBajaStock.setBackground(Color.lightGray);
+        btnAltaBajaStock.addActionListener(this);
 
         botonRefrescar = new JButton("Refrescar");
         botonRefrescar.setHorizontalAlignment(JLabel.LEFT);
@@ -53,7 +39,7 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         //Listas
 
         listaArticulos = new JList();
-        listaArticulos.setVisibleRowCount(3);
+        listaArticulos.setVisibleRowCount(4);
         listaArticulos.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
         listaArticulos.setAlignmentY(JPanel.TOP_ALIGNMENT);
         listaArticulos.setModel(controller.listModelArticulo());
@@ -63,22 +49,22 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         pnlAltaArticulo = new PanelAltaArtículo();
 
         //armado de submenu
-        this.add(btnAltaArticulo);
-        this.add(btnBajaStock);
-        this.add(btnModificaStock);
+        this.add(btnAltaBajaStock);
         this.add(botonRefrescar);
         this.add(scroll);
-        this.add(pnlAltaArticulo);
+        this.add(pnlAltaArticulo, JPanel.BOTTOM_ALIGNMENT);
         this.setVisible(false);
+        this.setEnabled(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==btnAltaArticulo){
+        if(e.getSource()== btnAltaBajaStock){
             pnlAltaArticulo.setVisible(true);
         }
         if (e.getSource()==botonRefrescar){
             pnlAltaArticulo.setVisible(false);
+            pnlAltaArticulo.setEnabled(false);
             listaArticulos.setModel(ControllerAdministrador.getInstance().listModelArticulo());
         }
     }
