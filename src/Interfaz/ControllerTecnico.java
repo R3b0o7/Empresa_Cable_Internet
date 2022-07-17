@@ -2,6 +2,7 @@ package Interfaz;
 
 import Clases.*;
 
+import javax.swing.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class ControllerTecnico extends Usuario {
             String opcion = sc.nextLine();
             switch (opcion) {
                 case "1":
-                    this.serviciosAsignados();
+                    //this.serviciosAsignados();
                     break;
                 case "2":
                     this.cargarDatosServicio();
@@ -69,25 +70,30 @@ public class ControllerTecnico extends Usuario {
         System.out.println("##################################");
     }
 
-    public void serviciosAsignados() {
+    public void serviciosAsignados(String nroTecnico) {
         this.compania = Clases.Compania.getInstance();
         System.out.println("REPARACIONES: ");
         if (this.compania.getReparaciones().size() == 0) {
             System.out.println("No existen reparaciones");
         } else {
             for (Reparacion reparacion : this.compania.getReparaciones()) {
-                System.out.println("Ingrese su numero de tecnico: ");
-                int nroTecnico = ingresarEntero();
+                System.out.println("Ingrese su numero de tecnico: "+nroTecnico);
+                //int nroTecnico = ingresarEntero();
                 for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
-                    if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
-                        System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
-                                "\nFecha: " + reparacion.getFecha() +
-                                "\nHorario: " + reparacion.getHora() +
-                                "\nTecnicos: " + reparacion.getTecnicos() +
-                                "\nCliente: " + reparacion.getCliente().getNombreApellido() +
-                                "\nDNI cliente: " + reparacion.getCliente().getDni());
-                    } else {
-                        System.out.println("No existen Reparaciones asignadas");
+                    try {
+                        if (tecnicoReparacion.getNroTécnico() == Integer.valueOf(nroTecnico)) {
+                            System.out.println("ID Reparacion: " + reparacion.getIdServicio() +
+                                    "\nFecha: " + reparacion.getFecha() +
+                                    "\nHorario: " + reparacion.getHora() +
+                                    "\nTecnicos: " + reparacion.getTecnicos() +
+                                    "\nCliente: " + reparacion.getCliente().getNombreApellido() +
+                                    "\nDNI cliente: " + reparacion.getCliente().getDni() +
+                                    "\nTECNICO: " + Integer.valueOf(nroTecnico));
+                        } else {
+                            System.out.println("No existen Reparaciones asignadas");
+                        }
+                    } catch (NumberFormatException exception) {
+                        JOptionPane.showMessageDialog(null,"Numero de tecnico invalido");
                     }
                 }
             }
@@ -99,18 +105,20 @@ public class ControllerTecnico extends Usuario {
         } else {
             for (Instalacion instalacion : this.compania.getInstalaciones()) {
                 System.out.println("Ingrese su numero de tecnico: ");
-                int nroTecnico = ingresarEntero();
+                //int nroTecnico = ingresarEntero();
                 for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
-                    if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
-                        System.out.println("ID Instalacion: " + instalacion.getIdServicio() +
-                                "\nFecha: " + instalacion.getFecha() +
-                                "\nHorario: " + instalacion.getHora() +
-                                "\nTecnicos: " + instalacion.getTecnicos() +
-                                "\nCliente: " + instalacion.getCliente().getNombreApellido() +
-                                "\nDNI cliente: " + instalacion.getCliente().getDni());
-                    } else {
-                        System.out.println("No existen Instalaciones asignadas");
-                    }
+                    try {
+                        if (tecnicoInstalacion.getNroTécnico() == Integer.valueOf(nroTecnico)) {
+                            System.out.println("ID Instalacion: " + instalacion.getIdServicio() +
+                                    "\nFecha: " + instalacion.getFecha() +
+                                    "\nHorario: " + instalacion.getHora() +
+                                    "\nTecnicos: " + instalacion.getTecnicos() +
+                                    "\nCliente: " + instalacion.getCliente().getNombreApellido() +
+                                    "\nDNI cliente: " + instalacion.getCliente().getDni());
+                        } else {
+                            System.out.println("No existen Instalaciones asignadas");
+                        }
+                    } catch (NumberFormatException exception){}
                 }
             }
         }
@@ -132,7 +140,7 @@ public class ControllerTecnico extends Usuario {
                             int nroTecnico = ingresarEntero();
                             for (Tecnico tecnicoReparacion : reparacion.getTecnicos()) {
                                 if (tecnicoReparacion.getNroTécnico() == nroTecnico) {
-                                    serviciosAsignados();
+                                    //serviciosAsignados();
                                     System.out.println("Ingrese el numero de Reparacion a cargar datos: ");
                                     if (reparacion.getIdServicio() == ingresarEntero()) {
 
@@ -213,7 +221,7 @@ public class ControllerTecnico extends Usuario {
                             int nroTecnico = ingresarEntero();
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
                                 if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
-                                    serviciosAsignados();
+                                    //serviciosAsignados();
                                     System.out.println("Ingrese el numero de Instalacion a cargar datos: ");
                                     if (instalacion.getIdServicio() == ingresarEntero()) {
                                         //Ingresa materiales usados
