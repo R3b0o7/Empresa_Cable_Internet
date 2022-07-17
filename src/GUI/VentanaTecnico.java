@@ -20,6 +20,8 @@ public class VentanaTecnico extends JFrame implements ActionListener {
     JButton botonCargarDatosServicio;
     JButton botonCerrarSesion;
     JButton botonBuscar;
+    JButton botonCargar;
+    JButton botonMaterial;
     JTextField textNroTecnico;
     JLabel labelNroTecnico;
     JTextArea textArea;
@@ -40,7 +42,6 @@ public class VentanaTecnico extends JFrame implements ActionListener {
     JLabel labelCombustible;
     JTextField textTiempo;
     JLabel labelTiempo;
-    JButton cargarDatos;
 
     public VentanaTecnico() {
         //Encabezado Ventana
@@ -229,12 +230,19 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         tipo.setBounds(450,270,120,20);
         tipo.setVisible(false);
 
-        cargarDatos = new JButton("Cargar");
-        cargarDatos.setHorizontalAlignment(JLabel.CENTER);
-        cargarDatos.setBackground(Color.lightGray);
-        cargarDatos.setBounds(250,360,100,30);
-        cargarDatos.addActionListener(this);
-        cargarDatos.setVisible(false);
+        botonMaterial = new JButton("Agregar");
+        botonMaterial.setHorizontalAlignment(JLabel.CENTER);
+        botonMaterial.setBackground(Color.lightGray);
+        botonMaterial.setBounds(25,320,100,30);
+        botonMaterial.addActionListener(this);
+        botonMaterial.setVisible(false);
+
+        botonCargar = new JButton("Cargar");
+        botonCargar.setHorizontalAlignment(JLabel.CENTER);
+        botonCargar.setBackground(Color.lightGray);
+        botonCargar.setBounds(280,360,100,30);
+        botonCargar.addActionListener(this);
+        botonCargar.setVisible(false);
 
         //Agregar items a la ventana
         //Botones en menu lateral
@@ -254,7 +262,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
 
         //Botones menu central
         this.add(menuCentro);
-        menuCentro.add(cargarDatos);
+        menuCentro.add(botonCargar);
         menuCentro.add(scrollPane);
         menuCentro.add(labelMaterial);
         menuCentro.add(material);
@@ -272,6 +280,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         menuCentro.add(labelCombustible);
         menuCentro.add(labelTipo);
         menuCentro.add(tipo);
+        menuCentro.add(botonMaterial);
 
         //Ventana
         this.setSize(900, 600);
@@ -306,8 +315,9 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             labelCombustible.setVisible(false);
             textTiempo.setVisible(false);
             labelTiempo.setVisible(false);
-            cargarDatos.setVisible(false);
+            botonCargar.setVisible(false);
             scrollPane.setVisible(false);
+            botonMaterial.setVisible(false);
         } else if (e.getSource() == botonCargarDatosServicio){
             labelTipo.setVisible(true);
             tipo.setVisible(true);
@@ -325,10 +335,11 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             labelCombustible.setVisible(true);
             textTiempo.setVisible(true);
             labelTiempo.setVisible(true);
-            cargarDatos.setVisible(true);
+            botonCargar.setVisible(true);
             labelNroTecnico.setVisible(true);
             textNroTecnico.setVisible(true);
             botonBuscar.setVisible(true);
+            botonMaterial.setVisible(true);
         } else if (e.getSource() == botonBuscar){
             textArea.setEditable(true);
             textArea.setText("");
@@ -342,6 +353,10 @@ public class VentanaTecnico extends JFrame implements ActionListener {
                 }
             }
             textArea.setEditable(false);
+        } else if (e.getSource() == botonCargar){
+
+        } else if (e.getSource() == botonMaterial) {
+
         }
     }
 }
