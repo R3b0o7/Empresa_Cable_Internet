@@ -77,11 +77,14 @@ public class Servicio {
 
     public double calcularGastos(double precioCombustible) {
         double gastoCombustible = this.combustible * precioCombustible; //Ingresar combustible utilizado y calcula el precio -> ESTO ES COSTO DE VIAJE?
-        int gastoAlmuerzo = 0;
+        int gastoAlmuerzo;
         if (almuerzo) {
             gastoAlmuerzo = 20;
+        } else {
+            gastoAlmuerzo = 0;
         }
-        this.gastos = gastoCombustible + gastoAlmuerzo + this.costoMaterialesAdicionales;
+        this.gastos = gastoCombustible + gastoAlmuerzo;
+        System.out.println(this.gastos+" "+gastoCombustible+" "+this.combustible+" "+precioCombustible+" "+gastoAlmuerzo);
         return this.gastos;
     }
 
@@ -93,18 +96,15 @@ public class Servicio {
         for(Articulo articulo: this.materiales){
             costoMateriales += articulo.getCantidad()*articulo.getPrecio();
         }
-        double costoReal =
-                costoTiempo
-                +costoMateriales
-                +this.costoMaterialesAdicionales
-                +compania.getCostoDeViaje();
+        double costoReal = costoTiempo+costoMateriales+this.costoMaterialesAdicionales+compania.getCostoDeViaje();
+        System.out.println(costoTiempo+" "+costoMateriales+" "+this.costoMaterialesAdicionales+" "+compania.getCostoDeViaje()+" "+costoReal);
         //seteo el atributo
         this.costoReal = costoReal;
         return costoReal;
     }
 
-    public double calcularPrecioFinal(){
-        this.precioFinal = (this.costoReal*this.MARGEN) - this.gastos;
+    public double calcularPrecioFinal(double costo, double gasto){
+        this.precioFinal = (costo*this.MARGEN) - gasto;
         return precioFinal;
    }
 
@@ -115,9 +115,9 @@ public class Servicio {
     public void finalizarServicio(){
         Compania compania = Compania.getInstance();
         this.estado = Estado.Finalizada;
-        this.calcularCostoReal(compania);
-        this.calcularGastos(compania.getPrecioCombustible());
-        this.calcularPrecioFinal();
+        double costo = this.calcularCostoReal(compania);
+        double gasto = this.calcularGastos(compania.getPrecioCombustible());
+        this.calcularPrecioFinal(costo,gasto);
     }
 
     public void facturar(){
@@ -127,7 +127,7 @@ public class Servicio {
     public void calcularTiempoTrabajado(int horaFin, int nroTecnico) {
         for (Tecnico tecnico : tecnicos){
             if (nroTecnico == tecnico.getNroTécnico()){
-                this.tiempoTrabajado.put(tecnico.getNroTécnico(), horaFin / 60d);
+                this.tiempoTrabajado.put(tecnico.getNroTécnico(), Double.valueOf(horaFin / 60));
             }
         }
     }
