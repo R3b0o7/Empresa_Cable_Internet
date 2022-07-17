@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class VentanaTecnico extends JFrame implements ActionListener {
 
     ControllerTecnico controller = ControllerTecnico.getInstance();
-    ArrayList<String> servicios;
+    ArrayList<String> materiales = new ArrayList<>();
+    ArrayList<String> materialesAdic = new ArrayList<>();
 
     JButton botonServiciosAsignados;
     JButton botonCargarDatosServicio;
@@ -22,6 +23,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
     JButton botonBuscar;
     JButton botonCargar;
     JButton botonMaterial;
+    JButton botonMaterialAdic;
     JTextField textNroTecnico;
     JLabel labelNroTecnico;
     JTextArea textArea;
@@ -42,6 +44,8 @@ public class VentanaTecnico extends JFrame implements ActionListener {
     JLabel labelCombustible;
     JTextField textTiempo;
     JLabel labelTiempo;
+    JLabel nroServicio;
+    JTextField textNroServicio;
 
     public VentanaTecnico() {
         //Encabezado Ventana
@@ -163,12 +167,12 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         textMatAdic.setBounds(180, 210,100,20);
         textMatAdic.setVisible(false);
 
-        labelCantAdic = new JLabel("Cantidad:");
+        labelCantAdic = new JLabel("Precio:");
         labelCantAdic.setHorizontalAlignment(JLabel.LEFT);
         labelCantAdic.setBackground(Color.lightGray);
         labelCantAdic.setForeground(new Color(255, 255, 255));
         labelCantAdic.setFont(new Font("Consolas",Font.BOLD, 12));
-        labelCantAdic.setBounds(195,240,200,20);
+        labelCantAdic.setBounds(200,240,200,20);
         labelCantAdic.setVisible(false);
 
         textCantAdic = new JTextField();
@@ -202,6 +206,19 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         textTiempo.setHorizontalAlignment(JTextField.LEFT);
         textTiempo.setBounds(325, 270,80,20);
         textTiempo.setVisible(false);
+
+        nroServicio = new JLabel("ID Servicio:");
+        nroServicio.setHorizontalAlignment(JLabel.LEFT);
+        nroServicio.setBackground(Color.lightGray);
+        nroServicio.setForeground(new Color(255, 255, 255));
+        nroServicio.setFont(new Font("Consolas",Font.BOLD, 12));
+        nroServicio.setBounds(325,310,200,20);
+        nroServicio.setVisible(false);
+
+        textNroServicio = new JTextField();
+        textNroServicio.setHorizontalAlignment(JTextField.LEFT);
+        textNroServicio.setBounds(325, 340,80,20);
+        textNroServicio.setVisible(false);
 
         labelCombustible = new JLabel("Litros de combustible:");
         labelCombustible.setHorizontalAlignment(JLabel.LEFT);
@@ -237,10 +254,17 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         botonMaterial.addActionListener(this);
         botonMaterial.setVisible(false);
 
+        botonMaterialAdic = new JButton("Agregar");
+        botonMaterialAdic.setHorizontalAlignment(JLabel.CENTER);
+        botonMaterialAdic.setBackground(Color.lightGray);
+        botonMaterialAdic.setBounds(180,320,100,30);
+        botonMaterialAdic.addActionListener(this);
+        botonMaterialAdic.setVisible(false);
+
         botonCargar = new JButton("Cargar");
         botonCargar.setHorizontalAlignment(JLabel.CENTER);
         botonCargar.setBackground(Color.lightGray);
-        botonCargar.setBounds(280,360,100,30);
+        botonCargar.setBounds(460,330,100,30);
         botonCargar.addActionListener(this);
         botonCargar.setVisible(false);
 
@@ -281,6 +305,9 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         menuCentro.add(labelTipo);
         menuCentro.add(tipo);
         menuCentro.add(botonMaterial);
+        menuCentro.add(botonMaterialAdic);
+        menuCentro.add(nroServicio);
+        menuCentro.add(textNroServicio);
 
         //Ventana
         this.setSize(900, 600);
@@ -318,6 +345,9 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             botonCargar.setVisible(false);
             scrollPane.setVisible(false);
             botonMaterial.setVisible(false);
+            botonMaterialAdic.setVisible(false);
+            nroServicio.setVisible(false);
+            textNroServicio.setVisible(false);
         } else if (e.getSource() == botonCargarDatosServicio){
             labelTipo.setVisible(true);
             tipo.setVisible(true);
@@ -340,10 +370,13 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             textNroTecnico.setVisible(true);
             botonBuscar.setVisible(true);
             botonMaterial.setVisible(true);
+            botonMaterialAdic.setVisible(true);
+            nroServicio.setVisible(true);
+            textNroServicio.setVisible(true);
         } else if (e.getSource() == botonBuscar){
             textArea.setEditable(true);
             textArea.setText("");
-            servicios = controller.getInstance().serviciosAsignados(textNroTecnico.getText());
+            ArrayList<String> servicios = controller.getInstance().serviciosAsignados(textNroTecnico.getText());
             scrollPane.setVisible(true);
             if (servicios!=null){
                 for (int k=0;k<servicios.size();k++){
@@ -353,10 +386,45 @@ public class VentanaTecnico extends JFrame implements ActionListener {
                 }
             }
             textArea.setEditable(false);
-        } else if (e.getSource() == botonCargar){
-
         } else if (e.getSource() == botonMaterial) {
-
+            if (!textCant.getText().equals("")){
+                materiales.add(material.getSelectedItem().toString());
+                materiales.add(textCant.getText());
+                JOptionPane.showMessageDialog(this,material.getSelectedItem().toString()+" agregado/s con exito\nCantidad: "+textCant.getText(),"Articulo agregado",JOptionPane.INFORMATION_MESSAGE);
+                textCant.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this,"Debe ingresar la cantidad","Articulo no agregado",JOptionPane.WARNING_MESSAGE);
+            }
+        } else if (e.getSource() == botonMaterialAdic) {
+            if (textCantAdic.getText().equals("") || textMatAdic.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar los datos del material","Articulo no agregado",JOptionPane.WARNING_MESSAGE);
+            } else {
+                materialesAdic.add(textMatAdic.getText());
+                materialesAdic.add(textCantAdic.getText());
+                JOptionPane.showMessageDialog(this,textMatAdic.getText()+" agregado/s con exito\nCantidad: "+textCantAdic.getText(),"Articulo agregado",JOptionPane.INFORMATION_MESSAGE);
+                textMatAdic.setText("");
+                textCantAdic.setText("");
+            }
+        } else if (e.getSource() == botonCargar){
+            if (textNroTecnico.getText().equals("") || textNroServicio.getText().equals("")){
+                JOptionPane.showMessageDialog(this,"Servicio no actualizado por falta de datos","Servicio no actualizado",JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    controller.getInstance().cargarDatosServicio(
+                            tipo.getSelectedItem().toString(),
+                            Integer.parseInt(textNroTecnico.getText()),
+                            Integer.parseInt(textNroServicio.getText()),
+                            materiales,
+                            materialesAdic,
+                            almuerzo.getSelectedItem().toString(),
+                            textCombustible.getText(),
+                            textTiempo.getText());
+                } catch (NumberFormatException exception){
+                    JOptionPane.showMessageDialog(this,"Debe ingresar numeros donde se necesita","Datos incorrectos",JOptionPane.ERROR_MESSAGE);
+                } catch (Exception exception){
+                    JOptionPane.showMessageDialog(this,"Error en los datos ingresados","Datos incorrectos",JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }
 }

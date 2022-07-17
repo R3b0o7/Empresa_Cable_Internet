@@ -89,7 +89,7 @@ public class Servicio {
         //calculo costo del tiempo base del servicio
         double costoTiempo = this.calcularCostoTiempoTrabajado(compania);
         //calculo costo de los materiales base
-        double costoMateriales = 0.0d;
+        double costoMateriales = 0.00d;
         for(Articulo articulo: this.materiales){
             costoMateriales += articulo.getCantidad()*articulo.getPrecio();
         }
@@ -195,7 +195,7 @@ public class Servicio {
     public void setMaterialesAdicionales(String value) {this.materialesAdicionalesDescripcion = value;}
 
     public void setCostoMaterialesAdicionales(double costo) {
-        this.costoMaterialesAdicionales = costo;
+        this.costoMaterialesAdicionales += costo;
         System.out.println("Materiales adicionales cargados");
     }
 
