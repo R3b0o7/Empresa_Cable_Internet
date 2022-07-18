@@ -1,6 +1,5 @@
 package GUI;
 
-import Interfaz.ControllerAdministrador;
 import Interfaz.ControllerCallCenter;
 
 import javax.swing.*;
@@ -18,8 +17,8 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
     JButton botonListarServiciosPorEstado;
     JButton botonCerrarSesion;
     //Paneles
-    JPanel altaCliente;
     JPanel reservarServicio;
+    public static JPanel altaCliente;
     JPanel listarServicios;
 
     public VentanaCallCenter() {
@@ -39,13 +38,9 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
         inicio.setBackground(new Color(107,108,109));
         inicio.setBounds(0, 525,150,40);
 
-        altaCliente = new JPanel();
-        altaCliente.setBackground(new Color(192, 18, 18));
-        altaCliente.setBounds(0, 50,900,450);
+        reservarServicio = new MenuReservarServicio();
 
-        reservarServicio = new JPanel();
-        reservarServicio.setBackground(new Color(0, 107, 210));
-        reservarServicio.setBounds(0, 50,900,450);
+        altaCliente = new MenuAltaCliente();
 
         listarServicios = new JPanel();
         listarServicios.setBackground(new Color(117, 227, 0));
@@ -89,12 +84,6 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
         this.add(inicio);
         inicio.add(botonCerrarSesion);
 
-        //Menu Alta Cliente
-        altaCliente.setVisible(false);
-
-        //Menu Reservar Servicio
-        reservarServicio.setVisible(false);
-
         //Menu Listar Servicios Por Estado
         listarServicios.setVisible(false);
 
@@ -114,18 +103,29 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
         }
         if(e.getSource()==botonAltaCliente){
             reservarServicio.setVisible(false);
+            reservarServicio.setEnabled(false);
             listarServicios.setVisible(false);
+            listarServicios.setEnabled(false);
             altaCliente.setVisible(true);
+            altaCliente.setEnabled(true);
         }
         if(e.getSource()==botonReservarServicio){
             altaCliente.setVisible(false);
+            altaCliente.setEnabled(false);
             listarServicios.setVisible(false);
+            listarServicios.setEnabled(false);
             reservarServicio.setVisible(true);
+            reservarServicio.setEnabled(true);
         }
         if(e.getSource()==botonListarServiciosPorEstado){
             altaCliente.setVisible(false);
             reservarServicio.setVisible(false);
             listarServicios.setVisible(true);
         }
+    }
+
+    public static void mostrarAltaCliente(){
+        altaCliente.setVisible(true);
+        altaCliente.setEnabled(true);
     }
 }
