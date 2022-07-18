@@ -63,7 +63,6 @@ public class PanelAltaTecnico extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==this.buttonGrabarTecnico){
-            System.out.println(this.fieldNroDoc.getText());
             int nroDoc = 0;
             try {
                 System.out.println(this.fieldNroDoc.getText());

@@ -2,8 +2,10 @@ package Interfaz;
 
 import Clases.*;
 import Enumeraciones.Estado;
+import Enumeraciones.TipoTecnico;
 import Excepciones.GenericException;
 
+import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,9 +13,16 @@ import java.util.*;
 import static java.util.Calendar.DAY_OF_WEEK;
 
 public class ControllerCallCenter extends Usuario {
+
     static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerCallCenter controladorCallCenter;
+    private Cliente clienteSeleccionado;
+
+
+   private ControllerCallCenter(){
+       compania = Compania.getInstance();
+   }
 
     public static ControllerCallCenter getInstance(){
         if(controladorCallCenter == null){
@@ -21,6 +30,81 @@ public class ControllerCallCenter extends Usuario {
         }
         return controladorCallCenter;
     }
+
+    public ListModel<String> listModelCliente(int dni){
+        Cliente cliente = compania.getCliente(dni);
+        clienteSeleccionado = cliente;
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        listModel.add(0,
+                "DNI: "+cliente.getDni()
+                +" - Nombre: "+ cliente.getNombreApellido()
+                +"- Dirección: " + cliente.getDirección()
+                );
+        return listModel;
+    }
+
+    public ListModel<String> listModelClientes(){
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+       for(Cliente cliente: compania.getClientes()) {
+           listModel.add(i,
+                   "DNI: " + cliente.getDni()
+                           + " - Nombre: " + cliente.getNombreApellido()
+                           + "- Dirección: " + cliente.getDirección()
+           );
+       }
+        return listModel;
+    }
+
+    public ListModel<String> listModelTecnicosDisponibles(String turnoStr, Date fecha, String horarioStr, String tiposervicioStr) throws GenericException{
+        DefaultListModel<String> listModel = new DefaultListModel<String>();
+        int i = 0;
+        ArrayList<Tecnico> tecnicosDisponibles = new ArrayList<Tecnico>();
+        ArrayList<Integer> idTecnicosDisponibles = new ArrayList<Integer>();
+        try {
+            for (Tecnico tecnico : compania.getTecnicos()) {
+                if (tecnico.getTurno().equals(turnoStr) && tecnico.poseeDisponibilidad(fecha, horarioStr, tiposervicioStr) && tecnico.getEstado()) {
+                    tecnicosDisponibles.add(tecnico);
+                    idTecnicosDisponibles.add(tecnico.getNroTécnico());
+                }
+            }
+        } catch (GenericException exc) {
+            System.out.println(exc);
+        }
+        for(Tecnico tec: tecnicosDisponibles){
+            listModel.add(i,+tec.getNroTécnico()
+                    + " - Nombre: " + tec.getNombreApellido()
+                    + " - Seniority: " + tec.getTipoTecnico()
+                    + " - Estado: " + tec.getEstado()
+            );
+            i++;
+        }
+        System.out.println(tecnicosDisponibles.toString());
+        return listModel;
+    }
+
+    public Cliente getClienteSeleccionado(){
+       return clienteSeleccionado;
+    }
+
+    public int validarClienteConReserva(int dni){
+       int res = 0;
+        if (compania.getReparacionVigentePorCliente(dni) != null) {
+            Reparacion reparacion = compania.getReparacionVigentePorCliente(dni);
+            return reparacion.getIdServicio();
+        } else if (compania.getInstalacionVigentePorCliente(dni) != null) {
+            Instalacion instalacion = compania.getInstalacionVigentePorCliente(dni);
+            return instalacion.getIdServicio();
+        }
+        return res;
+    }
+
+
+    public void altaCliente(int dni, String nombre, String direccion ){
+        Cliente cliente = new Cliente(dni, nombre, direccion);
+        compania.guardarCliente(cliente);
+    }
+
 
     public void menuInicial() {
         //Genero los objetos base

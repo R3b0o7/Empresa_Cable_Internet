@@ -6,7 +6,7 @@ public class TestAltaServicio {
 
     public static void main(String[] args) {
 
-        ControllerCallCenter ifz = new ControllerCallCenter();
+        ControllerCallCenter ifz = ControllerCallCenter.getInstance();
         ifz.menuInicial();
     }
 
