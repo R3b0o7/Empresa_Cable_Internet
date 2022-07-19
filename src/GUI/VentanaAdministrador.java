@@ -22,6 +22,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
     //Sub Menu
     JPanel menuABMTec;
     JPanel pnlAltaTecnico;
+    JPanel pnlModificarTecnico;
     JPanel menuABMArt;
     JPanel menuParametria;
     JButton botonAltaTecnico;
@@ -30,6 +31,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
     JButton botonRefrescar;
     JList listaTecnicos;
     JScrollPane scroll;
+
 
     public VentanaAdministrador(){
         //Encabezado Ventana
@@ -43,21 +45,23 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         //Paneles -> setSize(Alto: 900,Ancho: 600);
         menuABMTec = new JPanel();
         menuABMTec.setBackground(Color.lightGray);
-        menuABMTec.setBounds(0, 180,600,260);
+        menuABMTec.setBounds(80, 60,735,400);
+        menuABMTec.setLayout(new FlowLayout());
 
         menuABMArt = new MenuABMArticulo();
 
         menuParametria = new MenuParametria();
 
         JPanel menuSuperior = new JPanel();
-        menuSuperior.setBackground(new Color(107,108,109));
-        menuSuperior.setBounds(150, 0,750,40);
+        menuSuperior.setBackground(new Color(169, 169, 169));
+        menuSuperior.setBounds(0, 0,900,40);
 
         JPanel inicio = new JPanel();
         inicio.setBackground(new Color(107,108,109));
         inicio.setBounds(0, 525,150,40);
 
         this.pnlAltaTecnico = new PanelAltaTecnico();
+        this.pnlModificarTecnico = new PanelModificarTecnico();
 
         //Botones Superiores
 
@@ -81,25 +85,28 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         botonAltaTecnico = new JButton("Alta Tecnico");
         botonAltaTecnico.setHorizontalAlignment(JLabel.LEFT);
         botonAltaTecnico.setVerticalAlignment(JLabel.BOTTOM);
-        botonAltaTecnico.setBackground(Color.lightGray);
+        //botonAltaTecnico.setBackground(Color.lightGray);
         botonAltaTecnico.addActionListener(this);
 
         botonBajaTecnico = new JButton("Baja Tecnico");
         botonBajaTecnico.setHorizontalAlignment(JLabel.LEFT);
         botonBajaTecnico.setVerticalAlignment(JLabel.BOTTOM);
-        botonBajaTecnico.setBackground(Color.lightGray);
+        //botonBajaTecnico.setBackground(Color.lightGray);
+
         botonBajaTecnico.addActionListener(this);
+        botonBajaTecnico.setHorizontalAlignment(JLabel.CENTER);
+        botonBajaTecnico.setVerticalAlignment(JLabel.BOTTOM);
 
         botonModificaTecnico = new JButton("Modificar Tecnico");
         botonModificaTecnico.setHorizontalAlignment(JLabel.LEFT);
         botonModificaTecnico.setVerticalAlignment(JLabel.BOTTOM);
-        botonModificaTecnico.setBackground(Color.lightGray);
+        //botonModificaTecnico.setBackground(Color.lightGray);
         botonModificaTecnico.addActionListener(this);
 
         botonRefrescar = new JButton("Refrescar");
         botonRefrescar.setHorizontalAlignment(JLabel.LEFT);
         botonRefrescar.setVerticalAlignment(JLabel.BOTTOM);
-        botonRefrescar.setBackground(Color.lightGray);
+        //botonRefrescar.setBackground(Color.lightGray);
         botonRefrescar.addActionListener(this);
 
         //Boton Inferior
@@ -112,9 +119,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         //Listas
 
         listaTecnicos = new JList();
-        listaTecnicos.setVisibleRowCount(3);
-        listaTecnicos.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
-        listaTecnicos.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        listaTecnicos.setVisibleRowCount(10);
+        listaTecnicos.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+        listaTecnicos.setAlignmentY(JPanel.CENTER_ALIGNMENT);
         listaTecnicos.setModel(controller.listModelTecnico());
         scroll = new JScrollPane(listaTecnicos);
 
@@ -125,6 +132,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         menuABMTec.add(botonRefrescar);
         menuABMTec.add(scroll);
         menuABMTec.add(pnlAltaTecnico);
+        menuABMTec.add(pnlModificarTecnico);
         menuABMTec.setVisible(false);
         menuABMTec.setEnabled(false);
 
@@ -162,6 +170,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
             menuABMTec.setEnabled(true);
             pnlAltaTecnico.setVisible(false);
             pnlAltaTecnico.setEnabled(false);
+            pnlModificarTecnico.setVisible(false);
+            pnlModificarTecnico.setEnabled(false);
         }
         if (e.getSource()==botonAMBarticulo){
             menuABMTec.setVisible(false);
@@ -182,17 +192,26 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
         if (e.getSource()==botonAltaTecnico){
             pnlAltaTecnico.setVisible(true);
             pnlAltaTecnico.setEnabled(true);
+            pnlModificarTecnico.setVisible(false);
+            pnlModificarTecnico.setEnabled(false);
+
         }
         if (e.getSource()==botonRefrescar){
             pnlAltaTecnico.setVisible(false);
             pnlAltaTecnico.setEnabled(false);
+            pnlModificarTecnico.setVisible(false);
+            pnlModificarTecnico.setEnabled(false);
             listaTecnicos.setModel(controller.listModelTecnico());
         }
         if (e.getSource()==botonBajaTecnico){
+            listaTecnicos.setModel(controller.listModelTecnico());
             pnlAltaTecnico.setVisible(false);
             pnlAltaTecnico.setEnabled(false);
+            pnlModificarTecnico.setVisible(false);
+            pnlModificarTecnico.setEnabled(false);
             menuABMArt.setVisible(false);
             menuABMArt.setEnabled(false);
+
             if(listaTecnicos.getSelectedValue() == null){
                 JOptionPane.showMessageDialog(null,"Seleccione un técnico.");
             } else {
@@ -201,6 +220,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
                 controller.darDeBajaTecnico(idInt);
                 listaTecnicos.setModel(controller.listModelTecnico());
             }
+        }
+        if (e.getSource()==botonModificaTecnico){
+            listaTecnicos.setModel(controller.listModelTecnico());
+            pnlAltaTecnico.setVisible(false);
+            pnlAltaTecnico.setEnabled(false);
+            pnlModificarTecnico.setVisible(true);
+            pnlModificarTecnico.setEnabled(true);
         }
     }
 }

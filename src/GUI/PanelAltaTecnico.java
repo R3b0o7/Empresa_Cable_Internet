@@ -28,7 +28,7 @@ public class PanelAltaTecnico extends JPanel implements ActionListener {
         
         //armado de panel de altaTecnico
         fieldNroDoc = new JTextField();
-        fieldNroDoc.setPreferredSize(new Dimension(100, 20));
+        fieldNroDoc.setPreferredSize(new Dimension(200, 20));
 
         fieldNombre = new JTextField();
         fieldNombre.setPreferredSize(new Dimension(200, 20));
@@ -39,9 +39,12 @@ public class PanelAltaTecnico extends JPanel implements ActionListener {
         buttonGrabarTecnico = new JButton("Guardar Tecnico");
         buttonGrabarTecnico.addActionListener(this);
 
-        JLabel lblNroDoc = new JLabel("Número de documento");
-        JLabel lblNombre = new JLabel("Nombre");
-        JLabel lblDom = new JLabel("Domicilio");
+        JLabel lblNroDoc = new JLabel("Número de documento:   ");
+        lblNroDoc.setHorizontalAlignment(SwingConstants.RIGHT);
+        JLabel lblNombre = new JLabel("Nombre:   ");
+        lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+        JLabel lblDom = new JLabel("Domicilio:   ");
+        lblDom.setHorizontalAlignment(SwingConstants.RIGHT);
 
         String[] opciones = {TipoTecnico.Junior.toString(), TipoTecnico.Semi_senior.toString(), TipoTecnico.Senior.toString()};
         tipoTecnico = new JComboBox<String>(opciones);

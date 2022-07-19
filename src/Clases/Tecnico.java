@@ -80,6 +80,9 @@ public class Tecnico extends Persona {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    public void setTurno(String turno){
+        this.turno = turno;
+    }
 
     @Override
     public void setDirección(String dirección) {
