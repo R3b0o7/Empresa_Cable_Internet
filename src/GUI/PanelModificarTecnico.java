@@ -1,6 +1,7 @@
 package GUI;
 
 import Clases.Compania;
+import Clases.Tecnico;
 import Enumeraciones.TipoTecnico;
 import Controladores.ControllerAdministrador;
 
@@ -58,7 +59,7 @@ public class PanelModificarTecnico extends JPanel implements ActionListener {
                 try{
                     for(Tecnico tecnico: compania.getTecnicos()){
                         if(tecnico.getNroTécnico()==tecNro){
-                            tecNro = Integer.parseInt(this.idTec.getText());
+
                         }
                         else{
                             JOptionPane.showMessageDialog(null, "El Id del técnico no existe.");
@@ -70,7 +71,7 @@ public class PanelModificarTecnico extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "El Id del técnico no existe.");
                     return;
                 }
-                 */
+                */
             } catch (Exception exc){
                 JOptionPane.showMessageDialog(null, "El Id del técnico debe ser un número entero.");
                 return;

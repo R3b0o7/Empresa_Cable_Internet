@@ -92,7 +92,7 @@ public class ControllerTecnico extends Usuario {
                                     " - Cliente: " + reparacion.getCliente().getNombreApellido() +
                                     " - DNI cliente: " + reparacion.getCliente().getDni() +
                                     " - TECNICO: " + Integer.valueOf(nroTecnico));
-                            servicios.add(rep.toString());
+                            servicios.add(rep.toStringDetalle());
 //                            servicios.add("ID Servicio: ");
 //                            servicios.add(String.valueOf(reparacion.getIdServicio()));
 //                            servicios.add("Tipo Servicio: ");
@@ -151,7 +151,7 @@ public class ControllerTecnico extends Usuario {
                                     "\nTecnicos: " + instalacion.getTecnicos() +
                                     " - Cliente: " + instalacion.getCliente().getNombreApellido() +
                                     " - DNI cliente: " + instalacion.getCliente().getDni());
-                            servicios.add(inst.toString());
+                            servicios.add(inst.toStringDetalle());
 //                            servicios.add(String.valueOf(instalacion.getIdServicio()));
 //                            servicios.add("Tipo Servicio: ");
 //                            servicios.add(String.valueOf(instalacion.getTipoServicio()));
