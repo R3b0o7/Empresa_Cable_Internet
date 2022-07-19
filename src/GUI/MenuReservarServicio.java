@@ -27,17 +27,17 @@ public class MenuReservarServicio extends JPanel implements ActionListener {
     public MenuReservarServicio(){
 
 
-        this.setBackground(new Color(0, 107, 210));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 50,900,400);
 
         //creo objetos
         panel1 = new JPanel();
-        panel1.setBackground(new Color(240, 0, 18));
+        panel1.setBackground(new Color(107,100,150));
         panel1.setBounds(0, 50,900,100);
         panel1.setPreferredSize(new Dimension(900, 50));
 
         panel2 = new JPanel();
-        panel2.setBackground(new Color(100, 0, 200));
+        panel2.setBackground(new Color(107,108,120));
         panel2.setBounds(0, 100,900,100);
         panel1.setPreferredSize(new Dimension(900, 50));
 

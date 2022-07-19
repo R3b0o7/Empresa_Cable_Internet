@@ -1,6 +1,5 @@
 package GUI;
 
-import Enumeraciones.TipoServicio;
 import Excepciones.GenericException;
 import Interfaz.ControllerCallCenter;
 
@@ -49,18 +48,18 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
 
         //instancion objetos
         panel1 = new JPanel();
-        panel1.setBackground(new Color(240, 0, 18));
+        panel1.setBackground(new Color(107,108,109));
         panel1.setBounds(0, 50,900,50);
         panel1.setPreferredSize(new Dimension(900, 50));
 
         panel2 = new JPanel();
-        panel2.setBackground(new Color(100, 0, 200));
+        panel2.setBackground(new Color(107,108,109));
         panel2.setBounds(0, 100,900,50);
         panel2.setPreferredSize(new Dimension(900, 150));
         panel2.setLayout(new GridLayout(0, 2));
 
         panel3 = new JPanel();
-        panel3.setBackground(new Color(200, 100, 50));
+        panel3.setBackground(new Color(107,108,109));
         panel3.setBounds(0, 250,900,150);
         panel3.setPreferredSize(new Dimension(900, 150));
         panel3.setLayout(new GridLayout(0, 2));
@@ -184,12 +183,15 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Domingos y sábados por la tarde no se presta servicio.");
                     return;
                 }
-                listaTecnicosDisponibles.setModel(ControllerCallCenter.getInstance().listModelTecnicosDisponibles(
+                DefaultListModel<String> listModel = ControllerCallCenter.getInstance().listModelTecnicosDisponibles(
                         this.comboTurno.getSelectedItem().toString(),
                         fecha,
                         this.listaHorario.getSelectedItem().toString(),
-                        comboTipoServicio.getSelectedItem().toString()
-                ));
+                        comboTipoServicio.getSelectedItem().toString());
+                if(listModel.getSize()==0){
+                    listModel.add(0,"No existen técnicos disponibles");
+                }
+                listaTecnicosDisponibles.setModel(listModel);
                 comboTurno.setEnabled(false);
                 comboTipoServicio.setEnabled(false);
                 listaHorario.setEnabled(false);
@@ -207,6 +209,13 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
                     nroTecnico = Integer.parseInt(listaTecnicosDisponibles.getSelectedValue().toString().substring(0, 1));
                 } catch (Exception exc){
                     JOptionPane.showMessageDialog(null, exc.getMessage());
+                }
+                SimpleDateFormat sdfInicio = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    fecha = sdfInicio.parse(this.fldFecha.getText());
+                } catch (ParseException exc){
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
+                    return;
                 }
                 ControllerCallCenter.getInstance().seleccionarTecnico(nroTecnico);
                 listaTecnicosSeleccionados.setModel(ControllerCallCenter.getInstance().listModelTecnicosSeleccionados());

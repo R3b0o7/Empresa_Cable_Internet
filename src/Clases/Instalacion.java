@@ -59,11 +59,11 @@ public class Instalacion extends Servicio {
         }
         return "Instalacion - " +
                 "idServicio=" + idServicio +
-                " - fecha=" + fecha +
-                " - horario='" + horario + '\'' +
-                " - tecnicos=" + tecnicosStr +
+                " - Fecha=" + this.getFecha() +
+                " - Horario='" + horario + '\'' +
+                " - Tecnicos=" + tecnicosStr +
                 " - Estado=" + estado +
-                " - cliente=" + cliente +
+                " - Cliente=" + cliente.getNombreApellido() +
                 "} ";
     }
 

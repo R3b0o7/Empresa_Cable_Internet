@@ -18,17 +18,17 @@ public class MenuListarServicios extends JPanel implements ActionListener {
     JScrollPane scrollListaServicios;
 
     public  MenuListarServicios(){
-        this.setBackground(new Color(0, 107, 210));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 50,900,400);
 
         //creo objetos
         panel1 = new JPanel();
-        panel1.setBackground(new Color(240, 0, 18));
+        panel1.setBackground(new Color(107,108,109));
         panel1.setBounds(0, 50,900,50);
         panel1.setPreferredSize(new Dimension(900, 50));
 
         panel2 = new JPanel();
-        panel2.setBackground(new Color(100, 0, 200));
+        panel2.setBackground(new Color(107,108,90));
         panel2.setBounds(0, 100,900,200);
         panel1.setPreferredSize(new Dimension(900, 200));
 
@@ -52,8 +52,10 @@ public class MenuListarServicios extends JPanel implements ActionListener {
         listaServicios.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         listaServicios.setAlignmentY(JPanel.TOP_ALIGNMENT);
         scrollListaServicios = new JScrollPane(listaServicios);
+        scrollListaServicios.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollListaServicios.setPreferredSize(new Dimension(800, 150));
 
-        panel2.add(listaServicios);
+        panel2.add(scrollListaServicios);
         panel2.setVisible(true);
 
         this.add(panel1);

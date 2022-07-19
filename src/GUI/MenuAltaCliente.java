@@ -25,12 +25,12 @@ public class MenuAltaCliente extends JPanel implements ActionListener {
 
     public MenuAltaCliente(){
 
-        this.setBackground(new Color(192, 18, 18));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 50,900,450);
 
         //instancio objetos
         panel1 = new JPanel();
-        this.setBackground(new Color(100, 100, 18));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 50,900,100);
 
         panel2 = new JPanel();
