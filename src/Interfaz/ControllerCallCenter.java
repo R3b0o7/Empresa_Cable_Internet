@@ -367,12 +367,12 @@ public class ControllerCallCenter extends Usuario {
 
         Scanner sc = new Scanner(System.in);
 
-        String[] menu = {"EMPRESA DE CABLE", "ALTA DE CLIENTE"};
-        this.imprimirEncabezado(menu);
+        //String[] menu = {"EMPRESA DE CABLE", "ALTA DE CLIENTE"};
+        //this.imprimirEncabezado(menu);
 
         //obtengo cliente
         Cliente cliente;
-        System.out.println("Ingrese DNI del cliente: ");
+        //System.out.println("Ingrese DNI del cliente: ");
         int dni = ingresarEntero();
         if (this.compania.getCliente(dni) != null) {
             System.out.println("El cliente ya existe.");
