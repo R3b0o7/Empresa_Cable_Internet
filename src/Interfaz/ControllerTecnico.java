@@ -274,27 +274,29 @@ public class ControllerTecnico extends Usuario {
 
                                         //Calcula tiempo trabajado
                                         //while (true) {
-                                            System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
-                                            //int horaFin = ingresarEntero();
-                                            if (Integer.parseInt(tiempoTrabajado) > 29) {
-                                                reparacion.calcularTiempoTrabajado(Integer.parseInt(tiempoTrabajado),nroTecnico);
+                                        //System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
+                                        //int horaFin = ingresarEntero();
+                                        if (Integer.parseInt(tiempoTrabajado) > 29) {
+                                            reparacion.calcularTiempoTrabajado(Integer.parseInt(tiempoTrabajado),nroTecnico);
 
-                                                System.out.println("DATOS CARGADOS");
-                                                reparacion.finalizarServicio();
+                                            System.out.println("DATOS CARGADOS");
+                                            reparacion.finalizarServicio();
+                                            JOptionPane.showMessageDialog(null,"Datos cargados con exito","Datos NO cargados",JOptionPane.INFORMATION_MESSAGE);
 
-                                                break;
-                                            } else {
-                                                System.out.println("Tiempo trabajado incorrecto");
-                                                JOptionPane.showMessageDialog(null,"Debe ingresar tiempo trabajado mayor o igual a 30 minutos","Tiempo trabajado incorrecto",JOptionPane.ERROR_MESSAGE);
-                                            }
+                                            break;
+                                        } else {
+                                            System.out.println("Tiempo trabajado incorrecto");
+                                            JOptionPane.showMessageDialog(null,"Debe ingresar tiempo trabajado mayor o igual a 30 minutos","Tiempo trabajado incorrecto",JOptionPane.ERROR_MESSAGE);
+                                        }
                                         //}
                                     }
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
+                                    JOptionPane.showMessageDialog(null,"No existen Reparaciones a finalizar","Datos cargados",JOptionPane.ERROR_MESSAGE);
                                 }
                             }
-                        break;
                         }
+                        break;
                     case "Instalacion":
                         //Cargar datos INSTALACIONES
                         for (Instalacion instalacion : this.compania.getInstalaciones()) {
@@ -303,10 +305,12 @@ public class ControllerTecnico extends Usuario {
                             for (Tecnico tecnicoInstalacion : instalacion.getTecnicos()) {
                                 if (tecnicoInstalacion.getNroTécnico() == nroTecnico) {
                                     //serviciosAsignados();
-                                    System.out.println("Ingrese el numero de Instalacion a cargar datos: ");
-                                    if (instalacion.getIdServicio() == ingresarEntero()) {
+                                    //System.out.println("Ingrese el numero de Instalacion a cargar datos: ");
+                                    if (instalacion.getIdServicio() == nroServicio) {
+
                                         //Ingresa materiales usados
-                                        for (Articulo articulo : this.compania.getStock().getStockArticulos()){
+                                        for (int k = 0 ; k < materiales.size() ; k+=2){
+                                            /*
                                             System.out.println("Utilizó "+articulo.getArticulo()+" (Y/N): ");
                                             String opcion = sc.nextLine();
                                             if (opcion.equals("Y")){
@@ -314,11 +318,16 @@ public class ControllerTecnico extends Usuario {
                                                 int cantidad = ingresarEntero();
                                                 instalacion.addMaterial(articulo,cantidad);
                                                 this.compania.getStock().getArticulo(articulo.getArticulo()).agregarCantidadArticulos(-cantidad);
+                                            }*/
+                                            for (Articulo articulo : this.compania.getStock().getStockArticulos()) {
+                                                if (String.valueOf(articulo.getArticulo()).equals(materiales.get(k))){
+                                                    instalacion.addMaterial(articulo,Integer.valueOf(materiales.get(k+1)));
+                                                }
                                             }
                                         }
 
                                         //Ingresa materiales adicionales
-                                        while (true) {
+                                        /*while (true) {
                                             System.out.println("Ingrese el nombre del material adicional (vacio para no ingresar mas): ");
                                             String material = sc.nextLine();
                                             if (!material.equals("")) {
@@ -331,10 +340,15 @@ public class ControllerTecnico extends Usuario {
                                                 System.out.println("No se ingresan materiales adicionales");
                                                 break;
                                             }
+                                        }*/
+                                        for (int k = 0 ; k < materialesAdic.size() ; k+=2) {
+                                            double costo = Double.valueOf(materialesAdic.get(k+1));
+                                            instalacion.setCostoMaterialesAdicionales(costo);
+                                            instalacion.setMaterialesAdicionales(materialesAdic.get(k));
                                         }
 
                                         //Ingresa si hubo almuerzo
-                                        System.out.println("Realizó almuerzo? (Y/N): ");
+                                        /*System.out.println("Realizó almuerzo? (Y/N): ");
                                         String confirmacion = sc.nextLine();
                                         if (confirmacion.equals("Y")) {
                                             System.out.println("Almuerzo cargado");
@@ -342,10 +356,11 @@ public class ControllerTecnico extends Usuario {
                                         } else {
                                             System.out.println("No se realizo almuerzo");
                                             instalacion.setAlmuerzo(false);
-                                        }
+                                        }*/
+                                        instalacion.setAlmuerzo(almuerzo.equals("Si"));
 
                                         //Indica si compro combustible
-                                        System.out.println("Compro combustible? (Y/N): ");
+                                        /*System.out.println("Compro combustible? (Y/N): ");
                                         confirmacion = sc.nextLine();
                                         if (confirmacion.equals("Y")) {
                                             System.out.println("Ingrese los litros cúbicos cargados: ");
@@ -353,24 +368,30 @@ public class ControllerTecnico extends Usuario {
                                             instalacion.setCombustible(costoCombustible);
                                         } else {
                                             System.out.println("No se realizo compra de combustible");
-                                        }
-                                        System.out.println("DATOS CARGADOS");
+                                        }*/
+                                        instalacion.setCombustible(Double.parseDouble(combustible));
 
                                         //Calcula tiempo trabajado
-                                        while (true) {
-                                            System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
-                                            int horaFin = ingresarEntero();
-                                            if (horaFin > 30) {
-                                                instalacion.calcularTiempoTrabajado(horaFin,nroTecnico);
+                                        //while (true) {
+                                            //System.out.println("Ingrese la cantidad de tiempo trabajado (en min): ");
+                                            //int horaFin = ingresarEntero();
+                                            if (Integer.parseInt(tiempoTrabajado) > 29) {
+                                                instalacion.calcularTiempoTrabajado(Integer.parseInt(tiempoTrabajado),nroTecnico);
+
+                                                System.out.println("DATOS CARGADOS");
+                                                instalacion.finalizarServicio();
+                                                JOptionPane.showMessageDialog(null,"Datos cargados con exito","Datos cargados",JOptionPane.INFORMATION_MESSAGE);
+
                                                 break;
                                             } else {
                                                 System.out.println("Tiempo trabajado incorrecto");
+                                                JOptionPane.showMessageDialog(null,"Debe ingresar tiempo trabajado mayor o igual a 30 minutos","Tiempo trabajado incorrecto",JOptionPane.ERROR_MESSAGE);
                                             }
                                         }
-                                        instalacion.finalizarServicio();
-                                    }
+                                    //}
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");
+                                    JOptionPane.showMessageDialog(null,"No existen Instalaciones a finalizar","Datos NO cargados",JOptionPane.ERROR_MESSAGE);
                                 }
                             }
                         }
