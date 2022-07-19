@@ -53,54 +53,31 @@ public class PanelModificarTecnico extends JPanel implements ActionListener {
         if(e.getSource()==this.buttonGrabarTecnico){
             int tecNro = 0;
             try {
-                //System.out.println(this.idTec.getText());
                 tecNro = Integer.parseInt(this.idTec.getText());
-                /**
-                try{
-                    for(Tecnico tecnico: compania.getTecnicos()){
-                        if(tecnico.getNroTécnico()==tecNro){
-
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null, "El Id del técnico no existe.");
-                            return;
-                        }
-                    }
-                }
-                catch (Exception exc){
-                    JOptionPane.showMessageDialog(null, "El Id del técnico no existe.");
-                    return;
-                }
-                */
-            } catch (Exception exc){
-                JOptionPane.showMessageDialog(null, "El Id del técnico debe ser un número entero.");
+            } catch (Exception exc) {
+                JOptionPane.showMessageDialog(null, "Valor ingresado inválido");
                 return;
             }
-
+            if(!ControllerAdministrador.getInstance().existeTecnico(tecNro)){
+                JOptionPane.showMessageDialog(null, "El técnico no existe");
+                return;
+            }
             int confirma = JOptionPane.showConfirmDialog(null, "Confirmar modificación del técnico?", "Confirmación", 1);
             TipoTecnico tipo = TipoTecnico.Senior;
-            switch(this.tipoTecnico.getSelectedItem().toString()){
-                case "Junior":
+            switch(this.tipoTecnico.getSelectedIndex()){
+                case 0:
                     tipo = TipoTecnico.Junior;
                     break;
-                case "Semi_senior":
+                case 1:
                     tipo = TipoTecnico.Semi_senior;
                     break;
-                case "Senior":
+                case 2:
                     tipo = TipoTecnico.Senior;
                     break;
             }
             if(confirma == 0) {
                 ControllerAdministrador.getInstance().modificarTecnico(tecNro,tipo,(String) this.comboTurno.getSelectedItem());
                 JOptionPane.showMessageDialog(null, "El Técnico fue actualizado correctamente");
-
-
-                //ControllerAdministrador.getInstance().darDeAltaTecnico(tecNro,
-                //        this.fieldNombre.getText(),
-                //        this.fieldDomicilio.getText(),
-                //        tipo,
-                //        (String) this.comboTurno.getSelectedItem());
-                //JOptionPane.showMessageDialog(null, "El Técnico fue dado de alta correctamente");
             }
         }
     }
