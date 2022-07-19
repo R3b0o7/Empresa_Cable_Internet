@@ -178,13 +178,13 @@ public class VentanaAdministrativo extends JFrame implements ActionListener {
                 ArrayList<String> facturas = controller.getInstance().listarFacturas();
                 facturas.add(tipo.getSelectedItem().toString());
             }
-            if (facturas!=null){
+            /*if (facturas!=null){
                 for (int k=0;k<facturas.size();k++){
                     String texto = textArea.getText();
                     textArea.setText(texto+facturas.get(k)+"\n");
                     System.out.println(facturas.get(k));
                 }
-            }
+            }*/
             textArea.setEditable(false);
         }
     }
