@@ -71,8 +71,8 @@ public class VentanaAdministrativo extends JFrame implements ActionListener {
         //Botones superiores
         this.add(menuSuperior);
         menuSuperior.add(botonModificarServicio);
-        menuSuperior.add(botonListarFacturas);
         menuSuperior.add(botonGenerarFactura);
+        menuSuperior.add(botonListarFacturas);
 
         //Botones inicio
         this.add(inicio);
