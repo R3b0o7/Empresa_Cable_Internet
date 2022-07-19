@@ -75,7 +75,7 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "El valor debe ser un número entero.");
                 return;
             }
-            double precio = 0;
+            //double precio = 0;
             //try {
             //    precio = Double.parseDouble(this.fldPrecio.getText());
             //} catch (Exception exc){

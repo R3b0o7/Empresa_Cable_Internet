@@ -1,5 +1,6 @@
 package GUI;
 
+import Enumeraciones.Articulos;
 import Interfaz.ControllerAdministrador;
 
 import javax.swing.*;
@@ -44,6 +45,40 @@ public class PanelModificarArticulo extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource()==this.buttonGrabarArticulo){
+            double precio = 0;
+            try {
+                precio = Double.parseDouble(this.fldPrecio.getText());
+            } catch (Exception exc){
+                JOptionPane.showMessageDialog(null, "Valor incorrecto para precio");
+                return;
+            }
+            Articulos articulo = Articulos.Cable;
+            switch(this.comboArticulo.getSelectedItem().toString()){
+                case "Cable":
+                    articulo = Articulos.Cable;
+                    break;
+                case "Conector_coaxial_RG6":
+                    articulo = Articulos.Conector_coaxial_RG6;
+                    break;
+                case "Decodificador":
+                    articulo = Articulos.Decodificador;
+                    break;
+                case "Modem"   :
+                    articulo = Articulos.Modem;
+                    break;
+                case "Divisor":
+                    articulo = Articulos.Divisor;
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + this.comboArticulo.getSelectedItem().toString());
+            }
+            int confirma = JOptionPane.showConfirmDialog(null, "Confirma la actualización del artículo?", "Confirmación", 1);
+            if(confirma == 0) {
+                ControllerAdministrador.getInstance().modificarPrecioArticulo(articulo, precio);
+                JOptionPane.showMessageDialog(null, "El artículo fue actualizado correctamente");
+                this.setVisible(false);
+            }
+        }
     }
 }

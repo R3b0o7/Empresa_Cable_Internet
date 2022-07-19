@@ -15,7 +15,7 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
     private final JList listaArticulos;
     private final JScrollPane scroll;
     private final PanelAltaArtículo pnlAltaArticulo;
-    PanelModificarArticulo pnlModificarPrecio;
+    private final PanelModificarArticulo pnlModificarPrecio;
 
     public MenuABMArticulo(){
 
@@ -33,6 +33,8 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         btnAltaBajaStock.addActionListener(this);
 
         btnActualizarPrecio = new JButton(" Actualizar precios");
+        btnActualizarPrecio.setHorizontalAlignment(JLabel.LEFT);
+        btnActualizarPrecio.setVerticalAlignment(JLabel.BOTTOM);
         btnActualizarPrecio.addActionListener(this);
 
         botonRefrescar = new JButton("Refrescar");
@@ -60,6 +62,7 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         this.add(botonRefrescar);
         this.add(scroll);
         this.add(pnlAltaArticulo, JPanel.BOTTOM_ALIGNMENT);
+        this.add(pnlModificarPrecio, JPanel.BOTTOM_ALIGNMENT);
         this.setVisible(false);
         this.setEnabled(false);
     }
