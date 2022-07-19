@@ -118,6 +118,7 @@ public class Servicio {
         double costo = this.calcularCostoReal(compania);
         double gasto = this.calcularGastos(compania.getPrecioCombustible());
         this.calcularPrecioFinal(costo,gasto);
+        this.facturar();
     }
 
     public void facturar(){
