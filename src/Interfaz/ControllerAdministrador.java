@@ -45,7 +45,7 @@ public class ControllerAdministrador extends Usuario{
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         int i = 0;
         for(Articulo art: compania.getStock().getStockArticulos()){
-            listModel.add(i,i+1+"." + art.getArticulo() + ": " + art.getCantidad() + " articulos");
+            listModel.add(i,i+1+". " + art.getArticulo() + ": " + art.getCantidad() + " articulos " + "(" +  art.getPrecio() + "$)");
             i++;
         }
         return listModel;

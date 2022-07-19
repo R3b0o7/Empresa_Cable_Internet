@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class PanelAltaArtículo extends JPanel implements ActionListener {
 
     private final JComboBox<String> comboArticulo;
-    private final JTextField fldPrecio;
+    //private final JTextField fldPrecio;
     JTextField cantidad;
     JButton buttonGrabarArticulo;
     JComboBox comboAltaBaja;
@@ -29,12 +29,14 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
         cantidad = new JTextField();
         cantidad.setPreferredSize(new Dimension(100, 20));
 
-        fldPrecio = new JTextField();
+        //fldPrecio = new JTextField();
         cantidad.setPreferredSize(new Dimension(100, 20));
 
-        JLabel lblCantidad = new JLabel("Cantidad a modificar");
-        JLabel lblArticulo = new JLabel("Articulo");
-        JLabel lblPrecio = new JLabel("Precio");
+        JLabel lblCantidad = new JLabel("Cantidad a modificar:   ");
+        lblCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
+        JLabel lblArticulo = new JLabel("Articulo:   ");
+        lblArticulo.setHorizontalAlignment(SwingConstants.RIGHT);
+        //JLabel lblPrecio = new JLabel("Precio");
 
         buttonGrabarArticulo = new JButton("Guardar cambio");
         buttonGrabarArticulo.addActionListener(this);
@@ -49,8 +51,8 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
         this.add(comboArticulo);
         this.add(lblCantidad);
         this.add(cantidad);
-        this.add(lblPrecio);
-        this.add(fldPrecio);
+        //this.add(lblPrecio);
+        //this.add(fldPrecio);
         this.add(comboAltaBaja);
         this.add(buttonGrabarArticulo);
         this.setVisible(false);
@@ -63,7 +65,7 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
         if(e.getSource()==this.buttonGrabarArticulo){
             int cantidadF = 0;
             try {
-                System.out.println(this.cantidad.getText());
+                //System.out.println(this.cantidad.getText());
                 cantidadF = Integer.parseInt(this.cantidad.getText());
                 if(cantidadF<0){
                     JOptionPane.showMessageDialog(null, "El valor debe ser positivo");
@@ -74,12 +76,12 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
                 return;
             }
             double precio = 0;
-            try {
-                precio = Double.parseDouble(this.fldPrecio.getText());
-            } catch (Exception exc){
-                JOptionPane.showMessageDialog(null, "Valor incorrecto para precio");
-                return;
-            }
+            //try {
+            //    precio = Double.parseDouble(this.fldPrecio.getText());
+            //} catch (Exception exc){
+            //    JOptionPane.showMessageDialog(null, "Valor incorrecto para precio");
+            //    return;
+            //}
             Articulos articulo = Articulos.Cable;
             switch(this.comboArticulo.getSelectedItem().toString()){
                 case "Cable":
@@ -104,7 +106,7 @@ public class PanelAltaArtículo extends JPanel implements ActionListener {
             if(confirma == 0) {
                 if(this.comboAltaBaja.getSelectedItem().toString().equals("Alta")) {
                     ControllerAdministrador.getInstance().altaDeStock(articulo, cantidadF);
-                    ControllerAdministrador.getInstance().modificarPrecioArticulo(articulo, precio);
+                    //ControllerAdministrador.getInstance().modificarPrecioArticulo(articulo, precio);
                     JOptionPane.showMessageDialog(null, "El artículo fue actualizado correctamente");
                     this.setVisible(false);
                 } else {

@@ -10,10 +10,12 @@ import java.awt.event.ActionListener;
 public class MenuABMArticulo extends JPanel implements ActionListener {
 
     private final JButton btnAltaBajaStock;
+    private final JButton btnActualizarPrecio;
     private final JButton botonRefrescar;
     private final JList listaArticulos;
     private final JScrollPane scroll;
     private final PanelAltaArtículo pnlAltaArticulo;
+    PanelModificarArticulo pnlModificarPrecio;
 
     public MenuABMArticulo(){
 
@@ -24,22 +26,25 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
 
         //Botones submenu
 
-        btnAltaBajaStock = new JButton("Actualizar stock y precios");
+        btnAltaBajaStock = new JButton("Actualizar stock");
         btnAltaBajaStock.setHorizontalAlignment(JLabel.LEFT);
         btnAltaBajaStock.setVerticalAlignment(JLabel.BOTTOM);
-        btnAltaBajaStock.setBackground(Color.lightGray);
+        //btnAltaBajaStock.setBackground(Color.lightGray);
         btnAltaBajaStock.addActionListener(this);
+
+        btnActualizarPrecio = new JButton(" Actualizar precios");
+        btnActualizarPrecio.addActionListener(this);
 
         botonRefrescar = new JButton("Refrescar");
         botonRefrescar.setHorizontalAlignment(JLabel.LEFT);
         botonRefrescar.setVerticalAlignment(JLabel.BOTTOM);
-        botonRefrescar.setBackground(Color.lightGray);
+        //botonRefrescar.setBackground(Color.lightGray);
         botonRefrescar.addActionListener(this);
 
         //Listas
 
         listaArticulos = new JList();
-        listaArticulos.setVisibleRowCount(4);
+        listaArticulos.setVisibleRowCount(5);
         listaArticulos.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
         listaArticulos.setAlignmentY(JPanel.TOP_ALIGNMENT);
         listaArticulos.setModel(controller.listModelArticulo());
@@ -47,9 +52,11 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
 
         //Panel de alta
         pnlAltaArticulo = new PanelAltaArtículo();
+        pnlModificarPrecio = new PanelModificarArticulo();
 
         //armado de submenu
         this.add(btnAltaBajaStock);
+        this.add(btnActualizarPrecio);
         this.add(botonRefrescar);
         this.add(scroll);
         this.add(pnlAltaArticulo, JPanel.BOTTOM_ALIGNMENT);
@@ -57,14 +64,27 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         this.setEnabled(false);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== btnAltaBajaStock){
             pnlAltaArticulo.setVisible(true);
+            pnlModificarPrecio.setVisible(false);
+            pnlModificarPrecio.setEnabled(false);
+            listaArticulos.setModel(ControllerAdministrador.getInstance().listModelArticulo());
+        }
+        if(e.getSource()==btnActualizarPrecio){
+            pnlModificarPrecio.setVisible(true);
+            pnlModificarPrecio.setEnabled(true);
+            pnlAltaArticulo.setVisible(false);
+            pnlAltaArticulo.setEnabled(false);
+            listaArticulos.setModel(ControllerAdministrador.getInstance().listModelArticulo());
         }
         if (e.getSource()==botonRefrescar){
             pnlAltaArticulo.setVisible(false);
             pnlAltaArticulo.setEnabled(false);
+            pnlModificarPrecio.setVisible(false);
+            pnlModificarPrecio.setEnabled(false);
             listaArticulos.setModel(ControllerAdministrador.getInstance().listModelArticulo());
         }
     }
