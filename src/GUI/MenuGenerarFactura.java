@@ -94,7 +94,6 @@ public class MenuGenerarFactura extends JPanel implements ActionListener {
         btnImprimirFactura.setEnabled(false);
 
         panel2.add(btnFacturar);
-        panel2.add(btnImprimirFactura);
 
         //panel 3
         texarFactura = new JTextArea();
@@ -130,27 +129,25 @@ public class MenuGenerarFactura extends JPanel implements ActionListener {
             } else {
                 int confirma = JOptionPane.showConfirmDialog(null, "Confirma la generación de la factura?", "Confirmación", 1);
                 if(confirma == 0) {
+                    int nroFactura = 0;
                     try {
-                        ControllerAdministrativo.getInstance().facturar();
+                        nroFactura = ControllerAdministrativo.getInstance().facturar();
                     } catch (Exception exc){
                         JOptionPane.showMessageDialog(null, exc.getMessage());
                         return;
                     }
                     JOptionPane.showMessageDialog(null, "Se generó correctamente la factura.");
                     texarFactura.setText(ControllerAdministrativo.getInstance().getPrintFactura());
-                    btnImprimirFactura.setEnabled(true);
-                    btnImprimirFactura.setOpaque(false);
+                    int imprime = JOptionPane.showConfirmDialog(null, "Desea emitir la factura?", "Confirmación", 1);
+                    if(imprime==0){
+                        ControllerAdministrativo.getInstance().imprimirFactura(nroFactura);
+                    }
+                    texarFactura.setText("");
                     btnListarServicios.doClick();
                 } else {
                     return;
                 }
             }
-        }
-        if(e.getSource()==btnImprimirFactura){
-            ControllerAdministrativo.getInstance().imprimirFactura();
-            texarFactura.setText("");
-            btnImprimirFactura.setOpaque(true);
-            btnImprimirFactura.setEnabled(false);
         }
         if(e.getSource()==btnActualizar){
             texarDetalle.setText(ControllerAdministrativo.getInstance().getDetalleServicioSeleccionado());

@@ -17,6 +17,7 @@ public class ControllerAdministrativo extends Usuario {
     private Reparacion reparacionSeleccionada;
     private Instalacion instalacionSeleccionada;
     private String printFactura;
+    private  Factura facturaSeleccionada;
 
     private ControllerAdministrativo() {
         //Genero los objetos base
@@ -69,6 +70,34 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
+    public void setFacturaSeleccionada(int nroFactura) {
+        facturaSeleccionada = null;
+        for (Factura fac : compania.getFacturas()){
+            if (fac.getNroFactura()==nroFactura) {
+                facturaSeleccionada = fac;
+            }
+        }
+    }
+
+    public String getDetalleFacturaSeleccioanda(){
+        if(facturaSeleccionada!=null){
+            return facturaSeleccionada.imprimirFactura();
+        } else {
+            return "Vacío";
+        }
+    }
+
+    public ListModel<Integer> listModelFacturas(){
+        DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
+        int i = 0;
+        for(Factura fac: compania.getFacturas()){
+            listModel.add(i, fac.getNroFactura());
+        }
+        facturaSeleccionada = null;
+        return listModel;
+    }
+
+
     public ListModel<Integer> listModelServiciosFinalizados(){
         DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
         int i = 0;
@@ -88,16 +117,18 @@ public class ControllerAdministrativo extends Usuario {
         return listModel;
     }
 
-    public void facturar() throws Exception{
+    public int facturar() throws Exception{
         printFactura = "";
         if(instalacionSeleccionada!=null && instalacionSeleccionada.getFactura() == null){
             instalacionSeleccionada.facturar();
             printFactura = instalacionSeleccionada.getFactura().imprimirFactura();
             this.compania.guardarFactura(instalacionSeleccionada.getFactura());
+            return instalacionSeleccionada.getFactura().getNroFactura();
         } else if (reparacionSeleccionada!=null && reparacionSeleccionada.getFactura()==null) {
             reparacionSeleccionada.facturar();
             printFactura = reparacionSeleccionada.getFactura().imprimirFactura();
             this.compania.guardarFactura(reparacionSeleccionada.getFactura());
+            return reparacionSeleccionada.getFactura().getNroFactura();
         } else {
             throw new Exception("El servicio ya se encuentra facturado");
         }
@@ -107,26 +138,38 @@ public class ControllerAdministrativo extends Usuario {
         return printFactura;
     }
 
-    public void imprimirFactura(){
-        System.out.println(printFactura);
-        JFrame pdf = new JFrame();
-        //Encabezado Ventana
-        pdf.setTitle("FACTURA");
-        pdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pdf.setLayout(new FlowLayout());
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(255,255,255));
-        JTextArea texar = new JTextArea();
-        texar.setText(printFactura);
-        panel.add(texar);
-        pdf.add(panel);
+    public void imprimirFactura(int nroFactura){
+        for(Factura fac: compania.getFacturas()){
+            if(fac.getNroFactura()==nroFactura) {
+                if(fac.getEmitida()){
+                    JOptionPane.showMessageDialog(null, "Factura ya emitida.");
+                    return;
+                } else {
+                    fac.setEmitida(true);
+                    printFactura = fac.imprimirFactura();
+                    JFrame pdf = new JFrame();
+                    //Encabezado Ventana
+                    pdf.setTitle("FACTURA");
+                    pdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    pdf.setLayout(new FlowLayout());
+                    JPanel panel = new JPanel();
+                    panel.setBackground(new Color(255,255,255));
+                    JTextArea texar = new JTextArea();
+                    texar.setText(printFactura);
+                    panel.add(texar);
+                    pdf.add(panel);
 
-        pdf.setSize(615,400);
-        pdf.setLocation(652,340);
-        pdf.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
-        pdf.setVisible(true);        //Hace el frame visible
+                    pdf.setSize(615,400);
+                    pdf.setLocation(652,340);
+                    pdf.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
+                    pdf.setVisible(true);        //Hace el frame visible
 
-        printFactura = "";
+                    printFactura = "";
+                }
+            }
+        }
+
+
 
     }
 

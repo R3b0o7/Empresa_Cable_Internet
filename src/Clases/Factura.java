@@ -12,6 +12,7 @@ public class Factura {
     private Cliente cliente;
     private double IVA;
     private double monto; //NUEVO  -> Agregar al diagrama
+    private boolean emitida;
 
     /** Constructor **/
 
@@ -22,6 +23,7 @@ public class Factura {
         this.cliente = cliente;
         this.IVA = 0.21;
         this.calcularMonto();
+        this.emitida = false;
     }
 
     /** Metodos de la clase **/
@@ -43,7 +45,8 @@ public class Factura {
                 +"Bonificación: "+this.servicio.getBonificacion()*100+"%\n"
                 +"Precio del servicio: "+this.servicio.getPrecioFinal()+"\n"
                 +"IVA: "+this.servicio.getPrecioFinal()*this.IVA+"\n"
-                +"Precio final: "+this.monto;
+                +"Precio final: "+this.monto+"\n"
+                +"Emitida: "+this.emitida;
     }
 
     @Override
@@ -77,6 +80,12 @@ public class Factura {
 
     public double getMonto() {
         return monto;
+    }
+
+    public boolean getEmitida(){return emitida;}
+
+    public void setEmitida(boolean b){
+        this.emitida = b;
     }
 
 }
