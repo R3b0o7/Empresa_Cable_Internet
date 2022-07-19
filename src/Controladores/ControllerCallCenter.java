@@ -7,7 +7,7 @@ import Excepciones.GenericException;
 import javax.swing.*;
 import java.util.*;
 
-public class ControllerCallCenter extends Usuario {
+public class ControllerCallCenter{
 
     static Scanner sc = new Scanner(System.in);
     private Compania compania;

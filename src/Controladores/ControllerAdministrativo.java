@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class ControllerAdministrativo extends Usuario {
+public class ControllerAdministrativo{
 
     static Scanner sc = new Scanner(System.in);
     private Compania compania;

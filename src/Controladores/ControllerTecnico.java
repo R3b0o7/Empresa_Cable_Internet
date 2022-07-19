@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ControllerTecnico extends Usuario {
+public class ControllerTecnico {
 
     static Scanner sc = new Scanner(System.in);
     private Compania compania = Clases.Compania.getInstance();

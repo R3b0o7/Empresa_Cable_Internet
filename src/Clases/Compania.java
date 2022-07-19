@@ -16,10 +16,6 @@ public class Compania {
     private ArrayList<Cliente> clientes;
     private Map<String, String> usuarios;
     private Map<String, String> password;
-    private ArrayList<PerfilAdminSistema> usuariosAdmiSistema;
-    private ArrayList<PerfilCallCenter> usuariosCallCenter;
-    private ArrayList<PerfilTecnico> usuariosTecnicos;
-    private ArrayList<PerfilAdministrativo> usuariosAdministrativo;
     private ArrayList<Factura> facturas;
     private ArrayList<Tecnico> tecnicos;
     private Stock stock;
@@ -36,10 +32,6 @@ public class Compania {
         this.clientes = new ArrayList<Cliente>();
         this.usuarios = new HashMap<String, String>();
         this.password = new HashMap<String, String>();
-        this.usuariosAdmiSistema = new ArrayList<PerfilAdminSistema>();
-        this.usuariosAdministrativo = new ArrayList<PerfilAdministrativo>();
-        this.usuariosTecnicos = new ArrayList<PerfilTecnico>();
-        this.usuariosCallCenter = new ArrayList<PerfilCallCenter>();
         this.facturas = new ArrayList<Factura>();
         this.tecnicos = new ArrayList<Tecnico>();
         this.stock = new Stock();
@@ -74,22 +66,6 @@ public class Compania {
 
     public ArrayList<Cliente> getClientes() {
         return clientes;
-    }
-
-    public ArrayList<PerfilAdminSistema> getUsuariosAdmiSistema() {
-        return usuariosAdmiSistema;
-    }
-
-    public ArrayList<PerfilCallCenter> getUsuariosCallCenter() {
-        return usuariosCallCenter;
-    }
-
-    public ArrayList<PerfilTecnico> getUsuariosTecnicos() {
-        return usuariosTecnicos;
-    }
-
-    public ArrayList<PerfilAdministrativo> getUsuariosAdministrativo() {
-        return usuariosAdministrativo;
     }
 
     public ArrayList<Factura> getFacturas() {

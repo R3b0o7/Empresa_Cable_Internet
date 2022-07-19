@@ -8,7 +8,7 @@ import Excepciones.GenericException;
 import javax.swing.*;
 import java.util.*;
 
-public class ControllerAdministrador extends Usuario{
+public class ControllerAdministrador{
 
     static Scanner sc = new Scanner(System.in);
     private Compania compania;
