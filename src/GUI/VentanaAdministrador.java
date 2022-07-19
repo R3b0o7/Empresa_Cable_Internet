@@ -205,7 +205,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
             listaTecnicos.setModel(controller.listModelTecnico());
         }
         if (e.getSource()==botonBajaTecnico){
-            listaTecnicos.setModel(controller.listModelTecnico());
+            //listaTecnicos.setModel(controller.listModelTecnico());
             pnlAltaTecnico.setVisible(false);
             pnlAltaTecnico.setEnabled(false);
             pnlModificarTecnico.setVisible(false);

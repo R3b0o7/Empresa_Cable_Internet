@@ -64,8 +64,8 @@ public class VentanaTecnico extends JFrame implements ActionListener {
 
         JPanel menuSuperior = new JPanel();
         //menuSuperior.setBackground(new Color(107,108,109));
-        menuSuperior.setBackground(new Color(107,108,109));
-        menuSuperior.setBounds(150, 0, 750, 40);
+        menuSuperior.setBackground(new Color(169, 169, 169));
+        menuSuperior.setBounds(0, 0,900,40);
 
         JPanel inicio = new JPanel();
         //inicio.setBackground(new Color(107,108,109));
