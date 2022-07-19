@@ -15,7 +15,7 @@ public class PanelModCombustible extends JPanel implements ActionListener {
 
     public PanelModCombustible(){
 
-        this.setBackground(new Color(100, 20, 100));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 200,900,250);
         this.setPreferredSize(new Dimension(900, 250));
 

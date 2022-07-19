@@ -96,6 +96,8 @@ public class VentanaAdministrativo extends JFrame implements ActionListener {
         menuListarFacturas = new MenuListarFacturas();
 
         this.add(menuModificarServicio);
+        this.add(menuGenerarFactura);
+        this.add(menuListarFacturas);
 
     }
 

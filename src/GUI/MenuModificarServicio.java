@@ -30,17 +30,17 @@ public class MenuModificarServicio extends JPanel implements ActionListener {
     JPanel pnlBonificacion;
 
     public MenuModificarServicio(){
-        this.setBackground(new Color(107,108,0));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 50,900,400);
 
         //creo objetos
         panel1 = new JPanel();
-        panel1.setBackground(new Color(0,100,150));
+        panel1.setBackground(new Color(107,108,109));
         panel1.setBounds(0, 50,900,300);
         panel1.setPreferredSize(new Dimension(900, 100));
 
         panel2 = new JPanel();
-        panel2.setBackground(new Color(107,108,120));
+        panel2.setBackground(new Color(107,108,109));
         panel2.setBounds(0, 160,900,40);
         panel2.setPreferredSize(new Dimension(900, 40));
 

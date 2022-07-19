@@ -14,7 +14,7 @@ public class PanelBonificacion extends JPanel implements ActionListener {
     JButton btnGuardar;
 
     public PanelBonificacion(){
-        this.setBackground(new Color(50, 50, 10));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 200,900,250);
         this.setPreferredSize(new Dimension(900, 250));
 

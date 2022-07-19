@@ -16,7 +16,7 @@ public class PanelModAlmuerzo extends JPanel implements ActionListener {
 
     public PanelModAlmuerzo(){
 
-        this.setBackground(new Color(20, 100, 10));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 200,900,250);
         this.setPreferredSize(new Dimension(900, 250));
 

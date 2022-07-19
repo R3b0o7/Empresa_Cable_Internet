@@ -15,7 +15,7 @@ public class PanelModCostoMaterialAdicional extends JPanel implements ActionList
 
     public PanelModCostoMaterialAdicional(){
 
-        this.setBackground(new Color(100, 100, 10));
+        this.setBackground(new Color(107,108,109));
         this.setBounds(0, 200,900,250);
         this.setPreferredSize(new Dimension(900, 250));
 

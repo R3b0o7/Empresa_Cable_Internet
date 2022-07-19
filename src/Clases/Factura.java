@@ -34,11 +34,14 @@ public class Factura {
 
     public String imprimirFactura(){
 
-        return "N°"+this.nroFactura +"\n"
+        return "Factura N°"+this.nroFactura +"\n"
+                +"DNI Cliente: "+this.cliente.getDni()+"\n"
+                +"Nombre Cliente: "+this.cliente.getNombreApellido()+"\n"
                 +"Materiales utilizados: "+this.servicio.listarMaterialesUtilizados()+"\n"
                 +"Materiales adicionales: "+this.servicio.getMaterialesAdicionales()+"\n"
                 +"Tiempo trabajado total: "+this.servicio.getTiempoTrabajado()+"\n"
-                +"Costo del servicio: "+this.servicio.getPrecioFinal()+"\n"
+                +"Bonificación: "+this.servicio.getBonificacion()*100+"%\n"
+                +"Precio del servicio: "+this.servicio.getPrecioFinal()+"\n"
                 +"IVA: "+this.servicio.getPrecioFinal()*this.IVA+"\n"
                 +"Precio final: "+this.monto;
     }

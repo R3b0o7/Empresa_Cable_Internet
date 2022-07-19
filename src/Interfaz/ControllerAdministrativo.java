@@ -6,6 +6,7 @@ import Enumeraciones.TipoServicio;
 import Enumeraciones.TipoTecnico;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 
 public class ControllerAdministrativo extends Usuario {
@@ -15,6 +16,7 @@ public class ControllerAdministrativo extends Usuario {
     private static ControllerAdministrativo controladorAdministrativo;
     private Reparacion reparacionSeleccionada;
     private Instalacion instalacionSeleccionada;
+    private String printFactura;
 
     private ControllerAdministrativo() {
         //Genero los objetos base
@@ -71,19 +73,61 @@ public class ControllerAdministrativo extends Usuario {
         DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
         int i = 0;
         for(Reparacion rep: compania.getReparaciones()){
-            if(rep.getFactura()  != null && rep.getEstado()==Estado.Finalizada){
+            if(rep.getFactura()  == null && rep.getEstado()==Estado.Finalizada){
                 listModel.add(i, rep.getIdServicio());
             }
         }
         i = 0;
         for(Instalacion inst: compania.getInstalaciones()){
-            if(inst.getFactura()  != null && inst.getEstado()==Estado.Finalizada){
+            if(inst.getFactura()  == null && inst.getEstado()==Estado.Finalizada){
                 listModel.add(i, inst.getIdServicio());
             }
         }
         reparacionSeleccionada = null;
         instalacionSeleccionada = null;
         return listModel;
+    }
+
+    public void facturar() throws Exception{
+        printFactura = "";
+        if(instalacionSeleccionada!=null && instalacionSeleccionada.getFactura() == null){
+            instalacionSeleccionada.facturar();
+            printFactura = instalacionSeleccionada.getFactura().imprimirFactura();
+            this.compania.guardarFactura(instalacionSeleccionada.getFactura());
+        } else if (reparacionSeleccionada!=null && reparacionSeleccionada.getFactura()==null) {
+            reparacionSeleccionada.facturar();
+            printFactura = reparacionSeleccionada.getFactura().imprimirFactura();
+            this.compania.guardarFactura(reparacionSeleccionada.getFactura());
+        } else {
+            throw new Exception("El servicio ya se encuentra facturado");
+        }
+    }
+
+    public String getPrintFactura(){
+        return printFactura;
+    }
+
+    public void imprimirFactura(){
+        System.out.println(printFactura);
+        JFrame pdf = new JFrame();
+        //Encabezado Ventana
+        pdf.setTitle("FACTURA");
+        pdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        pdf.setLayout(new FlowLayout());
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(255,255,255));
+        JTextArea texar = new JTextArea();
+        texar.setText(printFactura);
+        panel.add(texar);
+        pdf.add(panel);
+
+        pdf.setSize(615,400);
+        pdf.setLocation(652,340);
+        pdf.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
+        pdf.setVisible(true);        //Hace el frame visible
+
+        printFactura = "";
+
     }
 
     public String getDetalleServicioSeleccionado(){
