@@ -29,12 +29,14 @@ public class ControllerAdministrador extends Usuario{
         DefaultListModel<String> listModel = new DefaultListModel<String>();
         int i = 0;
         for(Tecnico tec: compania.getTecnicos()){
-            listModel.add(i,+tec.getNroTécnico()
-                                + " - Nombre: " + tec.getNombreApellido()
-                                + " - Seniority: " + tec.getTipoTecnico()
-                                + " - Estado: " + tec.getEstado()
-            );
-            i++;
+            if(tec.getEstado()){
+                listModel.add(i,+tec.getNroTécnico()
+                        + " - Nombre: " + tec.getNombreApellido()
+                        + " - Seniority: " + tec.getTipoTecnico()
+                        + " - Turno: " + tec.getTurno());
+                        //+ " - Estado: " + tec.getEstado()
+                i++;
+            }
         }
         return listModel;
     }
@@ -62,6 +64,17 @@ public class ControllerAdministrador extends Usuario{
 
     public void darDeAltaTecnico(int dni, String nombre, String direccion, TipoTecnico tipoTecnico,String turno){
         compania.guardarTecnico(new Tecnico(dni, nombre, direccion, tipoTecnico, turno ));
+    }
+
+    public void modificarTecnico(int id, TipoTecnico tipoTecnico,String turno){
+        for(Tecnico tecnico: compania.getTecnicos()){
+            if(tecnico.getNroTécnico()==id);{
+                tecnico.setTipoTecnico(tipoTecnico);
+                tecnico.setTurno(turno);
+            }
+        }
+        //Tecnico tecnico = compania.getTecnico(id);
+        //tecnico.setTipoTecnico(tipoTecnico);
     }
 
     public String[] listadoArticulosToCombo(){

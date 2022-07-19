@@ -20,7 +20,7 @@ public class MenuABMArticulo extends JPanel implements ActionListener {
         ControllerAdministrador controller = ControllerAdministrador.getInstance();
 
         this.setBackground(Color.lightGray);
-        this.setBounds(0, 180,600,260);
+        this.setBounds(80, 60,735,400);
 
         //Botones submenu
 
