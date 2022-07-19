@@ -25,7 +25,7 @@ public class Compania {
     private Stock stock;
     private int ultimoServicio;
     private Map<TipoTecnico, Double> maestroCostoTecnicos;
-    private double precioCombustible = 120.3; //nuevo
+    private double precioCombustible = 12.3; //nuevo
     private double costoDeViaje = 500.0; //lo sacamos de servicio para que quede como un parametro de BD
 
 
