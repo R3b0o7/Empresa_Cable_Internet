@@ -63,7 +63,14 @@ public class ControllerAdministrador extends Usuario{
     }
 
     public void darDeAltaTecnico(int dni, String nombre, String direccion, TipoTecnico tipoTecnico,String turno){
-        compania.guardarTecnico(new Tecnico(dni, nombre, direccion, tipoTecnico, turno ));
+        if (this.compania.getTecnicoDNI(dni) != null) {
+            JOptionPane.showMessageDialog(null, "El técnico ya existe");
+            return;
+        }
+        else{
+            compania.guardarTecnico(new Tecnico(dni, nombre, direccion, tipoTecnico, turno ));
+        }
+
     }
 
     public void modificarTecnico(int id, TipoTecnico tipoTecnico,String turno){
