@@ -264,7 +264,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         botonCargar = new JButton("Finalizar servicio");
         botonCargar.setHorizontalAlignment(JLabel.CENTER);
         botonCargar.setBackground(Color.lightGray);
-        botonCargar.setBounds(460,330,100,30);
+        botonCargar.setBounds(445,330,130,30);
         botonCargar.addActionListener(this);
         botonCargar.setVisible(false);
 
