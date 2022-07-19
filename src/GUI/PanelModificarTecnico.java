@@ -29,7 +29,7 @@ public class PanelModificarTecnico extends JPanel implements ActionListener {
         idTecText.setHorizontalAlignment(SwingConstants.RIGHT);
 
         idTec = new JTextField();
-        idTec.setPreferredSize(new Dimension(200, 20));
+        idTec.setPreferredSize(new Dimension(250, 20));
 
         String[] opciones = {TipoTecnico.Junior.toString(), TipoTecnico.Semi_senior.toString(), TipoTecnico.Senior.toString()};
         tipoTecnico = new JComboBox<String>(opciones);
