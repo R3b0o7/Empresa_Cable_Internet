@@ -2,6 +2,7 @@ package Interfaz;
 
 import Clases.*;
 import GUI.VentanaAdministrador;
+import GUI.VentanaAdministrativo;
 import GUI.VentanaCallCenter;
 import GUI.VentanaTecnico;
 
@@ -63,7 +64,7 @@ public class ControllerLogin {
                     break;
                 case "administrativo":
                     this.controladorAdministrativo = ControllerAdministrativo.getInstance();
-                    new VentanaAdministrador();
+                    new VentanaAdministrativo();
                     run = false;
                     break;
             }
