@@ -289,7 +289,6 @@ public class Compania {
 
         ArrayList<Tecnico> tecnicosPrueba2 = new ArrayList<Tecnico>();
         tecnicosPrueba2.add(tecnico2);
-        tecnicosPrueba2.add(tecnico3);
         Instalacion instalacion = new Instalacion(2, new Date(), "15:00", tecnicosPrueba2 , cliente2,stock);
         this.instalaciones.add(instalacion);
         this.incrementarUltimoServicio();

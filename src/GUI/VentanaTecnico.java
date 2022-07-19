@@ -261,7 +261,7 @@ public class VentanaTecnico extends JFrame implements ActionListener {
         botonMaterialAdic.addActionListener(this);
         botonMaterialAdic.setVisible(false);
 
-        botonCargar = new JButton("Cargar");
+        botonCargar = new JButton("Finalizar servicio");
         botonCargar.setHorizontalAlignment(JLabel.CENTER);
         botonCargar.setBackground(Color.lightGray);
         botonCargar.setBounds(460,330,100,30);
@@ -379,13 +379,15 @@ public class VentanaTecnico extends JFrame implements ActionListener {
             textArea.setText("");
             ArrayList<String> servicios = controller.getInstance().serviciosAsignados(textNroTecnico.getText());
             scrollPane.setVisible(true);
+            System.out.println("servicios debugg: "+servicios.toString());
             if (servicios!=null){
                 for (int k=0;k<servicios.size();k++){
                     String texto = textArea.getText();
-                    textArea.setText(texto+servicios.get(k)+"\n");
+                    textArea.setText(texto+"#######################\n"+servicios.get(k)+"\n\n");
                     System.out.println(servicios.get(k));
                 }
             }
+            textArea.setVisible(true);
             textArea.setEditable(false);
         } else if (e.getSource() == botonMaterial) {
             if (!textCant.getText().equals("")){
