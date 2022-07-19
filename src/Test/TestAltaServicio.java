@@ -1,6 +1,6 @@
 package Test;
 
-import Interfaz.*;
+import Controladores.*;
 
 public class TestAltaServicio {
 

@@ -2,9 +2,8 @@ package GUI;
 
 import Enumeraciones.Articulos;
 import Excepciones.GenericException;
-import Interfaz.ControllerAdministrador;
+import Controladores.ControllerAdministrador;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaz.ControllerLogin;
+import Controladores.ControllerLogin;
 
 import javax.swing.*;
 import java.awt.*;

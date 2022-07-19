@@ -1,4 +1,4 @@
-package Interfaz;
+package Controladores;
 
 import Clases.*;
 

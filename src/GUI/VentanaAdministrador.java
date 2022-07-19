@@ -1,5 +1,5 @@
 package GUI;
-import Interfaz.ControllerAdministrador;
+import Controladores.ControllerAdministrador;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,7 +2,7 @@ package GUI;
 
 import Clases.Cliente;
 import Clases.Compania;
-import Interfaz.ControllerCallCenter;
+import Controladores.ControllerCallCenter;
 
 import javax.swing.*;
 import java.awt.*;

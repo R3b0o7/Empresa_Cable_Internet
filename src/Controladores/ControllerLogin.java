@@ -1,4 +1,4 @@
-package Interfaz;
+package Controladores;
 
 import Clases.*;
 import GUI.VentanaAdministrador;
@@ -7,8 +7,6 @@ import GUI.VentanaCallCenter;
 import GUI.VentanaTecnico;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Scanner;
 
 public class ControllerLogin {
     JOptionPane mensajeError = new JOptionPane();

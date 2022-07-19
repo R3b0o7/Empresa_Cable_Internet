@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaz.ControllerCallCenter;
+import Controladores.ControllerCallCenter;
 
 import javax.swing.*;
 import java.awt.*;

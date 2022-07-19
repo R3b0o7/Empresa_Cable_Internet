@@ -1,13 +1,11 @@
 package GUI;
 
-import Interfaz.ControllerAdministrativo;
-import Interfaz.ControllerTecnico;
+import Controladores.ControllerAdministrativo;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class VentanaAdministrativo extends JFrame implements ActionListener {
     ControllerAdministrativo controller = ControllerAdministrativo.getInstance();

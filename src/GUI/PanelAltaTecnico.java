@@ -1,13 +1,12 @@
 package GUI;
 
 import Enumeraciones.TipoTecnico;
-import Interfaz.ControllerAdministrador;
+import Controladores.ControllerAdministrador;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class PanelAltaTecnico extends JPanel implements ActionListener {
 

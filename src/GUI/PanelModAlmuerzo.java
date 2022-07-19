@@ -1,8 +1,7 @@
 package GUI;
 
-import Interfaz.ControllerAdministrativo;
+import Controladores.ControllerAdministrativo;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

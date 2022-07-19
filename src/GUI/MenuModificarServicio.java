@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaz.ControllerAdministrativo;
+import Controladores.ControllerAdministrativo;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -8,8 +8,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class MenuModificarServicio extends JPanel implements ActionListener {
 

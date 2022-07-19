@@ -1,7 +1,7 @@
 package GUI;
 
 import Clases.Compania;
-import Interfaz.ControllerLogin;
+import Controladores.ControllerLogin;
 
 public class MainGUI {
     public static void main(String[] args) {

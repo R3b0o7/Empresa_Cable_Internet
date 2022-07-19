@@ -1,7 +1,7 @@
 package GUI;
 
 import Excepciones.GenericException;
-import Interfaz.ControllerCallCenter;
+import Controladores.ControllerCallCenter;
 
 import javax.swing.*;
 import java.awt.*;

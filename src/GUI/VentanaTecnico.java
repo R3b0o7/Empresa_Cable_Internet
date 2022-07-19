@@ -1,9 +1,6 @@
 package GUI;
 
-import Clases.Articulo;
-import Interfaz.ControllerAdministrador;
-import Interfaz.ControllerLogin;
-import Interfaz.ControllerTecnico;
+import Controladores.ControllerTecnico;
 
 import javax.swing.*;
 import java.awt.*;

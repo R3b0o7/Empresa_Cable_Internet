@@ -2,7 +2,7 @@ package GUI;
 
 import Clases.Compania;
 import Enumeraciones.TipoTecnico;
-import Interfaz.ControllerAdministrador;
+import Controladores.ControllerAdministrador;
 
 import javax.swing.*;
 import java.awt.*;
