@@ -5,6 +5,7 @@ import Enumeraciones.Estado;
 import Enumeraciones.TipoServicio;
 import Enumeraciones.TipoTecnico;
 
+import javax.swing.*;
 import java.util.*;
 
 public class ControllerAdministrativo extends Usuario {
@@ -12,10 +13,15 @@ public class ControllerAdministrativo extends Usuario {
     static Scanner sc = new Scanner(System.in);
     private Compania compania;
     private static ControllerAdministrativo controladorAdministrativo;
+    private Reparacion reparacionSeleccionada;
+    private Instalacion instalacionSeleccionada;
 
     private ControllerAdministrativo() {
         //Genero los objetos base
         this.compania = Clases.Compania.getInstance();
+
+        this.reparacionSeleccionada = null;
+        this.instalacionSeleccionada = null;
 
         //Genero datos de prueba
         Clases.Cliente cliente999 = new Cliente(12345, "Juan", "salta");
@@ -48,6 +54,92 @@ public class ControllerAdministrativo extends Usuario {
         }
         return controladorAdministrativo;
     }
+
+    public void setServicioSeleccionado(int idServicio){
+        instalacionSeleccionada = null;
+        reparacionSeleccionada = null;
+        if(compania.getInstalacion(idServicio) != null){
+            instalacionSeleccionada = compania.getInstalacion(idServicio);
+            System.out.println("instalacion "+instalacionSeleccionada.toString());
+        } else {
+            reparacionSeleccionada = compania.getReparacion(idServicio);
+            System.out.println("reparacion "+reparacionSeleccionada.toString());
+        }
+    }
+
+    public ListModel<Integer> listModelServiciosFinalizados(){
+        DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
+        int i = 0;
+        for(Reparacion rep: compania.getReparaciones()){
+            if(rep.getFactura()  != null && rep.getEstado()==Estado.Finalizada){
+                listModel.add(i, rep.getIdServicio());
+            }
+        }
+        i = 0;
+        for(Instalacion inst: compania.getInstalaciones()){
+            if(inst.getFactura()  != null && inst.getEstado()==Estado.Finalizada){
+                listModel.add(i, inst.getIdServicio());
+            }
+        }
+        reparacionSeleccionada = null;
+        instalacionSeleccionada = null;
+        return listModel;
+    }
+
+    public String getDetalleServicioSeleccionado(){
+        if(reparacionSeleccionada!=null){
+            return reparacionSeleccionada.toStringDetalle();
+        } else if(instalacionSeleccionada!=null) {
+            return instalacionSeleccionada.toStringDetalle();
+        }
+        return "Sin info";
+    }
+
+    public boolean verificarSeleccion(){
+        return (reparacionSeleccionada != null || instalacionSeleccionada != null);
+    }
+
+    public void actualizarCostoMatAd(Double costo){
+        if(reparacionSeleccionada!= null){
+            reparacionSeleccionada.setCostoMaterialesAdicionales(costo);
+        } else {
+            instalacionSeleccionada.setCostoMaterialesAdicionales(costo);
+        }
+    }
+
+    public void actualizarCombustible(Double combustible){
+        if(reparacionSeleccionada!= null){
+            reparacionSeleccionada.setCombustible(combustible);
+        } else {
+            instalacionSeleccionada.setCombustible(combustible);
+        }
+    }
+
+    public void actualizarAlmuerzo(boolean valor){
+        if(reparacionSeleccionada!= null){
+            reparacionSeleccionada.setAlmuerzo(valor);
+        } else {
+            instalacionSeleccionada.setAlmuerzo(valor);
+        }
+    }
+
+    public void aplicarBonificacion(float bon){
+        if(reparacionSeleccionada!= null){
+            reparacionSeleccionada.setPrecioFinal(reparacionSeleccionada.getPrecioFinal() - reparacionSeleccionada.getPrecioFinal()*bon);
+            reparacionSeleccionada.setBonificacion(bon);
+        } else {
+            instalacionSeleccionada.setPrecioFinal(instalacionSeleccionada.getPrecioFinal() - instalacionSeleccionada.getPrecioFinal()*bon);
+            instalacionSeleccionada.setBonificacion(bon);
+        }
+    }
+
+    //############################################################################################3
+    //############################################################################################3
+    //############################################################################################3
+    //############################################################################################3
+    //############################################################################################3
+    //############################################################################################3
+    //############################################################################################3
 
     public void menuInicial() {
         // TODO Auto-generated method stub

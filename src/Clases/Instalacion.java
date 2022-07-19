@@ -82,10 +82,13 @@ public class Instalacion extends Servicio {
                 " - cliente=" + cliente +
                 " - Estado=" + estado +
                 " - Materiales=" + articulosStr +
-                " - Costo Materiales adicionales=" + costoMaterialesAdicionales +
+                " - Costo Materiales adicionales= $" + costoMaterialesAdicionales +
                 " - Almuerzo=" + almuerzo +
-                " - Costo Real=" + costoReal +
-                " - Gastos=" + gastos +
+                " - Combustible= " + combustible +
+                " - Costo Real= $" + costoReal +
+                " - Bonificacion= "+ bonificacion*100 + "%" +
+                " - Precio Real= $"+ precioFinal +
+                " - Gastos= $" + gastos +
                 "} ";
     }
 

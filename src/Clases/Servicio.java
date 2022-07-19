@@ -29,6 +29,7 @@ public class Servicio {
     protected double gastos;
     protected double precioFinal;
     protected Cliente cliente;
+    protected float bonificacion;
 
     /** Constructor **/
 
@@ -44,6 +45,7 @@ public class Servicio {
         this.tecnicos = tecnicos;
         this.MARGEN = 1.30d;
         this.cliente = cliente;
+        this.bonificacion = 0;
 
     }
 
@@ -210,6 +212,10 @@ public class Servicio {
                 articulo.setCantidad(cantidad);
             }
         }
+    }
+
+    public void setBonificacion(float bon){
+        this.bonificacion = bon;
     }
 
 
