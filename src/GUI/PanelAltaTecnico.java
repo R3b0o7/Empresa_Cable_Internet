@@ -68,7 +68,7 @@ public class PanelAltaTecnico extends JPanel implements ActionListener {
         if(e.getSource()==this.buttonGrabarTecnico){
             int nroDoc = 0;
             try {
-                System.out.println(this.fieldNroDoc.getText());
+                //System.out.println(this.fieldNroDoc.getText());
                 nroDoc = Integer.parseInt(this.fieldNroDoc.getText());
             } catch (Exception exc){
                 JOptionPane.showMessageDialog(null, "El dni debe ser un número entero.");
