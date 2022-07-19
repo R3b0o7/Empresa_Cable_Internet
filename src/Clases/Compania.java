@@ -285,6 +285,7 @@ public class Compania {
         tecnicosPrueba.add(tecnico1);
         Reparacion reparacion = new Reparacion(1, new Date(), "9:00", tecnicosPrueba, cliente1);
         this.reparaciones.add(reparacion);
+        this.incrementarUltimoServicio();
 
         ArrayList<Tecnico> tecnicosPrueba2 = new ArrayList<Tecnico>();
         tecnicosPrueba2.add(tecnico2);

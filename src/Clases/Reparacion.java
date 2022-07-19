@@ -43,11 +43,11 @@ public class Reparacion extends Servicio {
         }
         return "Reparación - " +
                 "idServicio=" + idServicio +
-                " - fecha=" + fecha +
-                " - horario='" + horario + '\'' +
-                " - tecnicos=" + tecnicosStr +
+                " - Fecha=" + fecha +
+                " - Horario='" + horario + '\'' +
+                " - Tecnicos=" + tecnicosStr +
                 " - Estado=" + estado +
-                " - cliente=" + cliente +
+                " - Cliente=" + cliente.getNombreApellido() +
                 "} ";
     }
 

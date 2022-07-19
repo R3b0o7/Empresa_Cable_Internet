@@ -12,7 +12,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
+import static java.util.Calendar.DAY_OF_WEEK;
 
 public class PanelReservarServicio extends JPanel implements ActionListener {
 
@@ -26,18 +29,23 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
     JButton btnElegirFecha;
     DatePick calendario;
     JList listaTecnicosDisponibles;
+    JList listaTecnicosSeleccionados;
     JScrollPane scrollTecnicosDisponibles;
+    JScrollPane scrollTecnicosSeleccionados;
     JButton btnVerificarDisponibilidad;
     JButton btnAgregarTecnico;
+    public JButton btnLimpiar;
+    JLabel lblPrecioServicio;
     JButton btnGuardarServicio;
     JPanel panel1;
     JPanel panel2;
+    JPanel panel3;
 
     public PanelReservarServicio(){
 
         this.setBackground(new Color(100, 100, 100));
         this.setBounds(0, 200,900,200);
-        this.setPreferredSize(new Dimension(900, 200));
+        this.setPreferredSize(new Dimension(900, 300));
 
         //instancion objetos
         panel1 = new JPanel();
@@ -49,6 +57,13 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
         panel2.setBackground(new Color(100, 0, 200));
         panel2.setBounds(0, 100,900,50);
         panel2.setPreferredSize(new Dimension(900, 150));
+        panel2.setLayout(new GridLayout(0, 2));
+
+        panel3 = new JPanel();
+        panel3.setBackground(new Color(200, 100, 50));
+        panel3.setBounds(0, 250,900,150);
+        panel3.setPreferredSize(new Dimension(900, 150));
+        panel3.setLayout(new GridLayout(0, 2));
 
         //panel1
         lblTipoServicio = new JLabel("Tipo de servicio:");
@@ -82,8 +97,6 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
             }
         });
 
-
-
         //calendario
         lblFecha = new JLabel("Fecha: ");
         fldFecha = new JTextField(20);
@@ -103,18 +116,42 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
         btnVerificarDisponibilidad = new JButton("Ver Tecnicos disponibles");
         btnVerificarDisponibilidad.addActionListener(this);
 
+        btnAgregarTecnico = new JButton("Agregar tecnico");
+        btnAgregarTecnico.addActionListener(this);
+
+        btnLimpiar = new JButton("Limpiar");
+        btnLimpiar.addActionListener(this);
+
+        lblPrecioServicio = new JLabel("");
 
         listaTecnicosDisponibles = new JList();
         listaTecnicosDisponibles.setVisibleRowCount(5);
-        listaTecnicosDisponibles.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
+        listaTecnicosDisponibles.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         listaTecnicosDisponibles.setAlignmentY(JPanel.TOP_ALIGNMENT);
         scrollTecnicosDisponibles = new JScrollPane(listaTecnicosDisponibles);
 
+        listaTecnicosSeleccionados = new JList();
+        listaTecnicosSeleccionados.setVisibleRowCount(5);
+        listaTecnicosSeleccionados.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
+        listaTecnicosSeleccionados.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        scrollTecnicosSeleccionados = new JScrollPane(listaTecnicosSeleccionados);
+
         panel2.add(btnVerificarDisponibilidad);
         panel2.add(scrollTecnicosDisponibles);
+        panel2.add(btnAgregarTecnico);
+        panel2.add(listaTecnicosSeleccionados);
+        panel2.add(btnLimpiar);
+        panel2.add(lblPrecioServicio);
+
+        //panel3
+        btnGuardarServicio = new JButton("Guardar Servicio");
+        btnGuardarServicio.addActionListener(this);
+
+        panel3.add(btnGuardarServicio);
 
         this.add(panel1);
         this.add(panel2);
+        this.add(btnGuardarServicio);
         this.setVisible(false);
         this.setEnabled(false);
 
@@ -122,11 +159,11 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Date fecha = new Date();
         if(e.getSource()==btnElegirFecha){
             fldFecha.setText(new DatePick(new JFrame()).Set_Picked_Date());
         }
         if(e.getSource()==btnVerificarDisponibilidad){
-            Date fecha = new Date();
             SimpleDateFormat sdfInicio = new SimpleDateFormat("dd/MM/yyyy");
             try {
                 fecha = sdfInicio.parse(this.fldFecha.getText());
@@ -135,15 +172,71 @@ public class PanelReservarServicio extends JPanel implements ActionListener {
                 return;
             }
             try {
+                Date fechaactual = new Date(System.currentTimeMillis());
+                if(fecha.before(fechaactual)) {
+                    JOptionPane.showMessageDialog(null, "Atención!! La fecha deber ser posterior al día actual.");
+                    return;
+                }
+                Calendar c = Calendar.getInstance();
+                c.setTime(fecha);
+                int day = c.get(DAY_OF_WEEK);
+                if (day == 1 || (day == 7 && comboTurno.getSelectedIndex() == 1)) {
+                    JOptionPane.showMessageDialog(null, "Domingos y sábados por la tarde no se presta servicio.");
+                    return;
+                }
                 listaTecnicosDisponibles.setModel(ControllerCallCenter.getInstance().listModelTecnicosDisponibles(
                         this.comboTurno.getSelectedItem().toString(),
                         fecha,
                         this.listaHorario.getSelectedItem().toString(),
                         comboTipoServicio.getSelectedItem().toString()
                 ));
+                comboTurno.setEnabled(false);
+                comboTipoServicio.setEnabled(false);
+                listaHorario.setEnabled(false);
             } catch (GenericException exc){
                 JOptionPane.showMessageDialog(null, exc.getMessage());
                 return;
+            }
+        }
+        if(e.getSource() == btnAgregarTecnico){
+            int nroTecnico = 0;
+            if(listaTecnicosDisponibles.getSelectedValue() == null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un técnico");
+            } else {
+                try {
+                    nroTecnico = Integer.parseInt(listaTecnicosDisponibles.getSelectedValue().toString().substring(0, 1));
+                } catch (Exception exc){
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
+                }
+                ControllerCallCenter.getInstance().seleccionarTecnico(nroTecnico);
+                listaTecnicosSeleccionados.setModel(ControllerCallCenter.getInstance().listModelTecnicosSeleccionados());
+                Double precioInicial = ControllerCallCenter.getInstance().obtenerPrecioInicialServicio(fecha, listaHorario.getSelectedItem().toString(), comboTipoServicio.getSelectedItem().toString());
+                lblPrecioServicio.setText("Precio Inicial: $"+precioInicial);
+                btnVerificarDisponibilidad.doClick();
+            }
+        }
+        if(e.getSource()==btnLimpiar){
+            ControllerCallCenter.getInstance().reiniciarListadoTecnicos();
+            listaTecnicosDisponibles.setModel(new DefaultListModel());
+            listaTecnicosSeleccionados.setModel(new DefaultListModel());
+            lblPrecioServicio.setText("");
+            comboTurno.setEnabled(true);
+            comboTipoServicio.setEnabled(true);
+            listaHorario.setEnabled(true);
+        }
+        if(e.getSource()==btnGuardarServicio){
+            if(listaTecnicosSeleccionados.getModel().getSize() == 0){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un técnico");
+                return;
+            }
+            int confirma = JOptionPane.showConfirmDialog(null, "Confirma el alta del servicio?", "Confirmación", 1);
+            if(confirma == 0) {
+                try {
+                    ControllerCallCenter.getInstance().guardarServicio();
+                } catch (Exception exc) {
+                    JOptionPane.showMessageDialog(null, exc.getMessage());
+                    return;
+                }
             }
         }
     }

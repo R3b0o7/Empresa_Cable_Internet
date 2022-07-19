@@ -42,9 +42,7 @@ public class VentanaCallCenter extends JFrame implements ActionListener {
 
         altaCliente = new MenuAltaCliente();
 
-        listarServicios = new JPanel();
-        listarServicios.setBackground(new Color(117, 227, 0));
-        listarServicios.setBounds(0, 50,900,450);
+        listarServicios = new MenuListarServicios();
 
 
         //Botones Superiores
