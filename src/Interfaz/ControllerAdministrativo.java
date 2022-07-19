@@ -5,10 +5,7 @@ import Enumeraciones.Estado;
 import Enumeraciones.TipoServicio;
 import Enumeraciones.TipoTecnico;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class ControllerAdministrativo extends Usuario {
 
@@ -103,23 +100,35 @@ public class ControllerAdministrativo extends Usuario {
         System.out.println("##################################");
     }
 
-    private void listarFacturas(){
-        Scanner sc = new Scanner(System.in);
+    public ArrayList listarFacturas(){
+        //Scanner sc = new Scanner(System.in);
 
-        String[] menu = {"EMPRESA DE CABLE", "LISTAR FACTURAS"};
-        this.imprimirEncabezado(menu);
+        //String[] menu = {"EMPRESA DE CABLE", "LISTAR FACTURAS"};
+        //this.imprimirEncabezado(menu);
 
+        ArrayList<String> facturas = new ArrayList<>();
+        this.listarServiciosFinalizados();
         if(this.compania.getFacturas().size() == 0) {
             System.out.println();
             System.out.println("No existen facturas.");
+            return null;
         } else {
             for (Factura factura : this.compania.getFacturas()) {
                 System.out.println(factura.toString());
+                facturas.add("Numero de Factura:");
+                facturas.add(String.valueOf(factura.getNroFactura()));
+                facturas.add("Total de costo:");
+                facturas.add(String.valueOf(factura.getServicio().getCostoReal()));
+                facturas.add("Margen real:");
+                facturas.add(String.valueOf(factura.getServicio().getPrecioFinal()));
+                facturas.add("Precio final:");
+                facturas.add(String.valueOf(factura.getServicio().calcularMargenReal()));
             }
         }
+        return facturas;
     }
 
-    private void listarServiciosFinalizados(){
+    public void listarServiciosFinalizados(){
         int serviciosFinalizados = 0;
         if(this.compania.getInstalaciones().size() == 0 && this.compania.getReparaciones().size() == 0){
             System.out.println();
@@ -141,7 +150,7 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
-    private void menuModificarServicio(){
+    public void menuModificarServicio(){
         Scanner sc = new Scanner(System.in);
 
         String[] menu = {"EMPRESA DE CABLE", "MODIFICAR SERVICIO"};
@@ -209,12 +218,11 @@ public class ControllerAdministrativo extends Usuario {
         }
     }
 
+    public void generarFactura(){
+        //Scanner sc = new Scanner(System.in);
 
-    private void generarFactura(){
-        Scanner sc = new Scanner(System.in);
-
-        String[] menu = {"EMPRESA DE CABLE", "GENERAR FACTURA"};
-        this.imprimirEncabezado(menu);
+        //String[] menu = {"EMPRESA DE CABLE", "GENERAR FACTURA"};
+        //this.imprimirEncabezado(menu);
 
         //listo los servicios finalizados
         int serviciosFinalizados = 0;

@@ -293,7 +293,9 @@ public class ControllerTecnico extends Usuario {
                                 } else {
                                     System.out.println("No existen Reparaciones a finalizar");
                                     JOptionPane.showMessageDialog(null,"No existen Reparaciones a finalizar","Datos cargados",JOptionPane.ERROR_MESSAGE);
+                                    break;
                                 }
+                                JOptionPane.showMessageDialog(null,"No existen Reparaciones a finalizar","Datos cargados",JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         break;
@@ -392,7 +394,9 @@ public class ControllerTecnico extends Usuario {
                                 } else {
                                     System.out.println("No existen Instalaciones a finalizar");
                                     JOptionPane.showMessageDialog(null,"No existen Instalaciones a finalizar","Datos NO cargados",JOptionPane.ERROR_MESSAGE);
+                                    break;
                                 }
+                                JOptionPane.showMessageDialog(null,"No existen Instalaciones a finalizar","Datos NO cargados",JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         break;
