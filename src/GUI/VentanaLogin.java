@@ -151,6 +151,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
         //Propiedades de la ventana
 
         this.setSize(615,400);
+        this.setLocation(652,340);
         this.setLayout(null);
         this.setResizable(false);      //Evitar que la ventana pueda ser cambiada de tamaño
         this.setVisible(true);        //Hace el frame visible

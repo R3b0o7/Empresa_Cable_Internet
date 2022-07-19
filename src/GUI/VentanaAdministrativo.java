@@ -70,6 +70,7 @@ public class VentanaAdministrativo extends JFrame implements ActionListener {
 
         //Ventana
         this.setSize(900,600);
+        this.setLocation(510,240);
         this.setLayout(null);
         this.setResizable(false);
         this.setVisible(true);
