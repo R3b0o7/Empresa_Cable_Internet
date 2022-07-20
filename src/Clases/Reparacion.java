@@ -58,7 +58,7 @@ public class Reparacion extends Servicio {
         }
         String articulosStr = "";
         for (Articulo art : this.materiales) {
-            articulosStr += art.getArticulo() + " ";
+            articulosStr += art.getArticulo()+"("+art.getCantidad()+")"+" ";
         }
         return "Reparacion - " +
                 "idServicio=" + idServicio +

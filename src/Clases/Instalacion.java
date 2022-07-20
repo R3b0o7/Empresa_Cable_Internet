@@ -74,7 +74,7 @@ public class Instalacion extends Servicio {
         }
         String articulosStr = "";
         for(Articulo art: this.materiales){
-            articulosStr += art.getArticulo()+" ";
+            articulosStr += art.getArticulo()+"("+art.getCantidad()+")"+" ";
         }
         return "Instalacion - " +
                 "idServicio=" + idServicio +
@@ -88,6 +88,7 @@ public class Instalacion extends Servicio {
                 " - Costo Real= $" + costoReal +
                 " - Bonificacion= "+ bonificacion*100 + "%" +
                 " - Precio Real= $"+ precioFinal +
+                " - tiempoTrabajado=" + tiempoTrabajado +
                 " - Gastos= $" + gastos +
                 "} ";
     }

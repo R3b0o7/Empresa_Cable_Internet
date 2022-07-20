@@ -1,6 +1,7 @@
 package Controladores;
 
 import Clases.*;
+import Enumeraciones.Articulos;
 import Enumeraciones.Estado;
 
 import javax.swing.*;
@@ -16,8 +17,8 @@ public class ControllerTecnico {
     private Reparacion reparacionSeleccionada;
     private Instalacion instalacionSeleccionada;
 
-    public static ControllerTecnico getInstance(){
-        if(controladorTecnico == null){
+    public static ControllerTecnico getInstance() {
+        if (controladorTecnico == null) {
             controladorTecnico = new ControllerTecnico();
         }
         return controladorTecnico;
@@ -27,40 +28,44 @@ public class ControllerTecnico {
     //################################################
     //################################################
 
-    public void setServicioSeleccionado(int idServicio){
+    public void setServicioSeleccionado(int idServicio) {
         instalacionSeleccionada = null;
         reparacionSeleccionada = null;
-        if(compania.getInstalacion(idServicio) != null){
+        if (compania.getInstalacion(idServicio) != null) {
             instalacionSeleccionada = compania.getInstalacion(idServicio);
         } else {
             reparacionSeleccionada = compania.getReparacion(idServicio);
         }
     }
 
-    public String getDetalleServicioSeleccionado(){
-        if(reparacionSeleccionada!=null){
+    public String getDetalleServicioSeleccionado() {
+        if (reparacionSeleccionada != null) {
             return reparacionSeleccionada.toStringDetalle();
-        } else if(instalacionSeleccionada!=null) {
+        } else if (instalacionSeleccionada != null) {
             return instalacionSeleccionada.toStringDetalle();
         }
         return "Sin info";
     }
 
-    public ListModel<Integer> listModelServiciosAsignados(int nroTecnico){
+    public ListModel<Integer> listModelServiciosAsignados(int nroTecnico) {
         DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
         int i = 0;
-        for(Reparacion rep: compania.getReparaciones()){
-            for(Tecnico tec: rep.getTecnicos()) {
-                if(tec.getNroTécnico()==nroTecnico) {
-                    listModel.add(i, tec.getNroTécnico());
+        for (Reparacion rep : compania.getReparaciones()) {
+            if(rep.getEstado()!=Estado.Finalizada) {
+                for (Tecnico tec : rep.getTecnicos()) {
+                    if (tec.getNroTécnico() == nroTecnico) {
+                        listModel.add(i, rep.getIdServicio());
+                    }
                 }
             }
         }
         i = 0;
-        for(Instalacion inst: compania.getInstalaciones()){
-            for(Tecnico tec: inst.getTecnicos()){
-                if(tec.getNroTécnico()==nroTecnico) {
-                    listModel.add(i, tec.getNroTécnico());
+        for (Instalacion inst : compania.getInstalaciones()) {
+            if(inst.getEstado() != Estado.Finalizada) {
+                for (Tecnico tec : inst.getTecnicos()) {
+                    if (tec.getNroTécnico() == nroTecnico) {
+                        listModel.add(i, inst.getIdServicio());
+                    }
                 }
             }
         }
@@ -69,7 +74,49 @@ public class ControllerTecnico {
         return listModel;
     }
 
+    public void setearMaterial(Articulos art, int cantidad) {
+        if (reparacionSeleccionada != null) {
+            reparacionSeleccionada.addMaterial(art, cantidad);
+        } else if (instalacionSeleccionada != null) {
+            instalacionSeleccionada.addMaterial(art, cantidad);
+        }
+    }
 
+    public void setearMaterialAdicional(String materialDes, double costo) {
+        if (reparacionSeleccionada != null) {
+            reparacionSeleccionada.setCostoMaterialesAdicionales(costo);
+            reparacionSeleccionada.setMaterialesAdicionales(materialDes);
+        } else if (instalacionSeleccionada != null) {
+            instalacionSeleccionada.setCostoMaterialesAdicionales(costo);
+            instalacionSeleccionada.setMaterialesAdicionales(materialDes);
+        }
+    }
+
+    public void setearAlmuerzoCombustible(boolean almuerzo, double combustible){
+        if (reparacionSeleccionada != null) {
+            reparacionSeleccionada.setAlmuerzo(almuerzo);
+            reparacionSeleccionada.setCombustible(combustible);
+        } else if (instalacionSeleccionada != null) {
+            instalacionSeleccionada.setAlmuerzo(almuerzo);
+            instalacionSeleccionada.setCombustible(combustible);
+        }
+    }
+
+    public void setearTiempoTrabajado(int id, double tiempo){
+        if (reparacionSeleccionada != null) {
+            reparacionSeleccionada.setTiempoTrabajado(id, tiempo);
+        } else if (instalacionSeleccionada != null) {
+            instalacionSeleccionada.setTiempoTrabajado(id, tiempo);
+        }
+    }
+
+    public void finalizarServicioSeleccionado(){
+        if (reparacionSeleccionada != null) {
+            reparacionSeleccionada.finalizarServicio();
+        } else if (instalacionSeleccionada != null) {
+            instalacionSeleccionada.finalizarServicio();
+        }
+    }
 
     //################################################
     //################################################

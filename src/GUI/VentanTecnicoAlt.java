@@ -1,7 +1,7 @@
 package GUI;
 
-import Controladores.ControllerAdministrativo;
 import Controladores.ControllerTecnico;
+import Enumeraciones.Articulos;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class VentanTecnicoAlt extends JFrame implements ActionListener {
 
     private final JButton botonCerrarSesion;
+    private final JTextField fldMaterialAdPrecio;
     JButton btnServiciosAsignados;
     JButton btnCargaDatos;
     JPanel pnlIngresoTecnico;
@@ -23,12 +24,34 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
     JList listaServiciosAsignados;
     JScrollPane scrollListaServicios;
     JTextArea texaDetalleServicio;
+    JButton btnActualizarListado;
 
     JPanel pnlModMaterial;
     JComboBox comboMaterial;
     JLabel lblCantMaterial;
     JTextField fldCantMaterial;
     JButton btnCargarMaterial;
+
+    JPanel pnlMaterialAdicional;
+    JTextField fldMaterialAd;
+    JLabel lblMaterialAd;
+    JTextField fldPrecioMaterialAd;
+    JButton btnCargarMaterialAd;
+
+    JPanel pnlAlmuerzoComb;
+    JLabel lblAlmuerzo;
+    JComboBox comboAlmuerzo;
+    JLabel lblCombustible;
+    JTextField fldCombustible;
+    JButton btnCargarAlmuerzoComb;
+
+    JPanel pnlTiempo;
+    JLabel lblTiempo;
+    JTextField fldTiempo;
+    JButton btnCargarTiempo;
+
+    JPanel pnlFinalizar;
+    JButton btnFinalizarServicio;
 
     public VentanTecnicoAlt(){
 
@@ -54,7 +77,7 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
         pnlIngresoTecnico.setPreferredSize(new Dimension(900, 50));
 
         pnlListaServicios = new JPanel();
-        pnlListaServicios.setBackground(new Color(169, 169, 0));
+        pnlListaServicios.setBackground(new Color(169, 169, 169));
         pnlListaServicios.setBounds(0, 100,900,100);
         pnlListaServicios.setPreferredSize(new Dimension(900, 100));
 
@@ -62,6 +85,26 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
         pnlModMaterial.setBackground(new Color(169, 169, 169));
         pnlModMaterial.setBounds(0, 200,900,40);
         pnlModMaterial.setPreferredSize(new Dimension(900, 50));
+
+        pnlMaterialAdicional = new JPanel();
+        pnlMaterialAdicional.setBackground(new Color(169, 169, 169));
+        pnlMaterialAdicional.setBounds(0, 250,900,40);
+        pnlMaterialAdicional.setPreferredSize(new Dimension(900, 50));
+
+        pnlAlmuerzoComb = new JPanel();
+        pnlAlmuerzoComb.setBackground(new Color(169, 169, 169));
+        pnlAlmuerzoComb.setBounds(0, 300,900,40);
+        pnlAlmuerzoComb.setPreferredSize(new Dimension(900, 50));
+
+        pnlTiempo = new JPanel();
+        pnlTiempo.setBackground(new Color(169, 169, 169));
+        pnlTiempo.setBounds(0, 350,900,40);
+        pnlTiempo.setPreferredSize(new Dimension(900, 50));
+
+        pnlFinalizar = new JPanel();
+        pnlFinalizar.setBackground(new Color(169, 169, 169));
+        pnlFinalizar.setBounds(0, 400,900,40);
+        pnlFinalizar.setPreferredSize(new Dimension(900, 50));
 
         //menu Superior
 
@@ -75,8 +118,8 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
         btnCargaDatos.setBackground(Color.lightGray);
         btnCargaDatos.addActionListener(this);
 
-        menuSuperior.add(btnServiciosAsignados);
-        menuSuperior.add(btnCargaDatos);
+//        menuSuperior.add(btnServiciosAsignados);
+//        menuSuperior.add(btnCargaDatos);
 
         //Cierre sesion
 
@@ -130,8 +173,15 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
         texaDetalleServicio.setAlignmentX(LEFT_ALIGNMENT);
         texaDetalleServicio.setLineWrap(true);
 
+        btnActualizarListado = new JButton("Refrescar");
+        btnActualizarListado.setHorizontalAlignment(JLabel.CENTER);
+        btnActualizarListado.setBackground(Color.lightGray);
+        btnActualizarListado.addActionListener(this);
+
+
         pnlListaServicios.add(scrollListaServicios);
         pnlListaServicios.add(texaDetalleServicio);
+        pnlListaServicios.add(btnActualizarListado);
 
         // panel modificar materiales
 
@@ -164,15 +214,115 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
         pnlModMaterial.add(fldCantMaterial);
         pnlModMaterial.add(btnCargarMaterial);
 
-        //Agregar items a la ventana
+        //Panel modificar material adicional
+
+        lblMaterialAd = new JLabel("Materiales adicionales: ");
+        lblMaterialAd.setHorizontalAlignment(JLabel.LEFT);
+        lblMaterialAd.setBackground(Color.lightGray);
+        lblMaterialAd.setForeground(new Color(255, 255, 255));
+        lblMaterialAd.setFont(new Font("Consolas",Font.BOLD, 12));
+
+        fldMaterialAd = new JTextField(5);
+        fldMaterialAd.setHorizontalAlignment(JTextField.LEFT);
+        fldMaterialAd.setBounds(180, 210,100,20);
+
+        JLabel lblPrecio = new JLabel("Costo:");
+        lblPrecio.setHorizontalAlignment(JLabel.LEFT);
+        lblPrecio.setBackground(Color.lightGray);
+        lblPrecio.setForeground(new Color(255, 255, 255));
+        lblPrecio.setFont(new Font("Consolas",Font.BOLD, 12));
+
+        fldMaterialAdPrecio = new JTextField(5);
+        fldMaterialAdPrecio.setHorizontalAlignment(JTextField.LEFT);
+        fldMaterialAdPrecio.setBounds(180, 210,100,20);
+
+        btnCargarMaterialAd = new JButton("Agregar");
+        btnCargarMaterialAd.setHorizontalAlignment(JLabel.CENTER);
+        btnCargarMaterialAd.setBackground(Color.lightGray);
+        btnCargarMaterialAd.setBounds(180,320,100,30);//Agregar items a la ventana
+        btnCargarMaterialAd.addActionListener(this);
+
+        pnlMaterialAdicional.add(lblMaterialAd);
+        pnlMaterialAdicional.add(fldMaterialAd);
+        pnlMaterialAdicional.add(lblPrecio);
+        pnlMaterialAdicional.add(fldMaterialAdPrecio);
+        pnlMaterialAdicional.add(btnCargarMaterialAd);
+
+        // Panel Almuerzo y combustible
+        lblAlmuerzo = new JLabel("Almuerzo: ");
+        lblAlmuerzo.setHorizontalAlignment(JLabel.LEFT);
+        lblAlmuerzo.setBackground(Color.lightGray);
+        lblAlmuerzo.setForeground(new Color(255, 255, 255));
+        lblAlmuerzo.setFont(new Font("Consolas",Font.BOLD, 12));
+
+        String[] opciones = {"SI", "NO"};
+        comboAlmuerzo = new JComboBox(opciones);
+
+        lblCombustible = new JLabel("Combustible: ");
+        lblCombustible.setHorizontalAlignment(JLabel.LEFT);
+        lblCombustible.setBackground(Color.lightGray);
+        lblCombustible.setForeground(new Color(255, 255, 255));
+        lblCombustible.setFont(new Font("Consolas",Font.BOLD, 12));
+
+        fldCombustible = new JTextField(5);
+        fldCombustible.setHorizontalAlignment(JTextField.LEFT);
+        fldCombustible.setBounds(180, 210,100,20);
+
+        btnCargarAlmuerzoComb = new JButton("Agregar");
+        btnCargarAlmuerzoComb.setHorizontalAlignment(JLabel.CENTER);
+        btnCargarAlmuerzoComb.setBackground(Color.lightGray);
+        btnCargarAlmuerzoComb.setBounds(180,320,100,30);//Agregar items a la ventana
+        btnCargarAlmuerzoComb.addActionListener(this);
+
+        pnlAlmuerzoComb.add(lblAlmuerzo);
+        pnlAlmuerzoComb.add(comboAlmuerzo);
+        pnlAlmuerzoComb.add(lblCombustible);
+        pnlAlmuerzoComb.add(fldCombustible);
+        pnlAlmuerzoComb.add(btnCargarAlmuerzoComb);
+
+        //Panel tiempo
+
+        lblTiempo = new JLabel("Tiempo trabajado en horas (indicar decimales con punto: ");
+        lblTiempo.setHorizontalAlignment(JLabel.LEFT);
+        lblTiempo.setBackground(Color.lightGray);
+        lblTiempo.setForeground(new Color(255, 255, 255));
+        lblTiempo.setFont(new Font("Consolas",Font.BOLD, 12));
+
+        fldTiempo = new JTextField(5);
+        fldTiempo.setHorizontalAlignment(JTextField.LEFT);
+        fldTiempo.setBounds(180, 210,100,20);
+
+        btnCargarTiempo = new JButton("Cargar tiempo");
+        btnCargarTiempo.setHorizontalAlignment(JLabel.CENTER);
+        btnCargarTiempo.setBackground(Color.lightGray);
+        btnCargarTiempo.setBounds(180,320,100,30);//Agregar items a la ventana
+        btnCargarTiempo.addActionListener(this);
+
+        pnlTiempo.add(lblTiempo);
+        pnlTiempo.add(fldTiempo);
+        pnlTiempo.add(btnCargarTiempo);
+
+        // Boton finalizar servicio
+        btnFinalizarServicio = new JButton("Finalizar servicio");
+        btnFinalizarServicio.setHorizontalAlignment(JLabel.CENTER);
+        btnFinalizarServicio.setBackground(Color.lightGray);
+        btnFinalizarServicio.setBounds(180,320,100,30);//Agregar items a la ventana
+        btnFinalizarServicio.addActionListener(this);
+
+        pnlFinalizar.add(btnFinalizarServicio);
+
+        //agrupo en vventana
+
         this.add(pnlIngresoTecnico);
         this.add(pnlListaServicios);
         this.add(pnlModMaterial);
-
+        this.add(pnlMaterialAdicional);
+        this.add(pnlAlmuerzoComb);
+        this.add(pnlTiempo);
+        this.add(pnlFinalizar);
 
         this.add(menuSuperior);
         this.add(inicio);
-
 
         //ventana
         this.setSize(900,600);
@@ -201,9 +351,127 @@ public class VentanTecnicoAlt extends JFrame implements ActionListener {
             }
             ListModel<Integer> listModel = ControllerTecnico.getInstance().listModelServiciosAsignados(nroTec);
             if(listModel.getSize()==0){
-                JOptionPane.showMessageDialog(null, "No posee servicios asignados");
+                JOptionPane.showMessageDialog(null, "No posee servicios asignados en curso");
             }
             listaServiciosAsignados.setModel(listModel);
+        }
+        if(e.getSource()==btnActualizarListado){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            texaDetalleServicio.setText(ControllerTecnico.getInstance().getDetalleServicioSeleccionado());;
+        }
+        if(e.getSource()==btnCargarMaterial){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            Articulos art = Articulos.Cable;
+            switch (comboMaterial.getSelectedIndex()){
+                case 0:
+                    art = Articulos.Cable;
+                    break;
+                case 1:
+                    art = Articulos.Conector_coaxial_RG6;
+                    break;
+                case 2:
+                    art = Articulos.Divisor;
+                    break;
+                case 3:
+                    art = Articulos.Modem;
+                    break;
+                case 4:
+                    art = Articulos.Decodificador;
+                    break;
+            }
+            int cantidad = 0;
+            try{
+                cantidad = Integer.parseInt(fldCantMaterial.getText());
+            } catch (Exception exc){
+                JOptionPane.showMessageDialog(null, "Valor inválido");
+                return;
+            }
+            ControllerTecnico.getInstance().setearMaterial(art, cantidad);
+            JOptionPane.showMessageDialog(null, "Se seteo correctamente el valor.");
+        }
+        if(e.getSource()==btnCargarMaterialAd){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            Double precio = 0.0d;
+            try{
+                precio = Double.parseDouble(fldMaterialAdPrecio.getText());
+            } catch (Exception exc){
+                JOptionPane.showMessageDialog(null, "Valor inválido");
+                return;
+            }
+            ControllerTecnico.getInstance().setearMaterialAdicional(fldMaterialAd.getText(), precio );
+            JOptionPane.showMessageDialog(null, "Se seteo correctamente el valor.");
+        }
+        if(e.getSource()==btnCargarAlmuerzoComb){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            Double combustible = 0.0d;
+            try{
+                combustible = Double.parseDouble(fldCombustible.getText());
+            } catch (Exception exc){
+                JOptionPane.showMessageDialog(null, "Valor inválido");
+                return;
+            }
+            boolean almuerzo = true;
+            switch (comboAlmuerzo.getSelectedIndex()){
+                case 0:
+                    almuerzo = true;
+                    break;
+                case 1:
+                    almuerzo = false;
+                    break;
+            }
+            ControllerTecnico.getInstance().setearAlmuerzoCombustible(almuerzo, combustible);
+            JOptionPane.showMessageDialog(null, "Se seteo correctamente el valor.");
+        }
+        if(e.getSource()==btnCargarTiempo){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            int id = 0;
+            if(fldIdTecnico.getText()==""){
+                JOptionPane.showMessageDialog(null, "Debe indicar el id del técnico.");
+                return;
+            } else {
+                try{
+                    id = Integer.parseInt(fldIdTecnico.getText());
+                } catch (Exception exc){
+                    JOptionPane.showMessageDialog(null, "Id tecnico invalido.");
+                    return;
+                }
+            }
+            Double tiempo = 0.0d;
+            try{
+                tiempo = Double.parseDouble(fldTiempo.getText());
+            } catch (Exception exc){
+                JOptionPane.showMessageDialog(null, "Valor inválido");
+                return;
+            }
+            ControllerTecnico.getInstance().setearTiempoTrabajado(id, tiempo);
+            JOptionPane.showMessageDialog(null, "Se seteo correctamente el valor.");
+        }
+        if(e.getSource()==btnFinalizarServicio){
+            if(listaServiciosAsignados.getSelectedValue()==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un servicio.");
+                return;
+            }
+            int confirma = JOptionPane.showConfirmDialog(null, "Confirma la finalización del servicio?", "Confirmación", 1);
+            if(confirma==0) {
+                ControllerTecnico.getInstance().finalizarServicioSeleccionado();
+                JOptionPane.showMessageDialog(null, "Se finalizó correctamente el valor.");
+                btnBuscarServicios.doClick();
+            }
         }
     }
 }

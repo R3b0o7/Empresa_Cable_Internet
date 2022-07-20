@@ -212,12 +212,29 @@ public class Servicio {
             }
         }
     }
+    public void addMaterial(Enumeraciones.Articulos material, int cantidad){
+        boolean tieneMaterial = false;
+        for (Articulo articulo : materiales){
+            if (material == articulo.getArticulo()){
+                articulo.setCantidad(cantidad);
+                tieneMaterial = true;
+            }
+        }
+        if(!tieneMaterial){
+            materiales.add(new Articulo(material, cantidad, Compania.getInstance().getStock().getArticulo(material).getPrecio()));
+        }
+    }
 
     public void setBonificacion(float bon){
         this.bonificacion = bon;
     }
 
     public float getBonificacion(){ return this.bonificacion;}
+
+    public void setTiempoTrabajado(int id, double tiempo){
+        this.tiempoTrabajado.put(id,tiempo);
+        System.out.println(tiempoTrabajado.toString());
+    }
 
 
 }
