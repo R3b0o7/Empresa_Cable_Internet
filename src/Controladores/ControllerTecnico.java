@@ -1,6 +1,7 @@
 package Controladores;
 
 import Clases.*;
+import Enumeraciones.Estado;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class ControllerTecnico {
     static Scanner sc = new Scanner(System.in);
     private Compania compania = Clases.Compania.getInstance();
     private static ControllerTecnico controladorTecnico;
+    private Reparacion reparacionSeleccionada;
+    private Instalacion instalacionSeleccionada;
 
     public static ControllerTecnico getInstance(){
         if(controladorTecnico == null){
@@ -19,6 +22,59 @@ public class ControllerTecnico {
         }
         return controladorTecnico;
     }
+
+    //################################################
+    //################################################
+    //################################################
+
+    public void setServicioSeleccionado(int idServicio){
+        instalacionSeleccionada = null;
+        reparacionSeleccionada = null;
+        if(compania.getInstalacion(idServicio) != null){
+            instalacionSeleccionada = compania.getInstalacion(idServicio);
+        } else {
+            reparacionSeleccionada = compania.getReparacion(idServicio);
+        }
+    }
+
+    public String getDetalleServicioSeleccionado(){
+        if(reparacionSeleccionada!=null){
+            return reparacionSeleccionada.toStringDetalle();
+        } else if(instalacionSeleccionada!=null) {
+            return instalacionSeleccionada.toStringDetalle();
+        }
+        return "Sin info";
+    }
+
+    public ListModel<Integer> listModelServiciosAsignados(int nroTecnico){
+        DefaultListModel<Integer> listModel = new DefaultListModel<Integer>();
+        int i = 0;
+        for(Reparacion rep: compania.getReparaciones()){
+            for(Tecnico tec: rep.getTecnicos()) {
+                if(tec.getNroTécnico()==nroTecnico) {
+                    listModel.add(i, tec.getNroTécnico());
+                }
+            }
+        }
+        i = 0;
+        for(Instalacion inst: compania.getInstalaciones()){
+            for(Tecnico tec: inst.getTecnicos()){
+                if(tec.getNroTécnico()==nroTecnico) {
+                    listModel.add(i, tec.getNroTécnico());
+                }
+            }
+        }
+        reparacionSeleccionada = null;
+        instalacionSeleccionada = null;
+        return listModel;
+    }
+
+
+
+    //################################################
+    //################################################
+    //################################################
+
 
     public void menuInicial() {
         // TODO Auto-generated method stub

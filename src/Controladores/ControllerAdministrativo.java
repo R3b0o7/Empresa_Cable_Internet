@@ -63,10 +63,8 @@ public class ControllerAdministrativo{
         reparacionSeleccionada = null;
         if(compania.getInstalacion(idServicio) != null){
             instalacionSeleccionada = compania.getInstalacion(idServicio);
-            System.out.println("instalacion "+instalacionSeleccionada.toString());
         } else {
             reparacionSeleccionada = compania.getReparacion(idServicio);
-            System.out.println("reparacion "+reparacionSeleccionada.toString());
         }
     }
 

@@ -1,10 +1,7 @@
 package Controladores;
 
 import Clases.*;
-import GUI.VentanaAdministrador;
-import GUI.VentanaAdministrativo;
-import GUI.VentanaCallCenter;
-import GUI.VentanaTecnico;
+import GUI.*;
 
 import javax.swing.*;
 
@@ -52,7 +49,7 @@ public class ControllerLogin {
                     break;
                 case "tecnico":
                     this.controladorTecnico = ControllerTecnico.getInstance();
-                    new VentanaTecnico();
+                    new VentanTecnicoAlt();
                     run = false;
                     break;
                 case "administrador":
